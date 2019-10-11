@@ -18,3 +18,16 @@ este es nice
 Forest Tileset:
 https://mamanezakon.itch.io/forest-tileset
 
+
+
+
+
+
+
+CHARACTER SPRITE:
+
+https://craftpix.net/freebies/free-pixel-art-tiny-hero-sprites/
+
+https://jesse-m.itch.io/jungle-pack
+
+https://hugues-laborde.itch.io/cartoon-viking-character-pack
