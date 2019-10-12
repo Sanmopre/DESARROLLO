@@ -2,7 +2,7 @@
 #define __ModulePlayer_H__
 
 #include "j1Module.h"
-//#include "Animation.h"
+#include "Animation.h"
 //#include "Globals.h"
 #include "p2Point.h"
 
@@ -31,7 +31,7 @@ public:
 	jump jumping = JUMP_NOT;
 	bool keyup = true;
 
-	// Animation* current_animation = &idle;
+	Animation* current_animation = &idle;
 	//COLLIDERS NOT IMPLEMENTED
 	/*
 	Collider * player = nullptr;
@@ -40,12 +40,12 @@ public:
 	SDL_Texture* graphics = nullptr;
 
 	//ANIMATIONS NOT IMPLEMENTED
-	/*
+	
 	Animation idle;
 	Animation forward;
 	Animation backward;
 	Animation punch;
-*/
+
 	iPoint position;
 
 };

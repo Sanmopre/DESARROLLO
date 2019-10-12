@@ -9,6 +9,7 @@
 #include "j1Audio.h"
 #include "j1Render.h"
 #include "ModulePlayer.h"
+#include "Animation.h"
 
 
 ModulePlayer::ModulePlayer()
