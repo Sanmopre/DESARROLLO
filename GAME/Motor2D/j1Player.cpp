@@ -8,22 +8,22 @@
 #include "j1Input.h"
 #include "j1Audio.h"
 #include "j1Render.h"
-#include "ModulePlayer.h"
-#include "Animation.h"
+#include "j1Player.h"
+#include "j1Animation.h"
 
 
-ModulePlayer::ModulePlayer()
+j1Player::j1Player()
 {
 	//position.x = ;
 	//position.y = ;
 
 }
 
-ModulePlayer::~ModulePlayer()
+j1Player::~j1Player()
 {}
 
 
-bool ModulePlayer::Awake(pugi::xml_node& config)
+bool j1Player::Awake(pugi::xml_node& config)
 {
 	bool ret = true;
 
@@ -31,7 +31,7 @@ bool ModulePlayer::Awake(pugi::xml_node& config)
 }
 
 
-bool ModulePlayer::Start()
+bool j1Player::Start()
 {
 	bool ret = true;
 	/*
@@ -43,7 +43,7 @@ bool ModulePlayer::Start()
 }
 
 
-bool ModulePlayer::Update()
+bool j1Player::Update()
 {
 	bool ret = true;
 
@@ -105,7 +105,7 @@ bool ModulePlayer::Update()
 	return ret;
 }
 
-bool ModulePlayer::CleanUp() {
+bool j1Player::CleanUp() {
 
 	SDL_DestroyTexture(graphics);
 	return true;

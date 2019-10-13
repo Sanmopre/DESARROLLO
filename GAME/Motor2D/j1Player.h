@@ -2,7 +2,7 @@
 #define __ModulePlayer_H__
 
 #include "j1Module.h"
-#include "Animation.h"
+#include "j1Animation.h"
 //#include "Globals.h"
 #include "p2Point.h"
 
@@ -15,11 +15,11 @@ enum jump
 	JUMP_UP = 1
 };
 
-class ModulePlayer : public j1Module
+class j1Player : public j1Module
 {
 public:
-	ModulePlayer();
-	~ModulePlayer();
+	j1Player();
+	~j1Player();
 
 	bool Awake(pugi::xml_node&);
 	bool Start();
