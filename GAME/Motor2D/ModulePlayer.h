@@ -45,6 +45,7 @@ public:
 	Animation forward;
 	Animation backward;
 	Animation punch;
+	Animation jump;
 
 	iPoint position;
 
