@@ -1,7 +1,7 @@
 /*
 #include "Globals.h"
 #include "ModuleParticles.h"
-#include "ModuleCollision.h"
+
 */
 #include "j1App.h"
 #include "j1Textures.h"
@@ -10,12 +10,12 @@
 #include "j1Render.h"
 #include "j1Player.h"
 #include "j1Animation.h"
-
+#include "ModuleCollision.h"
 
 j1Player::j1Player()
 {
-	//position.x = ;
-	//position.y = ;
+	position.x = 0;
+	position.y = 0;
 
 }
 
@@ -34,10 +34,10 @@ bool j1Player::Awake(pugi::xml_node& config)
 bool j1Player::Start()
 {
 	bool ret = true;
-	/*
-	graphics = App->textures->Load("");
-	player = App->collision->AddCollider({ position.x, position.y , ,  }, COLLIDER_PLAYER1, this);
-*/
+	
+	graphics = App->tex->Load("");
+	player = App->collision->AddCollider({ position.x, position.y ,10 ,10}, COLLIDER_PLAYER1, this);
+
 
 	return ret;
 }

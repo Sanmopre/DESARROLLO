@@ -34,10 +34,10 @@ public:
 
 	Animation* current_animation = &idle;
 	//COLLIDERS NOT IMPLEMENTED
-	/*
+	
 	Collider * player = nullptr;
 	Collider * melee = nullptr;
-*/
+
 	SDL_Texture* graphics = nullptr;
 
 	//ANIMATIONS NOT IMPLEMENTED
