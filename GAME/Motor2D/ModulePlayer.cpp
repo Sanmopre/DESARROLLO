@@ -23,6 +23,14 @@ ModulePlayer::~ModulePlayer()
 {}
 
 
+bool ModulePlayer::Awake(pugi::xml_node& config)
+{
+	bool ret = true;
+
+	return ret;
+}
+
+
 bool ModulePlayer::Start()
 {
 	bool ret = true;
