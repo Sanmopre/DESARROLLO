@@ -13,6 +13,7 @@
 #include "j1App.h"
 #include "j1Player.h"
 #include "j1Animation.h"
+#include "ModuleCollision.h"
 
 
 
@@ -30,7 +31,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new j1Scene();
 	map = new j1Map();
 	player = new j1Player();
-	
+	collision = new ModuleCollision();
 
 
 	// Ordered for awake / Start / Update
@@ -42,6 +43,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(map);
 	AddModule(scene);
 	AddModule(player);
+	AddModule(collision);
 
 	// render last to swap buffer
 	AddModule(render);
