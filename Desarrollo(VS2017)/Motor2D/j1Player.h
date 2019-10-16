@@ -28,6 +28,7 @@ public:
 
 public:
 
+	p2SString file;
 	int hp = 100;
 	jump jumping = JUMP_NOT;
 	bool keyup = true;
