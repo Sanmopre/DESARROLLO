@@ -14,6 +14,12 @@
 
 j1Player::j1Player()
 {
+	//poner coordenadas spritesheet
+}
+
+
+j1Player::j1Player()
+{
 	position.x = 0;
 	position.y = 0;
 
