@@ -19,6 +19,8 @@ j1Player::j1Player()
 	position.x = 0;
 	position.y = 0;
 
+	idle.PushBack({ 163,11,12,29 }, 0, 0);
+	idle.lock = true;
 }
 
 j1Player::~j1Player()
@@ -37,7 +39,7 @@ bool j1Player::Start()
 {
 	bool ret = true;
 	
-	graphics = App->tex->Load("");
+	graphics = App->tex->Load("sprites/character.png");
 	player = App->collision->AddCollider({ position.x, position.y ,10 ,10}, COLLIDER_PLAYER1, this);
 
 

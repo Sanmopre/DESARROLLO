@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextobjectid="1">
- <tileset firstgid="1" source="tileset.tsx"/>
+ <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="216" columns="24">
+  <image source="tileset.png" width="384" height="144"/>
+  <terraintypes>
+   <terrain name="bricks" tile="0"/>
+   <terrain name="wood" tile="0"/>
+  </terraintypes>
+  <tile id="1" terrain="0,0,0,0"/>
+  <tile id="2" terrain="0,0,0,0"/>
+  <tile id="3" terrain="0,0,0,0"/>
+  <tile id="17" terrain="1,1,1,1"/>
+  <tile id="18" terrain="1,1,1,1"/>
+  <tile id="19" terrain="1,1,1,1"/>
+  <tile id="24" terrain="0,0,0,0"/>
+  <tile id="25" terrain="0,0,0,0"/>
+  <tile id="26" terrain="0,0,0,0"/>
+  <tile id="27" terrain="0,0,0,0"/>
+  <tile id="28" terrain="0,0,0,0"/>
+  <tile id="42" terrain="1,1,1,1"/>
+  <tile id="48" terrain="0,0,0,0"/>
+  <tile id="49" terrain="0,0,0,0"/>
+  <tile id="50" terrain="0,0,0,0"/>
+  <tile id="51" terrain="0,0,0,0"/>
+  <tile id="52" terrain="0,0,0,0"/>
+  <tile id="72" terrain="0,0,0,0"/>
+  <tile id="73" terrain="0,0,0,0"/>
+  <tile id="74" terrain="0,0,0,0"/>
+  <tile id="75" terrain="0,0,0,0"/>
+  <tile id="76" terrain="0,0,0,0"/>
+  <tile id="97" terrain="0,0,0,0"/>
+  <tile id="98" terrain="0,0,0,0"/>
+  <tile id="99" terrain="0,0,0,0"/>
+ </tileset>
  <layer name="fondo todo" width="100" height="30">
   <properties>
-   <property name="solid" type="bool" value="false"/>
+   <property name="Draw" type="int" value="1"/>
   </properties>
   <data>
    <tile gid="109"/>
@@ -2606,14 +2637,14 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="15"/>
-   <tile gid="15"/>
-   <tile gid="15"/>
-   <tile gid="15"/>
-   <tile gid="15"/>
-   <tile gid="15"/>
-   <tile gid="15"/>
-   <tile gid="15"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile gid="57"/>
    <tile gid="57"/>
    <tile gid="57"/>
@@ -3010,7 +3041,7 @@
  </layer>
  <layer name="bg" width="100" height="30">
   <properties>
-   <property name="solid" type="bool" value="false"/>
+   <property name="Draw" type="int" value="1"/>
   </properties>
   <data>
    <tile/>
@@ -5427,14 +5458,14 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="2"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -5526,8 +5557,8 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="25"/>
-   <tile gid="26"/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile gid="23"/>
    <tile gid="36"/>
@@ -5615,8 +5646,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="3"/>
-   <tile gid="3"/>
    <tile/>
    <tile/>
    <tile/>
@@ -5626,7 +5655,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="49"/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile gid="47"/>
@@ -5726,7 +5757,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="49"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile gid="71"/>
@@ -5826,7 +5857,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="49"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile gid="47"/>
@@ -5920,13 +5951,13 @@
    <tile gid="164"/>
    <tile gid="164"/>
    <tile gid="164"/>
-   <tile gid="76"/>
    <tile/>
    <tile/>
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="49"/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile gid="71"/>
@@ -6017,7 +6048,7 @@
  </layer>
  <layer name="solid" width="100" height="30">
   <properties>
-   <property name="solid" type="bool" value="true"/>
+   <property name="Draw" type="int" value="1"/>
   </properties>
   <data>
    <tile gid="99"/>
@@ -8533,8 +8564,8 @@
    <tile gid="215"/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="25"/>
+   <tile gid="26"/>
    <tile/>
    <tile/>
    <tile/>
@@ -8633,7 +8664,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="49"/>
    <tile/>
    <tile/>
    <tile/>
@@ -8733,7 +8764,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="49"/>
    <tile/>
    <tile/>
    <tile/>
@@ -8833,7 +8864,7 @@
    <tile gid="167"/>
    <tile gid="167"/>
    <tile gid="167"/>
-   <tile/>
+   <tile gid="49"/>
    <tile gid="74"/>
    <tile/>
    <tile/>
@@ -8927,13 +8958,13 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="76"/>
    <tile gid="77"/>
    <tile gid="61"/>
    <tile gid="61"/>
    <tile gid="61"/>
    <tile gid="61"/>
-   <tile/>
+   <tile gid="49"/>
    <tile gid="98"/>
    <tile gid="99"/>
    <tile gid="99"/>
