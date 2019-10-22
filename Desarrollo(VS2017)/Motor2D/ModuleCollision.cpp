@@ -8,35 +8,25 @@ ModuleCollision::ModuleCollision()
 	for(uint i = 0; i < MAX_COLLIDERS; ++i)
 		colliders[i] = nullptr;
 
-	matrix[COLLIDER_WALL][COLLIDER_WALL] = false;
-	matrix[COLLIDER_WALL][COLLIDER_PLAYER1] = true;
-	matrix[COLLIDER_WALL][COLLIDER_PLAYER2] = true;
-	matrix[COLLIDER_WALL][COLLIDER_PLAYER1_ATTACK] = true;
-	matrix[COLLIDER_WALL][COLLIDER_PLAYER2_ATTACK] = true;
+	matrix[COLLIDER_FLOOR][COLLIDER_FLOOR] = false;
+	matrix[COLLIDER_FLOOR][COLLIDER_PLAYER1] = true;
+	matrix[COLLIDER_FLOOR][COLLIDER_DEATH] = false;
+	matrix[COLLIDER_FLOOR][COLLIDER_PLATFORM] = false;
+    
+	
+	matrix[COLLIDER_DEATH][COLLIDER_DEATH] = false;
+	matrix[COLLIDER_DEATH][COLLIDER_FLOOR] = true;
+	matrix[COLLIDER_DEATH][COLLIDER_PLAYER1] = true;
+	matrix[COLLIDER_DEATH][COLLIDER_PLATFORM] = true;
 
-	matrix[COLLIDER_PLAYER1][COLLIDER_WALL] = true;
+
 	matrix[COLLIDER_PLAYER1][COLLIDER_PLAYER1] = false;
-	matrix[COLLIDER_PLAYER1][COLLIDER_PLAYER2] = true;
-	matrix[COLLIDER_PLAYER1][COLLIDER_PLAYER1_ATTACK] = false;
-	matrix[COLLIDER_PLAYER1][COLLIDER_PLAYER2_ATTACK] = true;
+	matrix[COLLIDER_PLAYER1][COLLIDER_FLOOR] = true;
+	matrix[COLLIDER_PLAYER1][COLLIDER_DEATH] = true;
+	matrix[COLLIDER_PLAYER1][COLLIDER_PLATFORM] = true;
 
-	matrix[COLLIDER_PLAYER2][COLLIDER_WALL] = true;
-	matrix[COLLIDER_PLAYER2][COLLIDER_PLAYER1] = true;
-	matrix[COLLIDER_PLAYER2][COLLIDER_PLAYER2] = false;
-	matrix[COLLIDER_PLAYER2][COLLIDER_PLAYER1_ATTACK] = true;
-	matrix[COLLIDER_PLAYER2][COLLIDER_PLAYER2_ATTACK] = false;
 
-	matrix[COLLIDER_PLAYER1_ATTACK][COLLIDER_WALL] = true;
-	matrix[COLLIDER_PLAYER1_ATTACK][COLLIDER_PLAYER1] = false;
-	matrix[COLLIDER_PLAYER1_ATTACK][COLLIDER_PLAYER2] = true;
-	matrix[COLLIDER_PLAYER1_ATTACK][COLLIDER_PLAYER1_ATTACK] = false;
-	matrix[COLLIDER_PLAYER1_ATTACK][COLLIDER_PLAYER2_ATTACK] = false;
-
-	matrix[COLLIDER_PLAYER2_ATTACK][COLLIDER_WALL] = true;
-	matrix[COLLIDER_PLAYER2_ATTACK][COLLIDER_PLAYER1] = true;
-	matrix[COLLIDER_PLAYER2_ATTACK][COLLIDER_PLAYER2] = false;
-	matrix[COLLIDER_PLAYER2_ATTACK][COLLIDER_PLAYER1_ATTACK] = false;
-	matrix[COLLIDER_PLAYER2_ATTACK][COLLIDER_PLAYER2_ATTACK] = false;
+	
 }
 
 // Destructor
@@ -120,20 +110,17 @@ void ModuleCollision::DebugDraw()
 			case COLLIDER_NONE: // white
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 			break;
-			case COLLIDER_WALL: // blue
+			case COLLIDER_FLOOR: // blue
 			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
 			break;
 			case COLLIDER_PLAYER1: // green
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 			break;
-			case COLLIDER_PLAYER2: // red
+			case COLLIDER_DEATH: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
-			case COLLIDER_PLAYER1_ATTACK: // yellow
+			case COLLIDER_PLATFORM: // yellow
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
-			break;
-			case COLLIDER_PLAYER2_ATTACK: // magenta
-			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
 			break;
 		}
 	}
