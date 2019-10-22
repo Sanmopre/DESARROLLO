@@ -12,10 +12,6 @@
 #include "j1Animation.h"
 #include "ModuleCollision.h"
 
-j1Player::j1Player()
-{
-	//poner coordenadas spritesheet
-}
 
 
 j1Player::j1Player()
