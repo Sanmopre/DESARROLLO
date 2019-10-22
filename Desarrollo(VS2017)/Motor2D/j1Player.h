@@ -8,6 +8,43 @@
 
 struct SDL_Texture;
 
+struct PlayerInfo
+{
+	//ANIMATIONS NOT IMPLEMENTED
+	Animation*		current_animation;
+	Animation idle;
+	Animation forward;
+	Animation backward;
+	Animation jump;
+
+    iPoint position;
+	iPoint preposition;
+	iPoint a;	
+	iPoint v;	
+
+	p2SString		Death_Effect;
+	p2SString		Jump_Effect;
+
+	SDL_Rect		col;
+	iPoint			colOffset;
+	SDL_Texture*	Tex_Player;
+    bool grounded;
+	bool platformdrop;
+	float jump_time = 0.0f;
+	bool injump = false;	
+	bool canjump = false;  
+	int jumpvel;
+	float gravity;
+	bool player_flip;
+	int initialposy;
+	
+	//COLLIDERS NOT IMPLEMENTED
+	Collider * player = nullptr;
+	Collider* colliders_1 = nullptr;
+	
+	bool showcolliders = false;
+};
+
 enum jump
 {
 	JUMP_DOWN = -1,
@@ -27,28 +64,17 @@ public:
 	bool CleanUp();
 
 public:
-
+	PlayerInfo playerinfo;
 	p2SString file;
-	int hp = 100;
 	jump jumping = JUMP_NOT;
 	bool keyup = true;
 
-	Animation* current_animation = &idle;
-	//COLLIDERS NOT IMPLEMENTED
 	
-	Collider * player = nullptr;
-	Collider * melee = nullptr;
+
+
 
 	SDL_Texture* graphics = nullptr;
-
-	//ANIMATIONS NOT IMPLEMENTED
 	
-	Animation idle;
-	Animation forward;
-	Animation backward;
-	Animation punch;
-	Animation jump;
-
 	iPoint position;
 
 };

@@ -1,8 +1,3 @@
-/*
-#include "Globals.h"
-#include "ModuleParticles.h"
-
-*/
 #include "j1App.h"
 #include "j1Textures.h"
 #include "j1Input.h"
@@ -19,8 +14,8 @@ j1Player::j1Player()
 	position.x = 0;
 	position.y = 0;
 
-	idle.PushBack({ 163,11,12,29 }, 0, 0);
-	idle.lock = true;
+	playerinfo.idle.PushBack({ 163,11,12,29 }, 0, 0);
+	playerinfo.idle.lock = true;
 }
 
 j1Player::~j1Player()
@@ -40,7 +35,7 @@ bool j1Player::Start()
 	bool ret = true;
 	
 	graphics = App->tex->Load("sprites/character.png");
-	player = App->collision->AddCollider({ position.x, position.y ,10 ,10}, COLLIDER_PLAYER1, this);
+	//player = App->collision->AddCollider({ position.x, position.y ,10 ,10}, COLLIDER_PLAYER1, this);
 
 
 	return ret;
@@ -54,28 +49,28 @@ bool j1Player::Update()
 	int speed = 1;
 	float speed_y = 2.5f;
 
-	if (current_animation->Finished() || current_animation->lock == false) {
+	if (playerinfo.current_animation->Finished() || playerinfo.current_animation->lock == false) {
 
-		if (current_animation->Finished()) {
-			current_animation->Reset();
+		if (playerinfo.current_animation->Finished()) {
+			playerinfo.current_animation->Reset();
 		}
 
-		current_animation = &idle;
+		playerinfo.current_animation = &playerinfo.idle;
 
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN)
 		{
-			current_animation = &forward;
+			playerinfo.current_animation = &playerinfo.forward;
 			position.x += speed;
 		}
 
 		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
 		{
-			current_animation = &forward;
+			playerinfo.current_animation = &playerinfo.forward;
 			position.x -= speed;
 		}
 
 		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN) {
-			current_animation = &jump;
+			playerinfo.current_animation = &playerinfo.jump;
 			jumping = JUMP_UP;
 		}
 	}
@@ -94,13 +89,13 @@ bool j1Player::Update()
 	{
 		position.y -= (int)speed_y;
 		//speed_y += 0.3f;
-		if (current_animation->current_frame >= 2.5f) {
+		if (playerinfo.current_animation->current_frame >= 2.5f) {
 			jumping = JUMP_DOWN;
 		}
 	}
 
 	// Draw everything --------------------------------------
-	SDL_Rect r = current_animation->GetCurrentFrame();
+	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
 
 	//App->player->SetPos(position.x, position.y);
 
