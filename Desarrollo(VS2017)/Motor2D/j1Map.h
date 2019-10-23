@@ -6,50 +6,41 @@
 #include "p2Point.h"
 #include "j1Module.h"
 
-// TODO 1: Create a struct for the map layer
+// TODO 5: Create a generic structure to hold properties
+// TODO 7: Our custom properties should have one method
+// to ask for the value of a custom property
 // ----------------------------------------------------
-
-// TODO 6: Short function to get the value of x,y
-
-
-struct MapLayer 
+struct Properties
 {
-	p2SString			name;
-	uint				width;
-	uint				height;
-	uint*				data;
-	inline uint Get(int x, int y) const
-	{
-		return x + y * width;
-	}
 };
 
+// ----------------------------------------------------
+struct MapLayer
+{
+	p2SString	name;
+	int			width;
+	int			height;
+	uint*		data;
+	Properties	properties;
+
+	MapLayer() : data(NULL)
+	{}
+
+	~MapLayer()
+	{
+		RELEASE(data);
+	}
+
+	inline uint Get(int x, int y) const
+	{
+		return data[(y*width) + x];
+	}
+};
 
 // ----------------------------------------------------
 struct TileSet
 {
-	// TODO 7: Create a method that receives a tile id and returns it's Rect
-	SDL_Rect* Tilerect = new SDL_Rect;
-	SDL_Rect* TileRect(uint tile_id) {
-		SDL_Rect* ret = Tilerect; 
-		int x = ((tile_id - firstgid) % num_tiles_width);
-		int y = ((tile_id - firstgid) / num_tiles_width);
-
-		ret->x = x*tile_width  + margin + spacing*x;
-		ret->y = y*tile_height + margin + spacing*y;
-		ret->w = tile_width;
-		ret->h = tile_height;
-
-		return ret;
-	}
-
-	inline p2Point<uint> GetPos(uint x, uint y) {
-		p2Point<uint> ret;
-		ret.x = x * tile_width;
-		ret.y = y * tile_height;
-
-		return ret;
-	}
+	SDL_Rect GetTileRect(int id) const;
 
 	p2SString			name;
 	int					firstgid;
@@ -84,9 +75,6 @@ struct MapData
 	MapTypes			type;
 	p2List<TileSet*>	tilesets;
 	p2List<MapLayer*>	layers;
-
-
-	// TODO 2: Add a list/array of layers to the map!
 };
 
 // ----------------------------------------------------
@@ -111,7 +99,6 @@ public:
 	// Load new map
 	bool Load(const char* path);
 
-	// TODO 8: Create a method that translates x,y coordinates from map positions to world positions
 	iPoint MapToWorld(int x, int y) const;
 	iPoint WorldToMap(int x, int y) const;
 
@@ -120,8 +107,10 @@ private:
 	bool LoadMap();
 	bool LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
-	// TODO 3: Create a method that loads a single layer
 	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
+	bool LoadProperties(pugi::xml_node& node, Properties& properties);
+
+	TileSet* GetTilesetFromTileId(int id) const;
 
 public:
 
