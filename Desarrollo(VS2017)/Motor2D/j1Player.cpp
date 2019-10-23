@@ -12,8 +12,8 @@
 j1Player::j1Player()
 {
 	//aqui ponemos los pixeles y los pushback :)
-	position.x = 185;
-	position.y = 105;
+	position.x = 0;
+	position.y = 30;
 
 	playerinfo.idle.PushBack({ 163,11,12,30 }, 0, 0);
 	playerinfo.idle.PushBack({ 185, 11,12 , 30 }, 0, 0);

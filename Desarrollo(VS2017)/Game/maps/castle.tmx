@@ -6,31 +6,35 @@
    <terrain name="bricks" tile="0"/>
    <terrain name="wood" tile="0"/>
   </terraintypes>
-  <tile id="1" terrain="0,0,0,0"/>
-  <tile id="2" terrain="0,0,0,0"/>
-  <tile id="3" terrain="0,0,0,0"/>
+  <tile id="0" type="bricks"/>
+  <tile id="1" type="bricks" terrain="0,0,0,0"/>
+  <tile id="2" type="bricks" terrain="0,0,0,0"/>
+  <tile id="3" type="bricks" terrain="0,0,0,0"/>
+  <tile id="4" type="bricks"/>
   <tile id="17" terrain="1,1,1,1"/>
   <tile id="18" terrain="1,1,1,1"/>
   <tile id="19" terrain="1,1,1,1"/>
-  <tile id="24" terrain="0,0,0,0"/>
-  <tile id="25" terrain="0,0,0,0"/>
-  <tile id="26" terrain="0,0,0,0"/>
-  <tile id="27" terrain="0,0,0,0"/>
-  <tile id="28" terrain="0,0,0,0"/>
+  <tile id="24" type="bricks" terrain="0,0,0,0"/>
+  <tile id="25" type="bricks" terrain="0,0,0,0"/>
+  <tile id="26" type="bricks" terrain="0,0,0,0"/>
+  <tile id="27" type="bricks" terrain="0,0,0,0"/>
+  <tile id="28" type="bricks" terrain="0,0,0,0"/>
   <tile id="42" terrain="1,1,1,1"/>
-  <tile id="48" terrain="0,0,0,0"/>
-  <tile id="49" terrain="0,0,0,0"/>
-  <tile id="50" terrain="0,0,0,0"/>
-  <tile id="51" terrain="0,0,0,0"/>
-  <tile id="52" terrain="0,0,0,0"/>
-  <tile id="72" terrain="0,0,0,0"/>
-  <tile id="73" terrain="0,0,0,0"/>
-  <tile id="74" terrain="0,0,0,0"/>
-  <tile id="75" terrain="0,0,0,0"/>
-  <tile id="76" terrain="0,0,0,0"/>
-  <tile id="97" terrain="0,0,0,0"/>
-  <tile id="98" terrain="0,0,0,0"/>
-  <tile id="99" terrain="0,0,0,0"/>
+  <tile id="48" type="bricks" terrain="0,0,0,0"/>
+  <tile id="49" type="bricks" terrain="0,0,0,0"/>
+  <tile id="50" type="bricks" terrain="0,0,0,0"/>
+  <tile id="51" type="bricks" terrain="0,0,0,0"/>
+  <tile id="52" type="bricks" terrain="0,0,0,0"/>
+  <tile id="72" type="bricks" terrain="0,0,0,0"/>
+  <tile id="73" type="bricks" terrain="0,0,0,0"/>
+  <tile id="74" type="bricks" terrain="0,0,0,0"/>
+  <tile id="75" type="bricks" terrain="0,0,0,0"/>
+  <tile id="76" type="bricks" terrain="0,0,0,0"/>
+  <tile id="96" type="bricks"/>
+  <tile id="97" type="bricks" terrain="0,0,0,0"/>
+  <tile id="98" type="bricks" terrain="0,0,0,0"/>
+  <tile id="99" type="bricks" terrain="0,0,0,0"/>
+  <tile id="100" type="bricks"/>
  </tileset>
  <layer name="fondo todo" width="100" height="30">
   <properties>
