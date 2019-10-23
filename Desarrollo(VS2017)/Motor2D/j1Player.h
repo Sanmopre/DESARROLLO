@@ -17,12 +17,13 @@ struct PlayerInfo
 	Animation jump;
 
     iPoint position;
-	iPoint preposition;
-	iPoint a;	
-	iPoint v;	
+	iPoint Initial_position;
 
 	p2SString		Death_Effect;
 	p2SString		Jump_Effect;
+
+	pugi::xml_document playerdoc;
+	pugi::xml_node playernode;
 
 	SDL_Rect		col;
 	iPoint			colOffset;
@@ -35,7 +36,8 @@ struct PlayerInfo
 	int jumpvel;
 	float gravity;
 	bool player_flip;
-	int initialposy;
+
+
 	
 	//COLLIDERS NOT IMPLEMENTED
 	Collider * player = nullptr;
