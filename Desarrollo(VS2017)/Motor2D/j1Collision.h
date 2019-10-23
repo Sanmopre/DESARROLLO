@@ -41,12 +41,12 @@ struct Collider
 	bool CheckCollision(const SDL_Rect& r) const;
 };
 
-class ModuleCollision : public j1Module
+class j1Collision : public j1Module
 {
 public:
 
-	ModuleCollision();
-	~ModuleCollision();
+	j1Collision();
+	~j1Collision();
 
 	bool PreUpdate() override;
 	bool Update();

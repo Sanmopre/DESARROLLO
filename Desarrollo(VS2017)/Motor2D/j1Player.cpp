@@ -5,7 +5,7 @@
 #include "j1Render.h"
 #include "j1Player.h"
 #include "j1Animation.h"
-#include "ModuleCollision.h"
+#include "j1Collision.h"
 
 
 
@@ -35,7 +35,7 @@ bool j1Player::Start()
 	bool ret = true;
 	
 	graphics = App->tex->Load("sprites/character.png");
-	//player = App->collision->AddCollider({ position.x, position.y ,10 ,10}, COLLIDER_PLAYER1, this);
+	playerinfo.player = App->collision->AddCollider({ position.x, position.y ,10 ,10}, COLLIDER_PLAYER1, this);
 
 
 	return ret;
@@ -59,13 +59,13 @@ bool j1Player::Update()
 
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN)
 		{
-			playerinfo.current_animation = &playerinfo.forward;
+			playerinfo.current_animation = &playerinfo.walk;
 			position.x += speed;
 		}
 
 		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
 		{
-			playerinfo.current_animation = &playerinfo.forward;
+			playerinfo.current_animation = &playerinfo.walk;
 			position.x -= speed;
 		}
 

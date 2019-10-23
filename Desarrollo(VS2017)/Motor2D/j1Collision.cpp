@@ -1,9 +1,9 @@
 #include "j1App.h"
 #include "j1Input.h"
 #include "j1Render.h"
-#include "ModuleCollision.h"
+#include "j1Collision.h"
 
-ModuleCollision::ModuleCollision()
+j1Collision::j1Collision()
 {
 	for(uint i = 0; i < MAX_COLLIDERS; ++i)
 		colliders[i] = nullptr;
@@ -30,10 +30,10 @@ ModuleCollision::ModuleCollision()
 }
 
 // Destructor
-ModuleCollision::~ModuleCollision()
+j1Collision::~j1Collision()
 {}
 
-bool ModuleCollision::PreUpdate()
+bool j1Collision::PreUpdate()
 {
 	bool ret = true;
 	// Remove all colliders scheduled for deletion
@@ -82,7 +82,7 @@ bool ModuleCollision::PreUpdate()
 }
 
 // Called before render is available
-bool ModuleCollision::Update()
+bool j1Collision::Update()
 {
 	bool ret = true;
 
@@ -91,7 +91,7 @@ bool ModuleCollision::Update()
 	return ret;
 }
 
-void ModuleCollision::DebugDraw()
+void j1Collision::DebugDraw()
 {
 	if(App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		debug = !debug;
@@ -127,7 +127,7 @@ void ModuleCollision::DebugDraw()
 }
 
 // Called before quitting
-bool ModuleCollision::CleanUp()
+bool j1Collision::CleanUp()
 {
 	
 
@@ -143,7 +143,7 @@ bool ModuleCollision::CleanUp()
 	return true;
 }
 
-Collider* ModuleCollision::AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback)
+Collider* j1Collision::AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback)
 {
 	Collider* ret = nullptr;
 
