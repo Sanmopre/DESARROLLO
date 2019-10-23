@@ -11,7 +11,7 @@ struct SDL_Texture;
 struct PlayerInfo
 {
 	//ANIMATIONS NOT IMPLEMENTED
-	Animation*		current_animation;
+	Animation*		current_animation=&idle;
 	Animation idle;
 	Animation forward;
 	Animation backward;

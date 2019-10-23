@@ -9,11 +9,17 @@ class Animation
 public:
 	float speed = 1.0f;
 	SDL_Rect frames[MAX_FRAMES];
+	iPoint offset[MAX_FRAMES];
+
 	bool loop = true;
 	float current_frame;
 	int last_frame = 0;
+
+
 	bool lock = false;
-	iPoint offset[MAX_FRAMES];
+
+
+
 
 private:
 	int loops = 0;
@@ -21,15 +27,25 @@ private:
 public:
 
 
-	
 	void PushBack(const SDL_Rect& rect, int offset_x = 0, int offset_y = 0)
 	{
-			frames[last_frame] = rect;
-			offset[last_frame].x = offset_x;
-			offset[last_frame].y = offset_y;
-			last_frame++;
+		frames[last_frame] = rect;
+		offset[last_frame].x = offset_x;
+		offset[last_frame].y = offset_y;
+		last_frame++;
 	}
-	
+
+	//NEW-------------------------------------
+	void SetOffset(int frame, int offset_x = 0, int offset_y = 0) {
+		offset[frame].x = offset_x;
+		offset[frame].y = offset_y;
+	}
+
+	void SetSpeed(float new_speed) {
+		speed = new_speed;
+	}
+	//---------------------------
+
 
 	SDL_Rect& GetCurrentFrame()
 	{
@@ -37,12 +53,19 @@ public:
 		if (current_frame >= last_frame)
 		{
 			current_frame = (loop) ? 0.0f : last_frame - 1;
-			loops++;
-			
+			if (loop)
+				loops++;
+
 		}
 		return frames[(int)current_frame];
 	}
-	
+
+	iPoint& GetOffset()
+	{
+
+		return offset[(int)current_frame];
+	}
+
 	bool Finished() const
 	{
 		return loops > 0;
@@ -54,5 +77,4 @@ public:
 		loops = 0;
 	}
 };
-
 #endif

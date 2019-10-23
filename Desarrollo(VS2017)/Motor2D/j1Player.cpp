@@ -11,15 +11,15 @@
 
 j1Player::j1Player()
 {
-	position.x = 0;
-	position.y = 0;
+	//aqui ponemos los pixeles y los pushback :)
+	position.x = 185;
+	position.y = 105;
 
-	playerinfo.idle.PushBack({ 163,11,12,29 }, 0, 0);
+	playerinfo.idle.PushBack({ 163,11,12,30 }, 0, 0);
+	playerinfo.idle.PushBack({ 185, 11,12 , 30 }, 0, 0);
+	playerinfo.idle.speed = 0.2f;
 	playerinfo.idle.lock = true;
 }
-
-j1Player::~j1Player()
-{}
 
 
 bool j1Player::Awake(pugi::xml_node& config)
@@ -45,7 +45,7 @@ bool j1Player::Start()
 bool j1Player::Update()
 {
 	bool ret = true;
-
+	
 	int speed = 1;
 	float speed_y = 2.5f;
 
