@@ -14,8 +14,7 @@ j1Player::j1Player()
 	name.create("player");
 
 	//aqui ponemos los pixeles y los pushback :)
-	position.x = 0;
-	position.y = 0;
+
 
 	playerinfo.idle.PushBack({ 163,11,12,30 }, 0, 0);
 	playerinfo.idle.PushBack({ 185, 11,12 , 30 }, 0, 0);
@@ -36,16 +35,16 @@ bool j1Player::Start()
 {
 	bool ret = true;
 	pugi::xml_parse_result result = playerinfo.playerdoc.load_file(file.GetString());
-	position.x = 0;
-	position.y = 0;
+	playerinfo.position.x = 0;
+	playerinfo.position.y = 0;
 	playerinfo.playernode = playerinfo.playerdoc.child("player");
 
 	graphics = App->tex->Load("sprites/character.png");
     //sets initial position from xml
 	playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
 	playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
-
-    playerinfo.player = App->collision->AddCollider({ position.x, position.y ,10 ,10}, COLLIDER_PLAYER1, this);
+	
+    playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,10}, COLLIDER_PLAYER1, this);
 	return ret;
 }
 
