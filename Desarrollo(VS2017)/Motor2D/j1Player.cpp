@@ -14,8 +14,8 @@ j1Player::j1Player()
 	name.create("player");
 
 	//aqui ponemos los pixeles y los pushback :)
-	position.x = 185;
-	position.y = 105;
+	position.x = 0;
+	position.y = 0;
 
 	playerinfo.idle.PushBack({ 163,11,12,30 }, 0, 0);
 	playerinfo.idle.PushBack({ 185, 11,12 , 30 }, 0, 0);
@@ -36,7 +36,8 @@ bool j1Player::Start()
 {
 	bool ret = true;
 	pugi::xml_parse_result result = playerinfo.playerdoc.load_file(file.GetString());
-
+	position.x = 0;
+	position.y = 0;
 	playerinfo.playernode = playerinfo.playerdoc.child("player");
 
 	graphics = App->tex->Load("sprites/character.png");
