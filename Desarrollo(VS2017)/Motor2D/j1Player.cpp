@@ -28,9 +28,9 @@ j1Player::j1Player()
 
 	playerinfo.walk.PushBack({11, 79, 16, 29},0,0);
 	playerinfo.walk.PushBack({ 36, 78, 12, 30 }, 0, 0);
-	/*playerinfo.walk.PushBack({  }, 0, 0);
+	playerinfo.walk.PushBack({ 52, 79, 13, 30 }, 0, 0);
 	playerinfo.walk.PushBack({  }, 0, 0);
-	playerinfo.walk.PushBack({  }, 0, 0);*/
+	playerinfo.walk.PushBack({  }, 0, 0);
 	playerinfo.walk.lock = true;
 	playerinfo.walk.speed = 0.2f;
 }
