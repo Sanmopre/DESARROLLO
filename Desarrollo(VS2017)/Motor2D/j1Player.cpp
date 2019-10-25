@@ -1,4 +1,5 @@
 #include "j1App.h"
+#include "p2Log.h"
 #include "j1Textures.h"
 #include "j1Input.h"
 #include "j1Audio.h"
@@ -45,6 +46,7 @@ bool j1Player::Awake(pugi::xml_node& config)
 
 bool j1Player::Start()
 {
+	LOG("Loading player textures");
 	bool ret = true;
 	pugi::xml_parse_result result = playerinfo.playerdoc.load_file(file.GetString());
 	playerinfo.position.x = 0;
