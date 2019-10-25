@@ -18,8 +18,20 @@ j1Player::j1Player()
 
 	playerinfo.idle.PushBack({ 163,11,12,30 }, 0, 0);
 	playerinfo.idle.PushBack({ 185, 11,12 , 30 }, 0, 0);
+	playerinfo.idle.PushBack({ 205, 12, 12,30 }, 0, 0);
+	playerinfo.idle.PushBack({ 229, 10, 12, 30 }, 0, 0);
+	playerinfo.idle.PushBack({ 251, 10, 10, 30 }, 0, 0);
+	playerinfo.idle.PushBack({ 271, 10, 11, 30 }, 0, 0);
 	playerinfo.idle.speed = 0.2f;
 	playerinfo.idle.lock = true;
+
+	playerinfo.walk.PushBack({11, 79, 16, 29},0,0);
+	playerinfo.walk.PushBack({ 36, 78, 12, 30 }, 0, 0);
+	/*playerinfo.walk.PushBack({  }, 0, 0);
+	playerinfo.walk.PushBack({  }, 0, 0);
+	playerinfo.walk.PushBack({  }, 0, 0);*/
+	playerinfo.walk.lock = true;
+	playerinfo.walk.speed = 0.2f;
 }
 
 
