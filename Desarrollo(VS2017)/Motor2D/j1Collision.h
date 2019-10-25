@@ -21,9 +21,9 @@ enum COLLIDER_TYPE
 
 struct Collider
 {
-	SDL_Rect rect;
+	SDL_Rect rect = {0,0,0,0};
 	bool to_delete = false;
-	COLLIDER_TYPE type;
+	COLLIDER_TYPE type = COLLIDER_NONE;
 	j1Module* callback = nullptr;
 
 	Collider(SDL_Rect rectangle, COLLIDER_TYPE type, j1Module* callback = nullptr) :
@@ -39,6 +39,7 @@ struct Collider
 	}
 
 	bool CheckCollision(const SDL_Rect& r) const;
+	bool Enabled = true;
 };
 
 class j1Collision : public j1Module
@@ -48,9 +49,9 @@ public:
 	j1Collision();
 	~j1Collision();
 
-	bool PreUpdate() override;
+	bool PreUpdate();
 	bool Update();
-	bool CleanUp() override;
+	bool CleanUp();
 
 	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback = nullptr);
 	void DebugDraw();
