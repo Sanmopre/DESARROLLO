@@ -36,7 +36,8 @@ struct PlayerInfo
 	bool canjump = false;  
 	int jumpvel;
 	float gravity;
-	bool player_flip;
+	bool player_flip = false;
+
 
 
 	

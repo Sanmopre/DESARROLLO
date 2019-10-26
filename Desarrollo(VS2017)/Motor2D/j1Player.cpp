@@ -55,8 +55,8 @@ bool j1Player::Start()
 
 	graphics = App->tex->Load("sprites/character.png");
     //sets initial position from xml
-	playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
-	playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
+	//playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
+	//playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
 	
     playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,10}, COLLIDER_PLAYER1, this);
 	return ret;
@@ -120,7 +120,7 @@ bool j1Player::Update()
 
 	//App->player->SetPos(position.x, position.y);
 
-	//App->render->Blit(graphics, position.x, position.y, &r, 1.0f, flip);
+	App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &r, 1.0f, playerinfo.player_flip);
 
 	return ret;
 }
