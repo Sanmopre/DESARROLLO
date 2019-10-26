@@ -16,6 +16,8 @@ struct PlayerInfo
 	Animation idle;
 	Animation walk;
 	Animation jump;
+	Animation death;
+	Animation voltereta;
 
     iPoint position;
 	iPoint Initial_position;
