@@ -154,8 +154,7 @@ bool j1Player::PreUpdate()
 		}
 		break;
 	case FORWARD:
-		playerinfo.jumpvel = 7.0f; 
-
+		
 		if (!playerinfo.Input.pressing_D && playerinfo.right == false)
 			state = IDLE;
 
@@ -175,8 +174,7 @@ bool j1Player::PreUpdate()
 
 		break;
 	case BACKWARD:
-		playerinfo.jumpvel = 7.0f;
-	
+		
 		if (!playerinfo.Input.pressing_A && playerinfo.left == false)
 			state = IDLE;
 
