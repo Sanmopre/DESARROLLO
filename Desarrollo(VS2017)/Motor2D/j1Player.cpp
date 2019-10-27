@@ -103,9 +103,6 @@ bool j1Player::Start()
 	bool ret = true;
 	pugi::xml_parse_result result = playerinfo.playerdoc.load_file(file.GetString());
 
-	playerinfo.position.x = 5;
-	playerinfo.position.y = 6;
-
 	playerinfo.playernode = playerinfo.playerdoc.child("player");
 
 	graphics=App->tex->Load("sprites/pepe.png");
@@ -113,7 +110,7 @@ bool j1Player::Start()
 	playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
 	playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
 	
-    //playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,10}, COLLIDER_PLAYER1, this);
+    playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,10}, COLLIDER_PLAYER1, this);
 	return ret;
 }
 
@@ -238,8 +235,8 @@ bool j1Player::PreUpdate()
 		}
 		break;
 	}
-	//DRAWS THE COLLIIDER IN THE PLAYER POSITION
-	//playerinfo.player->SetPos(playerinfo.position.x, playerinfo.position.y);
+	//DRAWS THE COLLIIDER IN THE NEW PLAYER POSITION
+	playerinfo.player->SetPos(playerinfo.position.x, playerinfo.position.y);
 
 	return true;
 }
@@ -329,14 +326,19 @@ bool j1Player::Update()
 
 	//DRAW THE PLAYER BLIT
 	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
-
+	if (playerinfo.right = false) {
+		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+	}
+	else {
+		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+	}
 	return true;
 }
 
 bool j1Player::CleanUp() {
 
 	//DESTROY GRAPHICS
-	SDL_DestroyTexture(graphics);
+	
 	if (graphics != nullptr) {
 		SDL_DestroyTexture(graphics);
 		graphics = nullptr;
