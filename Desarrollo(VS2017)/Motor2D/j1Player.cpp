@@ -335,6 +335,22 @@ bool j1Player::Update()
 	return true;
 }
 
+bool j1Player::Save(pugi::xml_node& data) const 
+{
+	//PLAYER POSITION
+	data.append_child("position").append_attribute("x") = playerinfo.position.x;
+	data.child("position").append_attribute("y") = playerinfo.position.y;
+	return true;
+}
+
+bool j1Player::Load(pugi::xml_node& data)
+{
+	//PLAYER POSITION
+	playerinfo.position.x = data.child("position").attribute("x").as_int();
+	playerinfo.position.y = data.child("position").attribute("y").as_int();
+	return true;
+}
+
 bool j1Player::CleanUp() {
 
 	//DESTROY GRAPHICS

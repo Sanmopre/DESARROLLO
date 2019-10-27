@@ -90,6 +90,11 @@ public:
 	bool Update();
 	bool CleanUp();
 
+
+	//LOADING AND SAVING OPTIONS
+	bool Save(pugi::xml_node& data) const;
+	bool Load(pugi::xml_node& data);
+
 public:
 	
 	PlayerInfo playerinfo;
