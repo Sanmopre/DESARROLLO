@@ -50,8 +50,8 @@ struct PlayerInfo
     input Input; 
 
 	SDL_Rect		col;
-	iPoint			colOffset;
 	SDL_Texture*	Tex_Player;
+
 	bool can_walk = true;
 	float jump_time = 0.0f;
 	bool injump = false;	
@@ -61,14 +61,12 @@ struct PlayerInfo
 	float gravity = 0.5f;
 	bool GodMode;
 	
-
+	//STATES OF PLAYER MOVEMENT
     bool air = false;
 	bool right = false; 
 	bool left = false;
-	
 
 	bool looking_right = true;
-
 	bool player_flip = false;
 
 	//COLLIDERS NOT IMPLEMENTED
