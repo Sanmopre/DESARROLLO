@@ -103,11 +103,11 @@ bool j1Player::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 	pugi::xml_parse_result result = playerinfo.playerdoc.load_file(file.GetString());
-	playerinfo.position.x = 0;
-	playerinfo.position.y = 0;
+	playerinfo.position.x = 5;
+	playerinfo.position.y = 6;
 	playerinfo.playernode = playerinfo.playerdoc.child("player");
 
-	graphics=App->tex->Load("character.png");
+	graphics=App->tex->Load("sprites/pepe.png");
     //sets initial position from xml
 	playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
 	playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();

@@ -30,8 +30,8 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	App->map->Load("dungeon.tmx");
-	App->audio->PlayMusic("audio/music/castle.ogg");
+	App->map->Load("castle.tmx");
+	App->audio->PlayMusic("audio/music/creepy.ogg");
 	return true;
 }
 
