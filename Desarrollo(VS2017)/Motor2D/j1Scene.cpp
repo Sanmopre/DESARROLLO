@@ -30,10 +30,19 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	App->map->Load("castle.tmx");
-	App->audio->PlayMusic("audio/music/creepy.ogg");
+	App->map->Load("dungeon.tmx");
+	App->audio->PlayMusic("audio/music/ghost.ogg");
 	return true;
 }
+
+//bool j1Scene::CleanUp()
+//{
+//	LOG("Freeing scene");
+//	App->audio->StopMusic();
+//	SDL_DestroyTexture(graphics);
+//	LOG("Unloading Selector scene");
+//	return true;
+//}
 
 // Called each loop iteration
 bool j1Scene::PreUpdate()
@@ -62,8 +71,7 @@ bool j1Scene::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		App->render->camera.x += 1;
 
-
-
+	
 
 	//App->render->Blit(img, 0, 0);
 	App->map->Draw();
@@ -77,6 +85,8 @@ bool j1Scene::Update(float dt)
 	return true;
 }
 
+
+
 // Called each loop iteration
 bool j1Scene::PostUpdate()
 {
@@ -89,9 +99,3 @@ bool j1Scene::PostUpdate()
 }
 
 // Called before quitting
-bool j1Scene::CleanUp()
-{
-	LOG("Freeing scene");
-
-	return true;
-}

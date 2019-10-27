@@ -72,6 +72,25 @@ public:
 	{	
 
 	}
+private:
+	bool enabled = true;
+public:
+	void Enable()
+	{
+		if (enabled == false)
+		{
+			enabled = true;
+			Start();
+		}
+	}
+	void Disable()
+	{
+		if (enabled == true)
+		{
+			enabled = false;
+			CleanUp();
+		}
+	}
 
 public:
 

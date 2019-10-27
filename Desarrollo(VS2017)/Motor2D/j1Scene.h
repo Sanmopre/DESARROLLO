@@ -29,10 +29,14 @@ public:
 	// Called before all Updates
 	bool PostUpdate();
 
-	// Called before quitting
-	bool CleanUp();
+public:
 
-private:
+	SDL_Texture* graphics = nullptr;
+	// Called before quitting
+	/*bool CleanUp();*/
+
+
+
 };
 
 #endif // __j1SCENE_H__
