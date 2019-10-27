@@ -56,14 +56,14 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
-	if (App->input->GetKey(SDL_SCANCODE_O) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 	{
-		if (scene_selector == true) {
-			scene_selector = false;
-		}
-		else {
-			scene_selector = true;
-		}
+		scene_selector = true;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+	{
+		scene_selector = false;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
