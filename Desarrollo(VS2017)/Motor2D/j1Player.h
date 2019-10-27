@@ -96,6 +96,7 @@ public:
 	p2SString file;
 	bool keyup = true;
 	SDL_Texture* graphics = nullptr;
+	//STATES DOEN'T WORK INSIDE PLAYERINFO. SO THATS WHY ITS IN HERE
 	states state;
 };
 
