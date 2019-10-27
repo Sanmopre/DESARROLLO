@@ -275,43 +275,31 @@ bool j1Player::Update()
 		
 		break;
 	case JUMP:
-		if (playerinfo.gravity > 0) {
 			playerinfo.air = true;
 			playerinfo.current_animation = &playerinfo.jump;
 			playerinfo.position.y -= playerinfo.jumpvel;
-		}
-		else {
-			playerinfo.current_animation = &playerinfo.jump;
-			if (playerinfo.air == false) {
+		
+			if (playerinfo.air == false) 
 				state = IDLE;
-			}
-		}
+		
 		break;
 
 	case DASH_RIGHT:
 		playerinfo.current_animation = &playerinfo.voltereta;
 
 		if (playerinfo.can_walk == true) {
-			playerinfo.position.x += playerinfo.player_velocity;
+			playerinfo.position.x += playerinfo.player_velocity * playerinfo.dash_multiplier;
 		}
-		if (playerinfo.player_velocity <= 0) {
-			playerinfo.right = false;
-			playerinfo.player_velocity = 2.0f;
-			state = IDLE;
-		}
+		
 		break;
 	case DASH_LEFT:
 		playerinfo.current_animation = &playerinfo.voltereta;
 
-		if (playerinfo.can_walk == true)
-			playerinfo.position.x -= playerinfo.player_velocity;
-
-		if (playerinfo.player_velocity <= 0)
-		{
-			playerinfo.left = false;
-			playerinfo.player_velocity = 2.0f;
-			state = IDLE;
+		if (playerinfo.can_walk == true) {
+			playerinfo.position.x -= playerinfo.player_velocity * playerinfo.dash_multiplier;
 		}
+			state = IDLE;
+		
 		break;
 	}
 	//IF GOD MODE, GRAVITY DOSEN'T AFFECT
