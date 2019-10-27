@@ -4,11 +4,12 @@
 #include "j1Render.h"
 #include "j1Textures.h"
 
+#include "SDL/include/SDL.h"
 #include "SDL_image/include/SDL_image.h"
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
-
 j1Textures::j1Textures() : j1Module()
 {
+	
 	name.create("textures");
 }
 
@@ -37,6 +38,7 @@ bool j1Textures::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Textures::Start()
 {
+	
 	LOG("start textures");
 	bool ret = true;
 	return ret;
@@ -78,7 +80,7 @@ SDL_Texture* const j1Textures::Load(const char* path)
 }
 
 // Unload texture
-bool j1Textures::UnLoad(SDL_Texture* texture)
+bool j1Textures::Unload(SDL_Texture* texture)
 {
 	p2List_item<SDL_Texture*>* item;
 
