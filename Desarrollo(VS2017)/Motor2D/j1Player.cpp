@@ -16,7 +16,6 @@ j1Player::j1Player()
 
 	//aqui ponemos los pixeles y los pushback :)
 
-
 	playerinfo.idle.PushBack({ 163,11,12,30 }, 0, 0);
 	playerinfo.idle.PushBack({ 185, 11,12 , 30 }, 0, 0);
 	playerinfo.idle.PushBack({ 205, 12, 12,30 }, 0, 0);
@@ -97,8 +96,8 @@ bool j1Player::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 	pugi::xml_parse_result result = playerinfo.playerdoc.load_file(file.GetString());
-	playerinfo.position.x = 0;
-	playerinfo.position.y = 0;
+	playerinfo.position.x = 1;
+	playerinfo.position.y = 1;
 	playerinfo.playernode = playerinfo.playerdoc.child("player");
 
 	graphics = App->tex->Load("sprites/character.png");
@@ -106,76 +105,230 @@ bool j1Player::Start()
 	//playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
 	//playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
 	
-    playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,10}, COLLIDER_PLAYER1, this);
+    //playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,10}, COLLIDER_PLAYER1, this);
 	return ret;
 }
 
+bool j1Player::PreUpdate()
+{
+	//PLAYER CONTROLS:
+	playerinfo.Input.pressing_A = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
+	playerinfo.Input.pressing_S = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
+	playerinfo.Input.pressing_D = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
+	playerinfo.Input.pressing_W = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
+	playerinfo.Input.pressing_lshift = App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT;
+
+	//GOD MODE:
+	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
+	{
+		if (playerinfo.GodMode == true)
+		{
+			playerinfo.GodMode = false;
+		}
+	}
+
+	//SWITCH OF PLAYER STATES
+	switch (state)
+	{
+	case IDLE:
+		playerinfo.right = false;
+		playerinfo.left = false;
+		if (playerinfo.Input.pressing_W && playerinfo.air == false) 
+		{
+			playerinfo.jumpvel = 7.0f;
+			state = JUMP;
+			playerinfo.air = true;
+		}
+		else if (playerinfo.Input.pressing_D)
+		{
+			state = FORWARD;
+		}
+		else if (playerinfo.Input.pressing_A)
+		{
+			state = BACKWARD;
+		}
+		break;
+	case FORWARD:
+		playerinfo.jumpvel = 7.0f; //magic numbers. change
+
+		if (!playerinfo.Input.pressing_D && playerinfo.right == false)
+			state = IDLE;
+
+		if (playerinfo.Input.pressing_W && playerinfo.air == false)
+			state = JUMP_FORWARD;
+
+		if (playerinfo.Input.pressing_lshift)
+			state = DASH_RIGHT;
+
+		if (playerinfo.Input.pressing_A)
+		{
+			playerinfo.position.x -= playerinfo.player_velocity;
+			state = BACKWARD;
+		}
+
+		playerinfo.right = true;
+
+		break;
+	case BACKWARD:
+		playerinfo.jumpvel = 7.0f;
+	
+		if (!playerinfo.Input.pressing_A && playerinfo.left == false)
+			state = IDLE;
+
+		if (playerinfo.Input.pressing_W && playerinfo.air == false)
+			state = JUMP_BACKWARD;
+
+		if (playerinfo.Input.pressing_lshift)
+			state = DASH_LEFT;
+        
+		if (playerinfo.Input.pressing_D)
+		{
+			playerinfo.position.x -= playerinfo.player_velocity;
+			state = FORWARD;
+		}
+		playerinfo.right = false;
+
+		break;
+	
+	case JUMP:
+		if (playerinfo.Input.pressing_D)
+			state = JUMP_FORWARD;
+		else if (playerinfo.Input.pressing_A)
+			state = JUMP_BACKWARD;
+
+		break;
+	case JUMP_FORWARD:
+		playerinfo.right = true;
+		playerinfo.left = false;
+		if (!playerinfo.Input.pressing_D)
+			state = JUMP;
+		break;
+	case JUMP_BACKWARD:
+		playerinfo.right = false;
+		playerinfo.left = true;
+		if (!playerinfo.Input.pressing_A)
+			state = JUMP;
+
+		playerinfo.right = false;
+
+		break;
+	case DASH_RIGHT:
+		playerinfo.right = false;
+		playerinfo.left = false;
+		if (playerinfo.Input.pressing_A) {
+			state = BACKWARD;
+			playerinfo.player_velocity = 2.0f;
+			
+		}
+
+		break;
+	case DASH_LEFT:
+		playerinfo.left = true;
+		if (playerinfo.Input.pressing_D) {
+			state = FORWARD;
+			playerinfo.player_velocity = 2.0f;
+		}
+		break;
+	}
+	//DRAWS THE COLLIIDER IN THE PLAYER POSITION
+	//playerinfo.player->SetPos(playerinfo.position.x, playerinfo.position.y);
+
+	return true;
+}
 
 bool j1Player::Update()
 {
-	bool ret = true;
-	
-	int speed = 1;
-	float speed_y = 2.5f;
-
-	if (playerinfo.current_animation->Finished() || playerinfo.current_animation->lock == false) {
-
-		if (playerinfo.current_animation->Finished()) {
-			playerinfo.current_animation->Reset();
-		}
-
+	//UPDATE ANIMATIONS AND VELOCITIES
+	switch (state)
+	{
+	case IDLE:
 		playerinfo.current_animation = &playerinfo.idle;
 
-		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN)
-		{
-			playerinfo.current_animation = &playerinfo.walk;
-			position.x += speed;
-		}
+		break;
+	case FORWARD:
+		playerinfo.current_animation = &playerinfo.walk;
 
-		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
+		if (playerinfo.can_walk == true)
 		{
-			playerinfo.current_animation = &playerinfo.walk;
-			position.x -= speed;
+			playerinfo.position.x += playerinfo.player_velocity;
+			playerinfo.right = true;
 		}
+		else
+			playerinfo.right = false;
 
-		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN) {
+		break;
+	case BACKWARD:
+		playerinfo.current_animation = &playerinfo.walk;
+
+		if (playerinfo.can_walk == true)
+		{
+			playerinfo.position.x -= playerinfo.player_velocity;
+			playerinfo.left = true;
+		}
+		else
+			playerinfo.left = false;
+		
+		break;
+	case JUMP:
+		if (playerinfo.gravity > 0) {
+			playerinfo.air = true;
 			playerinfo.current_animation = &playerinfo.jump;
-			jumping = JUMP_UP;
+			playerinfo.position.y -= playerinfo.jumpvel;
 		}
+		else {
+			playerinfo.current_animation = &playerinfo.jump;
+			if (playerinfo.air == false) {
+				state = IDLE;
+			}
+		}
+		break;
+
+	case DASH_RIGHT:
+		playerinfo.current_animation = &playerinfo.voltereta;
+
+		if (playerinfo.can_walk == true) {
+			playerinfo.position.x += playerinfo.player_velocity;
+		}
+		if (playerinfo.player_velocity <= 0) {
+			playerinfo.right = false;
+			playerinfo.player_velocity = 2.0f;
+			state = IDLE;
+		}
+		break;
+	case DASH_LEFT:
+		playerinfo.current_animation = &playerinfo.voltereta;
+
+		if (playerinfo.can_walk == true)
+			playerinfo.position.x -= playerinfo.player_velocity;
+
+		if (playerinfo.player_velocity <= 0)
+		{
+			playerinfo.left = false;
+			playerinfo.player_velocity = 2.0f;
+			state = IDLE;
+		}
+		break;
+	}
+	//IF GOD MODE, GRAVITY DOSEN'T AFFECT
+	if (playerinfo.GodMode == false)
+	{
+		playerinfo.position.y -= playerinfo.gravity;
+	}
+	else if (playerinfo.GodMode == true)
+	{
+		playerinfo.gravity = 0.0f;
 	}
 
-	if (jumping == JUMP_DOWN)
-	{
-		position.y += (int)speed_y;
-		//speed_y -= 0.3f;
-		if (position.y >= 112) {
-			jumping = JUMP_NOT;
-			position.y = 112;
-			//speed = 1.5f;
-		}
-	}
-	if (jumping == JUMP_UP)
-	{
-		position.y -= (int)speed_y;
-		//speed_y += 0.3f;
-		if (playerinfo.current_animation->current_frame >= 2.5f) {
-			jumping = JUMP_DOWN;
-		}
-	}
-
-	// Draw everything --------------------------------------
+	//DRAW THE PLAYER BLIT
 	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
 
-	//App->player->SetPos(position.x, position.y);
-
-	App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &r, 1.0f, playerinfo.player_flip);
-
-	return ret;
+	return true;
 }
 
 bool j1Player::CleanUp() {
-
+	//DESTROY GRAPHICS
 	SDL_DestroyTexture(graphics);
+	//DESTROY AUDIOS
 	return true;
 
 }
