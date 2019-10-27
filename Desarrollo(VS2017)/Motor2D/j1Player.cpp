@@ -1,3 +1,5 @@
+#include "p2Defs.h"
+#include "j1Scene.h"
 #include "j1App.h"
 #include "p2Log.h"
 #include "j1Textures.h"
@@ -82,6 +84,10 @@ j1Player::j1Player()
 
 }
 
+j1Player::~j1Player()
+{
+
+}
 
 bool j1Player::Awake(pugi::xml_node& config)
 {
@@ -96,14 +102,16 @@ bool j1Player::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 	pugi::xml_parse_result result = playerinfo.playerdoc.load_file(file.GetString());
-	playerinfo.position.x = 1;
-	playerinfo.position.y = 1;
+
+	playerinfo.position.x = 5;
+	playerinfo.position.y = 6;
+
 	playerinfo.playernode = playerinfo.playerdoc.child("player");
 
-	graphics = App->tex->Load("sprites/character.png");
+	graphics=App->tex->Load("sprites/pepe.png");
     //sets initial position from xml
-	//playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
-	//playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
+	playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
+	playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
 	
     //playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,10}, COLLIDER_PLAYER1, this);
 	return ret;
@@ -326,9 +334,14 @@ bool j1Player::Update()
 }
 
 bool j1Player::CleanUp() {
+
 	//DESTROY GRAPHICS
 	SDL_DestroyTexture(graphics);
-	//DESTROY AUDIOS
+	if (graphics != nullptr) {
+		SDL_DestroyTexture(graphics);
+		graphics = nullptr;
+	}
+
 	return true;
 
 }
