@@ -314,6 +314,11 @@ bool j1Player::Update()
 
 	//DRAW THE PLAYER BLIT
 	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
+
+	//DRAWING A BIG QUAD TO TEST THE RENDER, BUT IT DOESN'T SHOW UP IN THE SCREEN
+	App->render->DrawQuad(rect, 255, 255, 255, 80);
+
+
 	if (playerinfo.right = false) {
 		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 	}
