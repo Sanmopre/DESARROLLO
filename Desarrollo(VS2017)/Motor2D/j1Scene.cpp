@@ -32,6 +32,9 @@ bool j1Scene::Start()
 {
 	App->map->Load("dungeon.tmx");
 	App->audio->PlayMusic("audio/music/ghost.ogg");
+	   
+	App->map2->Load("castle.tmx");
+	App->audio->PlayMusic("audio/music/castle.ogg");
 	return true;
 }
 
@@ -53,8 +56,15 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
-	if (App->input->GetKey(SDL_SCANCODE_F12) == KEY_DOWN)
-
+	if (App->input->GetKey(SDL_SCANCODE_O) == KEY_DOWN)
+	{
+		if (scene_selector == true) {
+			scene_selector = false;
+		}
+		else {
+			scene_selector = true;
+		}
+	}
 
 	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 		App->LoadGame();
@@ -77,7 +87,12 @@ bool j1Scene::Update(float dt)
 	
 
 	//App->render->Blit(img, 0, 0);
-	App->map->Draw();
+	if (scene_selector == true) {
+		App->map->Draw();
+	}
+	else{
+	App->map2->Draw();
+	}
 
 	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
 					App->map->data.width, App->map->data.height,

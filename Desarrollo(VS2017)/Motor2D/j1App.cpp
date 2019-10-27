@@ -32,6 +32,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	map = new j1Map();
 	player = new j1Player();
 	collision = new j1Collision();
+	map2 = new j1Map();
 
 
 	// Ordered for awake / Start / Update
@@ -44,6 +45,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(player);
 	AddModule(collision);
+	AddModule(map2);
 
 	// render last to swap buffer
 	AddModule(render);
