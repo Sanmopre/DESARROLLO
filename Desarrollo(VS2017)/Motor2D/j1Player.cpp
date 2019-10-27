@@ -16,8 +16,6 @@ j1Player::j1Player()
 {
 	name.create("player");
 
-	//aqui ponemos los pixeles y los pushback :)
-
 	playerinfo.idle.PushBack({ 163,11,12,30 }, 0, 0);
 	playerinfo.idle.PushBack({ 185, 11,12 , 30 }, 0, 0);
 	playerinfo.idle.PushBack({ 205, 12, 12,30 }, 0, 0);
@@ -106,7 +104,7 @@ bool j1Player::Start()
 	playerinfo.playernode = playerinfo.playerdoc.child("player");
 
 	graphics=App->tex->Load("sprites/pepe.png");
-    //sets initial position from xml
+    //SETS POSITION POLAYER FROM XML
 	playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
 	playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
 	
@@ -156,7 +154,7 @@ bool j1Player::PreUpdate()
 		}
 		break;
 	case FORWARD:
-		playerinfo.jumpvel = 7.0f; //magic numbers. change
+		playerinfo.jumpvel = 7.0f; 
 
 		if (!playerinfo.Input.pressing_D && playerinfo.right == false)
 			state = IDLE;

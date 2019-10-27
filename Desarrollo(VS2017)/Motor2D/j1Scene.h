@@ -32,8 +32,6 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
-	// Called before quitting
-	/*bool CleanUp();*/
 	bool scene_selector = false;
 };
 

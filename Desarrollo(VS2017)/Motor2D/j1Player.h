@@ -3,7 +3,6 @@
 
 #include "j1Module.h"
 #include "j1Animation.h"
-//#include "Globals.h"
 #include "p2Point.h"
 #include "p2Log.h"
 
@@ -30,7 +29,6 @@ enum states {
 
 struct PlayerInfo
 {
-	//ANIMATIONS NOT IMPLEMENTED
 	Animation*		current_animation=&idle;
 	Animation idle;
 	Animation walk;
@@ -70,7 +68,6 @@ struct PlayerInfo
 	bool looking_right = true;
 	bool player_flip = false;
 
-	//COLLIDERS NOT IMPLEMENTED
 	Collider * player = nullptr;
 	Collider* colliders_1 = nullptr;
 	
