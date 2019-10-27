@@ -133,6 +133,8 @@ bool j1Player::PreUpdate()
 	}
 
 	//SWITCH OF PLAYER STATES
+
+	//RIGHT AND LEFT IS USEFULL LATER FOR KNOWING WHEN TO FLIP THE RENDER
 	switch (state)
 	{
 	case IDLE:
