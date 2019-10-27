@@ -107,7 +107,7 @@ bool j1Player::Start()
 	playerinfo.position.y = 0;
 	playerinfo.playernode = playerinfo.playerdoc.child("player");
 
-	graphics=App->tex->Load("sprites/character.png");
+	graphics=App->tex->Load("character.png");
     //sets initial position from xml
 	playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
 	playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
