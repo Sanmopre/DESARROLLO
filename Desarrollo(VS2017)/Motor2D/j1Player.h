@@ -54,7 +54,7 @@ struct PlayerInfo
 	float jump_time = 0.0f;
 	bool injump = false;	
 	bool canjump = false;  
-	float player_velocity = 3.0f;
+	float player_velocity = 1.0f;
 	float jumpvel = 7.0f;
 	float gravity = 0.5f;
 	float dash_multiplier = 1.5f;

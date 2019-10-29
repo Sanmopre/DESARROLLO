@@ -18,11 +18,11 @@ j1Player::j1Player()
 
 	playerinfo.idle.PushBack({ 163,11,12,30 }, 0, 0);
 	playerinfo.idle.PushBack({ 185, 11,12 , 30 }, 0, 0);
-	playerinfo.idle.PushBack({ 205, 12, 12,30 }, 0, 0);
+	//playerinfo.idle.PushBack({ 205, 12, 12,30 }, 0, 0);
 	playerinfo.idle.PushBack({ 229, 10, 12, 30 }, 0, 0);
 	playerinfo.idle.PushBack({ 251, 10, 10, 30 }, 0, 0);
 	playerinfo.idle.PushBack({ 271, 10, 11, 30 }, 0, 0);
-	playerinfo.idle.speed = 0.2f;
+	playerinfo.idle.speed = 0.0075f;
 	playerinfo.idle.lock = true;
 
 	playerinfo.walk.PushBack({11, 79, 16, 29},0,0);
@@ -37,7 +37,7 @@ j1Player::j1Player()
 	playerinfo.walk.PushBack({ 179, 81, 19, 28 }, 0, 0);
 	playerinfo.walk.PushBack({ 199, 80, 21, 29 }, 0, 0);
 	playerinfo.walk.lock = true;
-	playerinfo.walk.speed = 0.2f;
+	playerinfo.walk.speed = 0.05f;
 
 	playerinfo.jump.PushBack({62, 181, 15, 30},0,0);
 	playerinfo.jump.PushBack({ 82, 182, 15, 29 }, 0, 0);
@@ -108,6 +108,8 @@ bool j1Player::Start()
 	playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
 	playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
 	
+	playerinfo.position.x = 30;
+	playerinfo.position.y = 100;
     playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,10}, COLLIDER_PLAYER1, this);
 	return ret;
 }
@@ -120,6 +122,9 @@ bool j1Player::PreUpdate()
 	playerinfo.Input.pressing_D = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
 	playerinfo.Input.pressing_W = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
 	playerinfo.Input.pressing_lshift = App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT;
+
+
+	
 
 	//GOD MODE:
 	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
@@ -136,6 +141,7 @@ bool j1Player::PreUpdate()
 	switch (state)
 	{
 	case IDLE:
+		
 		playerinfo.right = false;
 		playerinfo.left = false;
 		if (playerinfo.Input.pressing_W && playerinfo.air == false) 
@@ -186,7 +192,7 @@ bool j1Player::PreUpdate()
         
 		if (playerinfo.Input.pressing_D)
 		{
-			playerinfo.position.x -= playerinfo.player_velocity;
+			playerinfo.position.x += playerinfo.player_velocity;
 			state = FORWARD;
 		}
 		playerinfo.right = false;
@@ -303,7 +309,7 @@ bool j1Player::Update(float dt)
 	//IF GOD MODE, GRAVITY DOSEN'T AFFECT
 	if (playerinfo.GodMode == false)
 	{
-		playerinfo.position.y -= playerinfo.gravity;
+		playerinfo.position.y += playerinfo.gravity;
 	}
 	else if (playerinfo.GodMode == true)
 	{
@@ -312,9 +318,6 @@ bool j1Player::Update(float dt)
 
 	//DRAW THE PLAYER BLIT
 	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
-
-
-	
 
 
 	if (playerinfo.right = false) {
