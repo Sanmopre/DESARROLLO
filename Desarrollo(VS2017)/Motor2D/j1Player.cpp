@@ -117,216 +117,208 @@ bool j1Player::Start()
 bool j1Player::PreUpdate()
 {
 	//PLAYER CONTROLS:
-	playerinfo.Input.pressing_A = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
-	playerinfo.Input.pressing_S = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
-	playerinfo.Input.pressing_D = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
-	playerinfo.Input.pressing_W = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
-	playerinfo.Input.pressing_lshift = App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT;
+	Input.pressing_A = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
+	Input.pressing_S = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
+	Input.pressing_D = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
+	Input.pressing_W = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
+	Input.pressing_SPACE = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
+	Input.pressing_lshift = App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT;
 
 
-	 
-
-	//GOD MODE:
-	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
-	{
-		if (playerinfo.GodMode == true)
-		{
-			playerinfo.GodMode = false;
-		}
-	}
-
-	//SWITCH OF PLAYER STATES
-
-	//RIGHT AND LEFT IS USEFULL LATER FOR KNOWING WHEN TO FLIP THE RENDER
-	switch (state)
-	{
-	case IDLE:
-		
-		playerinfo.right = false;
-		playerinfo.left = false;
-		if (playerinfo.Input.pressing_W && playerinfo.air == false) 
-		{
-			playerinfo.jumpvel = 2.0f;
-			state = JUMP;
-			playerinfo.air = true;
-		}
-		else if (playerinfo.Input.pressing_D)
-		{
-			state = FORWARD;
-		}
-		else if (playerinfo.Input.pressing_A)
-		{
-			state = BACKWARD;
-		}
-		break;
-	case FORWARD:
-		
-		if (!playerinfo.Input.pressing_D && playerinfo.right == false)
-			state = IDLE;
-
-		if (playerinfo.Input.pressing_W && playerinfo.air == false)
-			state = JUMP_FORWARD;
-
-		if (playerinfo.Input.pressing_lshift)
-			state = DASH_RIGHT;
-
-		if (playerinfo.Input.pressing_A)
-		{
-			playerinfo.position.x -= playerinfo.player_velocity;
-			state = BACKWARD;
-		}
-
-		playerinfo.right = true;
-
-		break;
-	case BACKWARD:
-		
-		if (!playerinfo.Input.pressing_A)
-			state = IDLE;
-
-		if (playerinfo.Input.pressing_W && playerinfo.air == false)
-			state = JUMP_BACKWARD;
-
-		if (playerinfo.Input.pressing_lshift)
-			state = DASH_LEFT;
-        
-		if (playerinfo.Input.pressing_D)
-		{
-			playerinfo.position.x += playerinfo.player_velocity;
-			state = FORWARD;
-		}
-		playerinfo.right = false;
-
-		break;
-	
-	case JUMP:
-		if (playerinfo.Input.pressing_D)
-			state = JUMP_FORWARD;
-		else if (playerinfo.Input.pressing_A)
-			state = JUMP_BACKWARD;
-
-		break;
-	case JUMP_FORWARD:
-		playerinfo.right = true;
-		playerinfo.left = false;
-		if (!playerinfo.Input.pressing_D)
-			state = JUMP;
-		break;
-	case JUMP_BACKWARD:
-		playerinfo.right = false;
-		playerinfo.left = true;
-		if (!playerinfo.Input.pressing_A)
-			state = JUMP;
-
-		playerinfo.right = false;
-
-		break;
-	case DASH_RIGHT:
-		playerinfo.right = false;
-		playerinfo.left = false;
-		if (playerinfo.Input.pressing_A) {
-			state = BACKWARD;
-			playerinfo.player_velocity = 2.0f;
-			
-		}
-
-		break;
-	case DASH_LEFT:
-		playerinfo.left = true;
-		if (playerinfo.Input.pressing_D) {
-			state = FORWARD;
-			playerinfo.player_velocity = 2.0f;
-		}
-		break;
-	}
-	//DRAWS THE COLLIIDER IN THE NEW PLAYER POSITION
-	playerinfo.player->SetPos(playerinfo.position.x, playerinfo.position.y);
 
 	return true;
 }
 
 bool j1Player::Update(float dt)
 {
-	//UPDATE ANIMATIONS AND VELOCITIES
-	switch (state)
+	if (playerinfo.God_Mode == false)
 	{
-	case IDLE:
-		playerinfo.current_animation = &playerinfo.idle;
+		Player_State_Machine();
+		switch (state) {
+		case JUMP:
+			playerinfo.Grounded = false;
+			while (playerinfo.velocity.y > -5)
+			{
+				playerinfo.current_animation = &playerinfo.jump;
+				playerinfo.velocity.y -= playerinfo.Speed_Y;
+			}
+			break;
 
-		break;
-	case FORWARD:
-		playerinfo.current_animation = &playerinfo.walk;
+		case BACKWARD:
+			playerinfo.Looking_Forward = false;
+			playerinfo.velocity.x -= playerinfo.Speed_X;
+			playerinfo.current_animation = &playerinfo.walk;
+			if (playerinfo.Grounded)
+			{
+			}
+			if (playerinfo.Grounded == false) { playerinfo.current_animation = &playerinfo.jump; }
+			break;
 
-		if (playerinfo.can_walk == true)
-		{
-			playerinfo.position.x += playerinfo.player_velocity;
-			playerinfo.right = true;
-		}
-		else
-			playerinfo.right = false;
-
-		break;
-	case BACKWARD:
-		playerinfo.current_animation = &playerinfo.walk;
-
-		if (playerinfo.can_walk == true)
-		{
-			playerinfo.position.x -= playerinfo.player_velocity;
-			playerinfo.left = true;
-		}
-		else
-			playerinfo.left = false;
-		
-		break;
-	case JUMP:
-			playerinfo.air = true;
+		case JUMP_BACKWARD:
+			playerinfo.Looking_Forward = false;
+			playerinfo.velocity.x -= playerinfo.Speed_X;
 			playerinfo.current_animation = &playerinfo.jump;
-			playerinfo.position.y -= playerinfo.jumpvel;
-		
-			if (playerinfo.air == false) 
-				state = IDLE;
-		
-		break;
+			break;
 
-	case DASH_RIGHT:
-		playerinfo.current_animation = &playerinfo.voltereta;
+		case FORWARD:
+			playerinfo.Looking_Forward = true;
+			playerinfo.velocity.x += playerinfo.Speed_X;
+			playerinfo.current_animation = &playerinfo.walk;
+			if (playerinfo.Grounded)
+			{
 
-		if (playerinfo.can_walk == true) {
-			playerinfo.position.x += playerinfo.player_velocity * playerinfo.dash_multiplier;
+			}
+			if (playerinfo.Grounded == false) { playerinfo.current_animation = &playerinfo.jump; }
+			break;
+
+		case JUMP_FORWARD:
+			playerinfo.Looking_Forward = true;
+			playerinfo.velocity.x += playerinfo.Speed_X;
+			playerinfo.current_animation = &playerinfo.jump;
+			break;
+
+		case DASH:
+			
+			if (playerinfo.Looking_Forward = true)
+			{
+				playerinfo.velocity.x = playerinfo.Dash_Speed;
+			}
+			else
+			{
+				playerinfo.velocity.x = -playerinfo.Dash_Speed;
+			}
+			playerinfo.velocity.y = 0;
+			playerinfo.current_animation = &playerinfo.voltereta;
+			break;
+
+		case IDLE:
+		
+			if (playerinfo.velocity.x != 0 && playerinfo.velocity.x > 0) { playerinfo.velocity.x = playerinfo.velocity.x - playerinfo.Reducction_Speed; }
+			if (playerinfo.velocity.x != 0 && playerinfo.velocity.x < 0) { playerinfo.velocity.x = playerinfo.velocity.x + playerinfo.Reducction_Speed; }
+
+			if (playerinfo.Grounded == false) { playerinfo.current_animation = &playerinfo.jump; }
+
+			if (playerinfo.velocity.y == 0 && playerinfo.velocity.x == 0)
+			{
+				playerinfo.current_animation = &playerinfo.idle;
+			}
+			break;
 		}
 		
-		break;
-	case DASH_LEFT:
-		playerinfo.current_animation = &playerinfo.voltereta;
-
-		if (playerinfo.can_walk == true) {
-			playerinfo.position.x -= playerinfo.player_velocity * playerinfo.dash_multiplier;
+		//SPEED LIMITS
+		if (state != DASH) {
+			if (playerinfo.velocity.x > playerinfo.MAX_X) { playerinfo.velocity.x = playerinfo.MAX_X; }
+			if (playerinfo.velocity.x < -playerinfo.MAX_X) { playerinfo.velocity.x = -playerinfo.MAX_X; }
 		}
-			state = IDLE;
-		
-		break;
+		if (playerinfo.velocity.y > playerinfo.MAX_Y) { playerinfo.velocity.y = playerinfo.MAX_Y; }
+
+		Player_Position();
+
+		if (playerinfo.Alive == false)
+		{
+			Restart();
+		}
+
 	}
-	//IF GOD MODE, GRAVITY DOSEN'T AFFECT
-	if (playerinfo.GodMode == false)
+	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 	{
-		playerinfo.position.y += playerinfo.gravity;
-	}
-	else if (playerinfo.GodMode == true)
-	{
-		playerinfo.gravity = 0.0f;
+		playerinfo.God_Mode = !playerinfo.God_Mode;
 	}
 
+	if (playerinfo.God_Mode)
+	{
+
+	}
+	playerinfo.Grounded = false;
+
+	
 	//DRAW THE PLAYER BLIT
 	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
 
-
-	if (playerinfo.right = false) {
+	if (playerinfo.Looking_Forward) {
 		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 	}
 	else {
 		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 	}
 	return true;
+}
+
+void j1Player::Player_State_Machine()
+{
+	if (playerinfo.Can_Input == true && playerinfo.God_Mode == false)
+	{
+
+		if (Input.pressing_SPACE && playerinfo.velocity.y == 0)
+		{
+			state = JUMP;
+			playerinfo.jump.Reset();
+		}
+
+		else if (Input.pressing_lshift && playerinfo.Dash == false)
+		{
+			state = DASH;
+			playerinfo.Dash = true;
+		}
+
+		else if (Input.pressing_D)
+		{
+			if (state == JUMP)
+			{
+				state = JUMP_FORWARD;
+			}
+			if (state != JUMP)
+			{
+				state = FORWARD;
+			}
+		}
+
+		else if (Input.pressing_A)
+		{
+			if (state == JUMP)
+			{
+				state = JUMP_BACKWARD;
+			}
+			if (state != JUMP)
+			{
+				state = BACKWARD;
+			}
+		}
+
+		else
+		{
+			state = IDLE;
+		}
+	}
+}
+
+void j1Player::Player_Position()
+{
+	playerinfo.velocity.y += playerinfo.World_Gravity;
+	playerinfo.position.x = playerinfo.position.x + playerinfo.velocity.x;
+	playerinfo.position.y = playerinfo.position.y + playerinfo.velocity.y;
+
+	if (playerinfo.position.y > 1000 && playerinfo.God_Mode == false) { playerinfo.Alive = false; }
+}
+
+void j1Player::Restart()
+{
+	if (playerinfo.Alive == false) {
+		playerinfo.Can_Input = false;
+
+		playerinfo.position.x = 0;
+		playerinfo.position.y = 0;
+		playerinfo.velocity.y = 0;
+		playerinfo.Looking_Forward = true;
+	}
+		playerinfo.Can_Input = true;
+		playerinfo.Alive = true;
+}
+
+
+void j1Player::Set_Player_State(states stateP)
+{
+	state = stateP;
 }
 
 bool j1Player::Save(pugi::xml_node& data) const 

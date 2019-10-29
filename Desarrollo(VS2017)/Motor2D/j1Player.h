@@ -13,13 +13,13 @@ struct input {
 	bool pressing_S;
 	bool pressing_D;
 	bool pressing_W;
+	bool pressing_SPACE;
 	bool pressing_lshift;
 };
 
 enum states {
 	IDLE,
-	DASH_RIGHT,
-	DASH_LEFT,
+	DASH,
     FORWARD,
 	BACKWARD,
 	JUMP,
@@ -50,28 +50,27 @@ struct PlayerInfo
 	SDL_Rect		col;
 	SDL_Texture*	Tex_Player;
 
-	bool can_walk = true;
-	float jump_time = 0.0f;
-	bool injump = false;	
-	bool canjump = false;  
-	float player_velocity = 1.0f;
-	float jumpvel = 7.0f;
-	float gravity = 0.5f;
-	float dash_multiplier = 1.5f;
-	bool GodMode;
-	
-	//STATES OF PLAYER MOVEMENT
-    bool air = false;
-	bool right = false; 
-	bool left = false;
+	//PLAYER, AND WORLD MAX VELOCITIES
+	float			World_Gravity = 0.05;
+	float			Speed_X = 0.5;
+	float			Speed_Y = 0.6;
+	float			Dash_Speed = 3.5;
+	float			Reducction_Speed = 0.25;
+	float		    MAX_X = 2.0;
+	float			MAX_Y = 8.0;
+	float		    MAX_JUMP = 5.0;
+	fPoint		    velocity;
 
-	bool looking_right = true;
-	bool player_flip = false;
+	bool            Looking_Forward = true;
+	bool			Can_Input = true;
+	bool			Alive = true;
+	bool			Dash = false;
+	bool            Grounded = true;
+	bool            God_Mode = false;
 
+	bool showcolliders = false;
 	Collider * player = nullptr;
 	Collider* colliders_1 = nullptr;
-	
-	bool showcolliders = false;
 };
 
 class j1Player : public j1Module
@@ -87,6 +86,14 @@ public:
 	bool CleanUp();
 
 
+	//PLAYER STATE MANAGER
+	void Player_Position();
+	void Player_State_Machine();
+	void Set_Player_State(states state);
+	void Restart();
+
+
+
 	//LOADING AND SAVING OPTIONS
 	bool Save(pugi::xml_node& data) const;
 	bool Load(pugi::xml_node& data);
@@ -94,6 +101,7 @@ public:
 public:
 	
 	PlayerInfo playerinfo;
+	input Input;
 	p2SString file;
 	bool keyup = true;
 	SDL_Texture* graphics = nullptr;
