@@ -52,7 +52,7 @@ j1Player::j1Player()
 	playerinfo.jump.PushBack({ 276, 180, 15, 31 }, 0, 0);
 	playerinfo.jump.PushBack({ 21, 180, 15, 30 }, 0, 0);
 	playerinfo.jump.PushBack({ 41, 181, 15, 30 }, 0, 0);
-	playerinfo.jump.lock = false;
+	playerinfo.jump.lock = true;
 	playerinfo.jump.speed = 0.5f;
 
 	playerinfo.death.PushBack({11, 110, 11, 28},0,0);
