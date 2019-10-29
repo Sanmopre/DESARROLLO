@@ -239,7 +239,7 @@ bool j1Player::PreUpdate()
 	return true;
 }
 
-bool j1Player::Update()
+bool j1Player::Update(float dt)
 {
 	//UPDATE ANIMATIONS AND VELOCITIES
 	switch (state)
@@ -313,8 +313,8 @@ bool j1Player::Update()
 	//DRAW THE PLAYER BLIT
 	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
 
-	//DRAWING A BIG QUAD TO TEST THE RENDER, BUT IT DOESN'T SHOW UP IN THE SCREEN
-	App->render->DrawQuad(rect, 255, 255, 255, 80);
+
+	
 
 
 	if (playerinfo.right = false) {

@@ -83,7 +83,7 @@ public:
 	bool Awake(pugi::xml_node&);
 	bool Start();
 	bool PreUpdate();
-	bool Update();
+	bool Update(float dt);
 	bool CleanUp();
 
 
@@ -100,8 +100,7 @@ public:
 	//STATES DOEN'T WORK INSIDE PLAYERINFO. SO THATS WHY ITS IN HERE
 	states state;
 
-	//DRAWING A BIG QUAD TO TEST THE RENDER, BUT IT DOSNE'T SHOW UP IN THE SCREEN
-	SDL_Rect rect = { 1,1,1000,1000};
+	
 };
 
 #endif
