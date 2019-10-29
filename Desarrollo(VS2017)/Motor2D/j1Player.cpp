@@ -124,7 +124,7 @@ bool j1Player::PreUpdate()
 	playerinfo.Input.pressing_lshift = App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT;
 
 
-	
+	 
 
 	//GOD MODE:
 	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
@@ -146,7 +146,7 @@ bool j1Player::PreUpdate()
 		playerinfo.left = false;
 		if (playerinfo.Input.pressing_W && playerinfo.air == false) 
 		{
-			playerinfo.jumpvel = 7.0f;
+			playerinfo.jumpvel = 2.0f;
 			state = JUMP;
 			playerinfo.air = true;
 		}
@@ -181,7 +181,7 @@ bool j1Player::PreUpdate()
 		break;
 	case BACKWARD:
 		
-		if (!playerinfo.Input.pressing_A && playerinfo.left == false)
+		if (!playerinfo.Input.pressing_A)
 			state = IDLE;
 
 		if (playerinfo.Input.pressing_W && playerinfo.air == false)
