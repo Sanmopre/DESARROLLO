@@ -4,6 +4,7 @@
 #include "j1Render.h"
 #include "j1Textures.h"
 #include "j1Map.h"
+#include "j1Collision.h"
 #include <math.h>
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
@@ -507,6 +508,65 @@ bool j1Map::LoadProperties(pugi::xml_node& node, Properties& properties)
 			p->value = prop.attribute("value").as_int();
 
 			properties.list.add(p);
+		}
+	}
+
+	return ret;
+}
+
+bool j1Map::LoadColliders(pugi::xml_node& node, p2SString object_name)
+{
+	bool ret = true;
+
+	pugi::xml_node object;
+	COLLIDER_TYPE collider_type;
+	p2SString type;
+
+	if (object_name == "colliders")
+	{
+		for (object = node.child("object"); object; object = object.next_sibling("object"))
+		{
+			collider_type = COLLIDER_FLOOR;
+
+			SDL_Rect shape;
+			shape.x = object.attribute("x").as_int();
+			shape.y = object.attribute("y").as_int();
+			shape.w = object.attribute("width").as_int();
+			shape.h = object.attribute("height").as_int();
+
+			App->collision->AddCollider(shape, collider_type);
+		}
+	}
+
+	if (object_name == "pinchos")
+	{
+		for (object = node.child("object"); object; object = object.next_sibling("object"))
+		{
+			collider_type = COLLIDER_DEATH;
+
+			SDL_Rect shape;
+			shape.x = object.attribute("x").as_int();
+			shape.y = object.attribute("y").as_int();
+			shape.w = object.attribute("width").as_int();
+			shape.h = object.attribute("height").as_int();
+
+			App->collision->AddCollider(shape, collider_type);
+		}
+	}
+
+	if (object_name == "colliders")
+	{
+		for (object = node.child("object"); object; object = object.next_sibling("object"))
+		{
+			collider_type = COLLIDER_DEATH;
+
+			SDL_Rect shape;
+			shape.x = object.attribute("x").as_int();
+			shape.y = object.attribute("y").as_int();
+			shape.w = object.attribute("width").as_int();
+			shape.h = object.attribute("height").as_int();
+
+			App->collision->AddCollider(shape, collider_type);
 		}
 	}
 

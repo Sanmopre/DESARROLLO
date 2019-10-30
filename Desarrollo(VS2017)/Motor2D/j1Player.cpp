@@ -108,8 +108,8 @@ bool j1Player::Start()
 	playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
 	playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
 	
-	playerinfo.position.x = 30;
-	playerinfo.position.y = 100;
+	playerinfo.position.x = 0;
+	playerinfo.position.y = 0;
     playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,10}, COLLIDER_PLAYER1, this);
 	return ret;
 }
@@ -231,7 +231,9 @@ bool j1Player::Update(float dt)
 	}
 	playerinfo.Grounded = false;
 
-	
+	//DRAW COLLIDER
+	playerinfo.player->SetPos(playerinfo.position.x, playerinfo.position.y);
+
 	//DRAW THE PLAYER BLIT
 	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
 
@@ -241,6 +243,9 @@ bool j1Player::Update(float dt)
 	else {
 		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 	}
+
+	
+	
 	return true;
 }
 
