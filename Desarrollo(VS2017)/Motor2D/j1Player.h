@@ -93,6 +93,9 @@ public:
 	void Set_Player_State(states state);
 	void Restart();
 
+	//COLLISION MANAGER
+	void OnCollision(Collider* c1, Collider* c2);
+
 
 
 	//LOADING AND SAVING OPTIONS

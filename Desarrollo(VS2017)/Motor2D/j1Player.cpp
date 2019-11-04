@@ -112,7 +112,7 @@ bool j1Player::Start()
 	playerinfo.position.y = 0;
     playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,10}, COLLIDER_PLAYER1, this);
 
-	playerinfo.floor = App->collision->AddCollider({ 50,50,30,30 }, COLLIDER_FLOOR, this);
+	playerinfo.floor = App->collision->AddCollider({ 50,50,200,10 }, COLLIDER_FLOOR, this);
 	return ret;
 }
 
@@ -328,6 +328,27 @@ void j1Player::Set_Player_State(states stateP)
 {
 	state = stateP;
 }
+
+void j1Player::OnCollision(Collider* c1, Collider* c2)
+{
+	if (c1 == playerinfo.player && c2->type == COLLIDER_FLOOR)
+	{
+		if ((playerinfo.player->rect.y + playerinfo.player->rect.h) > (c2->rect.y))
+		{
+			playerinfo.velocity.y = 0;
+			if (playerinfo.Dash == true)
+			{
+				playerinfo.Dash = false;
+			}
+			if ((playerinfo.player->rect.y + playerinfo.player->rect.h - 3) > (c2->rect.y))
+			{
+				playerinfo.position.y -= 2;
+			}
+
+			playerinfo.Grounded = true;
+		}
+	}
+	}
 
 bool j1Player::Save(pugi::xml_node& data) const 
 {
