@@ -72,6 +72,8 @@ private:
 	// Call modules after each loop iteration
 	bool PostUpdate();
 
+	bool LoadColliders(pugi::xml_node& node, p2SString object_name);
+
 	// Load / Save
 	bool LoadGameNow();
 	bool SavegameNow() const;

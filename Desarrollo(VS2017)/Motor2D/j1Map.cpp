@@ -255,30 +255,30 @@ bool j1Map::Load(const char* file_name)
 
 	pugi::xml_parse_result result = map_file.load_file(tmp.GetString());
 
-	if(result == NULL)
+	if (result == NULL)
 	{
 		LOG("Could not load map xml file %s. pugi error: %s", file_name, result.description());
 		ret = false;
 	}
 
 	// Load general info ----------------------------------------------
-	if(ret == true)
+	if (ret == true)
 	{
 		ret = LoadMap();
 	}
 
 	// Load all tilesets info ----------------------------------------------
 	pugi::xml_node tileset;
-	for(tileset = map_file.child("map").child("tileset"); tileset && ret; tileset = tileset.next_sibling("tileset"))
+	for (tileset = map_file.child("map").child("tileset"); tileset && ret; tileset = tileset.next_sibling("tileset"))
 	{
 		TileSet* set = new TileSet();
 
-		if(ret == true)
+		if (ret == true)
 		{
 			ret = LoadTilesetDetails(tileset, set);
 		}
 
-		if(ret == true)
+		if (ret == true)
 		{
 			ret = LoadTilesetImage(tileset, set);
 		}
@@ -287,25 +287,39 @@ bool j1Map::Load(const char* file_name)
 	}
 
 	// Load layer info ----------------------------------------------
+
 	pugi::xml_node layer;
-	for(layer = map_file.child("map").child("layer"); layer && ret; layer = layer.next_sibling("layer"))
+	for (layer = map_file.child("map").child("layer"); layer && ret; layer = layer.next_sibling("layer"))
 	{
-		MapLayer* lay = new MapLayer();
+		MapLayer* set1 = new MapLayer();
 
-		ret = LoadLayer(layer, lay);
+		if (ret == true)
+		{
+			ret = LoadLayer(layer, set1);
+		}
 
-		if(ret == true)
-			data.layers.add(lay);
+		data.layers.add(set1);
 	}
 
-	if(ret == true)
+	pugi::xml_node object;
+	p2SString object_name;
+	for (object = map_file.child("map").child("objectgroup"); object && ret; object = object.next_sibling("objectgroup"))
+	{
+		object_name = object.attribute("name").as_string();
+		if (object_name == "Colliders" || object_name == "Finish")
+
+			LoadColliders(object, object_name);
+	}
+
+
+	if (ret == true)
 	{
 		LOG("Successfully parsed map XML file: %s", file_name);
 		LOG("width: %d height: %d", data.width, data.height);
 		LOG("tile_width: %d tile_height: %d", data.tile_width, data.tile_height);
 
 		p2List_item<TileSet*>* item = data.tilesets.start;
-		while(item != NULL)
+		while (item != NULL)
 		{
 			TileSet* s = item->data;
 			LOG("Tileset ----");
@@ -315,13 +329,15 @@ bool j1Map::Load(const char* file_name)
 			item = item->next;
 		}
 
+		// Adapt this code with your own variables
+
 		p2List_item<MapLayer*>* item_layer = data.layers.start;
-		while(item_layer != NULL)
+		while (item_layer != NULL)
 		{
 			MapLayer* l = item_layer->data;
 			LOG("Layer ----");
 			LOG("name: %s", l->name.GetString());
-			LOG("tile width: %d tile height: %d", l->width, l->height);
+			//LOG("tile width: %d tile height: %d layer speed: %f layer draw: %i collisions: %i", l->width, l->height, l->speed, l->draw, l->collision);
 			item_layer = item_layer->next;
 		}
 	}
@@ -572,3 +588,4 @@ bool j1Map::LoadColliders(pugi::xml_node& node, p2SString object_name)
 
 	return ret;
 }
+
