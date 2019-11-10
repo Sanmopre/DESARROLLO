@@ -52,13 +52,13 @@ struct PlayerInfo
 
 	//PLAYER, AND WORLD MAX VELOCITIES
 	float			World_Gravity = 0.05;
-	float			Speed_X = 0.5;
-	float			Speed_Y = 0.6;
+	float			Speed_X = 0.05;
+	float			Speed_Y = 0.04;
 	float			Dash_Speed = 3.5;
 	float			Reducction_Speed = 0.25;
-	float		    MAX_X = 2.0;
-	float			MAX_Y = 8.0;
-	float		    MAX_JUMP = 5.0;
+	float		    MAX_X = 1.0;
+	float			MAX_Y = 2.0;
+	float		    MAX_JUMP = 1.0;
 	fPoint		    velocity;
 
 	bool            Looking_Forward = true;
