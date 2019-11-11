@@ -181,7 +181,12 @@ bool j1Player::Update(float dt)
 			break;
 
 		case DASH:
-			
+			if (playerinfo.dashTimer == false)
+			{
+				playerinfo.dash_timer = SDL_GetTicks();
+				playerinfo.dashTimer = true;
+			}
+
 			if (playerinfo.Looking_Forward = true)
 			{
 				playerinfo.velocity.x = playerinfo.Dash_Speed;
@@ -192,6 +197,15 @@ bool j1Player::Update(float dt)
 			}
 			playerinfo.velocity.y = 0;
 			playerinfo.current_animation = &playerinfo.voltereta;
+			if (SDL_GetTicks() - playerinfo.dash_timer > playerinfo.dashTime)
+			{
+				playerinfo.Can_Input = true;
+				playerinfo.dashTimer = false;
+			}
+			else
+			{
+				playerinfo.Can_Input = false;
+			}
 			break;
 
 		case IDLE:

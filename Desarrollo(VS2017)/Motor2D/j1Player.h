@@ -68,6 +68,10 @@ struct PlayerInfo
 	bool            Grounded = true;
 	bool            God_Mode = false;
 
+	Uint32		dash_timer;
+	int		    dashTime;
+	bool		dashTimer = false;
+
 	bool showcolliders = false;
 	Collider * player = nullptr;
 	Collider* colliders_1 = nullptr;
