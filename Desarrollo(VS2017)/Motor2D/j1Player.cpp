@@ -110,9 +110,10 @@ bool j1Player::Start()
 	
 	playerinfo.position.x = 0;
 	playerinfo.position.y = 0;
-    playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,10}, COLLIDER_PLAYER1, this);
+    playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,17}, COLLIDER_PLAYER1, this);
 
-	playerinfo.floor = App->collision->AddCollider({ 50,50,200,10 }, COLLIDER_FLOOR, this);
+	playerinfo.floor = App->collision->AddCollider({ 50,50,400,10 }, COLLIDER_FLOOR, this);
+	playerinfo.techo = App->collision->AddCollider({ 50,50,400,10 }, COLLIDER_FLOOR, this);
 	return ret;
 }
 
@@ -225,6 +226,7 @@ bool j1Player::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 	{
 		playerinfo.God_Mode = !playerinfo.God_Mode;
+
 	}
 
 	if (playerinfo.God_Mode)
@@ -235,8 +237,8 @@ bool j1Player::Update(float dt)
 
 	//DRAW COLLIDER
 	playerinfo.player->SetPos(playerinfo.position.x, playerinfo.position.y);
-	playerinfo.floor->SetPos(50, 100);
-
+	playerinfo.floor->SetPos(50, 210);
+	playerinfo.techo->SetPos(150, 150);
 	//DRAW THE PLAYER BLIT
 	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
 
@@ -244,7 +246,7 @@ bool j1Player::Update(float dt)
 		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 	}
 	else {
-		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_HORIZONTAL, -1.0);
 	}
 
 	

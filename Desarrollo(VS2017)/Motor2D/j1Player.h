@@ -72,6 +72,7 @@ struct PlayerInfo
 	Collider * player = nullptr;
 	Collider* colliders_1 = nullptr;
 	Collider* floor = nullptr;
+	Collider* techo;
 };
 
 class j1Player : public j1Module
