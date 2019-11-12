@@ -22,7 +22,7 @@ j1Player::j1Player()
 	playerinfo.idle.PushBack({ 229, 10, 12, 30 }, 0, 0);
 	playerinfo.idle.PushBack({ 251, 10, 10, 30 }, 0, 0);
 	playerinfo.idle.PushBack({ 271, 10, 11, 30 }, 0, 0);
-	playerinfo.idle.speed = 0.0075f;
+	playerinfo.idle.speed = 0.005f;
 	playerinfo.idle.lock = true;
 
 	playerinfo.walk.PushBack({11, 79, 16, 29},0,0);
@@ -140,7 +140,7 @@ bool j1Player::Update(float dt)
 		switch (state) {
 		case JUMP:
 			playerinfo.Grounded = false;
-			while (playerinfo.velocity.y > -5)
+			while (playerinfo.velocity.y > -2)
 			{
 				playerinfo.current_animation = &playerinfo.jump;
 				playerinfo.velocity.y -= playerinfo.Speed_Y;
