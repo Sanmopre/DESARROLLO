@@ -306,9 +306,10 @@ bool j1Map::Load(const char* file_name)
 	for (object = map_file.child("map").child("objectgroup"); object && ret; object = object.next_sibling("objectgroup"))
 	{
 		object_name = object.attribute("name").as_string();
-		if (object_name == "Colliders" || object_name == "Finish")
-
+		if (object_name == "pinchos" ) {
 			LoadColliders(object, object_name);
+		}
+		
 	}
 
 

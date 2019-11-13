@@ -2,7 +2,7 @@
 #define __ModuleCollision_H__
 
 #define MAX_COLLIDERS 50
-#define SCALE 2
+
 
 #include "j1Module.h"
 #include "SDL/include/SDL_rect.h"
