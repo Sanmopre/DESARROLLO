@@ -108,9 +108,9 @@ bool j1Player::Start()
 	playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
 	playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
 	
-	playerinfo.position.x = 0;
-	playerinfo.position.y = 0;
-    playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,17}, COLLIDER_PLAYER1, this);
+	playerinfo.position.x = 40;
+	playerinfo.position.y = 40;
+    playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,27}, COLLIDER_PLAYER1, this);
 
 	return ret;
 }
