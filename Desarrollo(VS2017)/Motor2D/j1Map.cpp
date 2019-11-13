@@ -545,7 +545,7 @@ bool j1Map::LoadColliders(pugi::xml_node& node, p2SString object_name)
 	{
 		for (object = node.child("object"); object; object = object.next_sibling("object"))
 		{
-			collider_type = COLLIDER_FLOOR;
+			collider_type = COLLIDER_PLATFORM;
 
 			SDL_Rect shape;
 			shape.x = object.attribute("x").as_int();

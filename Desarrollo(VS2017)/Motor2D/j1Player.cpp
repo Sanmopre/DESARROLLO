@@ -110,8 +110,9 @@ bool j1Player::Start()
 	
 	playerinfo.position.x = 40;
 	playerinfo.position.y = 40;
-    playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,27}, COLLIDER_PLAYER1, this);
-
+    playerinfo.playerbody = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,10}, COLLIDER_PLAYER1, this);
+	playerinfo.playerhead = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y - 10,10 ,10 }, COLLIDER_PLAYER1, this);
+	playerinfo.playerfeet = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y + 10 ,10 ,10 }, COLLIDER_PLAYER1, this);
 	return ret;
 }
 
@@ -248,7 +249,9 @@ bool j1Player::Update(float dt)
 	playerinfo.Grounded = false;
 
 	//DRAW COLLIDER
-	playerinfo.player->SetPos(playerinfo.position.x, playerinfo.position.y);
+	playerinfo.playerbody->SetPos(playerinfo.position.x, playerinfo.position.y);
+	playerinfo.playerfeet->SetPos(playerinfo.position.x, playerinfo.position.y + 10);
+	playerinfo.playerhead->SetPos(playerinfo.position.x, playerinfo.position.y - 10);
 	
 	//DRAW THE PLAYER BLIT
 	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
@@ -344,39 +347,57 @@ void j1Player::Set_Player_State(states stateP)
 
 void j1Player::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1 == playerinfo.player && c2->type == COLLIDER_FLOOR)
+	if (c1 == playerinfo.playerfeet && c2->type == COLLIDER_PLATFORM)
 	{
-		if ((playerinfo.player->rect.y + playerinfo.player->rect.h) > (c2->rect.y))
+		if ((playerinfo.playerfeet->rect.y + playerinfo.playerfeet->rect.h) > (c2->rect.y))
 		{
 			playerinfo.velocity.y = 0;
 			if (playerinfo.Dash == true)
 			{
 				playerinfo.Dash = false;
 			}
-			if ((playerinfo.player->rect.y + playerinfo.player->rect.h - 3) > (c2->rect.y))
+			if ((playerinfo.playerfeet->rect.y + playerinfo.playerfeet->rect.h - 3) > (c2->rect.y))
 			{
 				playerinfo.position.y -= 2;
 			}
 
 			playerinfo.Grounded = true;
 		}
+		
 	}
 
-	if (c1 == playerinfo.player && c2->type == COLLIDER_PLATFORM)
+	if (c1 == playerinfo.playerbody && c2->type == COLLIDER_PLATFORM)
 	{
-		if ((playerinfo.player->rect.y + playerinfo.player->rect.h) > (c2->rect.y))
+		if ((playerinfo.playerbody->rect.y) < (c2->rect.y + c2->rect.h))
 		{
+			playerinfo.position.y = playerinfo.position.y + 2;
 			playerinfo.velocity.y = 0;
-			if (playerinfo.Dash == true)
-			{
-				playerinfo.Dash = false;
-			}
-			if ((playerinfo.player->rect.y + playerinfo.player->rect.h - 3) > (c2->rect.y))
-			{
-				playerinfo.position.y -= 2;
-			}
+		}
+	}
 
-			playerinfo.Grounded = false;
+	if (c1 == playerinfo.playerbody && c2->type == COLLIDER_PLATFORM)
+	{
+		if (state == DASH)
+		{
+			if (playerinfo.playerbody->rect.x + playerinfo.playerbody->rect.w > c2->rect.x && playerinfo.playerbody->rect.x < c2->rect.x) {
+				playerinfo.position.x = playerinfo.position.x - 3;
+				
+			}
+			if (playerinfo.playerbody->rect.x < c2->rect.x + c2->rect.w && playerinfo.playerbody->rect.x > c2->rect.x)
+			{
+				playerinfo.position.x = playerinfo.position.x + 4;
+			}
+		}
+		else
+		{
+			if (playerinfo.playerbody->rect.x + playerinfo.playerbody->rect.w > c2->rect.x && playerinfo.playerbody->rect.x < c2->rect.x) {
+				playerinfo.position.x = playerinfo.position.x - 2;
+				//vel.x = 0;
+			}
+			if (playerinfo.playerbody->rect.x < c2->rect.x + c2->rect.w && playerinfo.playerbody->rect.x > c2->rect.x)
+			{
+				playerinfo.position.x = playerinfo.position.x + 2;
+			}
 		}
 	}
 

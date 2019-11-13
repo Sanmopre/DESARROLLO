@@ -73,7 +73,9 @@ struct PlayerInfo
 	bool		dashTimer = false;
 
 	bool showcolliders = false;
-	Collider * player = nullptr;
+	Collider * playerhead = nullptr;
+	Collider * playerbody = nullptr;
+	Collider * playerfeet = nullptr;
 	Collider* colliders_1 = nullptr;
 
 };
