@@ -112,8 +112,6 @@ bool j1Player::Start()
 	playerinfo.position.y = 0;
     playerinfo.player = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,17}, COLLIDER_PLAYER1, this);
 
-	playerinfo.floor = App->collision->AddCollider({ 50,50,400,10 }, COLLIDER_FLOOR, this);
-	playerinfo.techo = App->collision->AddCollider({ 50,50,400,10 }, COLLIDER_FLOOR, this);
 	return ret;
 }
 
@@ -251,8 +249,7 @@ bool j1Player::Update(float dt)
 
 	//DRAW COLLIDER
 	playerinfo.player->SetPos(playerinfo.position.x, playerinfo.position.y);
-	playerinfo.floor->SetPos(50, 210);
-	playerinfo.techo->SetPos(150, 150);
+	
 	//DRAW THE PLAYER BLIT
 	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
 

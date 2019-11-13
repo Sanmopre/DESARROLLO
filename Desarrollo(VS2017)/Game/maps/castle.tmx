@@ -9102,24 +9102,6 @@
   <object id="46" x="626" y="16" width="690" height="15.5"/>
   <object id="51" x="710" y="447" width="586" height="14.3333"/>
  </objectgroup>
- <objectgroup id="6" name="plataformas">
-  <object id="88" x="368" y="240" width="48" height="13.3333"/>
-  <object id="89" x="416.667" y="272.667" width="48" height="12"/>
-  <object id="90" x="14.6667" y="144.667" width="48" height="13.3333"/>
-  <object id="91" x="80.6667" y="80.6667" width="14.6667" height="13.3333"/>
-  <object id="92" x="639.333" y="288.667" width="48" height="14.6667"/>
-  <object id="93" x="688" y="320" width="49.3333" height="16.6667"/>
-  <object id="94" x="656.667" y="368" width="46.6667" height="16"/>
-  <object id="95" x="750.667" y="158" width="65.3333" height="18"/>
-  <object id="96" x="801.333" y="111.333" width="78.6667" height="14.6667"/>
-  <object id="97" x="800" y="224" width="80.6667" height="15.3333"/>
-  <object id="98" x="865.333" y="176" width="62" height="14"/>
-  <object id="99" x="896" y="254.667" width="80" height="17.3333"/>
-  <object id="100" x="959.333" y="159.333" width="96.6667" height="14"/>
-  <object id="101" x="912" y="112" width="62.6667" height="16"/>
-  <object id="102" x="1040" y="223.333" width="79.3333" height="15.3333"/>
-  <object id="104" x="1166.67" y="223.333" width="82" height="14"/>
- </objectgroup>
  <objectgroup id="5" name="pinchos">
   <object id="59" x="144.5" y="453" width="64" height="10.5"/>
   <object id="60" x="160.25" y="398" width="15.75" height="11.75"/>
@@ -9150,5 +9132,23 @@
   <object id="85" x="896.5" y="244.5" width="80" height="10.5"/>
   <object id="86" x="912.5" y="128" width="63" height="10.5"/>
   <object id="87" x="1167.5" y="238.5" width="81" height="13.5"/>
+ </objectgroup>
+ <objectgroup id="6" name="plataformas">
+  <object id="88" x="368" y="240" width="48" height="13.3333"/>
+  <object id="89" x="416.667" y="272.667" width="48" height="12"/>
+  <object id="90" x="14.6667" y="144.667" width="48" height="13.3333"/>
+  <object id="91" x="80.6667" y="80.6667" width="14.6667" height="13.3333"/>
+  <object id="92" x="639.333" y="288.667" width="48" height="14.6667"/>
+  <object id="93" x="688" y="320" width="49.3333" height="16.6667"/>
+  <object id="94" x="656.667" y="368" width="46.6667" height="16"/>
+  <object id="95" x="750.667" y="158" width="65.3333" height="18"/>
+  <object id="96" x="801.333" y="111.333" width="78.6667" height="14.6667"/>
+  <object id="97" x="800" y="224" width="80.6667" height="15.3333"/>
+  <object id="98" x="865.333" y="176" width="62" height="14"/>
+  <object id="99" x="896" y="254.667" width="80" height="17.3333"/>
+  <object id="100" x="959.333" y="159.333" width="96.6667" height="14"/>
+  <object id="101" x="912" y="112" width="62.6667" height="16"/>
+  <object id="102" x="1040" y="223.333" width="79.3333" height="15.3333"/>
+  <object id="104" x="1166.67" y="223.333" width="82" height="14"/>
  </objectgroup>
 </map>

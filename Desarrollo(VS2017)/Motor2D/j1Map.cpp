@@ -303,13 +303,15 @@ bool j1Map::Load(const char* file_name)
 
 	pugi::xml_node object;
 	p2SString object_name;
+	p2SString object_name2;
+	p2SString object_name3;
+
 	for (object = map_file.child("map").child("objectgroup"); object && ret; object = object.next_sibling("objectgroup"))
 	{
-		object_name = object.attribute("name").as_string();
-		if (object_name == "pinchos" ) {
-			LoadColliders(object, object_name);
+		object_name2 = object.attribute("name").as_string();
+		if (object_name2 == "colliders" || object_name2 == "pinchos" || object_name2 == "plataformas") {
+			LoadColliders(object, object_name2); 
 		}
-		
 	}
 
 
@@ -571,11 +573,11 @@ bool j1Map::LoadColliders(pugi::xml_node& node, p2SString object_name)
 		}
 	}
 
-	if (object_name == "colliders")
+	if (object_name == "plataformas")
 	{
 		for (object = node.child("object"); object; object = object.next_sibling("object"))
 		{
-			collider_type = COLLIDER_DEATH;
+			collider_type = COLLIDER_FLOOR;
 
 			SDL_Rect shape;
 			shape.x = object.attribute("x").as_int();
