@@ -361,6 +361,25 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 			playerinfo.Grounded = true;
 		}
 	}
+
+	if (c1 == playerinfo.player && c2->type == COLLIDER_PLATFORM)
+	{
+		if ((playerinfo.player->rect.y + playerinfo.player->rect.h) > (c2->rect.y))
+		{
+			playerinfo.velocity.y = 0;
+			if (playerinfo.Dash == true)
+			{
+				playerinfo.Dash = false;
+			}
+			if ((playerinfo.player->rect.y + playerinfo.player->rect.h - 3) > (c2->rect.y))
+			{
+				playerinfo.position.y -= 2;
+			}
+
+			playerinfo.Grounded = false;
+		}
+	}
+
 	}
 
 bool j1Player::Save(pugi::xml_node& data) const 
