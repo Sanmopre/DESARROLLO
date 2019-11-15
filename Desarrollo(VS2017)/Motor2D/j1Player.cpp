@@ -85,7 +85,7 @@ j1Player::j1Player()
 	playerinfo.attack.PushBack({ 112, 242, 15, 39 });
 	//playerinfo.attack.PushBack({  });
 	playerinfo.attack.lock = true;
-	playerinfo.attack.speed = 0.005f;
+	playerinfo.attack.speed = 0.015f;
 
 }
 
