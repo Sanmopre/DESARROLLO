@@ -81,6 +81,12 @@ j1Player::j1Player()
 	playerinfo.voltereta.lock = true;
 	playerinfo.voltereta.speed = 0.1f;
 
+	playerinfo.attack.PushBack({ 86, 245, 13, 29 });
+	playerinfo.attack.PushBack({ 112, 242, 15, 39 });
+	playerinfo.attack.PushBack({  });
+	playerinfo.attack.lock = true;
+	playerinfo.attack.speed = 0.05f;
+
 }
 
 j1Player::~j1Player()
@@ -126,7 +132,7 @@ bool j1Player::PreUpdate()
 	Input.pressing_W = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
 	Input.pressing_SPACE = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
 	Input.pressing_F = App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT;
-
+	Input.pressing_E = App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT;
 
 
 	return true;
@@ -140,7 +146,7 @@ bool j1Player::Update(float dt)
 		switch (state) {
 		case JUMP:
 			playerinfo.Grounded = false;
-			App->audio->PlayFx(App->audio->LoadFx("audio/fx/jump.wav"));
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/jumping.wav"));
 			while (playerinfo.velocity.y > -2)
 			{
 				playerinfo.current_animation = &playerinfo.jump;
@@ -222,7 +228,16 @@ bool j1Player::Update(float dt)
 				playerinfo.current_animation = &playerinfo.idle;
 			}
 			break;
+		case ATTACK_E:
+			
+				playerinfo.current_animation = &playerinfo.attack;
+				playerinfo.position.x = playerinfo.position.x + 5;
+				App->audio->PlayFx(App->audio->LoadFx("audio/fx/attack.wav"));
+			
+			break;
 		}
+		
+		
 		
 		//SPEED LIMITS
 		if (state != DASH) {
