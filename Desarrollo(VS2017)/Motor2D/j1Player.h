@@ -14,7 +14,7 @@ struct input {
 	bool pressing_D;
 	bool pressing_W;
 	bool pressing_SPACE;
-	bool pressing_lshift;
+	bool pressing_F;
 };
 
 enum states {
@@ -54,7 +54,7 @@ struct PlayerInfo
 	float			World_Gravity = 0.05;
 	float			Speed_X = 0.05;
 	float			Speed_Y = 0.04;
-	float			Dash_Speed = 3.5;
+	float			Dash_Speed = 1.5;
 	float			Reducction_Speed = 0.25;
 	float		    MAX_X = 1.0;
 	float			MAX_Y = 2.0;

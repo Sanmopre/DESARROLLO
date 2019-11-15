@@ -32,6 +32,7 @@ bool j1Scene::Start()
 {
 	App->map->Load("dungeon.tmx");
 	App->audio->PlayMusic("audio/music/ghost.ogg");
+	
 	   
 	App->map2->Load("castle.tmx");
 	App->audio->PlayMusic("audio/music/castle.ogg");

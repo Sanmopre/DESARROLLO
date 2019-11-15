@@ -9,6 +9,7 @@
 #include "j1Player.h"
 #include "j1Animation.h"
 #include "j1Collision.h"
+#include "j1Scene.h"
 
 
 
@@ -78,7 +79,7 @@ j1Player::j1Player()
 	playerinfo.voltereta.PushBack({46, 155, 17, 19}, 0, 0);
 	playerinfo.voltereta.PushBack({67, 149, 16, 25}, 0, 0);
 	playerinfo.voltereta.lock = true;
-	playerinfo.voltereta.speed = 0.3f;
+	playerinfo.voltereta.speed = 0.1f;
 
 }
 
@@ -124,7 +125,7 @@ bool j1Player::PreUpdate()
 	Input.pressing_D = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
 	Input.pressing_W = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
 	Input.pressing_SPACE = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
-	Input.pressing_lshift = App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT;
+	Input.pressing_F = App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT;
 
 
 
@@ -139,10 +140,12 @@ bool j1Player::Update(float dt)
 		switch (state) {
 		case JUMP:
 			playerinfo.Grounded = false;
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/jump.wav"));
 			while (playerinfo.velocity.y > -2)
 			{
 				playerinfo.current_animation = &playerinfo.jump;
 				playerinfo.velocity.y -= playerinfo.Speed_Y;
+				
 			}
 			break;
 
@@ -279,7 +282,7 @@ void j1Player::Player_State_Machine()
 			playerinfo.jump.Reset();
 		}
 
-		else if (Input.pressing_lshift && playerinfo.Dash == false)
+		else if (Input.pressing_F && playerinfo.Dash == false)
 		{
 			state = DASH;
 			playerinfo.Dash = true;

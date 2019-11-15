@@ -30,7 +30,6 @@ public:
 	bool PostUpdate();
 
 public:
-
 	SDL_Texture* graphics = nullptr;
 	bool scene_selector = false;
 };

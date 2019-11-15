@@ -3,6 +3,8 @@
 #include "j1App.h"
 #include "j1Window.h"
 #include "j1Render.h"
+#include "j1Animation.h"
+#include "j1Player.h"
 
 #define VSYNC true
 
@@ -45,7 +47,7 @@ bool j1Render::Awake(pugi::xml_node& config)
 		camera.w = App->win->screen_surface->w;
 		camera.h = App->win->screen_surface->h;
 		camera.x = 0;
-		camera.y = 0;
+		camera.y = -475;
 	}
 
 	return ret;
