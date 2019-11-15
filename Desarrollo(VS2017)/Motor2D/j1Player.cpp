@@ -83,9 +83,9 @@ j1Player::j1Player()
 
 	playerinfo.attack.PushBack({ 86, 245, 13, 29 });
 	playerinfo.attack.PushBack({ 112, 242, 15, 39 });
-	playerinfo.attack.PushBack({  });
+	//playerinfo.attack.PushBack({  });
 	playerinfo.attack.lock = true;
-	playerinfo.attack.speed = 0.05f;
+	playerinfo.attack.speed = 0.005f;
 
 }
 
@@ -229,11 +229,12 @@ bool j1Player::Update(float dt)
 			}
 			break;
 		case ATTACK_E:
+		{
+			playerinfo.Looking_Forward = true;
+			playerinfo.current_animation = &playerinfo.attack;
 			
-				playerinfo.current_animation = &playerinfo.attack;
-				playerinfo.position.x = playerinfo.position.x + 5;
-				App->audio->PlayFx(App->audio->LoadFx("audio/fx/attack.wav"));
-			
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/attack.wav"));
+		}
 			break;
 		}
 		
@@ -301,6 +302,12 @@ void j1Player::Player_State_Machine()
 		{
 			state = DASH;
 			playerinfo.Dash = true;
+		}
+
+		else if (Input.pressing_E)
+		{
+			state = ATTACK_E;
+		
 		}
 
 		else if (Input.pressing_D)
