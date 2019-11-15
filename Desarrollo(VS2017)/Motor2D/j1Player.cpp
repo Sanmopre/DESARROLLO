@@ -355,8 +355,8 @@ void j1Player::Restart()
 	if (playerinfo.Alive == false) {
 		playerinfo.Can_Input = false;
 
-		playerinfo.position.x = 0;
-		playerinfo.position.y = 0;
+		playerinfo.position.x = 40;
+		playerinfo.position.y = 350;
 		playerinfo.velocity.y = 0;
 		playerinfo.Looking_Forward = true;
 	}
@@ -424,6 +424,21 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 				playerinfo.position.x = playerinfo.position.x + 2;
 			}
 		}
+	}
+
+	if (c1 == playerinfo.playerbody && c2->type == COLLIDER_DEATH)
+	{
+		if ((playerinfo.playerbody->rect.y + playerinfo.playerbody->rect.h) > (c2->rect.y))
+		{
+			playerinfo.Alive = false;
+			if ((playerinfo.playerbody->rect.y + playerinfo.playerbody->rect.h - 3) > (c2->rect.y))
+			{
+				playerinfo.Alive = false;
+			}
+
+		
+		}
+
 	}
 
 	}
