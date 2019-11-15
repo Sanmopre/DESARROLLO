@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="105">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="107">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="216" columns="24">
   <image source="tileset.png" width="384" height="144"/>
   <terraintypes>
@@ -3048,7 +3048,7 @@
  </layer>
  <layer id="2" name="bg" width="100" height="30">
   <properties>
-   <property name="Draw" type="int" value="1"/>
+   <property name="Draw" type="int" value="0"/>
   </properties>
   <data>
    <tile/>
@@ -9132,6 +9132,7 @@
   <object id="85" x="896.5" y="244.5" width="80" height="10.5"/>
   <object id="86" x="912.5" y="128" width="63" height="10.5"/>
   <object id="87" x="1167.5" y="238.5" width="81" height="13.5"/>
+  <object id="106" x="722" y="273" width="44" height="10"/>
  </objectgroup>
  <objectgroup id="6" name="plataformas">
   <object id="88" x="368" y="240" width="48" height="13.3333"/>
@@ -9150,5 +9151,6 @@
   <object id="101" x="912" y="112" width="62.6667" height="16"/>
   <object id="102" x="1040" y="223.333" width="79.3333" height="15.3333"/>
   <object id="104" x="1166.67" y="223.333" width="82" height="14"/>
+  <object id="105" x="720" y="255" width="46" height="16"/>
  </objectgroup>
 </map>

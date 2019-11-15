@@ -106,11 +106,11 @@ bool j1Player::Start()
 
 	graphics=App->tex->Load("sprites/pepe.png");
     //SETS POSITION POLAYER FROM XML
-	playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
-	playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
+	//playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
+	//playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
 	
 	playerinfo.position.x = 40;
-	playerinfo.position.y = 40;
+	playerinfo.position.y = 350;
     playerinfo.playerbody = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,10}, COLLIDER_PLAYER1, this);
 	playerinfo.playerhead = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y - 10,10 ,10 }, COLLIDER_PLAYER1, this);
 	playerinfo.playerfeet = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y + 10 ,10 ,10 }, COLLIDER_PLAYER1, this);
@@ -253,18 +253,18 @@ bool j1Player::Update(float dt)
 
 	//DRAW COLLIDER
 	playerinfo.playerbody->SetPos(playerinfo.position.x, playerinfo.position.y);
-	playerinfo.playerfeet->SetPos(playerinfo.position.x, playerinfo.position.y + 10);
+	playerinfo.playerfeet->SetPos(playerinfo.position.x, playerinfo.position.y + 15);
 	playerinfo.playerhead->SetPos(playerinfo.position.x, playerinfo.position.y - 10);
 	
 	//DRAW THE PLAYER BLIT
 	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
 
-	if (playerinfo.Looking_Forward) {
-		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
-	}
-	else {
-		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_HORIZONTAL, -1.0);
-	}
+	//if (playerinfo.Looking_Forward) {
+		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y - 245, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+	//}
+	//else {
+	//	App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y + 30, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_HORIZONTAL, -1.0);
+	//}
 
 	
 	
