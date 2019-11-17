@@ -72,7 +72,7 @@ struct PlayerInfo
 	bool            God_Mode = false;
 
 	Uint32		dash_timer;
-	int		    dashTime;
+	int		    dashTime = 280;
 	bool		dashTimer = false;
 
 	bool showcolliders = false;

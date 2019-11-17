@@ -117,9 +117,9 @@ bool j1Player::Start()
 	
 	playerinfo.position.x = 40;
 	playerinfo.position.y = 350;
-    playerinfo.playerbody = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,10 ,10}, COLLIDER_PLAYER1, this);
-	playerinfo.playerhead = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y - 10,10 ,10 }, COLLIDER_PLAYER1, this);
-	playerinfo.playerfeet = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y + 10 ,10 ,10 }, COLLIDER_PLAYER1, this);
+    playerinfo.playerbody = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,15 ,15}, COLLIDER_PLAYER1, this);
+	playerinfo.playerhead = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y - 15,10 ,10 }, COLLIDER_PLAYER1, this);
+	playerinfo.playerfeet = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y + 10 ,7 ,7 }, COLLIDER_PLAYER1, this);
 	return ret;
 }
 
