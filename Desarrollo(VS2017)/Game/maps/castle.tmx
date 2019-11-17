@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="107">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="139">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="216" columns="24">
   <image source="tileset.png" width="384" height="144"/>
   <terraintypes>
@@ -9102,38 +9102,6 @@
   <object id="46" x="626" y="16" width="690" height="15.5"/>
   <object id="51" x="710" y="447" width="586" height="14.3333"/>
  </objectgroup>
- <objectgroup id="5" name="pinchos">
-  <object id="59" x="144.5" y="453" width="64" height="10.5"/>
-  <object id="60" x="160.25" y="398" width="15.75" height="11.75"/>
-  <object id="61" x="212.5" y="384" width="11.5" height="15.25"/>
-  <object id="62" x="356.5" y="368.5" width="11.25" height="14.5"/>
-  <object id="63" x="372.5" y="352.25" width="11.25" height="15.25"/>
-  <object id="64" x="404.25" y="336.5" width="11.5" height="14"/>
-  <object id="65" x="500.5" y="207.75" width="10.25" height="127.25"/>
-  <object id="66" x="352.75" y="224.75" width="10.75" height="64"/>
-  <object id="67" x="335.5" y="212.25" width="17" height="12.5"/>
-  <object id="68" x="351.5" y="160.75" width="15.5" height="10.75"/>
-  <object id="69" x="399.5" y="175" width="34" height="13.25"/>
-  <object id="70" x="207.5" y="196.5" width="33.25" height="10.75"/>
-  <object id="71" x="127.25" y="159.75" width="34.25" height="12"/>
-  <object id="72" x="100.5" y="63.75" width="11.25" height="95.75"/>
-  <object id="73" x="111.75" y="53.25" width="17" height="10.75"/>
-  <object id="74" x="0.25" y="16.25" width="11.25" height="207.25"/>
-  <object id="75" x="368" y="84.25" width="48.75" height="12"/>
-  <object id="76" x="526.75" y="208.25" width="13.5" height="144.75"/>
-  <object id="77" x="579" y="207" width="13.5" height="145.25"/>
-  <object id="78" x="720.25" y="434" width="575.75" height="12.75"/>
-  <object id="79" x="639.5" y="277" width="17" height="12.5"/>
-  <object id="80" x="719.5" y="308.5" width="17.5" height="12"/>
-  <object id="81" x="704.5" y="335.5" width="32" height="11.5"/>
-  <object id="82" x="709" y="257" width="11" height="16.5"/>
-  <object id="83" x="751.5" y="149" width="16.5" height="12.5"/>
-  <object id="84" x="863.5" y="191.5" width="65" height="12.5"/>
-  <object id="85" x="896.5" y="244.5" width="80" height="10.5"/>
-  <object id="86" x="912.5" y="128" width="63" height="10.5"/>
-  <object id="87" x="1167.5" y="238.5" width="81" height="13.5"/>
-  <object id="106" x="722" y="273" width="44" height="10"/>
- </objectgroup>
  <objectgroup id="6" name="plataformas">
   <object id="88" x="368" y="240" width="48" height="13.3333"/>
   <object id="89" x="416.667" y="272.667" width="48" height="12"/>
@@ -9152,5 +9120,38 @@
   <object id="102" x="1040" y="223.333" width="79.3333" height="15.3333"/>
   <object id="104" x="1166.67" y="223.333" width="82" height="14"/>
   <object id="105" x="720" y="255" width="46" height="16"/>
+ </objectgroup>
+ <objectgroup id="7" name="pinchos">
+  <object id="108" x="145.333" y="450" width="61.3333" height="12.6667"/>
+  <object id="109" x="160.333" y="400.333" width="16" height="10"/>
+  <object id="110" x="213.333" y="383.333" width="9.33333" height="15"/>
+  <object id="111" x="358.667" y="369.333" width="8.33333" height="13.6667"/>
+  <object id="112" x="375" y="354" width="7.66667" height="13"/>
+  <object id="113" x="407" y="337" width="7" height="13.3333"/>
+  <object id="114" x="353.333" y="224" width="8.66667" height="63.3333"/>
+  <object id="115" x="335.667" y="213.667" width="17" height="9.66667"/>
+  <object id="116" x="400.333" y="175.667" width="31.6667" height="10.6667"/>
+  <object id="117" x="501" y="207.333" width="9.33333" height="127.333"/>
+  <object id="118" x="351.667" y="160" width="14.6667" height="10.6667"/>
+  <object id="119" x="207.333" y="198" width="33" height="8.33333"/>
+  <object id="120" x="128" y="160" width="31.3333" height="10"/>
+  <object id="121" x="-0.333333" y="15.6667" width="9" height="208.667"/>
+  <object id="122" x="101.333" y="65.3333" width="10.3333" height="94.3333"/>
+  <object id="123" x="113" y="55" width="15" height="9"/>
+  <object id="124" x="367.333" y="82.3333" width="48.3333" height="13.6667"/>
+  <object id="125" x="527" y="207.333" width="11.3333" height="144"/>
+  <object id="126" x="581.667" y="208.667" width="10.3333" height="143.333"/>
+  <object id="127" x="640.333" y="278" width="15.3333" height="9.66667"/>
+  <object id="128" x="704.333" y="337.333" width="32.6667" height="9.33333"/>
+  <object id="129" x="719.667" y="311.333" width="17.3333" height="8.33333"/>
+  <object id="130" x="720.667" y="272.333" width="47.6667" height="8.66667"/>
+  <object id="131" x="711.333" y="256.333" width="8.33333" height="15.3333"/>
+  <object id="132" x="752" y="150" width="16.3333" height="7"/>
+  <object id="133" x="656.333" y="63.6667" width="16.6667" height="11.6667"/>
+  <object id="134" x="865.333" y="192.333" width="62.6667" height="10"/>
+  <object id="135" x="896.667" y="245.333" width="78.3333" height="8.66667"/>
+  <object id="136" x="912.333" y="129" width="63.3333" height="8"/>
+  <object id="137" x="1168.33" y="239" width="80" height="11"/>
+  <object id="138" x="721" y="435.5" width="575" height="11.5"/>
  </objectgroup>
 </map>
