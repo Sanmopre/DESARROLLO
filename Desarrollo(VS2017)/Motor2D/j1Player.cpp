@@ -119,7 +119,7 @@ bool j1Player::Start()
 	playerinfo.position.y = 350;
     playerinfo.playerbody = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,15 ,15}, COLLIDER_PLAYER1, this);
 	playerinfo.playerhead = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y - 15,10 ,10 }, COLLIDER_PLAYER1, this);
-	playerinfo.playerfeet = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y + 10 ,7 ,7 }, COLLIDER_PLAYER1, this);
+	playerinfo.playerfeet = App->collision->AddCollider({ playerinfo.position.x  , playerinfo.position.y + 10 ,7 ,7 }, COLLIDER_PLAYER1, this);
 	return ret;
 }
 
@@ -269,7 +269,7 @@ bool j1Player::Update(float dt)
 
 	//DRAW COLLIDER
 	playerinfo.playerbody->SetPos(playerinfo.position.x, playerinfo.position.y);
-	playerinfo.playerfeet->SetPos(playerinfo.position.x, playerinfo.position.y + 15);
+	playerinfo.playerfeet->SetPos(playerinfo.position.x + 5, playerinfo.position.y + 15);
 	playerinfo.playerhead->SetPos(playerinfo.position.x, playerinfo.position.y - 10);
 	
 	//DRAW THE PLAYER BLIT
