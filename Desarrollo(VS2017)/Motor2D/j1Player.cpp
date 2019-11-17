@@ -388,12 +388,12 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 
 			playerinfo.Grounded = true;
 		}
-		
+
 	}
 
-	if (c1 == playerinfo.playerbody && c2->type == COLLIDER_PLATFORM)
+	if (c1 == playerinfo.playerhead && c2->type == COLLIDER_PLATFORM)
 	{
-		if ((playerinfo.playerbody->rect.y) < (c2->rect.y + c2->rect.h))
+		if ((playerinfo.playerhead->rect.y) < (c2->rect.y + c2->rect.h))
 		{
 			playerinfo.position.y = playerinfo.position.y + 2;
 			playerinfo.velocity.y = 0;
@@ -406,7 +406,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		{
 			if (playerinfo.playerbody->rect.x + playerinfo.playerbody->rect.w > c2->rect.x && playerinfo.playerbody->rect.x < c2->rect.x) {
 				playerinfo.position.x = playerinfo.position.x - 3;
-				
+
 			}
 			if (playerinfo.playerbody->rect.x < c2->rect.x + c2->rect.w && playerinfo.playerbody->rect.x > c2->rect.x)
 			{
@@ -417,28 +417,13 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		{
 			if (playerinfo.playerbody->rect.x + playerinfo.playerbody->rect.w > c2->rect.x && playerinfo.playerbody->rect.x < c2->rect.x) {
 				playerinfo.position.x = playerinfo.position.x - 2;
-				//vel.x = 0;
+
 			}
 			if (playerinfo.playerbody->rect.x < c2->rect.x + c2->rect.w && playerinfo.playerbody->rect.x > c2->rect.x)
 			{
 				playerinfo.position.x = playerinfo.position.x + 2;
 			}
 		}
-	}
-
-	if (c1 == playerinfo.playerbody && c2->type == COLLIDER_DEATH)
-	{
-		if ((playerinfo.playerbody->rect.y + playerinfo.playerbody->rect.h) > (c2->rect.y))
-		{
-			playerinfo.Alive = false;
-			if ((playerinfo.playerbody->rect.y + playerinfo.playerbody->rect.h - 3) > (c2->rect.y))
-			{
-				playerinfo.Alive = false;
-			}
-
-		
-		}
-
 	}
 
 	}
