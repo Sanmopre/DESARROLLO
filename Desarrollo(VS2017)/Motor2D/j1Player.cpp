@@ -149,6 +149,8 @@ bool j1Player::PreUpdate()
 
 bool j1Player::Update(float dt)
 {
+
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_REPEAT) { playerinfo.Alive = false; }
 	if (playerinfo.God_Mode == false)
 	{
 		Player_State_Machine();
