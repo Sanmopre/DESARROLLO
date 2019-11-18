@@ -270,16 +270,19 @@ bool j1Player::Update(float dt)
 	//DRAW COLLIDER
 	playerinfo.playerbody->SetPos(playerinfo.position.x + 2, playerinfo.position.y);
 	playerinfo.playerfeet->SetPos(playerinfo.position.x + 5, playerinfo.position.y + 15);
-	playerinfo.playerhead->SetPos(playerinfo.position.x + 5, playerinfo.position.y - 5);
+	playerinfo.playerhead->SetPos(playerinfo.position.x + 5, playerinfo.position.y - 3);
 
-	App->render->Player_Camera(playerinfo.position.x, playerinfo.position.y);
+	App->render->Player_Camera(playerinfo.position.x, playerinfo.position.y + 10);
 	
 	//DRAW THE PLAYER BLIT
 	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
 
-	//if (playerinfo.Looking_Forward) {
-		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y , &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
-	//}
+	if (App->render->camera.x < -550) {
+		App->render->Blit_Player(graphics, playerinfo.position.x - 350, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+	}
+	if(App->render->camera.x > -550){
+		App->render->Blit_Player(graphics, playerinfo.position.x + 55, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+	}
 	//else {
 		//App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y + 30, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_HORIZONTAL, -1.0);
 	//}
