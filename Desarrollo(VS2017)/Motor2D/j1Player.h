@@ -105,8 +105,6 @@ public:
 	//COLLISION MANAGER
 	void OnCollision(Collider* c1, Collider* c2);
 
-
-
 	//LOADING AND SAVING OPTIONS
 	bool Save(pugi::xml_node& data) const;
 	bool Load(pugi::xml_node& data);

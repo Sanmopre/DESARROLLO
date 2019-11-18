@@ -43,6 +43,12 @@ public:
 	// Set background color
 	void SetBackgroundColor(SDL_Color color);
 
+	//PLAYER CAMERA
+	void Player_Camera(int x, int y);
+	int Off_Set_X = 110;
+	int Off_Set_Y = 60;
+
+
 public:
 
 	SDL_Renderer*	renderer;

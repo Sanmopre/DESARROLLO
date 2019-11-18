@@ -271,6 +271,8 @@ bool j1Player::Update(float dt)
 	playerinfo.playerbody->SetPos(playerinfo.position.x, playerinfo.position.y);
 	playerinfo.playerfeet->SetPos(playerinfo.position.x + 5, playerinfo.position.y + 15);
 	playerinfo.playerhead->SetPos(playerinfo.position.x, playerinfo.position.y - 10);
+
+	App->render->Player_Camera(playerinfo.position.x, playerinfo.position.y);
 	
 	//DRAW THE PLAYER BLIT
 	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
