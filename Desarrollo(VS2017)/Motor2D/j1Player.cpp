@@ -79,7 +79,7 @@ j1Player::j1Player()
 	playerinfo.voltereta.PushBack({46, 155, 17, 19}, 0, 0);
 	playerinfo.voltereta.PushBack({67, 149, 16, 25}, 0, 0);
 	playerinfo.voltereta.lock = true;
-	playerinfo.voltereta.speed = 0.1f;
+	playerinfo.voltereta.speed = 0.05f;
 
 	playerinfo.attack.PushBack({ 86, 245, 13, 29 });
 	playerinfo.attack.PushBack({ 112, 242, 15, 39 });
@@ -89,7 +89,7 @@ j1Player::j1Player()
 	playerinfo.attack.PushBack({ 264, 256, 30, 24 });
 	playerinfo.attack.PushBack({ 305, 254, 18, 31 });
 	playerinfo.attack.lock = true;
-	playerinfo.attack.speed = 0.075f;
+	playerinfo.attack.speed = 0.0175f;
 
 }
 
