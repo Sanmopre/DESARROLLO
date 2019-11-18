@@ -75,6 +75,13 @@ struct PlayerInfo
 	int		    dashTime = 280;
 	bool		dashTimer = false;
 
+	//PLAYER GOD-MODE
+	bool GodMode = false;
+	bool GodModeForward = false;
+	bool GodModeBackward = false;
+	bool GodModeUp = false;
+	bool GodModeDown = false;
+
 	bool showcolliders = false;
 	Collider * playerhead = nullptr;
 	Collider * playerbody = nullptr;

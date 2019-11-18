@@ -263,15 +263,78 @@ bool j1Player::Update(float dt)
 
 	if (playerinfo.God_Mode)
 	{
+		if (App->input->GetKey(SDL_SCANCODE_I) == KEY_REPEAT) { playerinfo.GodModeUp = true; }
+		else if (App->input->GetKey(SDL_SCANCODE_I) == KEY_UP) { playerinfo.GodModeUp = false; }
 
+		if (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT) { playerinfo.GodModeDown = true; }
+		else if (App->input->GetKey(SDL_SCANCODE_K) == KEY_UP) { playerinfo.GodModeDown = false; }
+
+		if (App->input->GetKey(SDL_SCANCODE_L) == KEY_REPEAT) { playerinfo.GodModeForward = true; }
+		else if (App->input->GetKey(SDL_SCANCODE_L) == KEY_UP) { playerinfo.GodModeForward = false; }
+
+		if (App->input->GetKey(SDL_SCANCODE_J) == KEY_REPEAT) { playerinfo.GodModeBackward = true; }
+		else if (App->input->GetKey(SDL_SCANCODE_J) == KEY_UP) { playerinfo.GodModeBackward = false; }
+
+		if (playerinfo.GodModeUp == true)
+		{
+			playerinfo.position.y = playerinfo.position.y - 3;
+			if (playerinfo.GodModeForward == true)
+			{
+				playerinfo.position.x = playerinfo.position.x + 3;
+			}
+			if (playerinfo.GodModeBackward == true)
+			{
+				playerinfo.position.x = playerinfo.position.x - 3;
+			}
+			if (playerinfo.GodModeDown == true)
+			{
+				playerinfo.position.y = playerinfo.position.y + 3;
+			}
+
+		}
+
+		else if (playerinfo.GodModeDown == true)
+		{
+			playerinfo.position.y = playerinfo.position.y + 3;
+			if (playerinfo.GodModeForward == true)
+			{
+				playerinfo.position.x = playerinfo.position.x + 3;
+			}
+			if (playerinfo.GodModeBackward == true)
+			{
+				playerinfo.position.x = playerinfo.position.x - 3;
+			}
+
+		}
+
+		else if (playerinfo.GodModeForward == true)
+		{
+			playerinfo.position.x = playerinfo.position.x + 3;
+			if (playerinfo.GodModeBackward == true)
+			{
+				playerinfo.position.x = playerinfo.position.x - 3;
+			}
+
+		}
+
+		else if (playerinfo.GodModeBackward == true)
+		{
+			playerinfo.position.x = playerinfo.position.x - 3;
+			if (playerinfo.GodModeForward == true)
+			{
+				playerinfo.position.x = playerinfo.position.x + 3;
+			}
+
+		}
 	}
 	playerinfo.Grounded = false;
 
 	//DRAW COLLIDER
-	playerinfo.playerbody->SetPos(playerinfo.position.x + 2, playerinfo.position.y);
-	playerinfo.playerfeet->SetPos(playerinfo.position.x + 5, playerinfo.position.y + 15);
-	playerinfo.playerhead->SetPos(playerinfo.position.x + 5, playerinfo.position.y - 3);
-
+	if (playerinfo.God_Mode == false) {
+		playerinfo.playerbody->SetPos(playerinfo.position.x + 2, playerinfo.position.y);
+		playerinfo.playerfeet->SetPos(playerinfo.position.x + 5, playerinfo.position.y + 15);
+		playerinfo.playerhead->SetPos(playerinfo.position.x + 5, playerinfo.position.y - 3);
+	}
 	App->render->Player_Camera(playerinfo.position.x, playerinfo.position.y + 10);
 	
 	//DRAW THE PLAYER BLIT
