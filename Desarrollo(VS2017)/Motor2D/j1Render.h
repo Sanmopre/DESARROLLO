@@ -45,8 +45,8 @@ public:
 
 	//PLAYER CAMERA
 	void Player_Camera(int x, int y);
-	int Off_Set_X = 110;
-	int Off_Set_Y = 60;
+	int Off_Set_X = 0;
+	int Off_Set_Y = -100;
 
 
 public:
