@@ -65,19 +65,19 @@ j1Player::j1Player()
 	playerinfo.death.lock = true;
 	playerinfo.death.speed = 0.1f;
 
-	playerinfo.voltereta.PushBack({110, 148, 20, 26}, 0, 0);
-	playerinfo.voltereta.PushBack({134, 150, 25, 22}, 0, 0);
-	playerinfo.voltereta.PushBack({162, 159, 24, 13}, 0, 0);
-	playerinfo.voltereta.PushBack({189, 158, 17, 13}, 0, 0);
-	playerinfo.voltereta.PushBack({211, 158, 16, 14}, 0, 0);
-	playerinfo.voltereta.PushBack({230, 159, 15, 13}, 0, 0);
-	playerinfo.voltereta.PushBack({250, 160, 15, 12}, 0, 0);
-	playerinfo.voltereta.PushBack({266, 158, 16, 14}, 0, 0);
-	playerinfo.voltereta.PushBack({282, 162, 16, 10 }, 0, 0);
-	playerinfo.voltereta.PushBack({9, 159, 15, 14}, 0, 0);
-	playerinfo.voltereta.PushBack({27, 158, 15, 15}, 0, 0);
-	playerinfo.voltereta.PushBack({46, 155, 17, 19}, 0, 0);
-	playerinfo.voltereta.PushBack({67, 149, 16, 25}, 0, 0);
+	playerinfo.voltereta.PushBack({110, 148, 20, 26});
+	playerinfo.voltereta.PushBack({134, 150, 25, 22});
+	playerinfo.voltereta.PushBack({162, 159, 24, 13});
+	playerinfo.voltereta.PushBack({189, 158, 17, 13});
+	playerinfo.voltereta.PushBack({211, 158, 16, 14});
+	playerinfo.voltereta.PushBack({230, 159, 15, 13});
+	playerinfo.voltereta.PushBack({250, 160, 15, 12});
+	playerinfo.voltereta.PushBack({266, 158, 16, 14});
+	playerinfo.voltereta.PushBack({282, 162, 16, 10});
+	playerinfo.voltereta.PushBack({9, 159, 15, 14});
+	playerinfo.voltereta.PushBack({27, 158, 15, 15});
+	playerinfo.voltereta.PushBack({46, 155, 17, 19});
+	playerinfo.voltereta.PushBack({67, 149, 16, 25});
 	playerinfo.voltereta.lock = true;
 	playerinfo.voltereta.speed = 0.1f;
 
@@ -87,10 +87,14 @@ j1Player::j1Player()
 	playerinfo.attack.PushBack({ 172, 252, 42, 29 });
 	playerinfo.attack.PushBack({ 218, 259, 41, 20 });
 	playerinfo.attack.PushBack({ 264, 256, 30, 24 });
-	playerinfo.attack.PushBack({ 305, 254, 18, 31 });
 	playerinfo.attack.lock = true;
 	playerinfo.attack.speed = 0.075f;
 
+	playerinfo.kick.PushBack({ 305, 254, 18, 31 });
+	playerinfo.kick.PushBack({3, 285, 23, 29});
+	playerinfo.kick.PushBack({36, 286, 27, 28});
+	playerinfo.kick.lock = true;
+	playerinfo.kick.speed = 0.1f;
 }
 
 j1Player::~j1Player()
@@ -137,6 +141,7 @@ bool j1Player::PreUpdate()
 	Input.pressing_SPACE = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
 	Input.pressing_F = App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT;
 	Input.pressing_E = App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT;
+	Input.pressing_Q = App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT;
 
 
 	return true;
@@ -237,6 +242,12 @@ bool j1Player::Update(float dt)
 			playerinfo.Looking_Forward = true;
 			playerinfo.current_animation = &playerinfo.attack;
 			App->audio->PlayFx(App->audio->LoadFx("audio/fx/E.wav"));
+		}
+		case KICK:
+		{
+			playerinfo.Looking_Forward = true;
+			playerinfo.current_animation = &playerinfo.kick;
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/kick.wav"));
 		}
 			break;
 		}

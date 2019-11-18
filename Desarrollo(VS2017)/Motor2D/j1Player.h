@@ -16,6 +16,7 @@ struct input {
 	bool pressing_SPACE;
 	bool pressing_F;
 	bool pressing_E;
+	bool pressing_Q;
 };
 
 enum states {
@@ -26,7 +27,8 @@ enum states {
 	JUMP,
 	JUMP_FORWARD,
 	JUMP_BACKWARD,
-	ATTACK_E
+	ATTACK_E,
+	KICK
 };
 
 struct PlayerInfo
@@ -38,6 +40,7 @@ struct PlayerInfo
 	Animation death;
 	Animation voltereta;
 	Animation attack;
+	Animation kick;
 
     iPoint position;
 	iPoint Initial_position;
