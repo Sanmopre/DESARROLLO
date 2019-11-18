@@ -83,9 +83,13 @@ j1Player::j1Player()
 
 	playerinfo.attack.PushBack({ 86, 245, 13, 29 });
 	playerinfo.attack.PushBack({ 112, 242, 15, 39 });
-	//playerinfo.attack.PushBack({  });
+	playerinfo.attack.PushBack({ 140, 247, 20, 35 });
+	playerinfo.attack.PushBack({ 172, 252, 42, 29 });
+	playerinfo.attack.PushBack({ 218, 259, 41, 20 });
+	playerinfo.attack.PushBack({ 264, 256, 30, 24 });
+	playerinfo.attack.PushBack({ 305, 254, 18, 31 });
 	playerinfo.attack.lock = true;
-	playerinfo.attack.speed = 0.015f;
+	playerinfo.attack.speed = 0.075f;
 
 }
 
@@ -232,8 +236,7 @@ bool j1Player::Update(float dt)
 		{
 			playerinfo.Looking_Forward = true;
 			playerinfo.current_animation = &playerinfo.attack;
-			
-			App->audio->PlayFx(App->audio->LoadFx("audio/fx/attack.wav"));
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/E.wav"));
 		}
 			break;
 		}
