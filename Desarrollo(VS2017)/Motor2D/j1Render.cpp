@@ -305,10 +305,7 @@ void j1Render::Player_Camera(int x, int y) {
 	}
 
 	if (camera.x < - 550)
-	{/*
-		for (int i = 0; i < 300; ++i) {
-			camera.x = camera.x - i;
-		}*/
+	{
 		camera.x = camera.x - 400;
 	}
 

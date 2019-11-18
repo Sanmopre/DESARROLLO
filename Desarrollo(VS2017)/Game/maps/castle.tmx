@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="139">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="140">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="216" columns="24">
   <image source="tileset.png" width="384" height="144"/>
   <terraintypes>
@@ -9153,5 +9153,8 @@
   <object id="136" x="912.333" y="129" width="63.3333" height="8"/>
   <object id="137" x="1168.33" y="239" width="80" height="11"/>
   <object id="138" x="721" y="435.5" width="575" height="11.5"/>
+ </objectgroup>
+ <objectgroup id="8" name="win">
+  <object id="139" x="1052.67" y="190.667" width="53.3333" height="31.3333"/>
  </objectgroup>
 </map>
