@@ -251,7 +251,7 @@ bool j1Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, U
 
 void j1Render::Player_Camera(int x, int y) {
 
-	camera.x = -x  + (App->win->width/200);
+	camera.x = -x  + (App->win->width/20);
 	camera.y = -y  + (App->win->height/250);
 
 	if (camera.x > 0)
@@ -263,7 +263,7 @@ void j1Render::Player_Camera(int x, int y) {
 		camera.y = 0;
 	}
 
-	if (camera.x < -600)
+	if (camera.x < - 550)
 	{/*
 		for (int i = 0; i < 300; ++i) {
 			camera.x = camera.x - i;
