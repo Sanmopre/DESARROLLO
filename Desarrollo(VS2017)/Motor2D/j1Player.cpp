@@ -19,12 +19,20 @@ j1Player::j1Player()
 
 	playerinfo.idle.PushBack({ 163,11,12,30 }, 0, 0);
 	playerinfo.idle.PushBack({ 185, 11,12 , 30 }, 0, 0);
-	//playerinfo.idle.PushBack({ 205, 12, 12,30 }, 0, 0);
+	/*playerinfo.idle.PushBack({ 205, 12, 12,30 }, 0, 0);*/
 	playerinfo.idle.PushBack({ 229, 10, 12, 30 }, 0, 0);
 	playerinfo.idle.PushBack({ 251, 10, 10, 30 }, 0, 0);
 	playerinfo.idle.PushBack({ 271, 10, 11, 30 }, 0, 0);
 	playerinfo.idle.speed = 0.005f;
 	playerinfo.idle.lock = true;
+
+	playerinfo.idle2.PushBack({108, 350, 12, 30});
+	playerinfo.idle2.PushBack({86, 350, 12, 30});
+	playerinfo.idle2.PushBack({42, 349, 12, 30});
+	playerinfo.idle2.PushBack({20, 349, 10, 30});
+	playerinfo.idle2.PushBack({0,349, 11, 30});
+	playerinfo.idle2.speed = 0.005f;
+	playerinfo.idle2.lock = true;
 
 	playerinfo.walk.PushBack({11, 79, 16, 29},0,0);
 	playerinfo.walk.PushBack({ 36, 78, 12, 30 }, 0, 0);
@@ -39,6 +47,20 @@ j1Player::j1Player()
 	playerinfo.walk.PushBack({ 199, 80, 21, 29 }, 0, 0);
 	playerinfo.walk.lock = true;
 	playerinfo.walk.speed = 0.05f;
+
+	playerinfo.walk2.PushBack({222,420,16,29});
+	playerinfo.walk2.PushBack({201, 419, 12, 30});
+	playerinfo.walk2.PushBack({185, 419, 13, 30});
+	playerinfo.walk2.PushBack({164, 419,20, 30});
+	playerinfo.walk2.PushBack({139, 419, 22, 30});
+	playerinfo.walk2.PushBack({122, 420, 16, 29});
+	playerinfo.walk2.PushBack({102, 420, 16, 29});
+	playerinfo.walk2.PushBack({86, 419, 14, 30});
+	playerinfo.walk2.PushBack({70, 419, 15, 29});
+	playerinfo.walk2.PushBack({51, 421, 19, 28});
+	playerinfo.walk2.PushBack({28, 420, 21,29});
+	playerinfo.walk2.lock = true;
+	playerinfo.walk2.speed = 0.05f;
 
 	playerinfo.jump.PushBack({62, 181, 15, 30},0,0);
 	playerinfo.jump.PushBack({ 82, 182, 15, 29 }, 0, 0);
@@ -170,11 +192,11 @@ bool j1Player::Update(float dt)
 		case BACKWARD:
 			playerinfo.Looking_Forward = false;
 			playerinfo.velocity.x -= playerinfo.Speed_X;
-			playerinfo.current_animation = &playerinfo.walk;
+			playerinfo.current_animation = &playerinfo.walk2;
 			if (playerinfo.Grounded)
 			{
 			}
-			if (playerinfo.Grounded == false) { playerinfo.current_animation = &playerinfo.jump; }
+			if (playerinfo.Grounded == false) { playerinfo.current_animation = &playerinfo.jump2; }
 			break;
 
 		case JUMP_BACKWARD:
@@ -235,9 +257,13 @@ bool j1Player::Update(float dt)
 
 			if (playerinfo.Grounded == false) { playerinfo.current_animation = &playerinfo.jump; }
 
-			if (playerinfo.velocity.y == 0 && playerinfo.velocity.x == 0)
+			if (playerinfo.velocity.y == 0 && playerinfo.velocity.x == 0 && playerinfo.Looking_Forward==true)
 			{
 				playerinfo.current_animation = &playerinfo.idle;
+			}
+			if (playerinfo.velocity.y == 0 && playerinfo.velocity.x == 0 && playerinfo.Looking_Forward == false)
+			{
+				playerinfo.current_animation = &playerinfo.idle2;
 			}
 			break;
 		case ATTACK_E:

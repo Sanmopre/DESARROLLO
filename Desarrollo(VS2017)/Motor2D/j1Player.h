@@ -42,6 +42,14 @@ struct PlayerInfo
 	Animation attack;
 	Animation kick;
 
+	Animation idle2;
+	Animation walk2;
+	Animation jump2;
+	Animation death2;
+	Animation voltereta2;
+	Animation attack2;
+	Animation kick2;
+
     iPoint position;
 	iPoint Initial_position;
 
