@@ -16,6 +16,7 @@ class j1Map;
 class j1Player;
 class j1Animation;
 class j1Collision;
+class j1PathFinding;
 
 class j1App
 {
@@ -92,6 +93,7 @@ public:
 	j1Animation*        animation;
 	j1Collision*        collision;
 	j1Map*              map2;
+	j1PathFinding*      pathfinding;
 
 private:
 

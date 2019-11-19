@@ -14,6 +14,7 @@
 #include "j1Player.h"
 #include "j1Animation.h"
 #include "j1Collision.h"
+#include "j1Pathfinding.h"
 
 
 
@@ -33,6 +34,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	player = new j1Player();
 	collision = new j1Collision();
 	map2 = new j1Map();
+	pathfinding = new j1PathFinding();
+	
 
 
 	// Ordered for awake / Start / Update
@@ -46,7 +49,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(player);
 	AddModule(collision);
 	AddModule(map2);
-
+	AddModule(pathfinding);
 	// render last to swap buffer
 	AddModule(render);
 }
