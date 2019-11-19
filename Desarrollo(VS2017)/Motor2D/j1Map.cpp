@@ -5,6 +5,7 @@
 #include "j1Textures.h"
 #include "j1Map.h"
 #include "j1Collision.h"
+
 #include <math.h>
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
@@ -606,4 +607,6 @@ bool j1Map::LoadColliders(pugi::xml_node& node, p2SString object_name)
 
 	return ret;
 }
+
+
 

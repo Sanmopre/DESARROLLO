@@ -129,6 +129,9 @@ public:
 	bool IsWalkable(int x, int y) const;
 	void ResetBFS();
 
+	
+
+
 private:
 
 	bool LoadMap();

@@ -8,6 +8,8 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1Scene.h"
+#include "j1Player.h"
+#include "j1Collision.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -30,8 +32,8 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	App->map->Load("dungeon.tmx");
-	App->audio->PlayMusic("audio/music/ghost.ogg");
+	//App->map->Load("dungeon.tmx");
+	//App->audio->PlayMusic("audio/music/ghost.ogg");
 	
 	   
 	App->map2->Load("castle.tmx");
@@ -48,14 +50,15 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
+	// Change map
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 	{
-		scene_selector = true;
+		actual_map = Change_Map(1);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 	{
-		scene_selector = false;
+		actual_map = Change_Map(2);
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
@@ -76,15 +79,13 @@ bool j1Scene::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		App->render->camera.x += 1;
 
+	if (actual_map == true) {
+		App->map2->Draw();
+	}
+	else {
+		App->map->Draw();
+	}
 	
-
-	//App->render->Blit(img, 0, 0);
-	if (scene_selector == true) {
-	App->map->Draw();
-	}
-	else{
-	App->map2->Draw();
-	}
 
 	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
 					App->map->data.width, App->map->data.height,
@@ -106,6 +107,38 @@ bool j1Scene::PostUpdate()
 		ret = false;
 
 	return ret;
+}
+
+
+
+
+bool j1Scene::Change_Map(int map)
+{
+	
+	//App->collision->CleanUp();
+	CleanUp();
+	App->player->Restart();
+
+	int current_map = map;
+	if (map == 1) {
+		App->map->CleanUp();
+		App->player->Restart();
+		App->collision->MapCleanUp();
+		App->map2->Load("castle.tmx");
+		current_map = 1;
+		return true;
+		
+	}
+	else {
+		App->map2->CleanUp();
+		App->collision->MapCleanUp();
+		App->player->Restart();
+		App->collision->MapCleanUp();
+		App->map->Load("dungeon.tmx");
+		current_map = 2;
+		return false;
+	}
+	
 }
 
 // Called before quitting

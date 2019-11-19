@@ -29,9 +29,14 @@ public:
 	// Called before all Updates
 	bool PostUpdate();
 
+
+	bool Change_Map(int map);
+
+	int currentMap = 1;
+	bool actual_map = true;
 public:
 	SDL_Texture* graphics = nullptr;
-	bool scene_selector = false;
+	
 };
 
 #endif // __j1SCENE_H__
