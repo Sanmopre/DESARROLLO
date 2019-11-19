@@ -555,11 +555,17 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 
 	}
 
-	if (c1 == playerinfo.playerfeet && c2->type == COLLIDER_WIN)
+	if (c1 == playerinfo.playerbody && c2->type == COLLIDER_WIN)
 	{
-		if ((playerinfo.playerfeet->rect.y + playerinfo.playerfeet->rect.h) > (c2->rect.y))
+		if ((playerinfo.playerbody->rect.y + playerinfo.playerbody->rect.h) > (c2->rect.y))
 		{
-			
+			if (App->scene->actual_map == true) {
+				App->scene->actual_map = false;
+			}
+			else {
+				App->scene->actual_map = true;
+			}
+			App->scene->Change_Map(1);
 		}
 
 	}
