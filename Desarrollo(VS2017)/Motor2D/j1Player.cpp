@@ -87,14 +87,15 @@ j1Player::j1Player()
 	playerinfo.attack.PushBack({ 172, 252, 42, 29 });
 	playerinfo.attack.PushBack({ 218, 259, 41, 20 });
 	playerinfo.attack.PushBack({ 264, 256, 30, 24 });
+	playerinfo.attack.PushBack({ 86, 245, 13, 29 });
 	playerinfo.attack.lock = true;
-	playerinfo.attack.speed = 0.0175f;
+	playerinfo.attack.speed = 0.05f;
 
 	playerinfo.kick.PushBack({ 305, 254, 18, 31 });
 	playerinfo.kick.PushBack({3, 285, 23, 29});
 	playerinfo.kick.PushBack({36, 286, 27, 28});
 	playerinfo.kick.lock = true;
-	playerinfo.kick.speed = 0.0175f;
+	playerinfo.kick.speed = 0.05f;
 }
 
 j1Player::~j1Player()
@@ -244,13 +245,14 @@ bool j1Player::Update(float dt)
 			playerinfo.Looking_Forward = true;
 			playerinfo.current_animation = &playerinfo.attack;
 			App->audio->PlayFx(App->audio->LoadFx("audio/fx/E.wav"));
-			playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 20, playerinfo.position.y,10 ,10 }, COLLIDER_ATTACK, this);
+			playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y-5,30 ,20 }, COLLIDER_ATTACK, this);
 			break;
 		case KICK:
 		
 			playerinfo.Looking_Forward = true;
 			playerinfo.current_animation = &playerinfo.kick;
 			App->audio->PlayFx(App->audio->LoadFx("audio/fx/kick.wav"));
+			playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y,25 ,10 }, COLLIDER_ATTACK, this);
 		
 			break;
 		}
@@ -392,7 +394,13 @@ void j1Player::Player_State_Machine()
 		else if (Input.pressing_E)
 		{
 			state = ATTACK_E;
+
 		
+		}
+
+		else if (Input.pressing_Q)
+		{
+			state = KICK;
 		}
 
 		else if (Input.pressing_D)
@@ -419,6 +427,7 @@ void j1Player::Player_State_Machine()
 			}
 		}
 
+	
 		else
 		{
 			state = IDLE;
