@@ -94,7 +94,7 @@ j1Player::j1Player()
 	playerinfo.kick.PushBack({3, 285, 23, 29});
 	playerinfo.kick.PushBack({36, 286, 27, 28});
 	playerinfo.kick.lock = true;
-	playerinfo.kick.speed = 0.1f;
+	playerinfo.kick.speed = 0.0175f;
 }
 
 j1Player::~j1Player()
@@ -206,7 +206,7 @@ bool j1Player::Update(float dt)
 				playerinfo.dashTimer = true;
 			}
 
-			if (playerinfo.Looking_Forward = true)
+			if (playerinfo.Looking_Forward == true)
 			{
 				playerinfo.velocity.x = playerinfo.Dash_Speed;
 			}
@@ -240,17 +240,18 @@ bool j1Player::Update(float dt)
 			}
 			break;
 		case ATTACK_E:
-		{
+	
 			playerinfo.Looking_Forward = true;
 			playerinfo.current_animation = &playerinfo.attack;
 			App->audio->PlayFx(App->audio->LoadFx("audio/fx/E.wav"));
-		}
+			playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 20, playerinfo.position.y,10 ,10 }, COLLIDER_ATTACK, this);
+			break;
 		case KICK:
-		{
+		
 			playerinfo.Looking_Forward = true;
 			playerinfo.current_animation = &playerinfo.kick;
 			App->audio->PlayFx(App->audio->LoadFx("audio/fx/kick.wav"));
-		}
+		
 			break;
 		}
 		

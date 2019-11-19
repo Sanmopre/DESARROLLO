@@ -89,7 +89,7 @@ struct PlayerInfo
 	Collider * playerhead = nullptr;
 	Collider * playerbody = nullptr;
 	Collider * playerfeet = nullptr;
-	Collider* colliders_1 = nullptr;
+	Collider* playerattack = nullptr;
 
 };
 
