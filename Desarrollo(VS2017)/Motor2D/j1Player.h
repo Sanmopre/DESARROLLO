@@ -86,6 +86,10 @@ struct PlayerInfo
 	int		    dashTime = 280;
 	bool		dashTimer = false;
 
+	Uint32		death_timer;
+	int		    deathTime = 580;
+	bool		deathTimer = false;
+
 	//PLAYER GOD-MODE
 	bool GodMode = false;
 	bool GodModeForward = false;

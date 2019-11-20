@@ -3,6 +3,8 @@
 
 #include "p2List.h"
 #include "j1Module.h"
+#include "j1PerfTimer.h"
+#include "j1Timer.h"
 #include "PugiXml\src\pugixml.hpp"
 
 // Modules
@@ -17,6 +19,7 @@ class j1Player;
 class j1Animation;
 class j1Collision;
 class j1PathFinding;
+class j1FadeToBlack;
 
 class j1App
 {
@@ -94,6 +97,25 @@ public:
 	j1Collision*        collision;
 	j1Map*              map2;
 	j1PathFinding*      pathfinding;
+	j1FadeToBlack*      fade;
+
+
+	j1Timer* Game_Timer = nullptr;
+	j1PerfTimer* Game_Perf_Timer = nullptr;
+	j1Timer* Last_Frame_Sec = nullptr;
+	j1Timer Last_Frame_Timer;
+
+	uint64 Frame_Counter = 0u;
+	uint Last_Second_Frame_count = 0u;
+
+	uint32 Last_Frame_ms = 0u;
+	uint32 Frames_Update = 0u;
+
+	float AVG_FPS = 0.0f;
+
+	uint Cap_Time = 150u;
+	bool Cap_Framerate = true;
+	float aux = 0.0f;
 
 private:
 

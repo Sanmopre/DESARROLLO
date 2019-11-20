@@ -10,6 +10,7 @@
 #include "j1Animation.h"
 #include "j1Collision.h"
 #include "j1Scene.h"
+#include "j1FadeToBlack.h"
 
 
 
@@ -78,6 +79,20 @@ j1Player::j1Player()
 	playerinfo.jump.lock = true;
 	playerinfo.jump.speed = 0.05f;
 
+	playerinfo.jump2.PushBack({421, 299,15, 29});
+	playerinfo.jump2.PushBack({276,421 ,15,29 });
+	playerinfo.jump2.PushBack({254, 421, 15, 29});
+	playerinfo.jump2.PushBack({339, 386, 15, 29});
+	playerinfo.jump2.PushBack({316, 386, 15, 29});
+	playerinfo.jump2.PushBack({294, 386, 15, 29});
+	playerinfo.jump2.PushBack({275, 385, 16, 30});
+	playerinfo.jump2.PushBack({253, 385, 15, 30});
+	playerinfo.jump2.PushBack({358, 420, 15, 30});
+	playerinfo.jump2.lock = true;
+	playerinfo.jump2.speed = 0.05;
+
+
+
 	playerinfo.death.PushBack({11, 110, 11, 28},0,0);
 	playerinfo.death.PushBack({28, 117, 19, 24}, 0, 0);
 	playerinfo.death.PushBack({49, 120, 23, 19}, 0, 0);
@@ -102,6 +117,13 @@ j1Player::j1Player()
 	playerinfo.voltereta.PushBack({67, 149, 16, 25});
 	playerinfo.voltereta.lock = true;
 	playerinfo.voltereta.speed = 0.05f;
+
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
 
 	playerinfo.attack.PushBack({ 86, 245, 13, 29 });
 	playerinfo.attack.PushBack({ 112, 242, 15, 39 });
@@ -183,36 +205,41 @@ bool j1Player::Update(float dt)
 			App->audio->PlayFx(App->audio->LoadFx("audio/fx/jumping.wav"));
 			while (playerinfo.velocity.y > -2)
 			{
-				playerinfo.current_animation = &playerinfo.jump;
-				playerinfo.velocity.y -= playerinfo.Speed_Y;
+				if (playerinfo.Looking_Forward == true)
+				{
+					playerinfo.current_animation = &playerinfo.jump;
+					playerinfo.velocity.y -= playerinfo.Speed_Y;
+				}
+				else
+				{
+					playerinfo.current_animation = &playerinfo.jump2;
+					playerinfo.velocity.y -= playerinfo.Speed_Y;
+				}
 				
-			}
+				
+			} 
+			
 			break;
 
 		case BACKWARD:
 			playerinfo.Looking_Forward = false;
 			playerinfo.velocity.x -= playerinfo.Speed_X;
 			playerinfo.current_animation = &playerinfo.walk2;
-			if (playerinfo.Grounded)
-			{
-			}
+			
 			if (playerinfo.Grounded == false) { playerinfo.current_animation = &playerinfo.jump2; }
 			break;
 
 		case JUMP_BACKWARD:
 			playerinfo.Looking_Forward = false;
 			playerinfo.velocity.x -= playerinfo.Speed_X;
-			playerinfo.current_animation = &playerinfo.jump;
+			playerinfo.current_animation = &playerinfo.jump2;
 			break;
 
 		case FORWARD:
 			playerinfo.Looking_Forward = true;
 			playerinfo.velocity.x += playerinfo.Speed_X;
 			playerinfo.current_animation = &playerinfo.walk;
-			if (playerinfo.Grounded)
-			{
-
-			}
+			
 			if (playerinfo.Grounded == false) { playerinfo.current_animation = &playerinfo.jump; }
 			break;
 
@@ -270,7 +297,6 @@ bool j1Player::Update(float dt)
 	
 			playerinfo.Looking_Forward = true;
 			playerinfo.current_animation = &playerinfo.attack;
-			App->audio->PlayFx(App->audio->LoadFx("audio/fx/E.wav"));
 			playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y-5,30 ,20 }, COLLIDER_ATTACK, this);
 			break;
 		case KICK:
@@ -281,6 +307,9 @@ bool j1Player::Update(float dt)
 			playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y,25 ,10 }, COLLIDER_ATTACK, this);
 		
 			break;
+		}
+		if (playerinfo.velocity.x == 0 && playerinfo.velocity.y == 0) {
+			state = IDLE;
 		}
 		
 		
@@ -391,12 +420,8 @@ bool j1Player::Update(float dt)
 	if(App->render->camera.x > -550){
 		App->render->Blit_Player(graphics, playerinfo.position.x + 55, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 	}
-	//else {
-		//App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y + 30, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_HORIZONTAL, -1.0);
-	//}
 
-	
-	
+
 	return true;
 }
 
@@ -404,7 +429,6 @@ void j1Player::Player_State_Machine()
 {
 	if (playerinfo.Can_Input == true && playerinfo.God_Mode == false)
 	{
-
 		if (Input.pressing_SPACE && playerinfo.velocity.y == 0)
 		{
 			state = JUMP;
@@ -420,7 +444,7 @@ void j1Player::Player_State_Machine()
 		else if (Input.pressing_E)
 		{
 			state = ATTACK_E;
-
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/E.wav"));
 		
 		}
 
@@ -473,12 +497,23 @@ void j1Player::Player_Position()
 void j1Player::Restart()
 {
 	if (playerinfo.Alive == false) {
+		App->fade->Fade_To_Black(1);
 		playerinfo.Can_Input = false;
-
-		playerinfo.position.x = 40;
+		if (playerinfo.deathTimer == false)
+		{
+			playerinfo.death_timer = SDL_GetTicks();
+			playerinfo.deathTimer = true;
+		}
+		if (SDL_GetTicks() - playerinfo.death_timer > playerinfo.deathTime)
+		{
+			playerinfo.Can_Input = true;
+			playerinfo.dashTimer = false;	
+			playerinfo.position.x = 40;
 		playerinfo.position.y = 350;
 		playerinfo.velocity.y = 0;
 		playerinfo.Looking_Forward = true;
+		}
+	
 	}
 		playerinfo.Can_Input = true;
 		playerinfo.Alive = true;
@@ -516,7 +551,6 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		if ((playerinfo.playerhead->rect.y) < (c2->rect.y + c2->rect.h))
 		{
 			playerinfo.position.y = playerinfo.position.y + 2;
-			playerinfo.velocity.y = 0;
 		}
 	}
 
@@ -555,11 +589,21 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 
 	}
 
+	if (c1 == playerinfo.playerhead && c2->type == COLLIDER_DEATH)
+	{
+		if ((playerinfo.playerhead->rect.y + playerinfo.playerhead->rect.h) > (c2->rect.y))
+		{
+			playerinfo.Alive = false;
+		}
+
+	}
+
 	if (c1 == playerinfo.playerfeet && c2->type == COLLIDER_WIN)
 	{
 		if ((playerinfo.playerfeet->rect.y + playerinfo.playerfeet->rect.h) > (c2->rect.y))
 		{
-			
+			playerinfo.Alive = false;
+	
 		}
 
 	}

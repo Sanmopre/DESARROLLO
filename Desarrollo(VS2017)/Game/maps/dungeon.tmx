@@ -21067,7 +21067,7 @@
    <tile/>
   </data>
  </layer>
- <objectgroup id="8" name="COLLIDERS">
+ <objectgroup id="8" name="plataformas">
   <object id="1" x="1" y="414.333" width="109.667" height="9.33333"/>
   <object id="2" x="142.333" y="352" width="259" height="126.667"/>
   <object id="3" x="412.667" y="360.333">
@@ -21090,7 +21090,7 @@
   <object id="29" x="978" y="207" width="29" height="9"/>
   <object id="31" x="1168.5" y="111" width="16.5" height="105.5"/>
  </objectgroup>
- <objectgroup id="9" name="pinchos2">
+ <objectgroup id="9" name="pinchos">
   <object id="12" x="80.5" y="406.5" width="30.5" height="10"/>
   <object id="13" x="0" y="466.5" width="141.5" height="13.5"/>
   <object id="14" x="133.5" y="368" width="8" height="111.5"/>
@@ -21106,7 +21106,7 @@
   <object id="24" x="1055" y="200" width="18.5" height="20.5"/>
   <object id="30" x="831.5" y="277.5" width="18" height="11.5"/>
  </objectgroup>
- <objectgroup id="10" name="win2">
+ <objectgroup id="10" name="win">
   <object id="33" x="1104" y="163" width="49" height="40"/>
  </objectgroup>
 </map>

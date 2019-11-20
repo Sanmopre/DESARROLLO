@@ -25,6 +25,11 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_PLAYER1][COLLIDER_DEATH] = true;
 	matrix[COLLIDER_PLAYER1][COLLIDER_PLATFORM] = true;
 
+	matrix[COLLIDER_WIN][COLLIDER_DEATH] = false;
+	matrix[COLLIDER_WIN][COLLIDER_FLOOR] = true;
+	matrix[COLLIDER_WIN][COLLIDER_PLAYER1] = true;
+	matrix[COLLIDER_WIN][COLLIDER_PLATFORM] = true;
+
 
 	
 }
@@ -115,7 +120,7 @@ void j1Collision::DebugDraw()
 			break;
 
 		case COLLIDER_WIN: // yellow
-			App->render->DrawQuad(colliders[i]->rect, 254, 203, 0, alpha);
+			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 			break;
 
 		case COLLIDER_ATTACK: // yellow
@@ -186,7 +191,7 @@ bool j1Collision::MapCleanUp()
 	{
 		if (colliders[i] != nullptr)
 		{
-			if (colliders[i]->type == COLLIDER_FLOOR || colliders[i]->type == COLLIDER_PLATFORM || colliders[i]->type == COLLIDER_DEATH)
+			if (colliders[i]->type == COLLIDER_FLOOR || colliders[i]->type == COLLIDER_PLATFORM || colliders[i]->type == COLLIDER_DEATH || colliders[i]->type == COLLIDER_WIN)
 			{
 				delete colliders[i];
 				colliders[i] = nullptr;
