@@ -37,15 +37,15 @@ j1Player::j1Player()
 
 	playerinfo.walk.PushBack({11, 79, 16, 29},0,0);
 	playerinfo.walk.PushBack({ 36, 78, 12, 30 }, 0, 0);
-	playerinfo.walk.PushBack({ 52, 79, 13, 30 }, 0, 0);
-	playerinfo.walk.PushBack({ 69, 80, 20, 30 }, 0, 0);
-	playerinfo.walk.PushBack({ 89, 79, 22, 30 }, 0, 0);
-	playerinfo.walk.PushBack({ 111, 80, 16, 29 }, 0, 0);
-	playerinfo.walk.PushBack({ 131, 79, 16, 30 }, 0, 0);
-	playerinfo.walk.PushBack({ 148, 79, 14, 30 }, 0, 0);
-	playerinfo.walk.PushBack({ 164, 80, 15, 29 }, 0, 0);
-	playerinfo.walk.PushBack({ 179, 81, 19, 28 }, 0, 0);
-	playerinfo.walk.PushBack({ 199, 80, 21, 29 }, 0, 0);
+	playerinfo.walk.PushBack({ 52, 78, 13, 30 }, 0, 0);
+	playerinfo.walk.PushBack({ 69, 78, 20, 30 }, 0, 0);
+	playerinfo.walk.PushBack({ 89, 78, 22, 30 }, 0, 0);
+	playerinfo.walk.PushBack({ 111, 79, 16, 29 }, 0, 0);
+	playerinfo.walk.PushBack({ 130, 78, 16, 30 }, 0, 0);
+	playerinfo.walk.PushBack({ 148, 78, 14, 30 }, 0, 0);
+	playerinfo.walk.PushBack({ 164, 79, 15, 29 }, 0, 0);
+	playerinfo.walk.PushBack({ 179, 80, 19, 28 }, 0, 0);
+	playerinfo.walk.PushBack({ 199, 79, 21, 29 }, 0, 0);
 	playerinfo.walk.lock = true;
 	playerinfo.walk.speed = 0.05f;
 
@@ -210,7 +210,7 @@ bool j1Player::Update(float dt)
 					playerinfo.current_animation = &playerinfo.jump;
 					playerinfo.velocity.y -= playerinfo.Speed_Y;
 				}
-				else
+				if(playerinfo.Looking_Forward==false)
 				{
 					playerinfo.current_animation = &playerinfo.jump2;
 					playerinfo.velocity.y -= playerinfo.Speed_Y;
