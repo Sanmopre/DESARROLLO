@@ -68,7 +68,7 @@ struct PlayerInfo
 	float			World_Gravity = 0.05;
 	float			Speed_X = 0.05;
 	float			Speed_Y = 0.04;
-	float			Dash_Speed = 1.5;
+	float			Dash_Speed = 3.25;
 	float			Reducction_Speed = 0.25;
 	float		    MAX_X = 1.0;
 	float			MAX_Y = 2.0;
@@ -83,8 +83,14 @@ struct PlayerInfo
 	bool            God_Mode = false;
 
 	Uint32		dash_timer;
-	int		    dashTime = 280;
+	int		    dashTime = 290;
 	bool		dashTimer = false;
+
+	//Attack timer
+	Uint32		attack_timer;
+	bool        attacking = false;
+	int		    attackTime = 390;
+	bool		attackTimer = false;
 
 	Uint32		death_timer;
 	int		    deathTime = 580;

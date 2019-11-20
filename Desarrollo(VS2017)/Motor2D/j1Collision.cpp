@@ -201,3 +201,22 @@ bool j1Collision::MapCleanUp()
 
 	return true;
 }
+
+//Deleted attack colliders
+bool j1Collision::AttackCleanUp()
+{
+
+	for (uint i = 0; i < MAX_COLLIDERS; ++i)
+	{
+		if (colliders[i] != nullptr)
+		{
+			if (colliders[i]->type == COLLIDER_ATTACK)
+			{
+				delete colliders[i];
+				colliders[i] = nullptr;
+			}
+		}
+	}
+
+	return true;
+}

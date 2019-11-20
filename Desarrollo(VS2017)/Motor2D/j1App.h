@@ -113,7 +113,7 @@ public:
 
 	float AVG_FPS = 0.0f;
 
-	uint Cap_Time = 150u;
+	uint Cap_Time = 120u;
 	bool Cap_Framerate = true;
 	float aux = 0.0f;
 

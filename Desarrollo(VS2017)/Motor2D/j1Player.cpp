@@ -262,7 +262,7 @@ bool j1Player::Update(float dt)
 			}
 			else
 			{
-				playerinfo.velocity.x = -playerinfo.Dash_Speed;
+				playerinfo.velocity.x = -playerinfo.Dash_Speed + 1;
 			}
 			playerinfo.velocity.y = 0;
 			playerinfo.current_animation = &playerinfo.voltereta;
@@ -294,10 +294,27 @@ bool j1Player::Update(float dt)
 			}
 			break;
 		case ATTACK_E:
-	
-			playerinfo.Looking_Forward = true;
+			if (playerinfo.attackTimer == false)
+			{
+				playerinfo.attack_timer = SDL_GetTicks();
+				playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y-5,30 ,20 }, COLLIDER_ATTACK, this);
+				playerinfo.attackTimer = true;
+				playerinfo.attacking = true;
+				playerinfo.current_animation = &playerinfo.attack;
+			}
+
+			if (SDL_GetTicks() - playerinfo.attack_timer > playerinfo.attackTime)
+			{
+				playerinfo.Can_Input = true;
+				playerinfo.attackTimer = false;
+				playerinfo.attacking = false;
+				App->collision->AttackCleanUp();
+				
+			}
+			//playerinfo.Looking_Forward = true;
+			
 			playerinfo.current_animation = &playerinfo.attack;
-			playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y-5,30 ,20 }, COLLIDER_ATTACK, this);
+			
 			break;
 		case KICK:
 		
@@ -408,6 +425,9 @@ bool j1Player::Update(float dt)
 		playerinfo.playerbody->SetPos(playerinfo.position.x + 2, playerinfo.position.y);
 		playerinfo.playerfeet->SetPos(playerinfo.position.x + 5, playerinfo.position.y + 15);
 		playerinfo.playerhead->SetPos(playerinfo.position.x + 5, playerinfo.position.y - 3);
+		if (playerinfo.attacking == true) {
+			playerinfo.playerattack->SetPos(playerinfo.position.x + 10, playerinfo.position.y - 5);
+		}
 	}
 	App->render->Player_Camera(playerinfo.position.x, playerinfo.position.y + 10);
 	

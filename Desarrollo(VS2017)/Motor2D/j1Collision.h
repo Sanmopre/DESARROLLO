@@ -58,6 +58,7 @@ public:
 	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback = nullptr);
 	void DebugDraw();
 	bool MapCleanUp();
+	bool AttackCleanUp();
 	SDL_Rect rect;
 
 private:
