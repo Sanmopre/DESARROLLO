@@ -78,6 +78,20 @@ j1Player::j1Player()
 	playerinfo.jump.lock = true;
 	playerinfo.jump.speed = 0.05f;
 
+	playerinfo.jump2.PushBack({421, 299,15, 29});
+	playerinfo.jump2.PushBack({276,421 ,15,29 });
+	playerinfo.jump2.PushBack({254, 421, 15, 29});
+	playerinfo.jump2.PushBack({339, 386, 15, 29});
+	playerinfo.jump2.PushBack({316, 386, 15, 29});
+	playerinfo.jump2.PushBack({294, 386, 15, 29});
+	playerinfo.jump2.PushBack({275, 385, 16, 30});
+	playerinfo.jump2.PushBack({253, 385, 15, 30});
+	playerinfo.jump2.PushBack({358, 420, 15, 30});
+	playerinfo.jump2.lock = true;
+	playerinfo.jump2.speed = 0.05;
+
+
+
 	playerinfo.death.PushBack({11, 110, 11, 28},0,0);
 	playerinfo.death.PushBack({28, 117, 19, 24}, 0, 0);
 	playerinfo.death.PushBack({49, 120, 23, 19}, 0, 0);
@@ -102,6 +116,13 @@ j1Player::j1Player()
 	playerinfo.voltereta.PushBack({67, 149, 16, 25});
 	playerinfo.voltereta.lock = true;
 	playerinfo.voltereta.speed = 0.05f;
+
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
 
 	playerinfo.attack.PushBack({ 86, 245, 13, 29 });
 	playerinfo.attack.PushBack({ 112, 242, 15, 39 });
@@ -183,10 +204,20 @@ bool j1Player::Update(float dt)
 			App->audio->PlayFx(App->audio->LoadFx("audio/fx/jumping.wav"));
 			while (playerinfo.velocity.y > -2)
 			{
-				playerinfo.current_animation = &playerinfo.jump;
-				playerinfo.velocity.y -= playerinfo.Speed_Y;
+				if (playerinfo.Looking_Forward == true)
+				{
+					playerinfo.current_animation = &playerinfo.jump;
+					playerinfo.velocity.y -= playerinfo.Speed_Y;
+				}
+				else
+				{
+					playerinfo.current_animation = &playerinfo.jump2;
+					playerinfo.velocity.y -= playerinfo.Speed_Y;
+				}
+				
 				
 			}
+			
 			break;
 
 		case BACKWARD:
@@ -202,7 +233,7 @@ bool j1Player::Update(float dt)
 		case JUMP_BACKWARD:
 			playerinfo.Looking_Forward = false;
 			playerinfo.velocity.x -= playerinfo.Speed_X;
-			playerinfo.current_animation = &playerinfo.jump;
+			playerinfo.current_animation = &playerinfo.jump2;
 			break;
 
 		case FORWARD:
