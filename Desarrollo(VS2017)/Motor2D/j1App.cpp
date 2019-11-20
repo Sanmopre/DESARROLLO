@@ -21,8 +21,14 @@
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 {
+	//framerate
+	Game_Timer = new j1Timer();
+	Game_Perf_Timer = new j1PerfTimer();
+	Last_Frame_Sec = new j1Timer();
+
 	frames = 0;
 	want_to_save = want_to_load = false;
+
 
 	input = new j1Input();
 	win = new j1Window();
@@ -166,6 +172,10 @@ pugi::xml_node j1App::LoadConfig(pugi::xml_document& config_file) const
 // ---------------------------------------------
 void j1App::PrepareUpdate()
 {
+	Frame_Counter++;
+	Last_Second_Frame_count++;
+
+	Last_Frame_Timer.Start();
 }
 
 // ---------------------------------------------
@@ -176,6 +186,24 @@ void j1App::FinishUpdate()
 
 	if(want_to_load == true)
 		LoadGameNow();
+
+	
+	float Time_Startup = Game_Timer->ReadSec();
+	AVG_FPS = float(Frame_Counter) / Time_Startup;
+	Last_Frame_ms = Last_Frame_Timer.Read();
+
+	if (Last_Frame_Sec->Read() >= 1000)
+	{
+		Frames_Update = Last_Second_Frame_count;
+		Last_Second_Frame_count = 0;
+		Last_Frame_Sec->Start();
+	}
+
+	if (Cap_Framerate)
+		if (Last_Frame_ms < 1000 / Cap_Time)
+		{
+			SDL_Delay((1000 / Cap_Time) - Last_Frame_ms);
+		}
 }
 
 // Call modules before each loop iteration
