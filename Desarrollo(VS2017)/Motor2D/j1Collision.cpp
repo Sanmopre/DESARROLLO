@@ -120,7 +120,7 @@ void j1Collision::DebugDraw()
 			break;
 
 		case COLLIDER_WIN: // yellow
-			App->render->DrawQuad(colliders[i]->rect, 254, 203, 0, alpha);
+			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 			break;
 
 		case COLLIDER_ATTACK: // yellow

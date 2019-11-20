@@ -499,10 +499,21 @@ void j1Player::Restart()
 	if (playerinfo.Alive == false) {
 		App->fade->Fade_To_Black(1);
 		playerinfo.Can_Input = false;
-		playerinfo.position.x = 40;
+		if (playerinfo.deathTimer == false)
+		{
+			playerinfo.death_timer = SDL_GetTicks();
+			playerinfo.deathTimer = true;
+		}
+		if (SDL_GetTicks() - playerinfo.death_timer > playerinfo.deathTime)
+		{
+			playerinfo.Can_Input = true;
+			playerinfo.dashTimer = false;	
+			playerinfo.position.x = 40;
 		playerinfo.position.y = 350;
 		playerinfo.velocity.y = 0;
 		playerinfo.Looking_Forward = true;
+		}
+	
 	}
 		playerinfo.Can_Input = true;
 		playerinfo.Alive = true;
@@ -592,13 +603,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		if ((playerinfo.playerfeet->rect.y + playerinfo.playerfeet->rect.h) > (c2->rect.y))
 		{
 			playerinfo.Alive = false;
-			if (App->scene->actual_map == true) {
-				App->scene->actual_map = false;
-			}
-			else {
-				App->scene->actual_map = true;
-			}
-			App->scene->Change_Map(1);
+	
 		}
 
 	}
