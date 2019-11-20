@@ -506,9 +506,9 @@ void j1Player::Restart()
 		}
 		if (SDL_GetTicks() - playerinfo.death_timer > playerinfo.deathTime)
 		{
-			playerinfo.Can_Input = true;
-			playerinfo.dashTimer = false;	
-			playerinfo.position.x = 40;
+		playerinfo.Can_Input = true;
+		playerinfo.deathTimer = false;	
+		playerinfo.position.x = 40;
 		playerinfo.position.y = 350;
 		playerinfo.velocity.y = 0;
 		playerinfo.Looking_Forward = true;
