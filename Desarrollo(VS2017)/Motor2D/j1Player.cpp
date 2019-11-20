@@ -216,7 +216,7 @@ bool j1Player::Update(float dt)
 				}
 				
 				
-			}
+			} 
 			
 			break;
 
@@ -224,9 +224,7 @@ bool j1Player::Update(float dt)
 			playerinfo.Looking_Forward = false;
 			playerinfo.velocity.x -= playerinfo.Speed_X;
 			playerinfo.current_animation = &playerinfo.walk2;
-			if (playerinfo.Grounded)
-			{
-			}
+			
 			if (playerinfo.Grounded == false) { playerinfo.current_animation = &playerinfo.jump2; }
 			break;
 
@@ -240,10 +238,7 @@ bool j1Player::Update(float dt)
 			playerinfo.Looking_Forward = true;
 			playerinfo.velocity.x += playerinfo.Speed_X;
 			playerinfo.current_animation = &playerinfo.walk;
-			if (playerinfo.Grounded)
-			{
-
-			}
+			
 			if (playerinfo.Grounded == false) { playerinfo.current_animation = &playerinfo.jump; }
 			break;
 
@@ -312,6 +307,9 @@ bool j1Player::Update(float dt)
 			playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y,25 ,10 }, COLLIDER_ATTACK, this);
 		
 			break;
+		}
+		if (playerinfo.velocity.x == 0 && playerinfo.velocity.y == 0) {
+			state = IDLE;
 		}
 		
 		
@@ -435,7 +433,6 @@ void j1Player::Player_State_Machine()
 {
 	if (playerinfo.Can_Input == true && playerinfo.God_Mode == false)
 	{
-
 		if (Input.pressing_SPACE && playerinfo.velocity.y == 0)
 		{
 			state = JUMP;
@@ -547,7 +544,6 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		if ((playerinfo.playerhead->rect.y) < (c2->rect.y + c2->rect.h))
 		{
 			playerinfo.position.y = playerinfo.position.y + 2;
-			playerinfo.velocity.y = 0;
 		}
 	}
 
@@ -582,6 +578,15 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		if ((playerinfo.playerfeet->rect.y + playerinfo.playerfeet->rect.h) > (c2->rect.y))
 		{
 			playerinfo.Alive = false; 
+		}
+
+	}
+
+	if (c1 == playerinfo.playerhead && c2->type == COLLIDER_DEATH)
+	{
+		if ((playerinfo.playerhead->rect.y + playerinfo.playerhead->rect.h) > (c2->rect.y))
+		{
+			playerinfo.Alive = false;
 		}
 
 	}
