@@ -15,6 +15,7 @@
 #include "j1Animation.h"
 #include "j1Collision.h"
 #include "j1Pathfinding.h"
+#include "j1FadeToBlack.h"
 
 
 
@@ -41,6 +42,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	collision = new j1Collision();
 	map2 = new j1Map();
 	pathfinding = new j1PathFinding();
+	fade = new j1FadeToBlack();
 	
 
 
@@ -56,6 +58,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(collision);
 	AddModule(map2);
 	AddModule(pathfinding);
+	AddModule(fade);
 	// render last to swap buffer
 	AddModule(render);
 }

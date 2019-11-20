@@ -1,36 +1,48 @@
-#ifndef __MODULEFADETOBLACK_H__
-#define __MODULEFADETOBLACK_H__
+#ifndef  _MODULE_FADETOBLACK_
+#define _MODULE_FADETOBLACK_
 
 #include "j1Module.h"
 #include "SDL\include\SDL_rect.h"
 
-class ModuleFadeToBlack : public j1Module
+enum ListOfMapNames;
+
+class j1FadeToBlack : public j1Module
 {
 public:
-	ModuleFadeToBlack();
-	~ModuleFadeToBlack();
 
+	j1FadeToBlack();
+
+	// Destructor
+	virtual ~j1FadeToBlack();
+
+	// Called before render is avalible
+	bool Awake(pugi::xml_node&);
+
+	// Called before the first frame
 	bool Start();
-	bool Update();
-	bool j1FadeToBlack(j1Module* module_off, j1Module* module_on, int black = 1, float time = 1.0f);
-	bool IsFading() const;
+
+	// Called each loop iteration
+	bool Update(float dt);
+
+	// FadeToBlack
+	bool Fade_To_Black(float time);
 
 private:
 
-	int blacks;
 
-	enum fade_step
+public:
+
+private:
+	enum Fade_State
 	{
-		none,
-		fade_to_black,
-		fade_from_black
-	} current_step = fade_step::none;
+		NULL_FADE,
+		FADE_TO_BLACK,
+		FADE_FROM_BLACK
+	} current_step = Fade_State::NULL_FADE;
 
-	Uint32 start_time = 0;
-	Uint32 total_time = 0;
+
+	uint start_time = 0;
+	uint total_time = 0;
 	SDL_Rect screen;
-	j1Module* to_enable = nullptr;
-	j1Module* to_disable = nullptr;
 };
-
-#endif //__MODULEFADETOBLACK_H__
+#endif // _MODULE_FADETOBLACK_

@@ -19,6 +19,7 @@ class j1Player;
 class j1Animation;
 class j1Collision;
 class j1PathFinding;
+class j1FadeToBlack;
 
 class j1App
 {
@@ -96,6 +97,7 @@ public:
 	j1Collision*        collision;
 	j1Map*              map2;
 	j1PathFinding*      pathfinding;
+	j1FadeToBlack*      fade;
 
 
 	j1Timer* Game_Timer = nullptr;

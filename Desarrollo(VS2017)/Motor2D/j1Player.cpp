@@ -10,6 +10,7 @@
 #include "j1Animation.h"
 #include "j1Collision.h"
 #include "j1Scene.h"
+#include "j1FadeToBlack.h"
 
 
 
@@ -419,12 +420,8 @@ bool j1Player::Update(float dt)
 	if(App->render->camera.x > -550){
 		App->render->Blit_Player(graphics, playerinfo.position.x + 55, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 	}
-	//else {
-		//App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y + 30, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_HORIZONTAL, -1.0);
-	//}
 
-	
-	
+
 	return true;
 }
 
@@ -500,8 +497,8 @@ void j1Player::Player_Position()
 void j1Player::Restart()
 {
 	if (playerinfo.Alive == false) {
+		App->fade->Fade_To_Black(1);
 		playerinfo.Can_Input = false;
-
 		playerinfo.position.x = 40;
 		playerinfo.position.y = 350;
 		playerinfo.velocity.y = 0;

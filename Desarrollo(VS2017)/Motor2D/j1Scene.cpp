@@ -10,6 +10,7 @@
 #include "j1Scene.h"
 #include "j1Player.h"
 #include "j1Collision.h"
+#include "j1FadeToBlack.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -121,6 +122,7 @@ bool j1Scene::Change_Map(int map)
 
 	int current_map = map;
 	if (map == 1) {
+		App->fade->Fade_To_Black(2);
 		App->map->CleanUp();
 		App->map2->CleanUp();
 		App->player->playerinfo.Alive = false;
@@ -133,6 +135,7 @@ bool j1Scene::Change_Map(int map)
 		
 	}
 	else {
+		App->fade->Fade_To_Black(2);
 		App->map2->CleanUp();
 		App->map->CleanUp();
 		App->collision->MapCleanUp();
