@@ -296,7 +296,6 @@ bool j1Player::Update(float dt)
 	
 			playerinfo.Looking_Forward = true;
 			playerinfo.current_animation = &playerinfo.attack;
-			App->audio->PlayFx(App->audio->LoadFx("audio/fx/E.wav"));
 			playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y-5,30 ,20 }, COLLIDER_ATTACK, this);
 			break;
 		case KICK:
@@ -448,7 +447,7 @@ void j1Player::Player_State_Machine()
 		else if (Input.pressing_E)
 		{
 			state = ATTACK_E;
-
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/E.wav"));
 		
 		}
 
