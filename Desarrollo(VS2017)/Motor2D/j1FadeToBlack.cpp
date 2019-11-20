@@ -40,8 +40,8 @@ bool j1FadeToBlack::Update(float dt)
 
 		if (current_step == Fade_State::NULL_FADE)
 			return true;
-	Uint32 now = SDL_GetTicks() - start_time;
-	float normalized = MIN(1.0f, (float)now / (float)total_time);
+	Uint32 time = SDL_GetTicks() - start_time;
+	float normalized = MIN(1.0f, (float)time / (float)total_time);
 
 	switch (current_step)
 	{
@@ -50,7 +50,7 @@ bool j1FadeToBlack::Update(float dt)
 		App->player->playerinfo.velocity.x = 0;
 		App->player->playerinfo.velocity.y = 0;
 		//App->player->playerinfo.Can_Input = false;
-		if (now >= total_time)
+		if (time >= total_time)
 		{
 			total_time += total_time;
 			start_time = SDL_GetTicks();
@@ -63,7 +63,7 @@ bool j1FadeToBlack::Update(float dt)
 		
 		normalized = 1.0f - normalized;
 
-		if (now >= total_time)
+		if (time >= total_time)
 			current_step = Fade_State::NULL_FADE;
 	} break;
 	}
