@@ -122,19 +122,25 @@ bool j1Scene::Change_Map(int map)
 	int current_map = map;
 	if (map == 1) {
 		App->map->CleanUp();
-		App->player->Restart();
+		App->map2->CleanUp();
+		App->player->playerinfo.Alive = false;
 		App->collision->MapCleanUp();
-		App->map2->Load("castle.tmx");
+		
+			App->map2->Load("castle.tmx");
+		
 		current_map = 1;
 		return true;
 		
 	}
 	else {
 		App->map2->CleanUp();
+		App->map->CleanUp();
 		App->collision->MapCleanUp();
-		App->player->Restart();
+		App->player->playerinfo.Alive = false;
 		App->collision->MapCleanUp();
-		App->map->Load("dungeon.tmx");
+		
+			App->map->Load("dungeon.tmx");
+		
 		current_map = 2;
 		return false;
 	}
