@@ -103,20 +103,39 @@ j1Player::j1Player()
 	playerinfo.death.speed = 0.04f;
 
 	playerinfo.voltereta.PushBack({110, 148, 20, 26});
-	playerinfo.voltereta.PushBack({134, 150, 25, 22});
+	playerinfo.voltereta.PushBack({134, 150, 25, 24});
 	playerinfo.voltereta.PushBack({162, 159, 24, 13});
-	playerinfo.voltereta.PushBack({189, 158, 17, 13});
+	playerinfo.voltereta.PushBack({189, 159, 17, 13});
 	playerinfo.voltereta.PushBack({211, 158, 16, 14});
 	playerinfo.voltereta.PushBack({230, 159, 15, 13});
 	playerinfo.voltereta.PushBack({250, 160, 15, 12});
 	playerinfo.voltereta.PushBack({266, 158, 16, 14});
 	playerinfo.voltereta.PushBack({282, 162, 16, 10});
-	playerinfo.voltereta.PushBack({9, 159, 15, 14});
-	playerinfo.voltereta.PushBack({27, 158, 15, 15});
+	playerinfo.voltereta.PushBack({9, 160, 15, 14});
+	playerinfo.voltereta.PushBack({27, 159, 15, 15});
 	playerinfo.voltereta.PushBack({46, 155, 17, 19});
 	playerinfo.voltereta.PushBack({67, 149, 16, 25});
 	playerinfo.voltereta.lock = true;
-	playerinfo.voltereta.speed = 0.1f;
+
+	playerinfo.voltereta.speed = 0.25f;
+
+	playerinfo.voltereta2.PushBack({334, 458, 20, 26});
+	playerinfo.voltereta2.PushBack({305, 460, 25, 24});
+	playerinfo.voltereta2.PushBack({278, 469, 24, 13});
+	playerinfo.voltereta2.PushBack({258, 469, 17, 13});
+	playerinfo.voltereta2.PushBack({237, 468, 16, 14});
+	playerinfo.voltereta2.PushBack({219, 469, 15, 13});
+	playerinfo.voltereta2.PushBack({199, 470, 15, 12});
+	playerinfo.voltereta2.PushBack({182, 468, 16, 14});
+	playerinfo.voltereta2.PushBack({166, 472, 16, 10});
+	playerinfo.voltereta2.PushBack({440, 470, 15, 14});
+	playerinfo.voltereta2.PushBack({421, 469, 15, 15});
+	playerinfo.voltereta2.PushBack({401, 465, 17, 19});
+	playerinfo.voltereta2.PushBack({381, 459, 16, 25});
+	playerinfo.voltereta2.lock = true;
+	playerinfo.voltereta2.speed = 0.25f;
+
+
 
 	playerinfo.voltereta2.PushBack({});
 	playerinfo.voltereta2.PushBack({});
@@ -127,13 +146,14 @@ j1Player::j1Player()
 
 	playerinfo.attack.PushBack({ 86, 245, 13, 29 });
 	playerinfo.attack.PushBack({ 112, 242, 15, 39 });
+
 	playerinfo.attack.PushBack({ 140, 247, 20, 35 });
-	playerinfo.attack.PushBack({ 172, 252, 42, 29 });
-	playerinfo.attack.PushBack({ 218, 259, 41, 20 });
-	playerinfo.attack.PushBack({ 264, 256, 30, 24 });
-	playerinfo.attack.PushBack({ 86, 245, 13, 29 });
+	playerinfo.attack.PushBack({ 174, 251, 42, 31 });
+	playerinfo.attack.PushBack({ 219, 257, 41, 25 });
+	playerinfo.attack.PushBack({ 268, 255, 30, 27 });
+	playerinfo.attack.PushBack({ 305, 251, 18, 31 });
 	playerinfo.attack.lock = true;
-	playerinfo.attack.speed = 0.05f;
+	playerinfo.attack.speed = 0.075f;
 
 	playerinfo.kick.PushBack({ 305, 254, 18, 31 });
 	playerinfo.kick.PushBack({3, 285, 23, 29});
@@ -259,13 +279,15 @@ bool j1Player::Update(float dt)
 			if (playerinfo.Looking_Forward == true)
 			{
 				playerinfo.velocity.x = playerinfo.Dash_Speed;
+				playerinfo.current_animation = &playerinfo.voltereta;
 			}
 			else
 			{
 				playerinfo.velocity.x = -playerinfo.Dash_Speed + 1;
+				playerinfo.current_animation = &playerinfo.voltereta2;
 			}
 			playerinfo.velocity.y = 0;
-			playerinfo.current_animation = &playerinfo.voltereta;
+			
 			if (SDL_GetTicks() - playerinfo.dash_timer > playerinfo.dashTime)
 			{
 				playerinfo.Can_Input = true;
@@ -293,6 +315,7 @@ bool j1Player::Update(float dt)
 				playerinfo.current_animation = &playerinfo.idle2;
 			}
 			break;
+		
 		case ATTACK_E:
 			if (playerinfo.attackTimer == false)
 			{
@@ -312,15 +335,38 @@ bool j1Player::Update(float dt)
 				playerinfo.attack.Reset();
 			}
 			//playerinfo.Looking_Forward = true;
+
+			playerinfo.current_animation = &playerinfo.attack;
+
 			
 			//playerinfo.current_animation = &playerinfo.attack;
 			
+
 			
 			break;
 		case KICK:
-		
-			playerinfo.Looking_Forward = true;
+			if (playerinfo.attackTimer == false)
+			{
+				playerinfo.attack_timer = SDL_GetTicks();
+				playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y + 10,25 ,10 }, COLLIDER_ATTACK, this);
+				playerinfo.attackTimer = true;
+				playerinfo.attacking = true;
+				playerinfo.Looking_Forward = true;
+				playerinfo.current_animation = &playerinfo.kick;
+				App->audio->PlayFx(App->audio->LoadFx("audio/fx/kick.wav"));
+				
+			}
+			if (SDL_GetTicks() - playerinfo.attack_timer > playerinfo.attackTime)
+			{
+				playerinfo.Can_Input = true;
+				playerinfo.attackTimer = false;
+				playerinfo.attacking = false;
+				App->collision->AttackCleanUp();
+
+			}
 			playerinfo.current_animation = &playerinfo.kick;
+
+
 			App->audio->PlayFx(App->audio->LoadFx("audio/fx/kick.wav"));
 			playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y,25 ,10 }, COLLIDER_ATTACK, this);
 			break;
@@ -328,6 +374,7 @@ bool j1Player::Update(float dt)
 		case DEAD:
 			
 			playerinfo.current_animation = &playerinfo.death;
+
 			break;
 		}
 	
@@ -665,6 +712,7 @@ bool j1Player::CleanUp() {
 		SDL_DestroyTexture(graphics);
 		graphics = nullptr;
 	}
+	//App->collision->
 
 	return true;
 

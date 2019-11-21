@@ -23,6 +23,7 @@ enum states {
 	IDLE,
 	DASH,
 	FORWARD,
+	DEATH,
 	BACKWARD,
 	JUMP,
 	JUMP_FORWARD,
