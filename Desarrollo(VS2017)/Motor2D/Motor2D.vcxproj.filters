@@ -153,4 +153,9 @@
       <UniqueIdentifier>{2c86a27d-1833-4833-a7f0-3daf84334c7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\Game\config.xml">
+      <Filter>Desenvolupament  ========\Tools</Filter>
+    </Xml>
+  </ItemGroup>
 </Project>

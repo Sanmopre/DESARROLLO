@@ -530,6 +530,7 @@ void j1Player::Restart()
 		{
 			playerinfo.death_timer = SDL_GetTicks();
 			playerinfo.deathTimer = true;
+
 		}
 		if (SDL_GetTicks() - playerinfo.death_timer > playerinfo.deathTime)
 		{
@@ -538,6 +539,7 @@ void j1Player::Restart()
 		playerinfo.position.x = 40;
 		playerinfo.position.y = 350;
 		playerinfo.velocity.y = 0;
+		playerinfo.velocity.x = 0;
 		playerinfo.Looking_Forward = true;
 		}
 	
