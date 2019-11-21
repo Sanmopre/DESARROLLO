@@ -28,6 +28,7 @@ enum states {
 	JUMP_FORWARD,
 	JUMP_BACKWARD,
 	ATTACK_E,
+	DEAD,
 	KICK
 };
 

@@ -100,7 +100,7 @@ j1Player::j1Player()
 	playerinfo.death.PushBack({101, 128, 27, 13}, 0, 0);
 	playerinfo.death.PushBack({ 130, 135, 34, 6 }, 0, 0);
 	playerinfo.death.lock = true;
-	playerinfo.death.speed = 0.1f;
+	playerinfo.death.speed = 0.05f;
 
 	playerinfo.voltereta.PushBack({110, 148, 20, 26});
 	playerinfo.voltereta.PushBack({134, 150, 25, 22});
@@ -323,7 +323,11 @@ bool j1Player::Update(float dt)
 			playerinfo.current_animation = &playerinfo.kick;
 			App->audio->PlayFx(App->audio->LoadFx("audio/fx/kick.wav"));
 			playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y,25 ,10 }, COLLIDER_ATTACK, this);
-		
+			break;
+
+		case DEAD:
+			
+			playerinfo.current_animation = &playerinfo.death;
 			break;
 		}
 	
@@ -494,6 +498,10 @@ void j1Player::Player_State_Machine()
 			{
 				state = BACKWARD;
 			}
+		}
+
+		else if (playerinfo.Alive == false) {
+			state = DEAD;
 		}
 
 	
