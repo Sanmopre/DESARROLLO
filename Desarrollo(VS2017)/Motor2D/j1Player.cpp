@@ -100,7 +100,7 @@ j1Player::j1Player()
 	playerinfo.death.PushBack({101, 128, 27, 13}, 0, 0);
 	playerinfo.death.PushBack({ 130, 135, 34, 6 }, 0, 0);
 	playerinfo.death.lock = true;
-	playerinfo.death.speed = 0.05f;
+	playerinfo.death.speed = 0.04f;
 
 	playerinfo.voltereta.PushBack({110, 148, 20, 26});
 	playerinfo.voltereta.PushBack({134, 150, 25, 22});
@@ -116,7 +116,7 @@ j1Player::j1Player()
 	playerinfo.voltereta.PushBack({46, 155, 17, 19});
 	playerinfo.voltereta.PushBack({67, 149, 16, 25});
 	playerinfo.voltereta.lock = true;
-	playerinfo.voltereta.speed = 0.05f;
+	playerinfo.voltereta.speed = 0.1f;
 
 	playerinfo.voltereta2.PushBack({});
 	playerinfo.voltereta2.PushBack({});
@@ -612,6 +612,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		if ((playerinfo.playerfeet->rect.y + playerinfo.playerfeet->rect.h) > (c2->rect.y))
 		{
 			playerinfo.Alive = false; 
+			playerinfo.Can_Input = false;
 		}
 
 	}
@@ -621,6 +622,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		if ((playerinfo.playerhead->rect.y + playerinfo.playerhead->rect.h) > (c2->rect.y))
 		{
 			playerinfo.Alive = false;
+			
 		}
 
 	}
