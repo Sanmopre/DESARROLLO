@@ -183,9 +183,9 @@ bool j1Player::PreUpdate()
 	Input.pressing_S = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
 	Input.pressing_D = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
 	Input.pressing_W = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
-	Input.pressing_SPACE = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
+	Input.pressing_SPACE = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
 	Input.pressing_F = App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT;
-	Input.pressing_E = App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT;
+	Input.pressing_E = App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN;
 	Input.pressing_Q = App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT;
 
 
@@ -299,7 +299,7 @@ bool j1Player::Update(float dt)
 				playerinfo.attack_timer = SDL_GetTicks();
 				playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y-5,30 ,20 }, COLLIDER_ATTACK, this);
 				playerinfo.attackTimer = true;
-				playerinfo.attacking = true;
+				//playerinfo.attacking = true;
 				playerinfo.current_animation = &playerinfo.attack;
 			}
 
@@ -307,13 +307,14 @@ bool j1Player::Update(float dt)
 			{
 				playerinfo.Can_Input = true;
 				playerinfo.attackTimer = false;
-				playerinfo.attacking = false;
+				//playerinfo.attacking = false;
 				App->collision->AttackCleanUp();
-				
+				playerinfo.attack.Reset();
 			}
 			//playerinfo.Looking_Forward = true;
 			
-			playerinfo.current_animation = &playerinfo.attack;
+			//playerinfo.current_animation = &playerinfo.attack;
+			
 			
 			break;
 		case KICK:
@@ -325,9 +326,7 @@ bool j1Player::Update(float dt)
 		
 			break;
 		}
-		if (playerinfo.velocity.x == 0 && playerinfo.velocity.y == 0) {
-			state = IDLE;
-		}
+	
 		
 		
 		

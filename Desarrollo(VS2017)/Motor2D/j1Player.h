@@ -89,7 +89,7 @@ struct PlayerInfo
 	//Attack timer
 	Uint32		attack_timer;
 	bool        attacking = false;
-	int		    attackTime = 390;
+	int		    attackTime = 590;
 	bool		attackTimer = false;
 
 	Uint32		death_timer;
