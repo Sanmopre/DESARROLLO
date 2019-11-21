@@ -146,7 +146,6 @@ j1Player::j1Player()
 
 	playerinfo.attack.PushBack({ 86, 245, 13, 29 });
 	playerinfo.attack.PushBack({ 112, 242, 15, 39 });
-
 	playerinfo.attack.PushBack({ 140, 247, 20, 35 });
 	playerinfo.attack.PushBack({ 174, 251, 42, 31 });
 	playerinfo.attack.PushBack({ 219, 257, 41, 25 });

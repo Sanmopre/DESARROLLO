@@ -352,12 +352,12 @@
    <tile gid="57"/>
    <tile gid="201"/>
    <tile gid="201"/>
-   <tile/>
-   <tile gid="51"/>
-   <tile gid="51"/>
-   <tile gid="51"/>
-   <tile gid="51"/>
-   <tile gid="51"/>
+   <tile gid="57"/>
+   <tile gid="57"/>
+   <tile gid="57"/>
+   <tile gid="57"/>
+   <tile gid="57"/>
+   <tile gid="57"/>
    <tile gid="57"/>
    <tile gid="57"/>
    <tile gid="57"/>
@@ -452,7 +452,7 @@
    <tile gid="57"/>
    <tile gid="57"/>
    <tile gid="57"/>
-   <tile/>
+   <tile gid="57"/>
    <tile gid="51"/>
    <tile gid="51"/>
    <tile gid="51"/>
@@ -3556,7 +3556,7 @@
    <tile/>
    <tile gid="131"/>
    <tile/>
-   <tile/>
+   <tile gid="131"/>
    <tile/>
    <tile/>
    <tile/>
@@ -3952,9 +3952,9 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="131"/>
    <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="131"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6365,15 +6365,15 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="167"/>
-   <tile gid="2"/>
-   <tile gid="2"/>
-   <tile gid="2"/>
-   <tile gid="2"/>
-   <tile gid="2"/>
-   <tile gid="2"/>
-   <tile gid="2"/>
-   <tile gid="29"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -6464,18 +6464,18 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="190"/>
-   <tile gid="2"/>
-   <tile gid="26"/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="28"/>
-   <tile gid="29"/>
-   <tile gid="29"/>
+   <tile gid="167"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6563,10 +6563,10 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="13"/>
+   <tile/>
    <tile gid="190"/>
    <tile gid="98"/>
-   <tile/>
+   <tile gid="26"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6663,7 +6663,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="13"/>
    <tile gid="190"/>
    <tile gid="98"/>
    <tile/>
@@ -6959,9 +6959,9 @@
    <tile/>
    <tile/>
    <tile gid="192"/>
-   <tile gid="15"/>
-   <tile gid="15"/>
-   <tile gid="15"/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile gid="190"/>
@@ -7059,9 +7059,9 @@
    <tile/>
    <tile/>
    <tile gid="192"/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
    <tile/>
    <tile/>
    <tile/>
@@ -9077,10 +9077,9 @@
   <object id="18" x="512.667" y="351.333" width="14.6667" height="126.667"/>
   <object id="19" x="528" y="432.667" width="192.667" height="14.6667"/>
   <object id="20" x="496.667" y="112.667" width="14.6667" height="77.3333"/>
-  <object id="23" x="112.667" y="65.3333" width="14.6667" height="93.3333"/>
-  <object id="24" x="128.667" y="47.3333" width="127.333" height="16"/>
+  <object id="23" x="112.667" y="79.3333" width="14.6667" height="79.3333"/>
+  <object id="24" x="128" y="64.6666" width="158" height="16.6667"/>
   <object id="25" x="127.333" y="146.667" width="256" height="13.3333"/>
-  <object id="26" x="245.333" y="64" width="43.3333" height="14"/>
   <object id="27" x="276.667" y="80" width="27.3333" height="16"/>
   <object id="28" x="294.667" y="96" width="202.667" height="16"/>
   <object id="29" x="511.333" y="190" width="16" height="18"/>
@@ -9105,9 +9104,9 @@
  <objectgroup id="6" name="plataformas">
   <object id="88" x="368" y="240" width="48" height="13.3333"/>
   <object id="89" x="416.667" y="272.667" width="48" height="12"/>
-  <object id="90" x="14.6667" y="144.667" width="48" height="13.3333"/>
-  <object id="91" x="80.6667" y="80.6667" width="14.6667" height="13.3333"/>
-  <object id="92" x="639.333" y="288.667" width="48" height="14.6667"/>
+  <object id="90" x="16" y="161.334" width="48" height="13.3333"/>
+  <object id="91" x="80" y="96.6667" width="14.6667" height="13.3333"/>
+  <object id="92" x="625.333" y="274.667" width="48" height="14.6667"/>
   <object id="93" x="688" y="320" width="49.3333" height="16.6667"/>
   <object id="94" x="656.667" y="368" width="46.6667" height="16"/>
   <object id="95" x="750.667" y="158" width="65.3333" height="18"/>
@@ -9138,12 +9137,12 @@
   <object id="119" x="207.333" y="198" width="33" height="8.33333"/>
   <object id="120" x="128" y="160" width="31.3333" height="10"/>
   <object id="121" x="-0.333333" y="15.6667" width="9" height="208.667"/>
-  <object id="122" x="101.333" y="65.3333" width="10.3333" height="94.3333"/>
-  <object id="123" x="113" y="55" width="15" height="9"/>
+  <object id="122" x="101.333" y="80.6666" width="10.3333" height="79"/>
+  <object id="123" x="111.667" y="71" width="15" height="9"/>
   <object id="124" x="367.333" y="82.3333" width="48.3333" height="13.6667"/>
   <object id="125" x="527" y="207.333" width="11.3333" height="144"/>
   <object id="126" x="581.667" y="208.667" width="10.3333" height="143.333"/>
-  <object id="127" x="640.333" y="278" width="15.3333" height="9.66667"/>
+  <object id="127" x="625" y="265.333" width="15.3333" height="9.66667"/>
   <object id="128" x="704.333" y="337.333" width="32.6667" height="9.33333"/>
   <object id="129" x="719.667" y="311.333" width="17.3333" height="8.33333"/>
   <object id="130" x="720.667" y="272.333" width="47.6667" height="8.66667"/>
