@@ -100,7 +100,7 @@ j1Player::j1Player()
 	playerinfo.death.PushBack({101, 128, 27, 13}, 0, 0);
 	playerinfo.death.PushBack({ 130, 135, 34, 6 }, 0, 0);
 	playerinfo.death.lock = true;
-	playerinfo.death.speed = 0.1f;
+	playerinfo.death.speed = 0.04f;
 
 	playerinfo.voltereta.PushBack({110, 148, 20, 26});
 	playerinfo.voltereta.PushBack({134, 150, 25, 24});
@@ -116,6 +116,7 @@ j1Player::j1Player()
 	playerinfo.voltereta.PushBack({46, 155, 17, 19});
 	playerinfo.voltereta.PushBack({67, 149, 16, 25});
 	playerinfo.voltereta.lock = true;
+
 	playerinfo.voltereta.speed = 0.25f;
 
 	playerinfo.voltereta2.PushBack({334, 458, 20, 26});
@@ -134,8 +135,18 @@ j1Player::j1Player()
 	playerinfo.voltereta2.lock = true;
 	playerinfo.voltereta2.speed = 0.25f;
 
-	playerinfo.attack.PushBack({ 86, 253, 13, 29 });
-	playerinfo.attack.PushBack({ 113, 243, 15, 39 });
+
+
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
+	playerinfo.voltereta2.PushBack({});
+
+	playerinfo.attack.PushBack({ 86, 245, 13, 29 });
+	playerinfo.attack.PushBack({ 112, 242, 15, 39 });
+
 	playerinfo.attack.PushBack({ 140, 247, 20, 35 });
 	playerinfo.attack.PushBack({ 174, 251, 42, 31 });
 	playerinfo.attack.PushBack({ 219, 257, 41, 25 });
@@ -192,9 +203,9 @@ bool j1Player::PreUpdate()
 	Input.pressing_S = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
 	Input.pressing_D = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
 	Input.pressing_W = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
-	Input.pressing_SPACE = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
+	Input.pressing_SPACE = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
 	Input.pressing_F = App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT;
-	Input.pressing_E = App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT;
+	Input.pressing_E = App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN;
 	Input.pressing_Q = App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT;
 
 
@@ -311,7 +322,7 @@ bool j1Player::Update(float dt)
 				playerinfo.attack_timer = SDL_GetTicks();
 				playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y-5,30 ,20 }, COLLIDER_ATTACK, this);
 				playerinfo.attackTimer = true;
-				playerinfo.attacking = true;
+				//playerinfo.attacking = true;
 				playerinfo.current_animation = &playerinfo.attack;
 			}
 
@@ -319,12 +330,18 @@ bool j1Player::Update(float dt)
 			{
 				playerinfo.Can_Input = true;
 				playerinfo.attackTimer = false;
-				playerinfo.attacking = false;
+				//playerinfo.attacking = false;
 				App->collision->AttackCleanUp();
-				
+				playerinfo.attack.Reset();
 			}
 			//playerinfo.Looking_Forward = true;
+
 			playerinfo.current_animation = &playerinfo.attack;
+
+			
+			//playerinfo.current_animation = &playerinfo.attack;
+			
+
 			
 			break;
 		case KICK:
@@ -348,11 +365,19 @@ bool j1Player::Update(float dt)
 
 			}
 			playerinfo.current_animation = &playerinfo.kick;
+
+
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/kick.wav"));
+			playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y,25 ,10 }, COLLIDER_ATTACK, this);
+			break;
+
+		case DEAD:
+			
+			playerinfo.current_animation = &playerinfo.death;
+
 			break;
 		}
-		if (playerinfo.velocity.x == 0 && playerinfo.velocity.y == 0) {
-			state = IDLE;
-		}
+	
 		
 		
 		
@@ -522,6 +547,10 @@ void j1Player::Player_State_Machine()
 			}
 		}
 
+		else if (playerinfo.Alive == false) {
+			state = DEAD;
+		}
+
 	
 		else
 		{
@@ -630,6 +659,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		if ((playerinfo.playerfeet->rect.y + playerinfo.playerfeet->rect.h) > (c2->rect.y))
 		{
 			playerinfo.Alive = false; 
+			playerinfo.Can_Input = false;
 		}
 
 	}
@@ -639,6 +669,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		if ((playerinfo.playerhead->rect.y + playerinfo.playerhead->rect.h) > (c2->rect.y))
 		{
 			playerinfo.Alive = false;
+			
 		}
 
 	}
