@@ -144,6 +144,7 @@ bool j1Scene::Change_Map(int map)
 		App->collision->MapCleanUp();
 		
 			App->map->Load("dungeon.tmx");
+			App->audio->PlayMusic("audio/music/ghost.ogg");
 		
 		current_map = 2;
 		return false;
