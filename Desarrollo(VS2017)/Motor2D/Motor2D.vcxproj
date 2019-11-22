@@ -93,8 +93,10 @@
     <ClCompile Include="j1Textures.cpp" />
     <ClCompile Include="j1Window.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EntityManager.h" />
     <ClInclude Include="j1Animation.h" />
     <ClInclude Include="j1Map.h" />
     <ClInclude Include="j1Pathfinding.h" />
