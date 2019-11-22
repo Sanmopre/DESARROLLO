@@ -85,7 +85,7 @@ struct PlayerInfo
 	bool            God_Mode = false;
 
 	Uint32		dash_timer;
-	int		    dashTime = 290;
+	int		    dashTime = 250;
 	bool		dashTimer = false;
 
 	//Attack timer
@@ -95,7 +95,7 @@ struct PlayerInfo
 	bool		attackTimer = false;
 
 	Uint32		death_timer;
-	int		    deathTime = 580;
+	int		    deathTime = 460;
 	bool		deathTimer = false;
 
 	//PLAYER GOD-MODE
