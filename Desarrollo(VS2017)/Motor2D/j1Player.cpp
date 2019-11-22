@@ -499,7 +499,12 @@ bool j1Player::Update(float dt)
 		playerinfo.playerfeet->SetPos(playerinfo.position.x + 5, playerinfo.position.y + 15);
 		playerinfo.playerhead->SetPos(playerinfo.position.x + 5, playerinfo.position.y - 3);
 		if (playerinfo.attacking == true) {
-			playerinfo.playerattack->SetPos(playerinfo.position.x + 10, playerinfo.position.y - 5);
+			if (playerinfo.Looking_Forward) {
+				playerinfo.playerattack->SetPos(playerinfo.position.x + 10, playerinfo.position.y - 5);
+			}
+			else {
+				playerinfo.playerattack->SetPos(playerinfo.position.x - 20, playerinfo.position.y - 5);
+			}
 		}
 	}
 	App->render->Player_Camera(playerinfo.position.x, playerinfo.position.y + 10);
