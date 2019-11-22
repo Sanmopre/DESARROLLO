@@ -71,7 +71,7 @@ struct PlayerInfo
 	float			Speed_X = 0.05;
 	float			Speed_Y = 0.04;
 	float			Dash_Speed = 3.25;
-	float			Reducction_Speed = 0.25;
+	float			Reducction_Speed = 0.55;
 	float		    MAX_X = 1.0;
 	float			MAX_Y = 2.0;
 	float		    MAX_JUMP = 1.0;

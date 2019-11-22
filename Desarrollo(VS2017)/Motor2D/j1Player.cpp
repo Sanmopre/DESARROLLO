@@ -47,7 +47,7 @@ j1Player::j1Player()
 	playerinfo.walk.PushBack({ 179, 80, 19, 28 }, 0, 0);
 	playerinfo.walk.PushBack({ 199, 79, 21, 29 }, 0, 0);
 	playerinfo.walk.lock = true;
-	playerinfo.walk.speed = 0.05f;
+	playerinfo.walk.speed = 0.15f;
 
 	playerinfo.walk2.PushBack({222,420,16,29});
 	playerinfo.walk2.PushBack({201, 419, 12, 30});
@@ -61,7 +61,7 @@ j1Player::j1Player()
 	playerinfo.walk2.PushBack({51, 421, 19, 28});
 	playerinfo.walk2.PushBack({28, 420, 21,29});
 	playerinfo.walk2.lock = true;
-	playerinfo.walk2.speed = 0.05f;
+	playerinfo.walk2.speed = 0.15f;
 
 	playerinfo.jump.PushBack({62, 181, 15, 30},0,0);
 	playerinfo.jump.PushBack({ 82, 182, 15, 29 }, 0, 0);
@@ -117,7 +117,7 @@ j1Player::j1Player()
 	playerinfo.voltereta.PushBack({67, 149, 16, 25});
 	playerinfo.voltereta.lock = true;
 
-	playerinfo.voltereta.speed = 0.25f;
+	playerinfo.voltereta.speed = 0.15f;
 
 	playerinfo.voltereta2.PushBack({334, 458, 20, 26});
 	playerinfo.voltereta2.PushBack({305, 460, 25, 24});
@@ -133,7 +133,7 @@ j1Player::j1Player()
 	playerinfo.voltereta2.PushBack({401, 465, 17, 19});
 	playerinfo.voltereta2.PushBack({381, 459, 16, 25});
 	playerinfo.voltereta2.lock = true;
-	playerinfo.voltereta2.speed = 0.25f;
+	playerinfo.voltereta2.speed = 0.15f;
 
 
 
@@ -152,13 +152,13 @@ j1Player::j1Player()
 	playerinfo.attack.PushBack({ 268, 255, 30, 27 });
 	playerinfo.attack.PushBack({ 305, 251, 18, 31 });
 	playerinfo.attack.lock = true;
-	playerinfo.attack.speed = 0.055f;
+	playerinfo.attack.speed = 0.095f;
 
 	playerinfo.kick.PushBack({ 305, 254, 18, 31 });
 	playerinfo.kick.PushBack({3, 285, 23, 29});
 	playerinfo.kick.PushBack({36, 286, 27, 28});
 	playerinfo.kick.lock = true;
-	playerinfo.kick.speed = 0.05f;
+	playerinfo.kick.speed = 0.09f;
 }
 
 j1Player::~j1Player()
@@ -192,7 +192,7 @@ bool j1Player::Start()
     playerinfo.playerbody = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,13 ,13}, COLLIDER_PLAYER1, this);
 	playerinfo.playerhead = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y - 15,5 ,3 }, COLLIDER_PLAYER1, this);
 	playerinfo.playerfeet = App->collision->AddCollider({ playerinfo.position.x  , playerinfo.position.y + 10 ,7 ,5 }, COLLIDER_PLAYER1, this);
-	//playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10,  playerinfo.position.y + 10,30 ,20 }, COLLIDER_ATTACK, this);
+	
 	return ret;
 }
 
@@ -259,7 +259,9 @@ bool j1Player::Update(float dt)
 			playerinfo.Looking_Forward = true;
 			playerinfo.velocity.x += playerinfo.Speed_X;
 			playerinfo.current_animation = &playerinfo.walk;
-			
+			if (playerinfo.velocity.x == 0) {
+				playerinfo.current_animation = &playerinfo.idle;
+			}
 			if (playerinfo.Grounded == false) { playerinfo.current_animation = &playerinfo.jump; }
 			break;
 
@@ -292,6 +294,8 @@ bool j1Player::Update(float dt)
 			{
 				playerinfo.Can_Input = true;
 				playerinfo.dashTimer = false;
+				playerinfo.voltereta.Reset();
+				playerinfo.voltereta2.Reset();
 			}
 			else
 			{
@@ -357,12 +361,7 @@ bool j1Player::Update(float dt)
 			{
 				playerinfo.Can_Input = false;
 			}
-			//playerinfo.Looking_Forward = true;
-
-			//playerinfo.current_animation = &playerinfo.attack;
-
-			
-			//playerinfo.current_animation = &playerinfo.attack;
+		
 			
 
 			
@@ -404,7 +403,7 @@ bool j1Player::Update(float dt)
 		
 		
 		
-		//SPEED LIMITS
+		//SPEED LIMITS AND ANIMATION FIXES
 		if (state != DASH) {
 			if (playerinfo.velocity.x > playerinfo.MAX_X) { playerinfo.velocity.x = playerinfo.MAX_X; }
 			if (playerinfo.velocity.x < -playerinfo.MAX_X) { playerinfo.velocity.x = -playerinfo.MAX_X; }
@@ -417,6 +416,7 @@ bool j1Player::Update(float dt)
 		{
 			Restart();
 		}
+
 
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
@@ -510,14 +510,15 @@ bool j1Player::Update(float dt)
 	App->render->Player_Camera(playerinfo.position.x, playerinfo.position.y + 10);
 	
 	//DRAW THE PLAYER BLIT
-	SDL_Rect r = playerinfo.current_animation->GetCurrentFrame();
-
-	if (App->render->camera.x < -550) {
-		App->render->Blit_Player(graphics, playerinfo.position.x - 350, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
-	}
-	if(App->render->camera.x > -550){
-		App->render->Blit_Player(graphics, playerinfo.position.x + 55, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
-	}
+	
+	
+		if (App->render->camera.x < -550) {
+			App->render->Blit_Player(graphics, playerinfo.position.x - 350, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		}
+		if (App->render->camera.x > -550) {
+			App->render->Blit_Player(graphics, playerinfo.position.x + 55, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		}
+	
 
 
 	return true;
@@ -579,7 +580,8 @@ void j1Player::Player_State_Machine()
 			state = DEAD;
 		}
 
-	
+		
+
 		else
 		{
 			state = IDLE;
@@ -599,6 +601,8 @@ void j1Player::Player_Position()
 void j1Player::Restart()
 {
 	if (playerinfo.Alive == false) {
+		playerinfo.velocity.x = 0;
+		playerinfo.velocity.y = 0;
 		App->fade->Fade_To_Black(1);
 		playerinfo.Can_Input = false;
 		if (playerinfo.deathTimer == false)
@@ -616,6 +620,11 @@ void j1Player::Restart()
 		playerinfo.velocity.y = 0;
 		playerinfo.velocity.x = 0;
 		playerinfo.Looking_Forward = true;
+		}
+		else {
+			playerinfo.Can_Input = false;
+			playerinfo.velocity.x = 0;
+			playerinfo.velocity.y = 0;
 		}
 	
 	}
@@ -683,6 +692,34 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 			}
 		}
 	}
+	/*
+	if (c1 == playerinfo.playerbody && c2->type == COLLIDER_DEATH)
+	{
+		if (state == DASH)
+		{
+			if (playerinfo.playerbody->rect.x + playerinfo.playerbody->rect.w > c2->rect.x && playerinfo.playerbody->rect.x < c2->rect.x) {
+				playerinfo.Alive = false;
+
+			}
+			if (playerinfo.playerbody->rect.x < c2->rect.x + c2->rect.w && playerinfo.playerbody->rect.x > c2->rect.x)
+			{
+				playerinfo.Alive = false;
+			}
+		}
+		else
+		{
+			if (playerinfo.playerbody->rect.x + playerinfo.playerbody->rect.w > c2->rect.x && playerinfo.playerbody->rect.x < c2->rect.x) {
+				playerinfo.Alive = false;
+
+			}
+			if (playerinfo.playerbody->rect.x < c2->rect.x + c2->rect.w && playerinfo.playerbody->rect.x > c2->rect.x)
+			{
+				playerinfo.Alive = false;
+			}
+		}
+	}
+*/
+
 
 	if (c1 == playerinfo.playerfeet && c2->type == COLLIDER_DEATH)
 	{
