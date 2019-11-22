@@ -8,6 +8,8 @@
 
 #include <math.h>
 
+#include "Brofiler/Brofiler.h"
+
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
 	name.create("map");
@@ -89,6 +91,9 @@ bool j1Map::IsWalkable(int x, int y) const
 
 void j1Map::Draw()
 {
+
+	BROFILER_CATEGORY("Draw_Map", Profiler::Color::Orange)
+
 	if(map_loaded == false)
 		return;
 

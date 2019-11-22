@@ -7,6 +7,8 @@
 #include "j1Player.h"
 #include "j1Map.h"
 
+#include "Brofiler/Brofiler.h"
+
 #define VSYNC true
 
 j1Render::j1Render() : j1Module()
@@ -77,6 +79,9 @@ bool j1Render::Update(float dt)
 
 bool j1Render::PostUpdate()
 {
+
+	BROFILER_CATEGORY("Render_PostUpdate", Profiler::Color::White)
+
 	SDL_SetRenderDrawColor(renderer, background.r, background.g, background.g, background.a);
 	SDL_RenderPresent(renderer);
 	return true;

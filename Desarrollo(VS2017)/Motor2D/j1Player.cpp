@@ -12,6 +12,8 @@
 #include "j1Scene.h"
 #include "j1FadeToBlack.h"
 
+#include "Brofiler/Brofiler.h"
+
 
 
 j1Player::j1Player()
@@ -214,6 +216,8 @@ bool j1Player::PreUpdate()
 
 bool j1Player::Update(float dt)
 {
+
+	BROFILER_CATEGORY("Player_Update", Profiler::Color::Blue)
 
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_REPEAT) { playerinfo.Alive = false; }
 	if (playerinfo.God_Mode == false)
@@ -601,6 +605,7 @@ void j1Player::Player_Position()
 void j1Player::Restart()
 {
 	if (playerinfo.Alive == false) {
+		App->collision->AttackCleanUp();
 		playerinfo.velocity.x = 0;
 		playerinfo.velocity.y = 0;
 		App->fade->Fade_To_Black(1);

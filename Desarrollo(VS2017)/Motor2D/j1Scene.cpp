@@ -12,6 +12,8 @@
 #include "j1Collision.h"
 #include "j1FadeToBlack.h"
 
+#include "Brofiler/Brofiler.h"
+
 j1Scene::j1Scene() : j1Module()
 {
 	name.create("scene");
@@ -51,6 +53,10 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
+
+	BROFILER_CATEGORY("Scene_Update", Profiler::Color::Violet)
+
+
 	// Change map
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 	{
