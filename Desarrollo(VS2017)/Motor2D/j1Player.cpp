@@ -26,7 +26,7 @@ j1Player::j1Player()
 	playerinfo.idle.PushBack({ 229, 10, 12, 30 }, 0, 0);
 	playerinfo.idle.PushBack({ 251, 10, 10, 30 }, 0, 0);
 	playerinfo.idle.PushBack({ 271, 10, 11, 30 }, 0, 0);
-	playerinfo.idle.speed = 0.005f;
+	playerinfo.idle.speed = 0.05f;
 	playerinfo.idle.lock = true;
 
 	playerinfo.idle2.PushBack({108, 350, 12, 30});
@@ -34,7 +34,7 @@ j1Player::j1Player()
 	playerinfo.idle2.PushBack({42, 349, 12, 30});
 	playerinfo.idle2.PushBack({20, 349, 10, 30});
 	playerinfo.idle2.PushBack({0,349, 11, 30});
-	playerinfo.idle2.speed = 0.005f;
+	playerinfo.idle2.speed = 0.05f;
 	playerinfo.idle2.lock = true;
 
 	playerinfo.walk.PushBack({11, 79, 16, 29},0,0);
@@ -49,7 +49,7 @@ j1Player::j1Player()
 	playerinfo.walk.PushBack({ 179, 80, 19, 28 }, 0, 0);
 	playerinfo.walk.PushBack({ 199, 79, 21, 29 }, 0, 0);
 	playerinfo.walk.lock = true;
-	playerinfo.walk.speed = 0.15f;
+	playerinfo.walk.speed = 0.45f;
 
 	playerinfo.walk2.PushBack({222,420,16,29});
 	playerinfo.walk2.PushBack({201, 419, 12, 30});
@@ -63,7 +63,7 @@ j1Player::j1Player()
 	playerinfo.walk2.PushBack({51, 421, 19, 28});
 	playerinfo.walk2.PushBack({28, 420, 21,29});
 	playerinfo.walk2.lock = true;
-	playerinfo.walk2.speed = 0.15f;
+	playerinfo.walk2.speed = 0.45f;
 
 	playerinfo.jump.PushBack({62, 181, 15, 30},0,0);
 	playerinfo.jump.PushBack({ 82, 182, 15, 29 }, 0, 0);
@@ -79,7 +79,7 @@ j1Player::j1Player()
 	playerinfo.jump.PushBack({ 21, 180, 15, 30 }, 0, 0);
 	playerinfo.jump.PushBack({ 41, 181, 15, 30 }, 0, 0);
 	playerinfo.jump.lock = true;
-	playerinfo.jump.speed = 0.05f;
+	playerinfo.jump.speed = 0.55f;
 
 	playerinfo.jump2.PushBack({421, 299,15, 29});
 	playerinfo.jump2.PushBack({276,421 ,15,29 });
@@ -91,7 +91,7 @@ j1Player::j1Player()
 	playerinfo.jump2.PushBack({253, 385, 15, 30});
 	playerinfo.jump2.PushBack({358, 420, 15, 30});
 	playerinfo.jump2.lock = true;
-	playerinfo.jump2.speed = 0.05;
+	playerinfo.jump2.speed = 0.55;
 
 
 
@@ -119,7 +119,7 @@ j1Player::j1Player()
 	playerinfo.voltereta.PushBack({67, 149, 16, 25});
 	playerinfo.voltereta.lock = true;
 
-	playerinfo.voltereta.speed = 0.15f;
+	playerinfo.voltereta.speed = 0.55f;
 
 	playerinfo.voltereta2.PushBack({334, 458, 20, 26});
 	playerinfo.voltereta2.PushBack({305, 460, 25, 24});
@@ -135,7 +135,7 @@ j1Player::j1Player()
 	playerinfo.voltereta2.PushBack({401, 465, 17, 19});
 	playerinfo.voltereta2.PushBack({381, 459, 16, 25});
 	playerinfo.voltereta2.lock = true;
-	playerinfo.voltereta2.speed = 0.15f;
+	playerinfo.voltereta2.speed = 0.55f;
 
 
 
@@ -154,7 +154,7 @@ j1Player::j1Player()
 	playerinfo.attack.PushBack({ 268, 255, 30, 27 });
 	playerinfo.attack.PushBack({ 305, 251, 18, 31 });
 	playerinfo.attack.lock = true;
-	playerinfo.attack.speed = 0.095f;
+	playerinfo.attack.speed = 0.255f;
 
 	playerinfo.kick.PushBack({ 305, 254, 18, 31 });
 	playerinfo.kick.PushBack({3, 285, 23, 29});

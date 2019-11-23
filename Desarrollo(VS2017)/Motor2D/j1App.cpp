@@ -22,10 +22,7 @@
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 {
-	//framerate
-	Game_Timer = new j1Timer();
-	Game_Perf_Timer = new j1PerfTimer();
-	Last_Frame_Sec = new j1Timer();
+	PERF_START(ptimer);
 
 	frames = 0;
 	want_to_save = want_to_load = false;
@@ -61,6 +58,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(fade);
 	// render last to swap buffer
 	AddModule(render);
+
+
+	PERF_PEEK(ptimer);
 }
 
 // Destructor
@@ -115,7 +115,7 @@ bool j1App::Awake()
 			item = item->next;
 		}
 	}
-
+	PERF_PEEK(ptimer);
 	return ret;
 }
 
@@ -175,10 +175,13 @@ pugi::xml_node j1App::LoadConfig(pugi::xml_document& config_file) const
 // ---------------------------------------------
 void j1App::PrepareUpdate()
 {
-	Frame_Counter++;
-	Last_Second_Frame_count++;
+	frame_count++;
+	last_sec_frame_count++;
 
-	Last_Frame_Timer.Start();
+	DeltaTime = frame_time.ReadSec();
+	//	LOG("DELTA TIME: %f", DeltaTime);
+	frame_time.Start();
+	ptimer.Start();
 }
 
 // ---------------------------------------------
@@ -191,22 +194,31 @@ void j1App::FinishUpdate()
 		LoadGameNow();
 
 	
-	float Time_Startup = Game_Timer->ReadSec();
-	AVG_FPS = float(Frame_Counter) / Time_Startup;
-	Last_Frame_ms = Last_Frame_Timer.Read();
-
-	if (Last_Frame_Sec->Read() >= 1000)
+	if (last_sec_frame_time.Read() > 1000)
 	{
-		Frames_Update = Last_Second_Frame_count;
-		Last_Second_Frame_count = 0;
-		Last_Frame_Sec->Start();
+		last_sec_frame_time.Start();
+		prev_last_sec_frame_count = last_sec_frame_count;
+		last_sec_frame_count = 0;
 	}
 
-	if (Cap_Framerate)
-		if (Last_Frame_ms < 1000 / Cap_Time)
-		{
-			SDL_Delay((1000 / Cap_Time) - Last_Frame_ms);
-		}
+	float avg_fps = float(frame_count) / startup_time.ReadSec();
+	float seconds_since_startup = startup_time.ReadSec();
+	uint last_frame_ms = frame_time.Read();
+	uint frames_on_last_update = prev_last_sec_frame_count;
+
+	static char title[256];
+	//sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i  Time since startup: %.3f Frame Count: %lu ",
+	//	avg_fps, last_frame_ms, frames_on_last_update, seconds_since_startup, frame_count);
+	sprintf_s(title, 256, "Between Worlds: FPS: %i || Avg.FPS: %.2f || Ms of the last Frame %02u || Cap %s", frames_on_last_update, avg_fps, last_frame_ms, fpsCapON ? "ON" : "OFF");
+	App->win->SetTitle(title);
+
+	if (framerate > 0 && last_frame_ms < framerate && fpsCapON)
+	{
+
+		j1PerfTimer t;
+		SDL_Delay(framerate - last_frame_ms);
+
+	}
 }
 
 // Call modules before each loop iteration

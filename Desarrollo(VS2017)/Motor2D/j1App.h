@@ -105,19 +105,19 @@ public:
 	j1Timer* Last_Frame_Sec = nullptr;
 	j1Timer Last_Frame_Timer;
 
-	uint64 Frame_Counter = 0u;
-	uint Last_Second_Frame_count = 0u;
+	bool				fpsCapON = true;
 
-	uint32 Last_Frame_ms = 0u;
-	uint32 Frames_Update = 0u;
+	j1PerfTimer			ptimer;
+	uint				frame_count = 0;
+	j1Timer				startup_time;
+	j1Timer				frame_time;
+	j1Timer				last_sec_frame_time;
+	uint				last_sec_frame_count = 0;
+	uint				prev_last_sec_frame_count = 0;
+	float				DeltaTime;
 
-	float AVG_FPS = 0.0f;
-
-	uint Cap_Time = 120u;
-	bool Cap_Framerate = true;
-	float aux = 0.0f;
-
-private:
+public:
+	uint16_t			framerate = 1000 / 30;
 
 	p2List<j1Module*>	modules;
 	uint				frames;
