@@ -49,7 +49,7 @@ j1Player::j1Player()
 	playerinfo.walk.PushBack({ 179, 80, 19, 28 }, 0, 0);
 	playerinfo.walk.PushBack({ 199, 79, 21, 29 }, 0, 0);
 	playerinfo.walk.lock = true;
-	playerinfo.walk.speed = 0.45f;
+	playerinfo.walk.speed = 0.245f;
 
 	playerinfo.walk2.PushBack({222,420,16,29});
 	playerinfo.walk2.PushBack({201, 419, 12, 30});
@@ -63,7 +63,7 @@ j1Player::j1Player()
 	playerinfo.walk2.PushBack({51, 421, 19, 28});
 	playerinfo.walk2.PushBack({28, 420, 21,29});
 	playerinfo.walk2.lock = true;
-	playerinfo.walk2.speed = 0.45f;
+	playerinfo.walk2.speed = 0.245f;
 
 	playerinfo.jump.PushBack({62, 181, 15, 30},0,0);
 	playerinfo.jump.PushBack({ 82, 182, 15, 29 }, 0, 0);
@@ -79,7 +79,7 @@ j1Player::j1Player()
 	playerinfo.jump.PushBack({ 21, 180, 15, 30 }, 0, 0);
 	playerinfo.jump.PushBack({ 41, 181, 15, 30 }, 0, 0);
 	playerinfo.jump.lock = true;
-	playerinfo.jump.speed = 0.55f;
+	playerinfo.jump.speed = 0.255f;
 
 	playerinfo.jump2.PushBack({421, 299,15, 29});
 	playerinfo.jump2.PushBack({276,421 ,15,29 });
@@ -91,7 +91,7 @@ j1Player::j1Player()
 	playerinfo.jump2.PushBack({253, 385, 15, 30});
 	playerinfo.jump2.PushBack({358, 420, 15, 30});
 	playerinfo.jump2.lock = true;
-	playerinfo.jump2.speed = 0.55;
+	playerinfo.jump2.speed = 0.255;
 
 
 
@@ -119,7 +119,7 @@ j1Player::j1Player()
 	playerinfo.voltereta.PushBack({67, 149, 16, 25});
 	playerinfo.voltereta.lock = true;
 
-	playerinfo.voltereta.speed = 0.55f;
+	playerinfo.voltereta.speed = 0.255f;
 
 	playerinfo.voltereta2.PushBack({334, 458, 20, 26});
 	playerinfo.voltereta2.PushBack({305, 460, 25, 24});
@@ -135,7 +135,7 @@ j1Player::j1Player()
 	playerinfo.voltereta2.PushBack({401, 465, 17, 19});
 	playerinfo.voltereta2.PushBack({381, 459, 16, 25});
 	playerinfo.voltereta2.lock = true;
-	playerinfo.voltereta2.speed = 0.55f;
+	playerinfo.voltereta2.speed = 0.255f;
 
 
 
@@ -154,7 +154,7 @@ j1Player::j1Player()
 	playerinfo.attack.PushBack({ 268, 255, 30, 27 });
 	playerinfo.attack.PushBack({ 305, 251, 18, 31 });
 	playerinfo.attack.lock = true;
-	playerinfo.attack.speed = 0.255f;
+	playerinfo.attack.speed = 0.205f;
 
 	playerinfo.kick.PushBack({ 305, 254, 18, 31 });
 	playerinfo.kick.PushBack({3, 285, 23, 29});
@@ -193,7 +193,7 @@ bool j1Player::Start()
 	playerinfo.position.y = 350;
     playerinfo.playerbody = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,13 ,13}, COLLIDER_PLAYER1, this);
 	playerinfo.playerhead = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y - 15,5 ,3 }, COLLIDER_PLAYER1, this);
-	playerinfo.playerfeet = App->collision->AddCollider({ playerinfo.position.x  , playerinfo.position.y + 10 ,7 ,5 }, COLLIDER_PLAYER1, this);
+	playerinfo.playerfeet = App->collision->AddCollider({ playerinfo.position.x  , playerinfo.position.y + 10 ,3 ,2 }, COLLIDER_PLAYER1, this);
 	
 	return ret;
 }
@@ -500,8 +500,8 @@ bool j1Player::Update(float dt)
 	//DRAW COLLIDER
 	if (playerinfo.God_Mode == false) {
 		playerinfo.playerbody->SetPos(playerinfo.position.x + 2, playerinfo.position.y);
-		playerinfo.playerfeet->SetPos(playerinfo.position.x + 5, playerinfo.position.y + 15);
-		playerinfo.playerhead->SetPos(playerinfo.position.x + 5, playerinfo.position.y - 3);
+		playerinfo.playerfeet->SetPos(playerinfo.position.x + 7, playerinfo.position.y + 18);
+		playerinfo.playerhead->SetPos(playerinfo.position.x + 5, playerinfo.position.y - 8);
 		if (playerinfo.attacking == true) {
 			if (playerinfo.Looking_Forward) {
 				playerinfo.playerattack->SetPos(playerinfo.position.x + 10, playerinfo.position.y - 5);

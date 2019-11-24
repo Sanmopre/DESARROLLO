@@ -67,14 +67,14 @@ struct PlayerInfo
 	SDL_Texture*	Tex_Player;
 
 	//PLAYER, AND WORLD MAX VELOCITIES
-	float			World_Gravity = 0.45;
-	float			Speed_X = 1.5;
-	float			Speed_Y = 7.0;
-	float			Dash_Speed = 10.25;
-	float			Reducction_Speed = 0.95;
-	float		    MAX_X = 5.0;
-	float			MAX_Y = 15.0;
-	float		    MAX_JUMP = 2.0;
+	float			World_Gravity = 0.125;
+	float			Speed_X = 0.5;
+	float			Speed_Y = 1.7;
+	float			Dash_Speed = 4.25;
+	float			Reducction_Speed = 0.25;
+	float		    MAX_X = 2.0;
+	float			MAX_Y = 8.0;
+	float		    MAX_JUMP = 5.0;
 	fPoint		    velocity;
 
 	bool            Looking_Forward = true;
@@ -85,7 +85,7 @@ struct PlayerInfo
 	bool            God_Mode = false;
 
 	Uint32		dash_timer;
-	int		    dashTime = 250;
+	int		    dashTime = 320;
 	bool		dashTimer = false;
 
 	//Attack timer
