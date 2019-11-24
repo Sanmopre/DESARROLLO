@@ -117,7 +117,7 @@ public:
 	float				DeltaTime;
 
 public:
-	uint16_t			framerate = 1000 / 60;
+	uint16_t			framerate = 1000 / 30;
 
 	p2List<j1Module*>	modules;
 	uint				frames;

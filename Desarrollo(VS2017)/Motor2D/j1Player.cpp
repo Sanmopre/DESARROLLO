@@ -656,7 +656,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 			}
 			if ((playerinfo.playerfeet->rect.y + playerinfo.playerfeet->rect.h - 3) > (c2->rect.y))
 			{
-				playerinfo.position.y -= 2;
+				playerinfo.position.y -= 3;
 			}
 
 			playerinfo.Grounded = true;
@@ -668,7 +668,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 	{
 		if ((playerinfo.playerhead->rect.y) < (c2->rect.y + c2->rect.h))
 		{
-			playerinfo.position.y = playerinfo.position.y + 2;
+			playerinfo.position.y = playerinfo.position.y + 5;
 		}
 	}
 
@@ -677,7 +677,18 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		if (state == DASH)
 		{
 			if (playerinfo.playerbody->rect.x + playerinfo.playerbody->rect.w > c2->rect.x && playerinfo.playerbody->rect.x < c2->rect.x) {
-				playerinfo.position.x = playerinfo.position.x - 3;
+				playerinfo.position.x = playerinfo.position.x - 5;
+
+			}
+			if (playerinfo.playerbody->rect.x < c2->rect.x + c2->rect.w && playerinfo.playerbody->rect.x > c2->rect.x)
+			{
+				playerinfo.position.x = playerinfo.position.x + 5;
+			}
+		}
+		else
+		{
+			if (playerinfo.playerbody->rect.x + playerinfo.playerbody->rect.w > c2->rect.x && playerinfo.playerbody->rect.x < c2->rect.x) {
+				playerinfo.position.x = playerinfo.position.x - 4;
 
 			}
 			if (playerinfo.playerbody->rect.x < c2->rect.x + c2->rect.w && playerinfo.playerbody->rect.x > c2->rect.x)
@@ -685,19 +696,8 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 				playerinfo.position.x = playerinfo.position.x + 4;
 			}
 		}
-		else
-		{
-			if (playerinfo.playerbody->rect.x + playerinfo.playerbody->rect.w > c2->rect.x && playerinfo.playerbody->rect.x < c2->rect.x) {
-				playerinfo.position.x = playerinfo.position.x - 2;
-
-			}
-			if (playerinfo.playerbody->rect.x < c2->rect.x + c2->rect.w && playerinfo.playerbody->rect.x > c2->rect.x)
-			{
-				playerinfo.position.x = playerinfo.position.x + 2;
-			}
-		}
 	}
-	/*
+	
 	if (c1 == playerinfo.playerbody && c2->type == COLLIDER_DEATH)
 	{
 		if (state == DASH)
@@ -723,7 +723,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 			}
 		}
 	}
-*/
+
 
 
 	if (c1 == playerinfo.playerfeet && c2->type == COLLIDER_DEATH)

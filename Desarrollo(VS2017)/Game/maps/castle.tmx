@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="142">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="144">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="216" columns="24">
   <image source="tileset.png" width="384" height="144"/>
   <terraintypes>
@@ -649,7 +649,7 @@
    <tile gid="57"/>
    <tile gid="109"/>
    <tile gid="109"/>
-   <tile gid="109"/>
+   <tile gid="57"/>
    <tile gid="109"/>
    <tile gid="51"/>
    <tile gid="51"/>
@@ -6663,7 +6663,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="13"/>
+   <tile gid="131"/>
    <tile gid="190"/>
    <tile gid="98"/>
    <tile/>
@@ -6763,7 +6763,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="13"/>
    <tile gid="190"/>
    <tile gid="98"/>
    <tile/>
@@ -9105,7 +9105,6 @@
   <object id="88" x="368" y="240" width="48" height="13.3333"/>
   <object id="89" x="416.667" y="272.667" width="48" height="12"/>
   <object id="90" x="16" y="161.334" width="48" height="13.3333"/>
-  <object id="91" x="80" y="96.6667" width="14.6667" height="13.3333"/>
   <object id="92" x="625.333" y="274.667" width="48" height="14.6667"/>
   <object id="93" x="688" y="320" width="49.3333" height="16.6667"/>
   <object id="94" x="656.667" y="368" width="46.6667" height="16"/>
@@ -9121,6 +9120,8 @@
   <object id="105" x="720" y="255" width="46" height="16"/>
   <object id="140" x="0" y="321" width="8" height="98"/>
   <object id="141" x="1280" y="32" width="15" height="429"/>
+  <object id="142" x="80.5" y="110.5" width="14.5" height="15.5"/>
+  <object id="143" x="41.5" y="429.5" width="102" height="51.5"/>
  </objectgroup>
  <objectgroup id="7" name="pinchos">
   <object id="108" x="145.333" y="450" width="61.3333" height="12.6667"/>
