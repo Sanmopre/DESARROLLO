@@ -494,7 +494,7 @@ bool j1Player::Update(float dt)
 	if (playerinfo.God_Mode == false) {
 		playerinfo.playerbody->SetPos(playerinfo.position.x + 2, playerinfo.position.y);
 		playerinfo.playerfeet->SetPos(playerinfo.position.x + 7, playerinfo.position.y + 18);
-		playerinfo.playerhead->SetPos(playerinfo.position.x + 5, playerinfo.position.y - 8);
+		playerinfo.playerhead->SetPos(playerinfo.position.x + 5, playerinfo.position.y - 4);
 		if (playerinfo.attacking == true) {
 			if (playerinfo.Looking_Forward) {
 				playerinfo.playerattack->SetPos(playerinfo.position.x + 10, playerinfo.position.y - 5);
@@ -661,7 +661,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 	{
 		if ((playerinfo.playerhead->rect.y) < (c2->rect.y + c2->rect.h))
 		{
-			playerinfo.position.y = playerinfo.position.y + 5;
+			playerinfo.position.y = playerinfo.position.y + 6;
 		}
 	}
 
