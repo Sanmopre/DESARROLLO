@@ -52,8 +52,11 @@
     <ClCompile Include="j1FadeToBlack.cpp">
       <Filter>Desenvolupament  ========\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="EntityManager.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+    <ClCompile Include="j1EntityManager.cpp">
+      <Filter>Desenvolupament  ========\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Entity.cpp">
+      <Filter>Desenvolupament  ========\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,8 +135,11 @@
     <ClInclude Include="j1FadeToBlack.h">
       <Filter>Desenvolupament  ========\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="EntityManager.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+    <ClInclude Include="j1EntityManager.h">
+      <Filter>Desenvolupament  ========\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Entity.h">
+      <Filter>Desenvolupament  ========\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -155,7 +161,7 @@
     <Filter Include="Desenvolupament  ========\Tools\PuguiXML">
       <UniqueIdentifier>{7cb78d67-17cc-45eb-af97-e2106becce7b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========\NewFilter1">
+    <Filter Include="Desenvolupament  ========\Entity">
       <UniqueIdentifier>{2c86a27d-1833-4833-a7f0-3daf84334c7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

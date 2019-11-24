@@ -22,7 +22,7 @@
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 {
-	PERF_START(ptimer);
+	PERF_START(Perf_Timer);
 
 	frames = 0;
 	want_to_save = want_to_load = false;
@@ -60,7 +60,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(render);
 
 
-	PERF_PEEK(ptimer);
+	PERF_PEEK(Perf_Timer);
 }
 
 // Destructor
@@ -115,7 +115,7 @@ bool j1App::Awake()
 			item = item->next;
 		}
 	}
-	PERF_PEEK(ptimer);
+	PERF_PEEK(Perf_Timer);
 	return ret;
 }
 
@@ -175,48 +175,46 @@ pugi::xml_node j1App::LoadConfig(pugi::xml_document& config_file) const
 // ---------------------------------------------
 void j1App::PrepareUpdate()
 {
-	frame_count++;
-	last_sec_frame_count++;
+	Frame_Counter++;
+	Last_Frame_Counter++;
 
-	DeltaTime = frame_time.ReadSec();
-	//	LOG("DELTA TIME: %f", DeltaTime);
-	frame_time.Start();
-	ptimer.Start();
+	Delta_Time = Frame_Time.ReadSec();
+	Frame_Time.Start();
+	Perf_Timer.Start();
 }
 
 // ---------------------------------------------
 void j1App::FinishUpdate()
 {
+
 	if(want_to_save == true)
 		SavegameNow();
 
 	if(want_to_load == true)
 		LoadGameNow();
 
-	
-	if (last_sec_frame_time.Read() > 1000)
+	if (Last_Frame_Time.Read() > 1000)
 	{
-		last_sec_frame_time.Start();
-		prev_last_sec_frame_count = last_sec_frame_count;
-		last_sec_frame_count = 0;
+		Last_Frame_Time.Start();
+		Prev_Last_Frame_Counter = Last_Frame_Counter;
+		Last_Frame_Counter = 0;
 	}
 
-	float avg_fps = float(frame_count) / startup_time.ReadSec();
-	float seconds_since_startup = startup_time.ReadSec();
-	uint last_frame_ms = frame_time.Read();
-	uint frames_on_last_update = prev_last_sec_frame_count;
-
+	float AVG_FPS = float(Frame_Counter) / Starting_Time.ReadSec();
+	float seconds_since_startup = Starting_Time.ReadSec();
+	uint Frames_Update = Prev_Last_Frame_Counter;
+	uint Last_Frame = Frame_Time.Read();
+	
+	//Window Title
 	static char title[256];
-	//sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i  Time since startup: %.3f Frame Count: %lu ",
-	//	avg_fps, last_frame_ms, frames_on_last_update, seconds_since_startup, frame_count);
-	sprintf_s(title, 256, "Between Worlds: FPS: %i || Avg.FPS: %.2f || Ms of the last Frame %02u || Cap %s", frames_on_last_update, avg_fps, last_frame_ms, fpsCapON ? "ON" : "OFF");
+	sprintf_s(title, 256, "SHEN: FPS: %i   ||   AVG_FPS: %.2f   ||   Ms_Since_Last_Frame %02u   ||   Framerate_Cap %s", Frames_Update, AVG_FPS, Last_Frame, Fps_Cap_ON ? "ON" : "OFF");
 	App->win->SetTitle(title);
 
-	if (framerate > 0 && last_frame_ms < framerate && fpsCapON)
+	if (Framerate > 0 && Last_Frame < Framerate && Fps_Cap_ON)
 	{
 
 		j1PerfTimer t;
-		SDL_Delay(framerate - last_frame_ms);
+		SDL_Delay(Framerate - Last_Frame);
 
 	}
 }

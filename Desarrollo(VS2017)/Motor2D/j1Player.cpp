@@ -438,52 +438,52 @@ bool j1Player::Update(float dt)
 
 		if (playerinfo.GodModeUp == true)
 		{
-			playerinfo.position.y = playerinfo.position.y - 3;
+			playerinfo.position.y = playerinfo.position.y - 5;
 			if (playerinfo.GodModeForward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x + 3;
+				playerinfo.position.x = playerinfo.position.x + 5;
 			}
 			if (playerinfo.GodModeBackward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x - 3;
+				playerinfo.position.x = playerinfo.position.x - 5;
 			}
 			if (playerinfo.GodModeDown == true)
 			{
-				playerinfo.position.y = playerinfo.position.y + 3;
+				playerinfo.position.y = playerinfo.position.y + 5;
 			}
 
 		}
 
 		else if (playerinfo.GodModeDown == true)
 		{
-			playerinfo.position.y = playerinfo.position.y + 3;
+			playerinfo.position.y = playerinfo.position.y + 5;
 			if (playerinfo.GodModeForward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x + 3;
+				playerinfo.position.x = playerinfo.position.x + 5;
 			}
 			if (playerinfo.GodModeBackward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x - 3;
+				playerinfo.position.x = playerinfo.position.x - 5;
 			}
 
 		}
 
 		else if (playerinfo.GodModeForward == true)
 		{
-			playerinfo.position.x = playerinfo.position.x + 3;
+			playerinfo.position.x = playerinfo.position.x + 5;
 			if (playerinfo.GodModeBackward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x - 3;
+				playerinfo.position.x = playerinfo.position.x - 5;
 			}
 
 		}
 
 		else if (playerinfo.GodModeBackward == true)
 		{
-			playerinfo.position.x = playerinfo.position.x - 3;
+			playerinfo.position.x = playerinfo.position.x - 5;
 			if (playerinfo.GodModeForward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x + 3;
+				playerinfo.position.x = playerinfo.position.x + 5;
 			}
 
 		}

@@ -20,6 +20,7 @@ class j1Animation;
 class j1Collision;
 class j1PathFinding;
 class j1FadeToBlack;
+class j1EntityManager;
 
 class j1App
 {
@@ -98,26 +99,24 @@ public:
 	j1Map*              map2;
 	j1PathFinding*      pathfinding;
 	j1FadeToBlack*      fade;
+	j1EntityManager*    entities;
 
 
-	j1Timer* Game_Timer = nullptr;
-	j1PerfTimer* Game_Perf_Timer = nullptr;
-	j1Timer* Last_Frame_Sec = nullptr;
-	j1Timer Last_Frame_Timer;
 
-	bool				fpsCapON = true;
+	j1PerfTimer			Perf_Timer;
+	uint				Frame_Counter = 0;
+	j1Timer				Starting_Time;
+	j1Timer				Frame_Time;
 
-	j1PerfTimer			ptimer;
-	uint				frame_count = 0;
-	j1Timer				startup_time;
-	j1Timer				frame_time;
-	j1Timer				last_sec_frame_time;
-	uint				last_sec_frame_count = 0;
-	uint				prev_last_sec_frame_count = 0;
-	float				DeltaTime;
+	j1Timer				Last_Frame_Time;
+	uint				Last_Frame_Counter = 0;
+	uint				Prev_Last_Frame_Counter = 0;
+	float				Delta_Time;
+	bool				Fps_Cap_ON = true;	
+	
 
 public:
-	uint16_t			framerate = 1000 / 30;
+	uint16_t			Framerate = 1000 / 30;
 
 	p2List<j1Module*>	modules;
 	uint				frames;
