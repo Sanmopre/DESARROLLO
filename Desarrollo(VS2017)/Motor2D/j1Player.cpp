@@ -49,7 +49,7 @@ j1Player::j1Player()
 	playerinfo.walk.PushBack({ 179, 80, 19, 28 }, 0, 0);
 	playerinfo.walk.PushBack({ 199, 79, 21, 29 }, 0, 0);
 	playerinfo.walk.lock = true;
-	playerinfo.walk.speed = 0.245f;
+	playerinfo.walk.speed = 0.325f;
 
 	playerinfo.walk2.PushBack({222,420,16,29});
 	playerinfo.walk2.PushBack({201, 419, 12, 30});
@@ -63,7 +63,7 @@ j1Player::j1Player()
 	playerinfo.walk2.PushBack({51, 421, 19, 28});
 	playerinfo.walk2.PushBack({28, 420, 21,29});
 	playerinfo.walk2.lock = true;
-	playerinfo.walk2.speed = 0.245f;
+	playerinfo.walk2.speed = 0.325f;
 
 	playerinfo.jump.PushBack({62, 181, 15, 30},0,0);
 	playerinfo.jump.PushBack({ 82, 182, 15, 29 }, 0, 0);
@@ -119,7 +119,7 @@ j1Player::j1Player()
 	playerinfo.voltereta.PushBack({67, 149, 16, 25});
 	playerinfo.voltereta.lock = true;
 
-	playerinfo.voltereta.speed = 0.255f;
+	playerinfo.voltereta.speed = 0.555f;
 
 	playerinfo.voltereta2.PushBack({334, 458, 20, 26});
 	playerinfo.voltereta2.PushBack({305, 460, 25, 24});
@@ -135,16 +135,9 @@ j1Player::j1Player()
 	playerinfo.voltereta2.PushBack({401, 465, 17, 19});
 	playerinfo.voltereta2.PushBack({381, 459, 16, 25});
 	playerinfo.voltereta2.lock = true;
-	playerinfo.voltereta2.speed = 0.255f;
+	playerinfo.voltereta2.speed = 0.555f;
 
 
-
-	playerinfo.voltereta2.PushBack({});
-	playerinfo.voltereta2.PushBack({});
-	playerinfo.voltereta2.PushBack({});
-	playerinfo.voltereta2.PushBack({});
-	playerinfo.voltereta2.PushBack({});
-	playerinfo.voltereta2.PushBack({});
 
 	playerinfo.attack.PushBack({ 86, 245, 13, 29 });
 	playerinfo.attack.PushBack({ 112, 242, 15, 39 });
@@ -154,7 +147,7 @@ j1Player::j1Player()
 	playerinfo.attack.PushBack({ 268, 255, 30, 27 });
 	playerinfo.attack.PushBack({ 305, 251, 18, 31 });
 	playerinfo.attack.lock = true;
-	playerinfo.attack.speed = 0.205f;
+	playerinfo.attack.speed = 0.275f;
 
 	playerinfo.kick.PushBack({ 305, 254, 18, 31 });
 	playerinfo.kick.PushBack({3, 285, 23, 29});
@@ -677,12 +670,12 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		if (state == DASH)
 		{
 			if (playerinfo.playerbody->rect.x + playerinfo.playerbody->rect.w > c2->rect.x && playerinfo.playerbody->rect.x < c2->rect.x) {
-				playerinfo.position.x = playerinfo.position.x - 5;
+				playerinfo.position.x = playerinfo.position.x - 7;
 
 			}
 			if (playerinfo.playerbody->rect.x < c2->rect.x + c2->rect.w && playerinfo.playerbody->rect.x > c2->rect.x)
 			{
-				playerinfo.position.x = playerinfo.position.x + 5;
+				playerinfo.position.x = playerinfo.position.x + 7;
 			}
 		}
 		else

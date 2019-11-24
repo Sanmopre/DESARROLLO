@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="144">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="148">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="216" columns="24">
   <image source="tileset.png" width="384" height="144"/>
   <terraintypes>
@@ -6476,7 +6476,7 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile/>
+   <tile gid="2"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6575,10 +6575,10 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="51"/>
    <tile gid="28"/>
-   <tile gid="29"/>
-   <tile/>
-   <tile/>
+   <tile gid="2"/>
+   <tile gid="2"/>
    <tile/>
    <tile/>
    <tile gid="164"/>
@@ -6675,9 +6675,9 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="5"/>
+   <tile gid="51"/>
+   <tile gid="51"/>
    <tile gid="28"/>
-   <tile gid="29"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -7898,10 +7898,10 @@
    <tile gid="13"/>
    <tile/>
    <tile gid="146"/>
-   <tile gid="51"/>
-   <tile gid="51"/>
-   <tile gid="51"/>
-   <tile/>
+   <tile gid="57"/>
+   <tile gid="57"/>
+   <tile gid="57"/>
+   <tile gid="57"/>
    <tile/>
    <tile/>
    <tile/>
@@ -7998,9 +7998,9 @@
    <tile gid="13"/>
    <tile/>
    <tile gid="146"/>
-   <tile gid="51"/>
+   <tile gid="57"/>
    <tile/>
-   <tile gid="51"/>
+   <tile gid="57"/>
    <tile/>
    <tile/>
    <tile gid="167"/>
@@ -8098,9 +8098,9 @@
    <tile gid="13"/>
    <tile/>
    <tile gid="170"/>
-   <tile gid="51"/>
+   <tile gid="57"/>
    <tile/>
-   <tile gid="51"/>
+   <tile gid="57"/>
    <tile gid="2"/>
    <tile gid="3"/>
    <tile gid="4"/>
@@ -8198,9 +8198,9 @@
    <tile gid="13"/>
    <tile/>
    <tile/>
+   <tile gid="57"/>
    <tile/>
-   <tile/>
-   <tile gid="51"/>
+   <tile gid="57"/>
    <tile/>
    <tile gid="215"/>
    <tile gid="215"/>
@@ -8300,7 +8300,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="51"/>
+   <tile gid="57"/>
    <tile/>
    <tile/>
    <tile/>
@@ -9100,6 +9100,8 @@
   <object id="45" x="160" y="273.333" width="176" height="14.3333"/>
   <object id="46" x="626" y="16" width="690" height="15.5"/>
   <object id="51" x="710" y="447" width="586" height="14.3333"/>
+  <object id="146" x="286.5" y="64.5" width="33.5" height="15"/>
+  <object id="147" x="301.5" y="77.5" width="34.5" height="21.5"/>
  </objectgroup>
  <objectgroup id="6" name="plataformas">
   <object id="88" x="368" y="240" width="48" height="13.3333"/>
