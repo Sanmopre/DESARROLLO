@@ -164,7 +164,25 @@ j1Player::~j1Player()
 bool j1Player::Awake(pugi::xml_node& config)
 {
 	bool ret = true;
-	file.create(config.child("load").attribute("docname").as_string());
+
+	folder.create(config.child("folder").child_value());
+	
+	playerinfo.Spawn_X = config.child("initialPosition").attribute("x").as_int();
+	playerinfo.Spawn_Y = config.child("initialPosition").attribute("y").as_int();
+	
+	playerinfo.MAX_X = config.child("speed").attribute("MAX_X").as_int();
+	playerinfo.MAX_Y = config.child("speed").attribute("MAX_Y").as_float();
+
+	playerinfo.Speed_X = config.child("speed").attribute("Speed_X").as_float();
+	playerinfo.Speed_Y = config.child("speed").attribute("Speed_Y").as_float();
+	playerinfo.Dash_Speed = config.child("speed").attribute("Dash_Speed").as_float();
+
+	playerinfo.World_Gravity = config.child("World_Gravity").attribute("value").as_float();
+	playerinfo.MAX_JUMP = config.child("speed").attribute("MAX_JUMP").as_int();
+	playerinfo.Reducction_Speed = config.child("speed").attribute("Reducction_Speed").as_float();
+	playerinfo.dashTime = config.child("Dash").attribute("dashTime").as_int();
+
+	node = config;
 	return ret;
 }
 
@@ -173,17 +191,12 @@ bool j1Player::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	pugi::xml_parse_result result = playerinfo.playerdoc.load_file(file.GetString());
 
-	playerinfo.playernode = playerinfo.playerdoc.child("player");
 
 	graphics=App->tex->Load("sprites/pepe.png");
     //SETS POSITION POLAYER FROM XML
-	//playerinfo.position.x = playerinfo.playernode.child("position_x").attribute("x").as_int();
-	//playerinfo.position.y = playerinfo.playernode.child("position_y").attribute("y").as_int();
-	
-	playerinfo.position.x = 40;
-	playerinfo.position.y = 350;
+	playerinfo.position.x = playerinfo.Spawn_X;
+	playerinfo.position.y = playerinfo.Spawn_Y;
     playerinfo.playerbody = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,13 ,13}, COLLIDER_PLAYER1, this);
 	playerinfo.playerhead = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y - 15,5 ,3 }, COLLIDER_PLAYER1, this);
 	playerinfo.playerfeet = App->collision->AddCollider({ playerinfo.position.x  , playerinfo.position.y + 10 ,3 ,2 }, COLLIDER_PLAYER1, this);

@@ -67,14 +67,16 @@ struct PlayerInfo
 	SDL_Texture*	Tex_Player;
 
 	//PLAYER, AND WORLD MAX VELOCITIES
-	float			World_Gravity = 0.425;
-	float			Speed_X = 3.75;
-	float			Speed_Y = 7.10;
-	float			Dash_Speed = 7.25;
-	float			Reducction_Speed = 0.75;
-	float		    MAX_X = 4.000;
-	float			MAX_Y = 15.0;
-	float		    MAX_JUMP = 9.0;
+	int				Spawn_X;
+	int				Spawn_Y;
+	float			World_Gravity;
+	float			Speed_X;
+	float			Speed_Y;
+	float			Dash_Speed;
+	float			Reducction_Speed;
+	float		    MAX_X;
+	float			MAX_Y;
+	float		    MAX_JUMP;
 	fPoint		    velocity;
 
 	bool            Looking_Forward = true;
@@ -85,7 +87,7 @@ struct PlayerInfo
 	bool            God_Mode = false;
 
 	Uint32		dash_timer;
-	int		    dashTime = 375;
+	int		    dashTime;
 	bool		dashTimer = false;
 
 	//Attack timer
@@ -141,6 +143,8 @@ public:
 
 public:
 	
+	p2SString	folder;
+	pugi::xml_node	node;
 	PlayerInfo playerinfo;
 	input Input;
 	p2SString file;
