@@ -102,7 +102,7 @@ j1Player::j1Player()
 	playerinfo.death.PushBack({101, 128, 27, 13}, 0, 0);
 	playerinfo.death.PushBack({ 130, 135, 34, 6 }, 0, 0);
 	playerinfo.death.lock = true;
-	playerinfo.death.speed = 0.04f;
+	playerinfo.death.speed = 0.1f;
 
 	playerinfo.voltereta.PushBack({110, 148, 20, 26});
 	playerinfo.voltereta.PushBack({134, 150, 25, 24});
@@ -137,9 +137,6 @@ j1Player::j1Player()
 	playerinfo.voltereta2.lock = true;
 	playerinfo.voltereta2.speed = 0.555f;
 
-
-
-	playerinfo.attack.PushBack({ 86, 245, 13, 29 });
 	playerinfo.attack.PushBack({ 112, 242, 15, 39 });
 	playerinfo.attack.PushBack({ 140, 247, 20, 35 });
 	playerinfo.attack.PushBack({ 174, 251, 42, 31 });
@@ -148,6 +145,14 @@ j1Player::j1Player()
 	playerinfo.attack.PushBack({ 305, 251, 18, 31 });
 	playerinfo.attack.lock = true;
 	playerinfo.attack.speed = 0.275f;
+
+	playerinfo.attack2.PushBack({452, 337, 15, 38});
+	playerinfo.attack2.PushBack({423, 337, 20, 38});
+	playerinfo.attack2.PushBack({370, 337, 39, 38});
+	playerinfo.attack2.PushBack({324, 337, 41, 38});
+	playerinfo.attack2.PushBack({289, 337, 35, 38});
+	playerinfo.attack2.lock = true;
+	playerinfo.attack2.speed = 0.275f;
 
 	playerinfo.kick.PushBack({ 305, 254, 18, 31 });
 	playerinfo.kick.PushBack({3, 285, 23, 29});
@@ -340,18 +345,27 @@ bool j1Player::Update(float dt)
 				playerinfo.attackTimer = true;
 				playerinfo.attacking = true;
 				App->audio->PlayFx(App->audio->LoadFx("audio/fx/E.wav"));
-				playerinfo.current_animation = &playerinfo.attack;
+				
 
 				//COLLIDER ATTACK
 				if (playerinfo.Looking_Forward == true)
 				{
 					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y - 5,30 ,20 }, COLLIDER_ATTACK, this);
+					playerinfo.current_animation = &playerinfo.attack;
 				}
 				else
 				{
 					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x - 10, playerinfo.position.y - 5,30 ,20 }, COLLIDER_ATTACK, this);
 				}
-
+				if (playerinfo.Looking_Forward == false)
+				{
+					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x - 10, playerinfo.position.y - 5,30 ,20 }, COLLIDER_ATTACK, this);
+					playerinfo.current_animation = &playerinfo.attack2;
+				}
+				else
+				{
+					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y - 5,30 ,20 }, COLLIDER_ATTACK, this);
+				}
 
 
 				//MOVEMENT WHILE ATTACKING (CAN ATTACK JUMP BUT NOT RUN ATTACK)
@@ -409,6 +423,7 @@ bool j1Player::Update(float dt)
 		case DEAD:
 			
 			playerinfo.current_animation = &playerinfo.death;
+			
 
 			break;
 		}
@@ -636,6 +651,8 @@ void j1Player::Restart()
 		playerinfo.velocity.x = 0;
 		playerinfo.Looking_Forward = true;	
 		playerinfo.Alive = true;
+		App->audio->PlayFx(App->audio->LoadFx("audio/fx/death.wav"));
+		playerinfo.current_animation = &playerinfo.death;
 		}
 		else {
 			playerinfo.Can_Input = false;
