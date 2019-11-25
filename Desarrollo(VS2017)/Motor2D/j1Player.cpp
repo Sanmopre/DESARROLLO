@@ -11,6 +11,7 @@
 #include "j1Collision.h"
 #include "j1Scene.h"
 #include "j1FadeToBlack.h"
+#include "j1Map.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -437,7 +438,7 @@ bool j1Player::Update(float dt)
 			if (playerinfo.velocity.x < -playerinfo.MAX_X) { playerinfo.velocity.x = -playerinfo.MAX_X; }
 		}
 		if (playerinfo.velocity.y > playerinfo.MAX_Y) { playerinfo.velocity.y = playerinfo.MAX_Y; }
-
+	
 		Player_Position();
 
 		if (playerinfo.Alive == false)
@@ -469,52 +470,52 @@ bool j1Player::Update(float dt)
 
 		if (playerinfo.GodModeUp == true)
 		{
-			playerinfo.position.y = playerinfo.position.y - 5;
+			playerinfo.position.y = playerinfo.position.y - 8;
 			if (playerinfo.GodModeForward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x + 5;
+				playerinfo.position.x = playerinfo.position.x + 8;
 			}
 			if (playerinfo.GodModeBackward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x - 5;
+				playerinfo.position.x = playerinfo.position.x - 8;
 			}
 			if (playerinfo.GodModeDown == true)
 			{
-				playerinfo.position.y = playerinfo.position.y + 5;
+				playerinfo.position.y = playerinfo.position.y + 8;
 			}
 
 		}
 
 		else if (playerinfo.GodModeDown == true)
 		{
-			playerinfo.position.y = playerinfo.position.y + 5;
+			playerinfo.position.y = playerinfo.position.y + 8;
 			if (playerinfo.GodModeForward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x + 5;
+				playerinfo.position.x = playerinfo.position.x + 8;
 			}
 			if (playerinfo.GodModeBackward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x - 5;
+				playerinfo.position.x = playerinfo.position.x - 8;
 			}
 
 		}
 
 		else if (playerinfo.GodModeForward == true)
 		{
-			playerinfo.position.x = playerinfo.position.x + 5;
+			playerinfo.position.x = playerinfo.position.x + 8;
 			if (playerinfo.GodModeBackward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x - 5;
+				playerinfo.position.x = playerinfo.position.x - 8;
 			}
 
 		}
 
 		else if (playerinfo.GodModeBackward == true)
 		{
-			playerinfo.position.x = playerinfo.position.x - 5;
+			playerinfo.position.x = playerinfo.position.x - 8;
 			if (playerinfo.GodModeForward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x + 5;
+				playerinfo.position.x = playerinfo.position.x + 8;
 			}
 
 		}
@@ -559,7 +560,8 @@ void j1Player::Player_State_Machine()
 		if (Input.pressing_SPACE && playerinfo.velocity.y == 0)
 		{
 			state = JUMP;
-			playerinfo.jump.Reset();
+			if (playerinfo.Looking_Forward == true) { playerinfo.current_animation = &playerinfo.jump; }
+			else { playerinfo.current_animation = &playerinfo.jump2; }
 		}
 
 		else if (Input.pressing_F && playerinfo.Dash == false)
@@ -613,6 +615,9 @@ void j1Player::Player_State_Machine()
 		else
 		{
 			state = IDLE;
+			if (playerinfo.Looking_Forward == true) { playerinfo.current_animation = &playerinfo.idle; }
+			else { playerinfo.current_animation = &playerinfo.idle2; }
+			
 		}
 	}
 }
@@ -768,16 +773,6 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		{
 			playerinfo.Alive = false;
 			
-		}
-
-	}
-
-	if (c1 == playerinfo.playerfeet && c2->type == COLLIDER_WIN)
-	{
-		if ((playerinfo.playerfeet->rect.y + playerinfo.playerfeet->rect.h) > (c2->rect.y))
-		{
-			playerinfo.Alive = false;
-	
 		}
 
 	}

@@ -56,7 +56,6 @@ bool j1Scene::Update(float dt)
 
 	BROFILER_CATEGORY("Scene_Update", Profiler::Color::Violet)
 
-
 	// Change map
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 	{
