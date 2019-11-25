@@ -5,6 +5,10 @@
   <renderer>
     <camera x="100" y="0"/>
   </renderer>
+
+  <player>
+    <position Y="0" X="0"/>
+  </player>
   
  
 

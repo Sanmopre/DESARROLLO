@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="34">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="37">
  <tileset firstgid="1" name="env_ground" tilewidth="16" tileheight="16" tilecount="900" columns="30">
   <image source="darkforest/env_ground.png" width="480" height="480"/>
  </tileset>
@@ -21070,12 +21070,6 @@
  <objectgroup id="8" name="plataformas">
   <object id="1" x="1" y="414.333" width="109.667" height="9.33333"/>
   <object id="2" x="142.333" y="352" width="259" height="126.667"/>
-  <object id="3" x="412.667" y="360.333">
-   <polygon points="0,0 -45,-24.3333 -44.6667,49.6667"/>
-  </object>
-  <object id="4" x="129" y="360.333">
-   <polygon points="0,0 24.3333,25.6667 46,-23.6667"/>
-  </object>
   <object id="5" x="174.333" y="336" width="195" height="15.6667"/>
   <object id="6" x="449.5" y="380" width="126.5" height="11.5"/>
   <object id="7" x="480" y="300" width="95.5" height="11.5"/>
