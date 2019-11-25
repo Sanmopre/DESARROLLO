@@ -677,7 +677,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 	{
 		if ((playerinfo.playerhead->rect.y) < (c2->rect.y + c2->rect.h))
 		{
-			playerinfo.position.y = playerinfo.position.y + 6;
+			playerinfo.position.y = playerinfo.position.y + 7;
 		}
 	}
 

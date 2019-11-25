@@ -68,6 +68,16 @@ bool j1Scene::Update(float dt)
 		actual_map = Change_Map(2);
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
+	{
+		App->LoadGame();
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
+	{
+		App->SaveGame();
+	}
+
 	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 		App->LoadGame();
 
