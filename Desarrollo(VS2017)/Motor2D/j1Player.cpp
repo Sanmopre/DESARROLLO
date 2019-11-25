@@ -24,18 +24,18 @@ j1Player::j1Player()
 	playerinfo.idle.PushBack({ 163,11,12,30 }, 0, 0);
 	playerinfo.idle.PushBack({ 185, 11,12 , 30 }, 0, 0);
 	/*playerinfo.idle.PushBack({ 205, 12, 12,30 }, 0, 0);*/
-	playerinfo.idle.PushBack({ 229, 10, 12, 30 }, 0, 0);
-	playerinfo.idle.PushBack({ 251, 10, 10, 30 }, 0, 0);
-	playerinfo.idle.PushBack({ 271, 10, 11, 30 }, 0, 0);
-	playerinfo.idle.speed = 0.05f;
+	playerinfo.idle.PushBack({ 229, 11, 12, 30 }, 0, 0);
+	playerinfo.idle.PushBack({ 251, 11, 10, 30 }, 0, 0);
+	playerinfo.idle.PushBack({ 272, 11, 11, 30 }, 0, 0);
+	playerinfo.idle.speed = 0.075f;
 	playerinfo.idle.lock = true;
 
-	playerinfo.idle2.PushBack({108, 350, 12, 30});
-	playerinfo.idle2.PushBack({86, 350, 12, 30});
-	playerinfo.idle2.PushBack({42, 349, 12, 30});
-	playerinfo.idle2.PushBack({20, 349, 10, 30});
-	playerinfo.idle2.PushBack({0,349, 11, 30});
-	playerinfo.idle2.speed = 0.05f;
+	playerinfo.idle2.PushBack({108, 351, 12, 30});
+	playerinfo.idle2.PushBack({86, 351, 12, 30});
+	playerinfo.idle2.PushBack({42, 351, 12, 30});
+	playerinfo.idle2.PushBack({20, 351, 10, 30});
+	playerinfo.idle2.PushBack({0,351, 11, 30});
+	playerinfo.idle2.speed = 0.075f;
 	playerinfo.idle2.lock = true;
 
 	playerinfo.walk.PushBack({11, 79, 16, 29},0,0);
@@ -138,14 +138,14 @@ j1Player::j1Player()
 	playerinfo.voltereta2.lock = true;
 	playerinfo.voltereta2.speed = 0.555f;
 
-	playerinfo.attack.PushBack({ 112, 242, 15, 39 });
-	playerinfo.attack.PushBack({ 140, 247, 20, 35 });
-	playerinfo.attack.PushBack({ 174, 251, 42, 31 });
-	playerinfo.attack.PushBack({ 219, 257, 41, 25 });
-	playerinfo.attack.PushBack({ 268, 255, 30, 27 });
-	playerinfo.attack.PushBack({ 305, 251, 18, 31 });
+	playerinfo.attack.PushBack({ 113, 241, 15, 39 },0, 10);
+	playerinfo.attack.PushBack({ 140, 241, 20, 35 });
+	playerinfo.attack.PushBack({ 174, 241, 42, 31 });
+	playerinfo.attack.PushBack({ 218, 241, 41, 25 });
+	playerinfo.attack.PushBack({ 264, 241, 30, 27 });
+	playerinfo.attack.PushBack({ 298, 241, 18, 31 });
 	playerinfo.attack.lock = true;
-	playerinfo.attack.speed = 0.275f;
+	playerinfo.attack.speed = 0.475f;
 
 	playerinfo.attack2.PushBack({452, 337, 15, 38});
 	playerinfo.attack2.PushBack({423, 337, 20, 38});
