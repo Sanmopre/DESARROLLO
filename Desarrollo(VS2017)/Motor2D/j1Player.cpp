@@ -422,7 +422,8 @@ bool j1Player::Update(float dt)
 			break;
 
 		case DEAD:
-			
+			playerinfo.velocity.x = 0;
+			playerinfo.velocity.y = 0;
 			playerinfo.current_animation = &playerinfo.death;
 			
 
@@ -608,6 +609,7 @@ void j1Player::Player_State_Machine()
 
 		else if (playerinfo.Alive == false) {
 			state = DEAD;
+			playerinfo.current_animation = &playerinfo.death;
 		}
 
 		
