@@ -615,8 +615,6 @@ void j1Player::Restart()
 {
 	if (playerinfo.Alive == false) {
 		App->collision->AttackCleanUp();
-		playerinfo.velocity.x = 0;
-		playerinfo.velocity.y = 0;
 		App->fade->Fade_To_Black(1);
 		playerinfo.Can_Input = false;
 		if (playerinfo.deathTimer == false)
@@ -629,11 +627,12 @@ void j1Player::Restart()
 		{
 		playerinfo.Can_Input = true;
 		playerinfo.deathTimer = false;	
-		playerinfo.position.x = 40;
-		playerinfo.position.y = 350;
+		playerinfo.position.x = playerinfo.Spawn_X;
+		playerinfo.position.y = playerinfo.Spawn_Y;
 		playerinfo.velocity.y = 0;
 		playerinfo.velocity.x = 0;
-		playerinfo.Looking_Forward = true;
+		playerinfo.Looking_Forward = true;	
+		playerinfo.Alive = true;
 		}
 		else {
 			playerinfo.Can_Input = false;
@@ -642,8 +641,6 @@ void j1Player::Restart()
 		}
 	
 	}
-		playerinfo.Can_Input = true;
-		playerinfo.Alive = true;
 }
 
 

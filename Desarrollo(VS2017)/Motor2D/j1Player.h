@@ -81,7 +81,7 @@ struct PlayerInfo
 
 	bool            Looking_Forward = true;
 	bool			Can_Input = true;
-	bool			Alive;
+	bool			Alive = true;
 	bool			Dash = false;
 	bool            Grounded = true;
 	bool            God_Mode = false;
@@ -111,7 +111,7 @@ struct PlayerInfo
 	Collider * playerhead = nullptr;
 	Collider * playerbody = nullptr;
 	Collider * playerfeet = nullptr;
-	Collider* playerattack = nullptr;
+	Collider * playerattack = nullptr;
 
 };
 
