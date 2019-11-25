@@ -23,15 +23,13 @@
   </file_system>
 
   -<player>
-
     <folder>textures/</folder>
     <initialPosition  y="350" x="40"/>
     <speed MAX_JUMP="9" Reducction_Speed="0.75" Dash_Speed="7.25" Speed_Y="7.1" Speed_X="3.75" MAX_Y="15.0" MAX_X="4.0"/>
     <World_Gravity value="0.425"/>
-    <Dash dashTime="375"/>
+    <Dash dashTime="395"/>
     <Death Time="460"/>
     <Attack Time="590"/>
-
   </player>
 
   <map>

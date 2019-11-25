@@ -614,15 +614,18 @@ void j1Player::Player_Position()
 void j1Player::Restart()
 {
 	if (playerinfo.Alive == false) {
+
 		App->collision->AttackCleanUp();
 		App->fade->Fade_To_Black(1);
 		playerinfo.Can_Input = false;
+
 		if (playerinfo.deathTimer == false)
 		{
 			playerinfo.death_timer = SDL_GetTicks();
 			playerinfo.deathTimer = true;
 
 		}
+
 		if (SDL_GetTicks() - playerinfo.death_timer > playerinfo.deathTime)
 		{
 		playerinfo.Can_Input = true;

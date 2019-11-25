@@ -9128,7 +9128,7 @@
  <objectgroup id="7" name="pinchos">
   <object id="108" x="145.333" y="450" width="61.3333" height="12.6667"/>
   <object id="109" x="160.333" y="400.333" width="16" height="10"/>
-  <object id="110" x="213.333" y="383.333" width="9.33333" height="15"/>
+  <object id="110" x="214.333" y="385.833" width="9.33333" height="15"/>
   <object id="111" x="358.667" y="369.333" width="8.33333" height="13.6667"/>
   <object id="112" x="375" y="354" width="7.66667" height="13"/>
   <object id="113" x="407" y="337" width="7" height="13.3333"/>
