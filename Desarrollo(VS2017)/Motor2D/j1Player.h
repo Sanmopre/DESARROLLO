@@ -81,7 +81,7 @@ struct PlayerInfo
 
 	bool            Looking_Forward = true;
 	bool			Can_Input = true;
-	bool			Alive = true;
+	bool			Alive;
 	bool			Dash = false;
 	bool            Grounded = true;
 	bool            God_Mode = false;
@@ -93,11 +93,11 @@ struct PlayerInfo
 	//Attack timer
 	Uint32		attack_timer;
 	bool        attacking = false;
-	int		    attackTime = 590;
+	int		    attackTime;
 	bool		attackTimer = false;
 
 	Uint32		death_timer;
-	int		    deathTime = 460;
+	int		    deathTime;
 	bool		deathTimer = false;
 
 	//PLAYER GOD-MODE

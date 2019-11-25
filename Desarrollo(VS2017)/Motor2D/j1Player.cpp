@@ -182,6 +182,9 @@ bool j1Player::Awake(pugi::xml_node& config)
 	playerinfo.Reducction_Speed = config.child("speed").attribute("Reducction_Speed").as_float();
 	playerinfo.dashTime = config.child("Dash").attribute("dashTime").as_int();
 
+	playerinfo.attackTime = config.child("Attack").attribute("Time").as_int();
+	playerinfo.deathTime = config.child("Death").attribute("Time").as_int();
+
 	node = config;
 	return ret;
 }
