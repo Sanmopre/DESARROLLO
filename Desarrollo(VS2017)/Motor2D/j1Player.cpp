@@ -767,19 +767,21 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 
 	}
 
-bool j1Player::Save(pugi::xml_node& data) const 
+bool j1Player::Save(pugi::xml_node& data) 
 {
 	//PLAYER POSITION
-	data.append_child("position").append_attribute("x") = playerinfo.position.x;
-	data.child("position").append_attribute("y") = playerinfo.position.y;
+	LOG("Loading player state");
+	playerinfo.position.x = data.child("position").attribute("X").as_int();
+	playerinfo.position.y = data.child("position").attribute("Y").as_int();
 	return true;
 }
 
 bool j1Player::Load(pugi::xml_node& data)
 {
 	//PLAYER POSITION
-	playerinfo.position.x = data.child("position").attribute("x").as_int();
-	playerinfo.position.y = data.child("position").attribute("y").as_int();
+	LOG("Loading player state");
+	playerinfo.position.x = data.child("position").attribute("X").as_int();
+	playerinfo.position.y = data.child("position").attribute("Y").as_int();
 	return true;
 }
 

@@ -107,7 +107,7 @@ struct PlayerInfo
 	bool GodModeUp = false;
 	bool GodModeDown = false;
 
-	bool showcolliders = false;
+	
 	Collider * playerhead = nullptr;
 	Collider * playerbody = nullptr;
 	Collider * playerfeet = nullptr;
@@ -138,7 +138,7 @@ public:
 	void OnCollision(Collider* c1, Collider* c2);
 
 	//LOADING AND SAVING OPTIONS
-	bool Save(pugi::xml_node& data) const;
+	bool Save(pugi::xml_node& data);
 	bool Load(pugi::xml_node& data);
 
 public:

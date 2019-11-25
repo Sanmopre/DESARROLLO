@@ -5,5 +5,7 @@
   <renderer>
     <camera x="100" y="0"/>
   </renderer>
+  
+ 
 
 </game_state>

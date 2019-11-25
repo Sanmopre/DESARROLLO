@@ -169,5 +169,8 @@
     <Xml Include="..\Game\config.xml">
       <Filter>Desenvolupament  ========\Tools</Filter>
     </Xml>
+    <Xml Include="..\Game\save_game.xml">
+      <Filter>Desenvolupament  ========\Tools\PuguiXML</Filter>
+    </Xml>
   </ItemGroup>
 </Project>
