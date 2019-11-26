@@ -119,10 +119,12 @@ void j1Map::Draw()
 					iPoint pos = MapToWorld(x, y);
 
 					App->render->Blit(tileset->texture, pos.x, pos.y, &r);
+					
+					}
 				}
 			}
 		}
-	}
+	
 
 	DrawBFS();
 }

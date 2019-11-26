@@ -125,7 +125,6 @@ bool j1Scene::PostUpdate()
 
 bool j1Scene::Change_Map(int map)
 {
-	
 	//App->collision->CleanUp();
 	CleanUp();
 	App->player->Restart();
@@ -158,7 +157,6 @@ bool j1Scene::Change_Map(int map)
 		current_map = 2;
 		return false;
 	}
-	
 }
 
 // Called before quitting

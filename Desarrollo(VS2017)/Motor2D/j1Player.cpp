@@ -138,6 +138,7 @@ j1Player::j1Player()
 	playerinfo.voltereta2.lock = true;
 	playerinfo.voltereta2.speed = 0.555f;
 
+
 	playerinfo.attack.PushBack({1, 318, 43, 28});
 	playerinfo.attack.PushBack({46, 320, 43, 26});
 	playerinfo.attack.speed = 0.3f;
@@ -152,6 +153,9 @@ j1Player::j1Player()
 	//these are for the next delivery an especial attack :)
 
 	/*playerinfo.attack.PushBack({ 113, 241, 15, 39 },0, 10);
+
+	playerinfo.attack.PushBack({ 113, 241, 15, 39 });
+
 	playerinfo.attack.PushBack({ 140, 241, 20, 35 });
 	playerinfo.attack.PushBack({ 174, 241, 42, 31 });
 	playerinfo.attack.PushBack({ 218, 241, 41, 25 });
@@ -263,7 +267,7 @@ bool j1Player::Update(float dt)
 					playerinfo.current_animation = &playerinfo.jump;
 					playerinfo.velocity.y -= playerinfo.Speed_Y;
 				}
-				if(playerinfo.Looking_Forward==false)
+				if(playerinfo.Looking_Forward == false)
 				{
 					playerinfo.current_animation = &playerinfo.jump2;
 					playerinfo.velocity.y -= playerinfo.Speed_Y;
@@ -362,6 +366,7 @@ bool j1Player::Update(float dt)
 				App->audio->PlayFx(App->audio->LoadFx("audio/fx/E.wav"));
 			
 				//COLLIDER ATTACK
+
 				if (playerinfo.Looking_Forward == true)
 				{
 					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 15, playerinfo.position.y - 5,35 ,20 }, COLLIDER_ATTACK, this);
@@ -369,6 +374,7 @@ bool j1Player::Update(float dt)
 				
 				}
 		
+
 				if (playerinfo.Looking_Forward == false)
 				{
 					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x +30, playerinfo.position.y - 5,30 ,20 }, COLLIDER_ATTACK, this);
@@ -376,7 +382,14 @@ bool j1Player::Update(float dt)
 					playerinfo.attack.SetOffset(1, -20, 0);
 					playerinfo.attack.SetOffset(2, -20, 0);
 				}
-				
+
+
+				else
+				{
+					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y - 5,30 ,20 }, COLLIDER_ATTACK, this);
+					playerinfo.current_animation = &playerinfo.attack;
+				}
+
 
 
 				//MOVEMENT WHILE ATTACKING (CAN ATTACK JUMP BUT NOT RUN ATTACK)
@@ -793,6 +806,16 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		{
 			playerinfo.Alive = false;
 			
+		}
+
+	}
+
+	if (c1 == playerinfo.playerhead && c2->type == COLLIDER_WIN)
+	{
+		if ((playerinfo.playerhead->rect.y + playerinfo.playerhead->rect.h) > (c2->rect.y))
+		{
+			App->scene->Change_Map(2);
+
 		}
 
 	}
