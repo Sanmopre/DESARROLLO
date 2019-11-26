@@ -366,10 +366,6 @@ bool j1Player::Update(float dt)
 				App->audio->PlayFx(App->audio->LoadFx("audio/fx/E.wav"));
 			
 				//COLLIDER ATTACK
-
-			
-		
-
 				if (playerinfo.Looking_Forward == false)
 				{
 					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x +30, playerinfo.position.y - 5,30 ,20 }, COLLIDER_ATTACK, this);

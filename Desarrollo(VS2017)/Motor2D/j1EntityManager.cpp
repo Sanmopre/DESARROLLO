@@ -1,98 +1,118 @@
 #include "j1EntityManager.h"
-#include "j1Entity.h"
-#include "j1App.h"
-#include "j1Player.h"
-#include "p2Log.h"
-#include "j1Textures.h"
-#include "j1Render.h"
-#include "j1Input.h"
-#include "j1Collision.h"
-#include "j1Window.h"
-#include "j1Scene.h"
-#include "j1Map.h"
-#include "j1Audio.h"
 
 
-j1EntityManager::j1EntityManager()
+EntityManager::EntityManager()
 {
-	name.create("entityManager");
+	name.create("entity_manager");
+	//Player = (j1Player*)CreateEntity(Types::player);
 }
 
-
-j1EntityManager::~j1EntityManager()
+//Destructor
+EntityManager::~EntityManager()
 {}
 
-j1Entity* j1EntityManager::CreateEntity(Entity_Class type)
+// Called before render is available
+bool EntityManager::Awake(pugi::xml_node& a)
 {
-	j1Entity* entity = nullptr;
+	for (unsigned int i = 0; i < entities.count(); i++)
+	{
+		entities.At(i)->data->Awake(a.child(entities.At(i)->data->name.GetString()));
+	}
+	return true;
+}
+
+// Called before the first frame
+bool EntityManager::Start()
+{
+	for (unsigned int i = 0; i < entities.count(); i++)
+	{
+		entities.At(i)->data->Start();
+	}
+	return true;
+}
+
+// Called each loop iteration
+bool EntityManager::PreUpdate()
+{
+	for (unsigned int i = 0; i < entities.count(); i++)
+	{
+		entities.At(i)->data->PreUpdate();
+	}
+	return true;
+}
+
+// Called each loop iteration
+bool EntityManager::Update(float dt)
+{
+	for (unsigned int i = 0; i < entities.count(); i++)
+	{
+		entities.At(i)->data->Update(dt);
+	}
+	return true;
+}
+
+// Called before quitting
+bool EntityManager::CleanUp()
+{
+	for (int i = entities.count() - 1; i >= 0; i--)
+	{
+		entities.del(entities.At(i));
+	}
+	entities.clear();
+	return true;
+}
+
+//Called when loading the game
+bool EntityManager::Load(pugi::xml_node& n)
+{
+	for (unsigned int i = 0; i < entities.count(); i++)
+	{
+		entities.At(i)->data->Load(n.child(entities.At(i)->data->name.GetString()));
+	}
+	return true;
+}
+
+//Called when saving the game
+bool EntityManager::Save(pugi::xml_node& s) const
+{
+	for (unsigned int i = 0; i < entities.count(); i++)
+	{
+		entities.At(i)->data->Save(s.append_child(entities.At(i)->data->name.GetString()));
+	}
+	return true;
+}
+
+//Called when creating a new Entity
+Entity* EntityManager::CreateEntity(Types type)
+{
+	static_assert(Types::NULL_ENTITY == (Types)3, "Types need update");
+	Entity* ret = nullptr;
 	switch (type)
 	{
-	case Entity_Class::PLAYER:
+	case Types::PLAYER:
+		//ret = new j1Player(Types::PLAYER);
 		break;
-	case Entity_Class::FLYING_ENEMY:
+	case Types::GROUNDED_ENEMY:
 		break;
-	case Entity_Class::GROUND_ENEMY:
-		break;
-	default:
+	case Types::AIR_ENEMY:
 		break;
 	}
-	entities.add(entity);
-	return entity;
-}
 
-void j1EntityManager::DestroyEntity(j1Entity* delete_entity)
-{
-	RELEASE(delete_entity);
-}
-
-bool j1EntityManager::Awake(pugi::xml_node& config)
-{
-	bool ret = true;
-
+	if (ret != nullptr)
+	{
+		entities.add(ret);
+	}
 	return ret;
 }
 
-bool j1EntityManager::Start()
+//Called when deleting a new Entity
+bool EntityManager::DeleteEntity(Entity* e)
 {
-	bool ret = true;
-	return ret;
-}
-
-bool j1EntityManager::PreUpdate()
-{
-	bool ret = true;
-	return ret;
-}
-
-bool j1EntityManager::Update(float dt)
-{
-	bool ret = true;
-	return ret;
-}
-
-bool j1EntityManager::PostUpdate()
-{
-	bool ret = true;
-	return ret;
-}
-
-bool j1EntityManager::CleanUp()
-{
-	bool ret = true;
-	return ret;
-}
-
-void j1EntityManager::OnCollision(Collider* c1, Collider* c2) {
-}
-
-bool j1EntityManager::Load(pugi::xml_node& data)
-{
-	bool ret = true;
-	return ret;
-}
-
-bool j1EntityManager::Save(pugi::xml_node& data)
-{
-	bool ret = true;
-	return ret;
+	int n = entities.find(e);
+	if (n == -1)return false;
+	else
+	{
+		entities.del(entities.At(n));
+		return true;
+	}
 }

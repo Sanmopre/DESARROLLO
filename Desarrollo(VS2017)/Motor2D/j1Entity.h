@@ -1,53 +1,43 @@
-#ifndef _j1ENTITY_H
-#define _j1ENTITY_H
-#include "SDL/include/SDL.h"
-#include "j1Animation.h"
-#include "j1EntityManager.h"
+#ifndef _ENTITY_H
+#define _ENTITY_H
 
-struct SDL_Texture;
-struct Collider;
+#include "j1Module.h"
+#include "p2Point.h"
+#include "p2Log.h"
 
-enum class EntityState {
-	IDLE,
-	FORWARD,
-	BACKWARD,
+enum class Types
+{
+	PLAYER,
+	GROUNDED_ENEMY,
+	AIR_ENEMY,
+	NULL_ENTITY
 };
 
-class j1Entity : public j1EntityManager
+class Entity :public j1Module
 {
 public:
+	Entity(Types type) {}
 
-	j1Entity(Entity_Class type);
-	virtual ~j1Entity();
+	virtual ~Entity() {}
 
-	virtual bool Awake(pugi::xml_node&);
-	virtual bool Start();
-	virtual bool PreUpdate();
-	virtual bool Update(float dt);
-	virtual bool PostUpdate();
-	virtual bool CleanUp();
-	virtual void OnCollision(Collider* c1, Collider* c2) {};
+	virtual bool Awake(pugi::xml_node&) {return true;}
+
+	virtual bool Start() {return true;}
+
+	virtual bool PreUpdate() {return true;}
+
+	virtual bool Update(float dt) {return true;}
+
+	virtual bool CleanUp() {return true;}
+
+	virtual bool Load(pugi::xml_node&) {return true;}
+
+	virtual bool Save(pugi::xml_node&) const {return true;}
 
 public:
+	Types entity_type;
+	iPoint position;
 
-	fPoint position;
-	
-
-	Collider* collider = nullptr;
-	
-
-	p2List<Animation*> animations;
-	Animation idle;
-	Animation idle2;
-	Animation walk;
-	Animation walk2;
-	Animation jump;
-	Animation jump2;
-
-	Animation* current_animation = nullptr;
-
-	Entity_Class type = Entity_Class::UNKNOWN;
-	EntityState state = EntityState::IDLE;
-	SDL_Texture* texture = nullptr;
 };
-#endif // !_j1ENTITY_H
+
+#endif // !ENTITY_H

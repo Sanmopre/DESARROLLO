@@ -5,6 +5,7 @@
 #include "j1Animation.h"
 #include "p2Point.h"
 #include "p2Log.h"
+#include "j1Entity.h"
 
 struct SDL_Texture;
 
