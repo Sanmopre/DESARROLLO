@@ -138,7 +138,20 @@ j1Player::j1Player()
 	playerinfo.voltereta2.lock = true;
 	playerinfo.voltereta2.speed = 0.555f;
 
-	playerinfo.attack.PushBack({ 113, 241, 15, 39 },0, 10);
+	playerinfo.attack.PushBack({1, 318, 43, 28});
+	playerinfo.attack.PushBack({46, 320, 43, 26});
+	playerinfo.attack.speed = 0.3f;
+	playerinfo.attack.lock = true;
+
+	playerinfo.attack2.PushBack({469, 0, 43, 28});
+	playerinfo.attack2.PushBack({424, 0, 43, 26});
+	playerinfo.attack2.speed = 0.3f;
+	playerinfo.attack2.lock = true;
+	
+
+	//these are for the next delivery an especial attack :)
+
+	/*playerinfo.attack.PushBack({ 113, 241, 15, 39 },0, 10);
 	playerinfo.attack.PushBack({ 140, 241, 20, 35 });
 	playerinfo.attack.PushBack({ 174, 241, 42, 31 });
 	playerinfo.attack.PushBack({ 218, 241, 41, 25 });
@@ -147,19 +160,19 @@ j1Player::j1Player()
 	playerinfo.attack.lock = true;
 	playerinfo.attack.speed = 0.475f;
 
-	playerinfo.attack2.PushBack({452, 337, 15, 38});
-	playerinfo.attack2.PushBack({423, 337, 20, 38});
-	playerinfo.attack2.PushBack({370, 337, 39, 38});
+	playerinfo.attack2.PushBack({455, 337, 41, 38});
+	playerinfo.attack2.PushBack({414, 337, 41, 38});
+	playerinfo.attack2.PushBack({369, 337, 41, 38});
 	playerinfo.attack2.PushBack({324, 337, 41, 38});
-	playerinfo.attack2.PushBack({289, 337, 35, 38});
+	playerinfo.attack2.PushBack({276, 337, 41, 38});
 	playerinfo.attack2.lock = true;
-	playerinfo.attack2.speed = 0.275f;
+	playerinfo.attack2.speed = 0.275f;*/
 
-	playerinfo.kick.PushBack({ 305, 254, 18, 31 });
+	/*playerinfo.kick.PushBack({ 305, 254, 18, 31 });*/
 	playerinfo.kick.PushBack({3, 285, 23, 29});
 	playerinfo.kick.PushBack({36, 286, 27, 28});
 	playerinfo.kick.lock = true;
-	playerinfo.kick.speed = 0.09f;
+	playerinfo.kick.speed = 0.1f;
 }
 
 j1Player::~j1Player()
@@ -233,8 +246,9 @@ bool j1Player::Update(float dt)
 {
 
 	BROFILER_CATEGORY("Player_Update", Profiler::Color::Blue)
-
+		
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_REPEAT) { playerinfo.Alive = false; }
+	
 	if (playerinfo.God_Mode == false)
 	{
 		Player_State_Machine();
@@ -333,10 +347,10 @@ bool j1Player::Update(float dt)
 			{
 				playerinfo.current_animation = &playerinfo.idle;
 			}
-			if (playerinfo.velocity.y == 0 && playerinfo.velocity.x == 0 && playerinfo.Looking_Forward == false)
+			/*if (playerinfo.velocity.y == 0 && playerinfo.velocity.x == 0 && playerinfo.Looking_Forward == false)
 			{
 				playerinfo.current_animation = &playerinfo.idle2;
-			}
+			}*/
 			break;
 		
 		case ATTACK_E:
@@ -346,27 +360,23 @@ bool j1Player::Update(float dt)
 				playerinfo.attackTimer = true;
 				playerinfo.attacking = true;
 				App->audio->PlayFx(App->audio->LoadFx("audio/fx/E.wav"));
-				
-
+			
 				//COLLIDER ATTACK
 				if (playerinfo.Looking_Forward == true)
 				{
-					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y - 5,30 ,20 }, COLLIDER_ATTACK, this);
+					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 15, playerinfo.position.y - 5,35 ,20 }, COLLIDER_ATTACK, this);
 					playerinfo.current_animation = &playerinfo.attack;
+				
 				}
-				else
-				{
-					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x - 10, playerinfo.position.y - 5,30 ,20 }, COLLIDER_ATTACK, this);
-				}
+		
 				if (playerinfo.Looking_Forward == false)
 				{
-					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x - 10, playerinfo.position.y - 5,30 ,20 }, COLLIDER_ATTACK, this);
+					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x +30, playerinfo.position.y - 5,30 ,20 }, COLLIDER_ATTACK, this);
 					playerinfo.current_animation = &playerinfo.attack2;
+					playerinfo.attack.SetOffset(1, -20, 0);
+					playerinfo.attack.SetOffset(2, -20, 0);
 				}
-				else
-				{
-					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y - 5,30 ,20 }, COLLIDER_ATTACK, this);
-				}
+				
 
 
 				//MOVEMENT WHILE ATTACKING (CAN ATTACK JUMP BUT NOT RUN ATTACK)
@@ -549,7 +559,14 @@ bool j1Player::Update(float dt)
 			App->render->Blit_Player(graphics, playerinfo.position.x + 55, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 		}
 	
-
+	/*if (playerinfo.Looking_Forward == false)
+	{
+		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_HORIZONTAL, true);
+	}
+	else
+	{
+		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, true);
+	}*/
 
 	return true;
 }
@@ -631,6 +648,7 @@ void j1Player::Player_Position()
 	playerinfo.position.y = playerinfo.position.y + playerinfo.velocity.y;
 
 	if (playerinfo.position.y > 1000 && playerinfo.God_Mode == false) { playerinfo.Alive = false; }
+	
 }
 
 void j1Player::Restart()

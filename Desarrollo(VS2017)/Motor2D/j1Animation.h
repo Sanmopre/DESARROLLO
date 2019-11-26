@@ -28,7 +28,7 @@ private:
 public:
 
 
-	void PushBack(const SDL_Rect& rect, int offset_x = 0, int offset_y = 0)
+	void PushBack(const SDL_Rect& rect, int offset_x=0, int offset_y = 0)
 	{
 		frames[last_frame] = rect;
 		offset[last_frame].x = offset_x;
