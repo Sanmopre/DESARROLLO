@@ -103,7 +103,7 @@ j1Player::j1Player()
 	playerinfo.death.PushBack({101, 128, 27, 13}, 0, 0);
 	playerinfo.death.PushBack({ 130, 135, 34, 6 }, 0, 0);
 	playerinfo.death.lock = true;
-	playerinfo.death.speed = 0.1f;
+	playerinfo.death.speed = 0.4f;
 
 	playerinfo.voltereta.PushBack({110, 148, 20, 26});
 	playerinfo.voltereta.PushBack({134, 150, 25, 24});
@@ -255,7 +255,7 @@ bool j1Player::Update(float dt)
 		
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_REPEAT) { playerinfo.Alive = false; }
 	
-	if (playerinfo.God_Mode == false)
+	if (playerinfo.God_Mode == false && playerinfo.Alive == true)
 	{
 		Player_State_Machine();
 		switch (state) {
@@ -458,10 +458,7 @@ bool j1Player::Update(float dt)
 	
 		Player_Position();
 
-		if (playerinfo.Alive == false)
-		{
-			Restart();
-		}
+	
 
 
 	}
@@ -538,6 +535,12 @@ bool j1Player::Update(float dt)
 		}
 	}
 	playerinfo.Grounded = false;
+
+	if (playerinfo.Alive == false)
+	{
+		playerinfo.current_animation = &playerinfo.death;
+		Restart();
+	}
 
 	//DRAW COLLIDER
 	if (playerinfo.God_Mode == false) {
@@ -637,7 +640,6 @@ void j1Player::Player_State_Machine()
 
 		else if (playerinfo.Alive == false) {
 			state = DEAD;
-			playerinfo.current_animation = &playerinfo.death;
 		}
 
 		
