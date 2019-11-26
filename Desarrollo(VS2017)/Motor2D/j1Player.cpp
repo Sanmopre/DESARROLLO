@@ -226,6 +226,8 @@ bool j1Player::Start()
     playerinfo.playerbody = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,13 ,13}, COLLIDER_PLAYER1, this);
 	playerinfo.playerhead = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y - 15,5 ,3 }, COLLIDER_PLAYER1, this);
 	playerinfo.playerfeet = App->collision->AddCollider({ playerinfo.position.x  , playerinfo.position.y + 10 ,3 ,2 }, COLLIDER_PLAYER1, this);
+
+	playerinfo.enemy = App->collision->AddCollider({ 190  , 100 ,30 ,20 }, COLLIDER_ENEMY, this);
 	
 	return ret;
 }
@@ -812,6 +814,16 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		{
 			App->scene->actual_map = App->scene->Change_Map(2);
 
+		}
+
+	}
+
+
+	if (c1 == playerinfo.playerbody && c2->type == COLLIDER_ENEMY)
+	{
+		if ((playerinfo.playerbody->rect.y + playerinfo.playerbody->rect.h) > (c2->rect.y))
+		{
+			playerinfo.Alive = false;
 		}
 
 	}
