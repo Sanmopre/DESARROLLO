@@ -810,7 +810,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 	{
 		if ((playerinfo.playerhead->rect.y + playerinfo.playerhead->rect.h) > (c2->rect.y))
 		{
-			App->scene->Change_Map(2);
+			App->scene->actual_map = App->scene->Change_Map(2);
 
 		}
 
