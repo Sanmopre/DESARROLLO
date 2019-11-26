@@ -67,21 +67,15 @@ bool j1Scene::Update(float dt)
 		actual_map = Change_Map(2);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) 
 	{
 		App->LoadGame();
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
-	{
+	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN) {
 		App->SaveGame();
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
-		App->LoadGame();
-
-	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
-		App->SaveGame();
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 		App->render->camera.y -= 1;
@@ -159,4 +153,25 @@ bool j1Scene::Change_Map(int map)
 	}
 }
 
+
+bool j1Scene::Load(pugi::xml_node& data)
+{
+	App->player->playerinfo.position.x = data.child("playerPos").attribute("player_pos_x").as_float();
+	App->player->playerinfo.position.y = data.child("playerPos").attribute("player_pos_y").as_float();
+
+	return true;
+}
+
+
+bool j1Scene::Save(pugi::xml_node& data) const
+{
+	pugi::xml_node player = data.append_child("playerPos");
+
+	player.append_attribute("player_pos_x") = App->player->playerinfo.position.x;
+	player.append_attribute("player_pos_y") = App->player->playerinfo.position.y;
+
+	pugi::xml_node player_collider = data.append_child("player_collider");
+
+	return true;
+}
 // Called before quitting

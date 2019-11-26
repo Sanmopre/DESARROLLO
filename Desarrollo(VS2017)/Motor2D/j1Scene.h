@@ -29,6 +29,10 @@ public:
 	// Called before all Updates
 	bool PostUpdate();
 
+	// Load / Save
+	bool Load(pugi::xml_node&);
+	bool Save(pugi::xml_node&) const;
+
 	bool Change_Map(int map);
 	bool actual_map = true;
 
