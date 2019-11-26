@@ -367,12 +367,7 @@ bool j1Player::Update(float dt)
 			
 				//COLLIDER ATTACK
 
-				if (playerinfo.Looking_Forward == true)
-				{
-					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 15, playerinfo.position.y - 5,35 ,20 }, COLLIDER_ATTACK, this);
-					playerinfo.current_animation = &playerinfo.attack;
-				
-				}
+			
 		
 
 				if (playerinfo.Looking_Forward == false)
