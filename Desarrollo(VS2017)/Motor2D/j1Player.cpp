@@ -557,20 +557,25 @@ bool j1Player::Update(float dt)
 	
 	
 		if (App->render->camera.x < -550) {
-			App->render->Blit_Player(graphics, playerinfo.position.x - 350, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+			
+			if (playerinfo.attacking == true && playerinfo.Looking_Forward == false) {
+				App->render->Blit_Player(graphics, playerinfo.position.x  - 390, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+			}
+			else{
+				App->render->Blit_Player(graphics, playerinfo.position.x - 350, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+			}
 		}
 		if (App->render->camera.x > -550) {
-			App->render->Blit_Player(graphics, playerinfo.position.x + 55, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+
+			if (playerinfo.attacking == true && playerinfo.Looking_Forward == false) {
+				App->render->Blit_Player(graphics, playerinfo.position.x + 15, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+			}
+			else {
+				App->render->Blit_Player(graphics, playerinfo.position.x + 55, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+			}
 		}
 	
-	/*if (playerinfo.Looking_Forward == false)
-	{
-		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_HORIZONTAL, true);
-	}
-	else
-	{
-		App->render->Blit(graphics, playerinfo.position.x, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, true);
-	}*/
+
 
 	return true;
 }
