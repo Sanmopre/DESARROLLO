@@ -67,32 +67,32 @@ j1Player::j1Player()
 	playerinfo.walk2.speed = 0.325f;
 
 	playerinfo.jump.PushBack({62, 181, 15, 30},0,0);
-	playerinfo.jump.PushBack({ 82, 182, 15, 29 }, 0, 0);
-	playerinfo.jump.PushBack({ 105, 182, 15, 30 }, 0, 0);
-	playerinfo.jump.PushBack({ 127, 182, 15, 30 }, 0, 0);
-	playerinfo.jump.PushBack({ 150, 182, 15, 29 }, 0, 0);
-	playerinfo.jump.PushBack({ 171, 182, 15, 29 }, 0, 0);
-	playerinfo.jump.PushBack({ 190, 180, 15, 29 }, 0, 0);
-	playerinfo.jump.PushBack({ 213, 180, 15, 29 }, 0, 0);
-	playerinfo.jump.PushBack({ 235, 179, 15, 29 }, 0, 0);
-	playerinfo.jump.PushBack({ 254, 180, 15, 31 }, 0, 0);
-	playerinfo.jump.PushBack({ 276, 180, 15, 31 }, 0, 0);
-	playerinfo.jump.PushBack({ 21, 180, 15, 30 }, 0, 0);
+	playerinfo.jump.PushBack({ 82, 181, 15, 29 }, 0, 0);
+	playerinfo.jump.PushBack({ 105, 181, 15, 30 }, 0, 0);
+	playerinfo.jump.PushBack({ 127, 181, 15, 30 }, 0, 0);
+	playerinfo.jump.PushBack({ 150, 181, 15, 29 }, 0, 0);
+	playerinfo.jump.PushBack({ 171, 181, 15, 29 }, 0, 0);
+	playerinfo.jump.PushBack({ 190, 181, 15, 29 }, 0, 0);
+	playerinfo.jump.PushBack({ 213, 181, 15, 29 }, 0, 0);
+	playerinfo.jump.PushBack({ 235, 181, 15, 29 }, 0, 0);
+	playerinfo.jump.PushBack({ 254, 181, 15, 31 }, 0, 0);
+	playerinfo.jump.PushBack({ 276, 181, 15, 31 }, 0, 0);
+	playerinfo.jump.PushBack({ 21, 181, 15, 30 }, 0, 0);
 	playerinfo.jump.PushBack({ 41, 181, 15, 30 }, 0, 0);
 	playerinfo.jump.lock = true;
-	playerinfo.jump.speed = 0.255f;
+	playerinfo.jump.speed = 0.155f;
 
-	playerinfo.jump2.PushBack({421, 299,15, 29});
-	playerinfo.jump2.PushBack({276,421 ,15,29 });
-	playerinfo.jump2.PushBack({254, 421, 15, 29});
-	playerinfo.jump2.PushBack({339, 386, 15, 29});
-	playerinfo.jump2.PushBack({316, 386, 15, 29});
-	playerinfo.jump2.PushBack({294, 386, 15, 29});
+	
+	playerinfo.jump2.PushBack({276,420 ,15,29 });
+	playerinfo.jump2.PushBack({254, 420, 15, 29});
+	playerinfo.jump2.PushBack({339, 385, 15, 29});
+	playerinfo.jump2.PushBack({316, 385, 15, 29});
+	playerinfo.jump2.PushBack({294, 385, 15, 29});
 	playerinfo.jump2.PushBack({275, 385, 16, 30});
 	playerinfo.jump2.PushBack({253, 385, 15, 30});
 	playerinfo.jump2.PushBack({358, 420, 15, 30});
 	playerinfo.jump2.lock = true;
-	playerinfo.jump2.speed = 0.255;
+	playerinfo.jump2.speed = 0.155f;
 
 
 
@@ -141,12 +141,12 @@ j1Player::j1Player()
 
 	playerinfo.attack.PushBack({1, 318, 43, 28});
 	playerinfo.attack.PushBack({46, 320, 43, 26});
-	playerinfo.attack.speed = 0.3f;
+	playerinfo.attack.speed = 0.1f;
 	playerinfo.attack.lock = true;
 
 	playerinfo.attack2.PushBack({469, 0, 43, 28});
 	playerinfo.attack2.PushBack({424, 0, 43, 26});
-	playerinfo.attack2.speed = 0.3f;
+	playerinfo.attack2.speed = 0.1f;
 	playerinfo.attack2.lock = true;
 	
 
@@ -177,6 +177,12 @@ j1Player::j1Player()
 	playerinfo.kick.PushBack({36, 286, 27, 28});
 	playerinfo.kick.lock = true;
 	playerinfo.kick.speed = 0.1f;
+
+	playerinfo.kick2.PushBack({442, 292, 23, 29});
+	playerinfo.kick2.PushBack({405, 292, 27, 28});
+	playerinfo.kick2.lock = true;
+	playerinfo.kick2.speed = 0.1f;
+
 }
 
 j1Player::~j1Player()
@@ -269,7 +275,7 @@ bool j1Player::Update(float dt)
 					playerinfo.current_animation = &playerinfo.jump;
 					playerinfo.velocity.y -= playerinfo.Speed_Y;
 				}
-				if(playerinfo.Looking_Forward == false)
+				else
 				{
 					playerinfo.current_animation = &playerinfo.jump2;
 					playerinfo.velocity.y -= playerinfo.Speed_Y;
@@ -374,6 +380,7 @@ bool j1Player::Update(float dt)
 					playerinfo.current_animation = &playerinfo.attack2;
 					playerinfo.attack.SetOffset(1, -20, 0);
 					playerinfo.attack.SetOffset(2, -20, 0);
+					
 				}
 
 
@@ -414,13 +421,22 @@ bool j1Player::Update(float dt)
 			if (playerinfo.attackTimer == false)
 			{
 				playerinfo.attack_timer = SDL_GetTicks();
-				playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y + 10,25 ,10 }, COLLIDER_ATTACK, this);
+				playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y + 20,25 ,10 }, COLLIDER_ATTACK, this);
 				playerinfo.attackTimer = true;
 				playerinfo.attacking = true;
-				playerinfo.Looking_Forward = true;
-				playerinfo.current_animation = &playerinfo.kick;
 				App->audio->PlayFx(App->audio->LoadFx("audio/fx/kick.wav"));
 				
+			}
+			if (playerinfo.Looking_Forward == true)
+			{
+				playerinfo.current_animation = &playerinfo.kick;
+				/*playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y,25 ,10 }, COLLIDER_ATTACK, this);*/
+			}
+			if(playerinfo.Looking_Forward==false)
+			{
+				playerinfo.current_animation = &playerinfo.kick2;
+				playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x +30, playerinfo.position.y,25 ,10 }, COLLIDER_ATTACK, this);
+				App->collision->AttackCleanUp();
 			}
 			if (SDL_GetTicks() - playerinfo.attack_timer > playerinfo.attackTime)
 			{
@@ -430,19 +446,15 @@ bool j1Player::Update(float dt)
 				App->collision->AttackCleanUp();
 
 			}
-			playerinfo.current_animation = &playerinfo.kick;
-
-
-			App->audio->PlayFx(App->audio->LoadFx("audio/fx/kick.wav"));
-			playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y,25 ,10 }, COLLIDER_ATTACK, this);
+			if (playerinfo.velocity.y == 0) {
+				playerinfo.velocity.x = 0;
+			}
 			break;
 
 		case DEAD:
 			playerinfo.velocity.x = 0;
 			playerinfo.velocity.y = 0;
 			playerinfo.current_animation = &playerinfo.death;
-			
-
 			break;
 		}
 	
