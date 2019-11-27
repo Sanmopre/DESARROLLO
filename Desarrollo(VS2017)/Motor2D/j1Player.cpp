@@ -12,12 +12,14 @@
 #include "j1Scene.h"
 #include "j1FadeToBlack.h"
 #include "j1Map.h"
+#include "j1Entity.h"
+#include "j1EntityManager.h"
 
 #include "Brofiler/Brofiler.h"
 
 
 
-j1Player::j1Player()
+j1Player::j1Player(Types::PLAYER)
 {
 	name.create("player");
 

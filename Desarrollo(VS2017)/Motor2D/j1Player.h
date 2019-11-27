@@ -6,6 +6,7 @@
 #include "p2Point.h"
 #include "p2Log.h"
 #include "j1Entity.h"
+#include "j1EntityManager.h"
 
 struct SDL_Texture;
 
@@ -117,10 +118,10 @@ struct PlayerInfo
 
 };
 
-class j1Player : public j1Module
+class j1Player : public j1Entity
 {
 public:
-	j1Player();
+	j1Player(Types::PLAYER);
 	~j1Player();
 
 	bool Awake(pugi::xml_node&);

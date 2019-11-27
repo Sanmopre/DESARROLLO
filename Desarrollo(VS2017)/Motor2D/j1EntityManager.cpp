@@ -1,118 +1,183 @@
 #include "j1EntityManager.h"
+#include "j1Player.h"
+#include "Brofiler/Brofiler.h"
 
-
-EntityManager::EntityManager()
+j1EntityManager::j1EntityManager()
 {
-	name.create("entity_manager");
-	//Player = (j1Player*)CreateEntity(Types::player);
 }
 
-//Destructor
-EntityManager::~EntityManager()
-{}
-
-// Called before render is available
-bool EntityManager::Awake(pugi::xml_node& a)
+j1EntityManager::~j1EntityManager()
 {
-	for (unsigned int i = 0; i < entities.count(); i++)
-	{
-		entities.At(i)->data->Awake(a.child(entities.At(i)->data->name.GetString()));
-	}
+}
+
+bool j1EntityManager::Awake(pugi::xml_node &)
+{
 	return true;
 }
 
-// Called before the first frame
-bool EntityManager::Start()
+bool j1EntityManager::Start()
 {
-	for (unsigned int i = 0; i < entities.count(); i++)
-	{
-		entities.At(i)->data->Start();
-	}
+	BROFILER_CATEGORY("EntityManager_Start", Profiler::Color::BurlyWood)
+
+		for (p2List_item<j1Entity*>* it = Entity_List.start; it != nullptr; it = it->next)
+		{
+			it->data->Start();
+		}
+
 	return true;
 }
 
-// Called each loop iteration
-bool EntityManager::PreUpdate()
+bool j1EntityManager::PreUpdate()
 {
-	for (unsigned int i = 0; i < entities.count(); i++)
-	{
-		entities.At(i)->data->PreUpdate();
-	}
+	BROFILER_CATEGORY("EntityManager_PreUpdate", Profiler::Color::Coral)
+
+		for (int i = 0; i < MAX_ENTITIES; ++i)
+		{
+			if (array[i].type != Type::NULL_ENTITY)
+			{
+				Summon_Entity(array[i]);
+				array[i].type = Type::NULL_ENTITY;
+			}
+		}
+
 	return true;
 }
 
-// Called each loop iteration
-bool EntityManager::Update(float dt)
+bool j1EntityManager::Update(float dt)
 {
-	for (unsigned int i = 0; i < entities.count(); i++)
-	{
-		entities.At(i)->data->Update(dt);
-	}
+	BROFILER_CATEGORY("EntityManager_Update", Profiler::Color::Aqua)
+
+		for (p2List_item<j1Entity*>* it = Entity_List.start; it != nullptr; it = it->next)
+		{
+			it->data->Update(dt);
+		}
 	return true;
 }
 
-// Called before quitting
-bool EntityManager::CleanUp()
+bool j1EntityManager::PostUpdate()
 {
-	for (int i = entities.count() - 1; i >= 0; i--)
-	{
-		entities.del(entities.At(i));
-	}
-	entities.clear();
+	BROFILER_CATEGORY("EntityManager_PostUpdate", Profiler::Color::Magenta)
+
+		for (p2List_item<j1Entity*>* it = Entity_List.start; it != nullptr; it = it->next)
+		{
+			it->data->PostUpdate();
+		}
+
 	return true;
 }
 
-//Called when loading the game
-bool EntityManager::Load(pugi::xml_node& n)
+bool j1EntityManager::CleanUp()
 {
-	for (unsigned int i = 0; i < entities.count(); i++)
-	{
-		entities.At(i)->data->Load(n.child(entities.At(i)->data->name.GetString()));
-	}
-	return true;
-}
+	BROFILER_CATEGORY("EntityManager_CleanUp", Profiler::Color::DarkTurquoise)
 
-//Called when saving the game
-bool EntityManager::Save(pugi::xml_node& s) const
-{
-	for (unsigned int i = 0; i < entities.count(); i++)
-	{
-		entities.At(i)->data->Save(s.append_child(entities.At(i)->data->name.GetString()));
-	}
-	return true;
-}
+		bool ret = true;
 
-//Called when creating a new Entity
-Entity* EntityManager::CreateEntity(Types type)
-{
-	static_assert(Types::NULL_ENTITY == (Types)3, "Types need update");
-	Entity* ret = nullptr;
-	switch (type)
+	for (p2List_item<j1Entity*>* it = Entity_List.end; it != NULL; it = it->prev)
 	{
-	case Types::PLAYER:
-		//ret = new j1Player(Types::PLAYER);
-		break;
-	case Types::GROUNDED_ENEMY:
-		break;
-	case Types::AIR_ENEMY:
-		break;
+		ret = it->data->CleanUp();
 	}
 
-	if (ret != nullptr)
-	{
-		entities.add(ret);
-	}
+	Entity_List.clear();
+	player = nullptr;
+
 	return ret;
 }
 
-//Called when deleting a new Entity
-bool EntityManager::DeleteEntity(Entity* e)
+void j1EntityManager::OnCollision(Collider * c1, Collider * c2)
 {
-	int n = entities.find(e);
-	if (n == -1)return false;
-	else
+	for (p2List_item<j1Entity*>* it = Entity_List.start; it != nullptr; it = it->next)
 	{
-		entities.del(entities.At(n));
-		return true;
+		if (it->data->collider == c1)
+		{
+			it->data->OnCollision(c1, c2);
+			it->data->OnCollision(c2, c1);
+			break;
+		}
 	}
+}
+
+j1Entity* j1EntityManager::Entity_Manager(Type type, float x, float y)
+{
+	j1Entity* ret = nullptr;
+	switch (type)
+	{
+	case Type::PLAYER:
+		break;
+
+	case Type::GROUNDED_ENEMY:
+		break;
+
+	case Type::FLYING_ENEMY:
+		break;
+	}
+
+	return ret;
+}
+
+void j1EntityManager::Create_Entity(Type type, float x, float y)
+{
+	switch (type)
+	{
+	case Type::PLAYER:
+		break;
+
+	case Type::GROUNDED_ENEMY:
+		break;
+
+	case Type::FLYING_ENEMY:
+		break;
+	}
+}
+
+
+void j1EntityManager::Add_Entity(float x, float y, Type type)
+{
+	for (int i = 0; i < MAX_ENTITIES; ++i)
+	{
+		if (array[i].type == Type::NULL_ENTITY)
+		{
+			array[i].type = type;
+			array[i].position.x = x;
+			array[i].position.y = y;
+			break;
+		}
+	}
+}
+
+
+void j1EntityManager::Summon_Entity(const info & info)
+{
+	for (uint i = 0; i < MAX_ENTITIES; ++i)
+	{
+		if (array[i].type != Type::NULL_ENTITY)
+		{
+			j1Entity* ret = nullptr;
+
+			switch (info.type) {
+			case Type::PLAYER:
+				Entity_List.add(ret);
+				break;
+			case Type::GROUNDED_ENEMY:
+				Entity_List.add(ret);
+				break;
+			case Type::FLYING_ENEMY:
+				Entity_List.add(ret);
+				break;
+			}
+
+			ret->Start();
+
+			break;
+		}
+	}
+}
+
+bool j1EntityManager::Load(pugi::xml_node &)
+{
+	return true;
+}
+
+bool j1EntityManager::Save(pugi::xml_node &) const
+{
+	return true;
 }

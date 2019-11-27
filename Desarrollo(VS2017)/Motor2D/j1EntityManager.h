@@ -1,51 +1,63 @@
-#ifndef _ENTITYMANAGER_H
-#define _ENTITYMANAGER_H
+#ifndef __J1ENTITYMANAGER_H__
+#define __J1ENTITYMANAGER_H__
 
 #include "j1Module.h"
-#include "j1Entity.h"
-#include "j1Player.h"
+#include "p2Defs.h"
 #include "p2List.h"
+#include "p2Point.h"
+#include "j1Entity.h"
 
-class Entity;
+#define MAX_ENTITIES 50
 
-class EntityManager : public j1Module
+struct SDL_Texture;
+class j1Entity;
+class j1Player;
+
+
+enum Type
+{
+	PLAYER,
+	GROUNDED_ENEMY,
+	FLYING_ENEMY,
+	NULL_ENTITY
+};
+
+struct info
+{
+	Type type = Type::NULL_ENTITY;
+	fPoint position;
+};
+
+class j1EntityManager : public j1Module
 {
 public:
 
-	EntityManager();
+	j1EntityManager();
+	~j1EntityManager();
 
-	// Destructor
-	~EntityManager();
-
-	// Called before render is available
 	bool Awake(pugi::xml_node&);
-
-	// Called before the first frame
 	bool Start();
-
-	// Called each loop iteration
 	bool PreUpdate();
-
-	// Called each loop iteration
 	bool Update(float dt);
-
-	// Called before quitting
+	bool PostUpdate();
 	bool CleanUp();
 
-	//Called when loading the game
 	bool Load(pugi::xml_node&);
-
-	//Called when saving the game
 	bool Save(pugi::xml_node&) const;
 
-	//Called when creating a new Entity
-	Entity* CreateEntity(Types type);
-
-	//Called when deleting a new Entity
-	bool DeleteEntity(Entity*);
+	j1Entity* Entity_Manager(Type type, float x = 0, float y = 0);	
+	void Add_Entity(float x, float y, Type type);
+	void Create_Entity(Type type, float x = 0, float y = 0);
+	void Summon_Entity(const info& info);
+	
+	void OnCollision(Collider* c1, Collider* c2);
 
 public:
-	p2List <Entity*> entities;
-	j1Player* Player;
+
+	p2List<j1Entity*>	Entity_List;
+	j1Player*			j1Player = nullptr;
+	info			array[MAX_ENTITIES];
+
 };
-#endif // !_ENTITYMANAGER_H
+
+#endif 

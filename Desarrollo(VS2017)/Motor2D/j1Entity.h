@@ -1,43 +1,37 @@
-#ifndef _ENTITY_H
-#define _ENTITY_H
+#ifndef __ENTITY_H__
+#define __ENTITY_H__
 
-#include "j1Module.h"
+#include "j1EntityManager.h"
 #include "p2Point.h"
-#include "p2Log.h"
+#include "j1Animation.h"
 
-enum class Types
-{
-	PLAYER,
-	GROUNDED_ENEMY,
-	AIR_ENEMY,
-	NULL_ENTITY
-};
+struct Collider;
 
-class Entity :public j1Module
+
+enum Type;
+
+class j1Entity
 {
 public:
-	Entity(Types type) {}
+	j1Entity(int x, int y, Type type);
 
-	virtual ~Entity() {}
+	virtual bool Start();
+	virtual bool PreUpdate();
+	virtual bool Update(float dt);
+	virtual bool PostUpdate();
+	virtual bool CleanUp();
+	virtual void OnCollision(Collider* c1, Collider* c2) {};
 
-	virtual bool Awake(pugi::xml_node&) {return true;}
-
-	virtual bool Start() {return true;}
-
-	virtual bool PreUpdate() {return true;}
-
-	virtual bool Update(float dt) {return true;}
-
-	virtual bool CleanUp() {return true;}
-
-	virtual bool Load(pugi::xml_node&) {return true;}
-
-	virtual bool Save(pugi::xml_node&) const {return true;}
+	virtual bool Load(pugi::xml_node&);
+	virtual bool Save(pugi::xml_node&);
 
 public:
-	Types entity_type;
-	iPoint position;
 
+	Type type;
+	fPoint position;
+
+	Collider* body = nullptr;
+	Collider* feet = nullptr;
 };
 
-#endif // !ENTITY_H
+#endif // __ENTITY_H__
