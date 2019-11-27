@@ -68,32 +68,14 @@ bool j1EntityManager::PostUpdate()
 
 bool j1EntityManager::CleanUp()
 {
-	BROFILER_CATEGORY("EntityManager_CleanUp", Profiler::Color::DarkTurquoise)
-
 		bool ret = true;
-
-	for (p2List_item<j1Entity*>* it = Entity_List.end; it != NULL; it = it->prev)
-	{
-		ret = it->data->CleanUp();
-	}
-
-	Entity_List.clear();
-	player = nullptr;
 
 	return ret;
 }
 
 void j1EntityManager::OnCollision(Collider * c1, Collider * c2)
 {
-	for (p2List_item<j1Entity*>* it = Entity_List.start; it != nullptr; it = it->next)
-	{
-		if (it->data->collider == c1)
-		{
-			it->data->OnCollision(c1, c2);
-			it->data->OnCollision(c2, c1);
-			break;
-		}
-	}
+
 }
 
 j1Entity* j1EntityManager::Entity_Manager(Type type, float x, float y)

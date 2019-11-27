@@ -118,10 +118,10 @@ struct PlayerInfo
 
 };
 
-class j1Player : public j1Entity
+class j1Player : public j1Module
 {
 public:
-	j1Player(Types::PLAYER);
+	j1Player();
 	~j1Player();
 
 	bool Awake(pugi::xml_node&);

@@ -19,7 +19,7 @@
 
 
 
-j1Player::j1Player(Types::PLAYER)
+j1Player::j1Player()
 {
 	name.create("player");
 
