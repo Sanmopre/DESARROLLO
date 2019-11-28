@@ -51,6 +51,12 @@ public:
 
 
 public:
+	bool move = false;
+	bool first = true;
+
+	Uint32		move_timer;
+	int		    moveTime = 40;
+	bool		moveTimer = false;
 
 	SDL_Renderer*	renderer;
 	SDL_Rect		camera;

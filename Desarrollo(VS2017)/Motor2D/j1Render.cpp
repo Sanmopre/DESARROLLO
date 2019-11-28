@@ -297,22 +297,56 @@ bool j1Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, U
 
 void j1Render::Player_Camera(int x, int y) {
 
-	camera.x = -x  + (App->win->width/20);
-	camera.y = -y  + (App->win->height/250);
+	camera.x = -x + (App->win->width / 20);
+	camera.y = -y + (App->win->height / 250);
 
 	if (camera.x > 0)
 	{
 		camera.x = 0;
 	}
-	
+
 	if (camera.y > 0) {
 		camera.y = 0;
 	}
 
-	if (camera.x < - 550)
+
+
+
+	/*
+	if (moveTimer == false)
 	{
-		camera.x = camera.x - 400;
+		move_timer = SDL_GetTicks();
+		moveTimer = true;
 	}
 
+
+	if (SDL_GetTicks() - moveTime > move_timer)
+	{
+		App->player->playerinfo.Can_Input = false;
+		moveTimer = false;
+		camera.x = camera.x + App->win->GetScale();
+	}
+	else
+	{
+		App->player->playerinfo.Can_Input = false;
+	}
+	*/
+
+
+
+
+
+
+
+
+
+
+
+	if (camera.x < -550 )
+	{
 	
+		camera.x = camera.x - 400;
+
+
+	}
 }
