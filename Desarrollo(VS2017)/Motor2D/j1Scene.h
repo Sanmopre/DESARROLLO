@@ -38,6 +38,7 @@ public:
 
 public:
 	SDL_Texture* graphics = nullptr;
+
 	
 };
 
