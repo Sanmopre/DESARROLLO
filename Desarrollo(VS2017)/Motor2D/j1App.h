@@ -21,6 +21,7 @@ class j1Collision;
 class j1PathFinding;
 class j1FadeToBlack;
 class j1EntityManager;
+class j1Entity;
 
 class j1App
 {
@@ -99,7 +100,7 @@ public:
 	j1Map*              map2;
 	j1PathFinding*      pathfinding;
 	j1FadeToBlack*      fade;
-	j1EntityManager*    entities;
+	j1EntityManager*	EntityManager;
 
 
 

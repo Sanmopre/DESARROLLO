@@ -40,6 +40,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	map2 = new j1Map();
 	pathfinding = new j1PathFinding();
 	fade = new j1FadeToBlack();
+	EntityManager = new j1EntityManager();
 	
 
 
@@ -56,6 +57,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(map2);
 	AddModule(pathfinding);
 	AddModule(fade);
+	AddModule(EntityManager);
 	// render last to swap buffer
 	AddModule(render);
 

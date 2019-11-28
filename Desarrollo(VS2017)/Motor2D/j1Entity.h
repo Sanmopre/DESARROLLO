@@ -1,37 +1,75 @@
-#ifndef __ENTITY_H__
-#define __ENTITY_H__
+#ifndef __j1ENTITY_H__
+#define __j1ENTITY_H__
 
-#include "j1EntityManager.h"
-#include "p2Point.h"
+#include "PugiXml/src/pugixml.hpp"
+#include "j1Module.h"
 #include "j1Animation.h"
+#include "p2List.h"
+#include "p2Point.h"
+#include "p2DynArray.h"
 
+#define DT_CONVERTER 60
+
+struct SDL_Texture;
 struct Collider;
+struct Anim;
 
 
-enum Type;
-
-class j1Entity
+struct TileSetPlayer
 {
-public:
-	j1Entity(int x, int y, Type type);
-
-	virtual bool Start();
-	virtual bool PreUpdate();
-	virtual bool Update(float dt);
-	virtual bool PostUpdate();
-	virtual bool CleanUp();
-	virtual void OnCollision(Collider* c1, Collider* c2) {};
-
-	virtual bool Load(pugi::xml_node&);
-	virtual bool Save(pugi::xml_node&);
-
-public:
-
-	Type type;
-	fPoint position;
-
-	Collider* body = nullptr;
-	Collider* feet = nullptr;
+	SDL_Rect GetAnimRect(int id) const;
+	int tile_width;
+	int tile_height;
+	int firstgid;
+	int num_tiles_width;
+	int tex_width;
+	p2SString Texname;
 };
 
-#endif // __ENTITY_H__
+class j1Entity : public j1Module
+{
+
+public:
+
+	enum class Types
+	{
+		PLAYER,
+		SKELETON,
+		FLYING_ENEMY,
+		NULL_ENTITY
+	};
+
+	Types type;
+
+	j1Entity(Types type);
+
+	virtual ~j1Entity();
+
+	bool CleanUp();
+	bool Load(pugi::xml_node& data);
+	bool Save(pugi::xml_node& data) const;
+
+
+
+protected:
+
+	int gravity;
+	int Speed_X;
+	int Speed_Y;
+	bool Looking_Forward;
+
+	Animation* current_animation = nullptr;
+	p2List<Animation> animations;
+
+	
+
+public:
+	iPoint position;
+	Collider *Collider;
+	bool to_delete = false;
+
+	pugi::xml_document	entity_file;
+	TileSetPlayer TileSetData;
+};
+
+#endif

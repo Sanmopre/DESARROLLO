@@ -1,63 +1,44 @@
-#ifndef __J1ENTITYMANAGER_H__
-#define __J1ENTITYMANAGER_H__
+#ifndef __j1ENTITYMANAGER_H__
+#define __j1ENTITYMANAGER_H__
 
+#include "PugiXml/src/pugixml.hpp"
 #include "j1Module.h"
-#include "p2Defs.h"
 #include "p2List.h"
 #include "p2Point.h"
+#include "p2DynArray.h"
 #include "j1Entity.h"
 
-#define MAX_ENTITIES 50
 
 struct SDL_Texture;
-class j1Entity;
-class j1Player;
 
-
-enum Type
-{
-	PLAYER,
-	GROUNDED_ENEMY,
-	FLYING_ENEMY,
-	NULL_ENTITY
-};
-
-struct info
-{
-	Type type = Type::NULL_ENTITY;
-	fPoint position;
-};
 
 class j1EntityManager : public j1Module
 {
 public:
-
 	j1EntityManager();
 	~j1EntityManager();
-
-	bool Awake(pugi::xml_node&);
+	bool Awake(pugi::xml_node& config);
 	bool Start();
-	bool PreUpdate();
 	bool Update(float dt);
-	bool PostUpdate();
+	bool PostUpdate(float dt);
 	bool CleanUp();
-
+	bool EntityCleanUp();
 	bool Load(pugi::xml_node&);
-	bool Save(pugi::xml_node&) const;
+	bool Save(pugi::xml_node&)const;
 
-	j1Entity* Entity_Manager(Type type, float x = 0, float y = 0);	
-	void Add_Entity(float x, float y, Type type);
-	void Create_Entity(Type type, float x = 0, float y = 0);
-	void Summon_Entity(const info& info);
-	
-	void OnCollision(Collider* c1, Collider* c2);
 
+	void Delete_Entity();
+	j1Entity* Get_Player();
+	j1Entity* Summon_Entity(j1Entity::Types type, int posx = 0, int posy = 0);
 public:
+	p2List<j1Entity*> entities;
+	pugi::xml_node node;
+	SDL_Texture* playerTex = nullptr;
+	SDL_Texture* slimeTex = nullptr;
+	SDL_Texture* wizardTex = nullptr;
+	SDL_Texture* icespiketex = nullptr;
 
-	p2List<j1Entity*>	Entity_List;
-	j1Player*			j1Player = nullptr;
-	info			array[MAX_ENTITIES];
 
 };
 
-#endif 
+#endif
