@@ -48,16 +48,6 @@ bool j1Entity::Save(pugi::xml_node& data) const {
 	data.child("position").append_attribute("pos_y") = position.y;
 	return true;
 }
-SDL_Rect TileSetPlayer::GetAnimRect(int id) const
-{
-	int relative_id = id;
-	SDL_Rect rect;
-	rect.w = tile_width;
-	rect.h = tile_height;
-	rect.x = ((rect.w) * (relative_id % num_tiles_width));
-	rect.y = ((rect.h) * (relative_id / num_tiles_width));
-	return rect;
-}
 
 
 

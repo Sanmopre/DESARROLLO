@@ -11,20 +11,8 @@
 #define DT_CONVERTER 60
 
 struct SDL_Texture;
-struct Collider;
+//struct Collider;
 struct Anim;
-
-
-struct TileSetPlayer
-{
-	SDL_Rect GetAnimRect(int id) const;
-	int tile_width;
-	int tile_height;
-	int firstgid;
-	int num_tiles_width;
-	int tex_width;
-	p2SString Texname;
-};
 
 class j1Entity : public j1Module
 {
@@ -69,7 +57,7 @@ public:
 	bool to_delete = false;
 
 	pugi::xml_document	entity_file;
-	TileSetPlayer TileSetData;
+
 };
 
 #endif
