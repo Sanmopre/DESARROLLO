@@ -65,7 +65,6 @@ struct PlayerInfo
 
     input Input; 
 
-	SDL_Rect		col;
 	SDL_Texture*	Tex_Player;
 
 	//PLAYER, AND WORLD MAX VELOCITIES

@@ -2,17 +2,13 @@
 #define __j1ENTITY_H__
 
 #include "PugiXml/src/pugixml.hpp"
-#include "j1Module.h"
-#include "j1Animation.h"
 #include "p2List.h"
 #include "p2Point.h"
-#include "p2DynArray.h"
-
-#define DT_CONVERTER 60
+#include "j1Animation.h"
+#include "j1Module.h"
 
 struct SDL_Texture;
-//struct Collider;
-struct Anim;
+struct Collider;
 
 class j1Entity : public j1Module
 {
@@ -27,36 +23,32 @@ public:
 		NULL_ENTITY
 	};
 
-	Types type;
+	Types entity_type;
 
 	j1Entity(Types type);
 
 	virtual ~j1Entity();
 
-	bool CleanUp();
 	bool Load(pugi::xml_node& data);
 	bool Save(pugi::xml_node& data) const;
 
 
+	virtual void Pushbacks();
+	virtual void OnCollision(Collider* c1, Collider* c2);
+	virtual void GetPosition();
 
-protected:
 
-	int gravity;
-	int Speed_X;
-	int Speed_Y;
-	bool Looking_Forward;
+	iPoint			position;
+	int				SpawnPointX, SpawnPointY;
 
-	Animation* current_animation = nullptr;
-	p2List<Animation> animations;
+	SDL_Texture* Character_tex = nullptr;
+	bool Looking_Forward = true;
+	bool			Can_input = true;
+	bool			Alive = true;
+	bool			Grounded = true;
 
-	
-
-public:
-	iPoint position;
-	Collider *Collider;
-	bool to_delete = false;
-
-	pugi::xml_document	entity_file;
+	p2SString		texture_path;
+	p2SString		entity_name;
 
 };
 

@@ -1,16 +1,12 @@
-#ifndef __j1ENTITYMANAGER_H__
-#define __j1ENTITYMANAGER_H__
+#ifndef __J1ENTITYMANAGER_H__
+#define __J1ENTITYMANAGER_H__
 
-#include "PugiXml/src/pugixml.hpp"
 #include "j1Module.h"
-#include "p2List.h"
-#include "p2Point.h"
-#include "p2DynArray.h"
 #include "j1Entity.h"
-
+#include "PugiXml/src/pugixml.hpp"
+#include "p2List.h"
 
 struct SDL_Texture;
-
 
 class j1EntityManager : public j1Module
 {
@@ -19,26 +15,21 @@ public:
 	~j1EntityManager();
 	bool Awake(pugi::xml_node& config);
 	bool Start();
+	bool PreUpdate();
 	bool Update(float dt);
-	bool PostUpdate(float dt);
+	bool PostUpdate();
 	bool CleanUp();
-	bool EntityCleanUp();
+
 	bool Load(pugi::xml_node&);
-	bool Save(pugi::xml_node&)const;
+	bool Save(pugi::xml_node&) const;
 
+	j1Entity* Summon_Entity(j1Entity::Types type, iPoint pos);
+	void Destroy_Entity(j1Entity* entity);
+	void Destroy_Entities();
 
-	void Delete_Entity();
-	j1Entity* Get_Player();
-	j1Entity* Summon_Entity(j1Entity::Types type, int posx = 0, int posy = 0);
-public:
-	p2List<j1Entity*> entities;
 	pugi::xml_node node;
-	SDL_Texture* playerTex = nullptr;
-	SDL_Texture* slimeTex = nullptr;
-	SDL_Texture* wizardTex = nullptr;
-	SDL_Texture* icespiketex = nullptr;
-
-
+	p2List<j1Entity*> entities;
 };
+
 
 #endif
