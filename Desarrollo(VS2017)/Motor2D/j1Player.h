@@ -117,10 +117,11 @@ struct PlayerInfo
 
 };
 
-class j1Player : public j1Module
+class j1Player : public j1Entity
 {
 public:
 	j1Player();
+	j1Player(iPoint pos);
 	~j1Player();
 
 	bool Awake(pugi::xml_node&);

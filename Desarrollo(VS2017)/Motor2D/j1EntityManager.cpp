@@ -69,7 +69,7 @@ j1Entity* j1EntityManager::Summon_Entity(j1Entity::Types type, iPoint pos)
 	switch (type)
 	{
 	case j1Entity::Types::PLAYER:
-		//ret = new j1Player(pos);
+		ret = new j1Player(pos);
 		break;
 
 		

@@ -19,7 +19,7 @@
 
 
 
-j1Player::j1Player()
+j1Player::j1Player() : j1Entity(Types::PLAYER)
 {
 	name.create("player");
 
@@ -185,6 +185,12 @@ j1Player::j1Player()
 	playerinfo.kick2.lock = true;
 	playerinfo.kick2.speed = 0.1f;
 
+}
+
+j1Player::j1Player(iPoint pos) : j1Entity(Types::PLAYER)
+{
+	name.create("player");
+	position = pos;
 }
 
 j1Player::~j1Player()
