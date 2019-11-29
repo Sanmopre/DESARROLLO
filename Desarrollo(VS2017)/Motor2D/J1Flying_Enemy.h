@@ -1,5 +1,5 @@
-#ifndef __j1SKELETON_H__
-#define __j1SKELETON_H__
+#ifndef __j1FLYING_ENEMY_H__
+#define __j1FLYING_ENEMY_H__
 
 #include "PugiXml/src/pugixml.hpp"
 #include "p2List.h"
@@ -11,22 +11,22 @@
 struct SDL_Texture;
 struct Collider;
 
-enum Skeleton_States
+enum Flying_Enemy_States
 {
-	SKELETON_FORWARD,
-	SKELETON_BACKWARD,
-	SKELETON_DEATH,
+	FLYING_ENEMY_FORWARD,
+	FLYING_ENEMY_BACKWARD,
+	FLYING_ENEMY_DEATH,
 };
 
-class j1Skeleton : public j1Entity
+class j1Flying_Enemy : public j1Entity
 {
 public:
 
-	j1Skeleton();
-	j1Skeleton(iPoint pos);
+	j1Flying_Enemy();
+	j1Flying_Enemy(iPoint pos);
 
 	// Destructor
-	virtual ~j1Skeleton();
+	virtual ~j1Flying_Enemy();
 
 	// Called before render is available
 	bool Awake(pugi::xml_node& conf);
@@ -43,8 +43,8 @@ public:
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 
-	void Skeleton_State(Skeleton_States state);
-	void Skeleton_Position();
+	void Flying_Enemy_State(Flying_Enemy_States state);
+	void Flying_Enemy_Position();
 
 	// Called before quitting
 	bool CleanUp();
@@ -53,7 +53,7 @@ public:
 
 	iPoint			position;
 	int				SpawnPointX, SpawnPointY, yLimit;
-	SDL_Texture*	skeletonTex = nullptr;
+	SDL_Texture*	Flying_Enemy_Tex = nullptr;
 	bool			Looking_Forward = true;
 	bool			Alive = true;
 	bool			Grounded = true;
@@ -70,12 +70,11 @@ public:
 	fPoint		    vel;
 
 	//COLLIDERS
-	Collider*	skeletonCollider = nullptr;
-
+	Collider*	Flying_Enemy_Collider = nullptr;
 
 	void Pushbacks();
 
-	Skeleton_States state = SKELETON_FORWARD;
+	Flying_Enemy_States state = FLYING_ENEMY_FORWARD;
 
 
 private:
