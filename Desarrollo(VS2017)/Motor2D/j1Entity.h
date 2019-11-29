@@ -42,7 +42,7 @@ public:
 	int				SpawnPointX, SpawnPointY;
 
 	SDL_Texture* Character_tex = nullptr;
-	bool Looking_Forward = true;
+	bool			Looking_Forward = true;
 	bool			Can_input = true;
 	bool			Alive = true;
 	bool			Grounded = true;

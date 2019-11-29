@@ -11,6 +11,8 @@
 #include "j1Player.h"
 #include "j1Collision.h"
 #include "j1FadeToBlack.h"
+#include "j1Entity.h"
+#include "j1EntityManager.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -37,8 +39,6 @@ bool j1Scene::Start()
 {
 	//App->map->Load("dungeon.tmx");
 	//App->audio->PlayMusic("audio/music/ghost.ogg");
-	
-	   
 	App->map2->Load("castle.tmx");
 	App->audio->PlayMusic("audio/music/castle.ogg");
 	return true;
