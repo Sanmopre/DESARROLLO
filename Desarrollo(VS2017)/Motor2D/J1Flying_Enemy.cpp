@@ -15,6 +15,12 @@
 j1Flying_Enemy::j1Flying_Enemy() : j1Entity(Types::FLYING_ENEMY)
 {
 	name.create("Flying_Enemy");
+	walking.PushBack({3, 347, 19, 42});
+	walking.PushBack({65, 349, 28, 41});
+	walking.PushBack({130, 345, });
+	walking.PushBack({});
+	walking.PushBack({});
+
 }
 
 j1Flying_Enemy::j1Flying_Enemy(iPoint pos) : j1Entity(Types::FLYING_ENEMY)
