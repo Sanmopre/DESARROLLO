@@ -15,12 +15,6 @@
 j1Flying_Enemy::j1Flying_Enemy() : j1Entity(Types::FLYING_ENEMY)
 {
 	name.create("Flying_Enemy");
-	walking.PushBack({3, 347, 19, 42});
-	walking.PushBack({65, 349, 28, 41});
-	walking.PushBack({130, 345, });
-	walking.PushBack({});
-	walking.PushBack({});
-
 }
 
 j1Flying_Enemy::j1Flying_Enemy(iPoint pos) : j1Entity(Types::FLYING_ENEMY)
@@ -154,7 +148,45 @@ void j1Flying_Enemy::Flying_Enemy_State(Flying_Enemy_States stateS)
 
 void j1Flying_Enemy::Pushbacks()
 {
+	walking.PushBack({ 3, 347, 19, 42 });
+	walking.PushBack({ 65, 349, 28, 41 });
+	walking.PushBack({ 130, 345, 26, 42});
+	walking.PushBack({195, 351, 24, 42});
+	walking.PushBack({259, 352, 24, 42});
+	walking.PushBack({322, 349, 25, 44});
+	walking.PushBack({386, 348, 25, 42});
+	walking.lock = true;
+	walking.speed = 0.1;
 
+	walking2.PushBack({387, 656, 19, 42});
+	walking2.PushBack({321, 658, 28, 41});
+	walking2.PushBack({258, 659, 26, 42});
+	walking2.PushBack({195, 660, 24, 42});
+	walking2.PushBack({131, 661, 24, 42});
+	walking2.PushBack({67, 658, 25, 44});
+	walking2.PushBack({3, 657, 25, 42});
+	walking2.lock = true;
+	walking2.speed = 0.1f;
+
+	death.PushBack({ 3, 347, 19, 42 });
+	death.PushBack({64, 460, 30, 30});
+	death.PushBack({126, 458, 29, 26});
+	death.PushBack({200, 462, 15, 17});
+	death.PushBack({267, 465, 10, 12});
+	death.PushBack({327, 463, 20, 18});
+	death.PushBack({392, 461, 17, 18});
+	death.lock = true;
+	death.speed = 0.15f;
+
+	death2.PushBack({ 387, 656, 19, 42 });
+	death2.PushBack({320, 769, 30, 30});
+	death2.PushBack({259, 767, 29, 26});
+	death2.PushBack({199, 771, 15,17});
+	death2.PushBack({137, 774, 10, 12});
+	death2.PushBack({67, 772, 20, 18});
+	death2.PushBack({5, 770,17,18});
+	death2.lock = true;
+	death2.speed = 0.15f;
 }
 
 
