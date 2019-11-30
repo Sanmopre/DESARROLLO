@@ -57,7 +57,7 @@ bool j1Skeleton::Start()
 // Called each loop iteration
 bool j1Skeleton::PreUpdate()
 {
-	skeletonCollider->SetPos(position.x + 1, position.y + 8);
+	skeletonCollider->SetPos(position.x, position.y );
 
 	return true;
 }

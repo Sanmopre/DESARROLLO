@@ -69,8 +69,8 @@ public:
 	Animation		death2;
 
 	//SPEED
-	float			SpeedX;
-	float			SpeedY;
+	float			SpeedX = 1;
+	float			SpeedY = 1;
 	float			gravity;
 	fPoint		    vel;
 
