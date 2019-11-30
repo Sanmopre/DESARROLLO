@@ -2,6 +2,7 @@
 #define __j1SCENE_H__
 
 #include "j1Module.h"
+#include "p2Point.h"
 
 struct SDL_Texture;
 
@@ -39,6 +40,9 @@ public:
 public:
 	SDL_Texture* graphics = nullptr;
 
+	iPoint Player_Pos;
+	iPoint Fly_Position;
+	iPoint Skeleton_Position;
 	
 };
 

@@ -41,6 +41,14 @@ bool j1Scene::Start()
 	//App->audio->PlayMusic("audio/music/ghost.ogg");
 	App->map2->Load("castle.tmx");
 	App->audio->PlayMusic("audio/music/castle.ogg");
+
+
+	//ENTITY
+	App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
+	App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
+	App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
+
+
 	return true;
 }
 
