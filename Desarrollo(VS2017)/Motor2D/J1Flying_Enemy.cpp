@@ -9,6 +9,9 @@
 #include "j1Window.h"
 #include "j1Collision.h"
 #include "j1Entity.h"
+#include "j1Map.h"
+#include "j1Player.h"
+#include "j1Pathfinding.h"
 #include "SDL_image/include/SDL_image.h"
 #include "Brofiler/Brofiler.h"
 
@@ -145,6 +148,45 @@ void j1Flying_Enemy::Flying_Enemy_State(Flying_Enemy_States stateS)
 {
 	state = stateS;
 }
+
+
+bool j1Flying_Enemy::pathfinding() {
+
+	static iPoint Origin;
+
+	iPoint p = App->EntityManager->Get_Player()->position;
+	p = App->map->WorldToMap(p.x + 30, p.y + 30);
+
+	Origin = App->map->WorldToMap(position.x + 30, position.y + 30);
+	App->pathfinding->CreatePath(Origin, p);
+
+	const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
+
+	if (path->At(1) != NULL)
+	{
+		
+		if (path->At(1)->x < Origin.x) {
+			position.x -= SpeedX;
+			current_animation = &walking;
+		}
+
+		if (path->At(1)->x > Origin.x) {
+			position.x += SpeedX;
+			current_animation = &walking2;
+		}
+
+		if (path->At(1)->y < Origin.y) {
+			position.y -= SpeedY;
+		}
+
+		if (path->At(1)->y > Origin.y) {
+			position.y += SpeedY;
+		}
+	}
+	return true;
+}
+
+
 
 void j1Flying_Enemy::Pushbacks()
 {

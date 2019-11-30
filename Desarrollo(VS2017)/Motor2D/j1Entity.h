@@ -5,6 +5,7 @@
 #include "p2List.h"
 #include "p2Point.h"
 #include "j1Animation.h"
+#include "p2DynArray.h"
 #include "j1Module.h"
 
 struct SDL_Texture;
@@ -36,6 +37,9 @@ public:
 	virtual void Pushbacks();
 	virtual void OnCollision(Collider* c1, Collider* c2);
 	virtual void GetPosition();
+	//pathfinding
+
+	void Pathfind(int range, j1Entity* player);
 
 
 	iPoint			position;
@@ -47,9 +51,14 @@ public:
 	bool			Alive = true;
 	bool			Grounded = true;
 
+
+	//PATHFINDING
+	bool			Following_Player = false;
+	const p2DynArray<iPoint>* path = nullptr;
+
+
 	p2SString		texture_path;
 	p2SString		entity_name;
-
 };
 
 #endif

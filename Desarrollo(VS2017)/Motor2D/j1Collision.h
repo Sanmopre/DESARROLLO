@@ -60,12 +60,12 @@ public:
 	bool MapCleanUp();
 	bool AttackCleanUp();
 	SDL_Rect rect;
-
+	bool debug = false;
 private:
 
 	Collider* colliders[MAX_COLLIDERS];
 	bool matrix[COLLIDER_MAX][COLLIDER_MAX];
-	bool debug = false;
+
 };
 
 #endif // __ModuleCollision_H__

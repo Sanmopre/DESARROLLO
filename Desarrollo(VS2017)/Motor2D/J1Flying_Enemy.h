@@ -50,6 +50,9 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
+	//PATHFINDING
+	bool pathfinding();
+
 
 	iPoint			position;
 	SDL_Texture*	Flying_Enemy_Tex = nullptr;
@@ -65,8 +68,8 @@ public:
 	Animation		death2;
 
 	//SPEED
-	float			SpeedX;
-	float			SpeedY;
+	float			SpeedX = 1;
+	float			SpeedY = 1;
 	float			gravity;
 	fPoint		    vel;
 
@@ -76,7 +79,6 @@ public:
 	void Pushbacks();
 
 	Flying_Enemy_States state = FLYING_ENEMY_FORWARD;
-
 
 private:
 

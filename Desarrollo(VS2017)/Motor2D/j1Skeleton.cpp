@@ -9,6 +9,9 @@
 #include "j1Window.h"
 #include "j1Collision.h"
 #include "j1Entity.h"
+#include "j1Map.h"
+#include "j1EntityManager.h"
+#include "j1Pathfinding.h"
 #include "SDL_image/include/SDL_image.h"
 #include "Brofiler/Brofiler.h"
 
@@ -38,14 +41,16 @@ bool j1Skeleton::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Skeleton::Start()
 {
-	Pushbacks();
+
 	vel.x = 0;
 	vel.y = 0;
 	
 	current_animation = &walking;
 	skeletonCollider = App->collision->AddCollider({ position.x , position.y , 15, 25 }, COLLIDER_ENEMY, this);
 
-	skeletonTex = App->tex->Load(PATH(folder.GetString(), texture_path.GetString()));
+	skeletonTex = App->tex->Load("sprites/ENEMIES.png");
+	Pushbacks();
+
 	return true;
 }
 
@@ -77,13 +82,18 @@ bool j1Skeleton::Update(float dt)
 		current_animation = &death;
 		break;
 	}
-
+	current_animation = &walking;
 	Skeleton_Position();
+
+
 
 	//COLLIDER POSITION
 	skeletonCollider->SetPos(position.x , position.y);
 
+	App->render->Blit_Player(skeletonTex, position.x , position.y , &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+
 	//SKELETON BLIT
+	/*
 	if (App->render->camera.x < -550) {
 
 		if (Looking_Forward == false) {
@@ -103,7 +113,7 @@ bool j1Skeleton::Update(float dt)
 		}
 	}
 	
-
+*/
 
 	return true;
 }
@@ -219,4 +229,43 @@ void j1Skeleton::Skeleton_Position()
 	
 	}
 	
+}
+
+bool j1Skeleton::pathfinding_ground() {
+
+	static iPoint InicialEntityPosition;
+
+	iPoint RIGHT(position.x, position.y); iPoint UP(position.x, position.y);
+	iPoint LEFT(position.x, position.y); iPoint DOWN(position.x, position.y);
+
+	iPoint playerPos = App->EntityManager->Get_Player()->position;
+	playerPos = App->map->WorldToMap(playerPos.x + 30, playerPos.y + 30);
+
+	InicialEntityPosition = App->map->WorldToMap(position.x, position.y);
+	App->pathfinding->CreatePath(InicialEntityPosition, playerPos);
+
+
+	const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
+	if (path->At(1) != NULL)
+	{
+		if (state != SKELETON_DEATH)
+		{
+			if (path->At(1)->x < InicialEntityPosition.x && !App->pathfinding->IsWalkable(DOWN))
+			{
+				position.x -= SpeedX;
+				Looking_Forward = false;
+			}
+			if (path->At(1)->x > InicialEntityPosition.x && !App->pathfinding->IsWalkable(RIGHT))
+			{
+				position.x += SpeedX;
+				Looking_Forward = true;
+			}
+		}
+	}
+	for (uint i = 0; i < path->Count(); ++i)
+	{
+		iPoint nextPathPosition = App->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+	}
+
+	return true;
 }

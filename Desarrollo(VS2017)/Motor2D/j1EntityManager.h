@@ -19,6 +19,7 @@ public:
 	bool Update(float dt);
 	bool PostUpdate();
 	bool CleanUp();
+	j1Entity* Get_Player();
 
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;

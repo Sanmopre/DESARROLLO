@@ -106,3 +106,16 @@ void j1EntityManager::Destroy_Entities()
 		entityList = entityList->next;
 	}
 }
+
+j1Entity* j1EntityManager::Get_Player()
+{
+
+	p2List_item<j1Entity*>* entities_list = entities.start;
+	while (entities_list) {
+		if (entities_list->data->name == "player") {
+			return entities_list->data;
+		}
+		entities_list = entities_list->next;
+	}
+	return NULL;
+}

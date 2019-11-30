@@ -37,6 +37,8 @@ public:
 	bool Update(float dt);
 	bool PostUpdate();
 
+	bool pathfinding_ground();
+
 
 	// Called each loop iteration
 
