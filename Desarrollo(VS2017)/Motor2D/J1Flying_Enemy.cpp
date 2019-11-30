@@ -81,6 +81,29 @@ bool j1Flying_Enemy::Update(float dt)
 
 	Flying_Enemy_Position();
 
+	//COLLIDER POSITION
+	Flying_Enemy_Collider->SetPos(position.x, position.y);
+
+	//SKELETON BLIT
+	if (App->render->camera.x < -550) {
+
+		if (Looking_Forward == false) {
+			App->render->Blit_Player(Flying_Enemy_Tex, position.x - 390, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		}
+		else {
+			App->render->Blit_Player(Flying_Enemy_Tex, position.x - 350, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		}
+	}
+	if (App->render->camera.x > -550) {
+
+		if (Looking_Forward == false) {
+			App->render->Blit_Player(Flying_Enemy_Tex, position.x + 15, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		}
+		else {
+			App->render->Blit_Player(Flying_Enemy_Tex, position.x + 55, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		}
+	}
+
 	return true;
 }
 

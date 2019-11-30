@@ -42,13 +42,13 @@ bool j1Scene::Start()
 	App->map2->Load("castle.tmx");
 	App->audio->PlayMusic("audio/music/castle.ogg");
 
-
+	
 	//ENTITY
 	App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
 	App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
 	App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
 
-
+	
 	return true;
 }
 
@@ -61,10 +61,10 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
-
 	BROFILER_CATEGORY("Scene_Update", Profiler::Color::Violet)
 
-	// Change map
+	
+
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 	{
 		actual_map = Change_Map(1);
@@ -74,6 +74,7 @@ bool j1Scene::Update(float dt)
 	{
 		actual_map = Change_Map(2);
 	}
+
 
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) 
 	{

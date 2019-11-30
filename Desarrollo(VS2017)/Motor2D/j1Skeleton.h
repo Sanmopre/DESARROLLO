@@ -56,10 +56,13 @@ public:
 	bool			Looking_Forward = true;
 	bool			Alive = true;
 	bool			Grounded = true;
+	
+	bool			Near_Player = false;
 
 	//ANIMATIONS
 	Animation*		current_animation = nullptr;
 	Animation		walking;
+	Animation		walking2;
 	Animation		death;
 
 	//SPEED

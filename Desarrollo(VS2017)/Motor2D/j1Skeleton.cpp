@@ -70,7 +70,7 @@ bool j1Skeleton::Update(float dt)
 	case SKELETON_BACKWARD:
 		Looking_Forward = false;
 		vel.x -= SpeedX;
-		current_animation = &walking;
+		current_animation = &walking2;
 		break;
 
 	case SKELETON_DEATH:
@@ -81,8 +81,27 @@ bool j1Skeleton::Update(float dt)
 	Skeleton_Position();
 
 	//COLLIDER POSITION
-	
 	skeletonCollider->SetPos(position.x , position.y);
+
+	//SKELETON BLIT
+	if (App->render->camera.x < -550) {
+
+		if (Looking_Forward == false) {
+			App->render->Blit_Player(skeletonTex, position.x - 390, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		}
+		else {
+			App->render->Blit_Player(skeletonTex, position.x - 350, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		}
+	}
+	if (App->render->camera.x > -550) {
+
+		if (Looking_Forward == false) {
+			App->render->Blit_Player(skeletonTex, position.x + 15, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		}
+		else {
+			App->render->Blit_Player(skeletonTex, position.x + 55, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		}
+	}
 	
 
 
@@ -140,5 +159,8 @@ void j1Skeleton::OnCollision(Collider* c1, Collider* c2)
 
 void j1Skeleton::Skeleton_Position()
 {
-
+	if (Near_Player) {
+	
+	}
+	
 }
