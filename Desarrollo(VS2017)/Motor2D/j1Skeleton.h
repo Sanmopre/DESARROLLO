@@ -64,6 +64,7 @@ public:
 	Animation		walking;
 	Animation		walking2;
 	Animation		death;
+	Animation		death2;
 
 	//SPEED
 	float			SpeedX;

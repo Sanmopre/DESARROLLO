@@ -15,6 +15,64 @@
 j1Skeleton::j1Skeleton() : j1Entity(Types::SKELETON)
 {
 	name.create("skeleton");
+
+	walking.PushBack({3, 273, 18, 32});
+	walking.PushBack({25, 273, 18, 32});
+	walking.PushBack({47, 273, 18, 32});
+	walking.PushBack({68, 272, 20, 33});
+	walking.PushBack({90, 272, 21, 33});
+	walking.PushBack({112, 272, 22, 33});
+	walking.PushBack({134, 273, 22, 32});
+	walking.PushBack({156, 273, 22, 32});
+	walking.PushBack({178, 273, 22, 32});
+	walking.PushBack({200, 273, 22, 32});
+	walking.PushBack({223, 273, 20, 32});
+	walking.PushBack({246,273, 18, 32});
+	walking.PushBack({268, 273, 17, 32});
+	walking.lock = true;
+	walking.speed = 0.5f;
+
+	walking2.PushBack({958, 594, 18, 32});
+	walking2.PushBack({936, 594, 18, 32});
+	walking2.PushBack({914, 594, 18, 32});
+	walking2.PushBack({891, 593, 20, 33});
+	walking2.PushBack({868, 593, 21, 33});
+	walking2.PushBack({845, 593, 22, 33});
+	walking2.PushBack({823, 594, 22, 32});
+	walking2.PushBack({801, 594, 22, 32});
+	walking2.PushBack({779, 594, 22, 32});
+	walking2.PushBack({757, 594, 22, 32});
+	walking2.PushBack({736, 594, 20, 32});
+	walking2.PushBack({715, 594, 18, 32});
+	walking2.PushBack({694, 594, 17, 32});
+	walking.lock = true;
+	walking.speed = 0.5f;
+
+	death.PushBack({14, 76, 22, 32});
+	death.PushBack({44, 76, 23, 32});
+	death.PushBack({76, 76, 23, 32});
+	death.PushBack({206, 76, 24, 32});
+	death.PushBack({239, 76, 24, 32});
+	death.PushBack({272, 77, 23, 31});
+	death.PushBack({304, 80, 23, 28});
+	death.PushBack({337,83, 24, 25});
+	death.PushBack({370, 92, 25, 16});
+	death.PushBack({399, 100, 28, 6});
+	death.lock = true;
+	death.speed = 0.3f;
+
+	death2.PushBack({943, 397, 22, 32});
+	death2.PushBack({912, 397, 23, 32});
+	death2.PushBack({880, 397, 23, 32});
+	death2.PushBack({749, 397, 24, 32});
+	death2.PushBack({716, 397, 24, 32});
+	death2.PushBack({684, 398, 23, 31});
+	death2.PushBack({652, 401, 23, 28});
+	death2.PushBack({618, 404, 25, 16});
+	death2.PushBack({584, 413, 25, 16});
+	death2.PushBack({550, 421, 28, 6});
+	death2.lock = true;
+	death.speed = 0.3f;
 }
 
 j1Skeleton::j1Skeleton(iPoint pos) : j1Entity(Types::SKELETON)
