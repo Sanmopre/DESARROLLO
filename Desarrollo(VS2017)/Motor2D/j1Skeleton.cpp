@@ -42,13 +42,9 @@ bool j1Skeleton::Start()
 	vel.x = 0;
 	vel.y = 0;
 
-	//SkeletonFx = App->audio->LoadFx("audio/jumping.wav");
-
-	position.x = SpawnPointX;
-	position.y = SpawnPointY;
-
 	current_animation = &walking;
-	skeletonCollider = App->collision->AddCollider({ position.x , position.y , 30, 30 }, COLLIDER_ENEMY, this);
+	skeletonCollider = App->collision->AddCollider({ position.x , position.y , 15, 25 }, COLLIDER_ENEMY, this);
+
 	skeletonTex = App->tex->Load(PATH(folder.GetString(), texture_path.GetString()));
 	return true;
 }
@@ -83,6 +79,12 @@ bool j1Skeleton::Update(float dt)
 	}
 
 	Skeleton_Position();
+
+	//COLLIDER POSITION
+	
+	skeletonCollider->SetPos(position.x , position.y);
+	
+
 
 	return true;
 }

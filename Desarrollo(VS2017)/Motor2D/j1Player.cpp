@@ -241,7 +241,6 @@ bool j1Player::Start()
 	playerinfo.playerhead = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y - 15,5 ,3 }, COLLIDER_PLAYER1, this);
 	playerinfo.playerfeet = App->collision->AddCollider({ playerinfo.position.x  , playerinfo.position.y + 10 ,3 ,2 }, COLLIDER_PLAYER1, this);
 
-	playerinfo.enemy = App->collision->AddCollider({ 190  , 100 ,30 ,20 }, COLLIDER_ENEMY, this);
 	
 	return ret;
 }

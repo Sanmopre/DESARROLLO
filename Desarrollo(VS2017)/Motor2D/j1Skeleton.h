@@ -52,7 +52,6 @@ public:
 
 
 	iPoint			position;
-	int				SpawnPointX, SpawnPointY, yLimit;
 	SDL_Texture*	skeletonTex = nullptr;
 	bool			Looking_Forward = true;
 	bool			Alive = true;

@@ -52,7 +52,6 @@ public:
 
 
 	iPoint			position;
-	int				SpawnPointX, SpawnPointY, yLimit;
 	SDL_Texture*	Flying_Enemy_Tex = nullptr;
 	bool			Looking_Forward = true;
 	bool			Alive = true;

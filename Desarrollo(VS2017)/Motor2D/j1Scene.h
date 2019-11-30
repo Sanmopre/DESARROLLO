@@ -41,8 +41,8 @@ public:
 	SDL_Texture* graphics = nullptr;
 
 	iPoint Player_Pos;
-	iPoint Fly_Position;
-	iPoint Skeleton_Position;
+	iPoint Fly_Position =  { 690 , 100 };
+	iPoint Skeleton_Position = {190 , 30};
 	
 };
 

@@ -42,13 +42,10 @@ bool j1Flying_Enemy::Start()
 	vel.x = 0;
 	vel.y = 0;
 
-	//SkeletonFx = App->audio->LoadFx("audio/jumping.wav");
 
-	position.x = SpawnPointX;
-	position.y = SpawnPointY;
 
 	current_animation = &walking;
-	Flying_Enemy_Collider = App->collision->AddCollider({ position.x , position.y , 30, 30 }, COLLIDER_ENEMY, this);
+	Flying_Enemy_Collider = App->collision->AddCollider({ position.x , position.y , 20, 20 }, COLLIDER_ENEMY, this);
 	Flying_Enemy_Tex = App->tex->Load(PATH(folder.GetString(), texture_path.GetString()));
 	return true;
 }
