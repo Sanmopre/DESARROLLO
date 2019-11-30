@@ -277,19 +277,20 @@ bool j1Player::Update(float dt)
 			App->audio->PlayFx(App->audio->LoadFx("audio/fx/jumping.wav"));
 			while (playerinfo.velocity.y > -2)
 			{
+				
 				if (playerinfo.Looking_Forward == true)
 				{
 					playerinfo.current_animation = &playerinfo.jump;
-					playerinfo.velocity.y -= playerinfo.Speed_Y;
+					
 				}
 				else
 				{
 					playerinfo.current_animation = &playerinfo.jump2;
-					playerinfo.velocity.y -= playerinfo.Speed_Y;
+					
 				}
+			}
 				
-				
-			} 
+			 
 			
 			break;
 
@@ -611,8 +612,10 @@ void j1Player::Player_State_Machine()
 		if (Input.pressing_SPACE && playerinfo.velocity.y == 0)
 		{
 			state = JUMP;
-			if (playerinfo.Looking_Forward == true) { playerinfo.current_animation = &playerinfo.jump; }
-			else { playerinfo.current_animation = &playerinfo.jump2; }
+			if (playerinfo.Looking_Forward == true) 
+			{ playerinfo.current_animation = &playerinfo.jump; }
+			else
+			{ playerinfo.current_animation = &playerinfo.jump2; }
 		}
 
 		else if (Input.pressing_F && playerinfo.Dash == false)

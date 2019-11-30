@@ -41,7 +41,7 @@ bool j1Flying_Enemy::Start()
 	Pushbacks();
 	vel.x = 0;
 	vel.y = 0;
-
+	
 
 
 	current_animation = &walking;

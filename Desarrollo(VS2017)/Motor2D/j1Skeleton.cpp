@@ -41,7 +41,7 @@ bool j1Skeleton::Start()
 	Pushbacks();
 	vel.x = 0;
 	vel.y = 0;
-
+	
 	current_animation = &walking;
 	skeletonCollider = App->collision->AddCollider({ position.x , position.y , 15, 25 }, COLLIDER_ENEMY, this);
 
