@@ -281,12 +281,12 @@ bool j1Player::Update(float dt)
 				if (playerinfo.Looking_Forward == true)
 				{
 					playerinfo.current_animation = &playerinfo.jump;
-					
+					playerinfo.velocity.y -= playerinfo.Speed_Y;
 				}
 				else
 				{
 					playerinfo.current_animation = &playerinfo.jump2;
-					
+					playerinfo.velocity.y -= playerinfo.Speed_Y;
 				}
 			}
 				
