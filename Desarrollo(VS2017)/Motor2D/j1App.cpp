@@ -209,7 +209,7 @@ void j1App::FinishUpdate()
 	
 	//Window Title
 	static char title[256];
-	sprintf_s(title, 256, "SHEN: FPS: %i   ||   AVG_FPS: %.2f   ||   Ms_Since_Last_Frame %02u   ||   Framerate_Cap %s", Frames_Update, AVG_FPS, Last_Frame, Fps_Cap_ON ? "ON" : "OFF");
+	sprintf_s(title, 256, "SHEN: FPS: %i   ||   AVG_FPS: %.2f   ||   Ms_Since_Last_Frame %02u   ||   Framerate_Cap %s  ||  vsync OFF" , Frames_Update, AVG_FPS, Last_Frame, Fps_Cap_ON ? "ON" : "OFF");
 	App->win->SetTitle(title);
 
 	if (Framerate > 0 && Last_Frame < Framerate && Fps_Cap_ON)
