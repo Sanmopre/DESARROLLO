@@ -37,6 +37,7 @@ public:
 	virtual void Pushbacks();
 	virtual void OnCollision(Collider* c1, Collider* c2);
 	virtual void GetPosition();
+	virtual void BlitEntity(SDL_Rect r, bool flip = false, float x = 0, float y = 0);
 	//pathfinding
 
 	void Pathfind(int range, j1Entity* player);

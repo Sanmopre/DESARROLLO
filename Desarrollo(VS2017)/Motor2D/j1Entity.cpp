@@ -10,6 +10,7 @@
 #include "j1Render.h"
 #include "j1Collision.h"
 #include "j1Pathfinding.h"
+#include "Brofiler/Brofiler.h"
 
 
 j1Entity::j1Entity(Types type)
@@ -69,6 +70,15 @@ void j1Entity::OnCollision(Collider* c1, Collider* c2) {}
 
 void j1Entity::GetPosition() {}
 
+void j1Entity::BlitEntity(SDL_Rect r, bool flip, float x, float y)
+{
+	BROFILER_CATEGORY("BlitEntity", Profiler::Color::Thistle)
+
+		if (flip == false)
+			App->render->Blit(Character_tex, (int)position.x + x, (int)position.y + y, &r, SDL_FLIP_NONE);
+		else
+			App->render->Blit(Character_tex, (int)position.x + x, (int)position.y + y, &r, SDL_FLIP_HORIZONTAL);
+}
 
 
 
