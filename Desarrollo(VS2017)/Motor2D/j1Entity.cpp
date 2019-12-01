@@ -9,7 +9,7 @@
 #include "j1Audio.h"
 #include "j1Render.h"
 #include "j1Collision.h"
-#include "j1Pathfinding.h"
+
 
 
 j1Entity::j1Entity(Types type)

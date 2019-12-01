@@ -25,26 +25,24 @@ public:
 
 	Types entity_type;
 	j1Entity(Types type);
+
 	virtual ~j1Entity();
+
 	bool Load(pugi::xml_node& data);
 	bool Save(pugi::xml_node& data) const;
+
 	virtual void Pushbacks();
 	virtual void OnCollision(Collider* c1, Collider* c2);
 	virtual void GetPosition();
 
 	iPoint			position;
 	int				SpawnPointX, SpawnPointY;
-
-	SDL_Texture* Character_tex = nullptr;
 	bool			Looking_Forward = true;
 	bool			Can_input = true;
 	bool			Alive = true;
 	bool			Grounded = true;
 
-	//PATHFINDING
-	bool			Following_Player = false;
-	const p2DynArray<iPoint>* path = nullptr;
-
+	SDL_Texture* Character_tex = nullptr;
 	p2SString		entity_name;
 };
 

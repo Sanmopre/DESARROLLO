@@ -59,6 +59,7 @@ public:
 	void DebugDraw();
 	bool MapCleanUp();
 	bool AttackCleanUp();
+	bool EnemyCleanUp();
 	SDL_Rect rect;
 	bool debug = false;
 private:
