@@ -64,7 +64,6 @@ bool j1Skeleton::PreUpdate()
 
 bool j1Skeleton::Update(float dt)
 {
-	BlitEntity(current_animation->GetCurrentFrame(), SDL_FLIP_NONE, position.x, position.y);
 	switch (state)
 	{
 	case SKELETON_FORWARD:
