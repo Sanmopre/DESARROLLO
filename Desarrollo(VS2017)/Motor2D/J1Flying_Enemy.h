@@ -30,15 +30,15 @@ public:
 
 	// Called before render is available
 	bool Awake(pugi::xml_node& conf);
-
 	bool Start();
-
 	bool PreUpdate();
 	bool Update(float dt);
 	bool PostUpdate();
+
 	// Called each loop iteration
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
+
 	// Called before quitting
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
@@ -53,17 +53,20 @@ public:
 	bool			Looking_Forward = true;
 	bool			Alive = true;
 	bool			Grounded = true;
+
 	//ANIMATIONS
 	Animation*		current_animation = nullptr;
 	Animation		walking;
 	Animation		walking2;
 	Animation		death;
 	Animation		death2;
+
 	//SPEED
 	float			SpeedX = 1;
 	float			SpeedY = 1;
 	float			gravity;
 	fPoint		    vel;
+
 	//COLLIDERS
 	Collider*	Flying_Enemy_Collider = nullptr;
 	void Pushbacks();

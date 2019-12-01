@@ -232,21 +232,18 @@ void j1Skeleton::Skeleton_Position()
 	
 }
 
-bool j1Skeleton::pathfinding_ground() {
-
+bool j1Skeleton::pathfinding_ground()
+{
 	static iPoint InicialEntityPosition;
-
 	iPoint RIGHT(position.x, position.y); iPoint UP(position.x, position.y);
 	iPoint LEFT(position.x, position.y); iPoint DOWN(position.x, position.y);
-
-	iPoint playerPos = App->EntityManager->Get_Player()->position;
-	playerPos = App->map->WorldToMap(playerPos.x + 30, playerPos.y + 30);
-
+	iPoint PLAYER = App->EntityManager->Get_Player()->position;
+	PLAYER = App->map->WorldToMap(PLAYER.x + 30, PLAYER.y + 30);
 	InicialEntityPosition = App->map->WorldToMap(position.x, position.y);
-	App->pathfinding->CreatePath(InicialEntityPosition, playerPos);
-
+	App->pathfinding->CreatePath(InicialEntityPosition, PLAYER);
 
 	const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
+
 	if (path->At(1) != NULL)
 	{
 		if (state != SKELETON_DEATH)
@@ -267,6 +264,5 @@ bool j1Skeleton::pathfinding_ground() {
 	{
 		iPoint nextPathPosition = App->map->MapToWorld(path->At(i)->x, path->At(i)->y);
 	}
-
 	return true;
 }

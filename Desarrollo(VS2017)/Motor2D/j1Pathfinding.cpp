@@ -171,7 +171,8 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 
 	BROFILER_CATEGORY("pathfinding", Profiler::Color::DarkCyan)
 
-		if (IsWalkable(origin) == false || IsWalkable(destination) == false) {
+		if (IsWalkable(origin) == false || IsWalkable(destination) == false) 
+		{
 			return -1;
 		}
 
@@ -187,11 +188,13 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 		current_node = new PathNode(open.GetNodeLowestScore()->data);
 		closed.list.add(*current_node);
 		open.list.del(open.Find(current_node->pos));
-		if (current_node->pos == destination) {
+		if (current_node->pos == destination) 
+		{
 
 			PathNode* iterator = current_node;
 
-			for (iterator; iterator->pos != origin; iterator = iterator->parent) {
+			for (iterator; iterator->pos != origin; iterator = iterator->parent)
+			{
 				last_path.PushBack(iterator->pos);
 			}
 			last_path.PushBack(origin);
@@ -200,17 +203,24 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 			return 0;
 
 		}
+
+
+
 		PathList Adjacent_list;
 		uint limit = current_node->FindWalkableAdjacents(Adjacent_list);
-		for (uint i = 0; i < limit; i++) {
-			if ((closed.Find(Adjacent_list.list[i].pos)) == NULL) {
-				if ((open.Find(Adjacent_list.list[i].pos)) == NULL) {
+		for (uint i = 0; i < limit; i++) 
+		{
+			if ((closed.Find(Adjacent_list.list[i].pos)) == NULL)
+			{
+				if ((open.Find(Adjacent_list.list[i].pos)) == NULL)
+				{
 					Adjacent_list.list[i].CalculateF(destination);
 					open.list.add(Adjacent_list.list[i]);
 				}
 				else { 
 					Adjacent_list.list[i].CalculateF(destination);
-					if (Adjacent_list.list[i].g < open.Find(Adjacent_list.list[i].pos)->data.g) {
+					if (Adjacent_list.list[i].g < open.Find(Adjacent_list.list[i].pos)->data.g)
+					{
 						open.list.del(open.Find(Adjacent_list.list[i].pos));
 						open.list.add(Adjacent_list.list[i]);
 

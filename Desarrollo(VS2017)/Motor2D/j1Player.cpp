@@ -693,6 +693,7 @@ void j1Player::Restart()
 		App->collision->AttackCleanUp();
 		App->fade->Fade_To_Black(1);
 		playerinfo.Can_Input = false;
+		playerinfo.attacking = false;
 
 		if (playerinfo.deathTimer == false)
 		{

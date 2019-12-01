@@ -26,6 +26,7 @@ public:
 	j1Skeleton(iPoint pos);
 	// Destructor
 	virtual ~j1Skeleton();
+
 	// Called before render is available
 	bool Awake(pugi::xml_node& conf);
 	bool Start();
@@ -38,6 +39,7 @@ public:
 	bool Save(pugi::xml_node&) const;
 	void Skeleton_State(Skeleton_States state);
 	void Skeleton_Position();
+
 	// Called before quitting
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);

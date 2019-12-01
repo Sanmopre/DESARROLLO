@@ -44,8 +44,6 @@ bool j1Flying_Enemy::Start()
 	Pushbacks();
 	vel.x = 0;
 	vel.y = 0;
-	
-
 
 	current_animation = &walking;
 	Flying_Enemy_Collider = App->collision->AddCollider({ position.x , position.y , 20, 20 }, COLLIDER_ENEMY, this);
@@ -116,8 +114,6 @@ bool j1Flying_Enemy::PostUpdate()
 }
 
 
-
-
 // Called before quitting
 bool j1Flying_Enemy::CleanUp()
 {
@@ -153,33 +149,33 @@ void j1Flying_Enemy::Flying_Enemy_State(Flying_Enemy_States stateS)
 bool j1Flying_Enemy::pathfinding() {
 
 	static iPoint Origin;
-
-	iPoint p = App->EntityManager->Get_Player()->position;
-	p = App->map->WorldToMap(p.x + 30, p.y + 30);
-
+	iPoint POINT = App->EntityManager->Get_Player()->position;
+	POINT = App->map->WorldToMap(POINT.x + 30, POINT.y + 30);
 	Origin = App->map->WorldToMap(position.x + 30, position.y + 30);
-	App->pathfinding->CreatePath(Origin, p);
-
+	App->pathfinding->CreatePath(Origin, POINT);
 	const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
 
 	if (path->At(1) != NULL)
 	{
-		
-		if (path->At(1)->x < Origin.x) {
+		if (path->At(1)->x < Origin.x)
+		{
 			position.x -= SpeedX;
 			current_animation = &walking;
 		}
 
-		if (path->At(1)->x > Origin.x) {
+		if (path->At(1)->x > Origin.x)
+		{
 			position.x += SpeedX;
 			current_animation = &walking2;
 		}
 
-		if (path->At(1)->y < Origin.y) {
+		if (path->At(1)->y < Origin.y) 
+		{
 			position.y -= SpeedY;
 		}
 
-		if (path->At(1)->y > Origin.y) {
+		if (path->At(1)->y > Origin.y) 
+		{
 			position.y += SpeedY;
 		}
 	}

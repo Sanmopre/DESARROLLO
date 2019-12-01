@@ -128,12 +128,12 @@ bool j1Scene::PostUpdate()
 
 bool j1Scene::Change_Map(int map)
 {
-	//App->collision->CleanUp();
 	CleanUp();
 	App->player->Restart();
 
 	int current_map = map;
-	if (map == 1) {
+	if (map == 1)
+	{
 		App->fade->Fade_To_Black(2);
 		App->map->CleanUp();
 		App->map2->CleanUp();
@@ -146,7 +146,8 @@ bool j1Scene::Change_Map(int map)
 		return true;
 		
 	}
-	else {
+	else
+	{
 		App->fade->Fade_To_Black(2);
 		App->map2->CleanUp();
 		App->map->CleanUp();
