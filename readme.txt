@@ -12,6 +12,7 @@ The main objective of this game is to save your grandma from Satan.
 - Pathfinding(Not finished)
 - Paralax in map 2
 - Player attack
+- Player can kill enemies with attack
 
 Controls:
 	-A = left player movement
