@@ -255,7 +255,7 @@ bool j1Player::PreUpdate()
 	Input.pressing_SPACE = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
 	Input.pressing_F = App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT;
 	Input.pressing_E = App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN;
-	Input.pressing_Q = App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT;
+	/*Input.pressing_Q = App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT;*/
 
 
 	return true;
@@ -425,39 +425,39 @@ bool j1Player::Update(float dt)
 
 			
 			break;
-		case KICK:
-			if (playerinfo.attackTimer == false)
-			{
-				playerinfo.attack_timer = SDL_GetTicks();
-				playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y + 20,25 ,10 }, COLLIDER_ATTACK, this);
-				playerinfo.attackTimer = true;
-				playerinfo.attacking = true;
-				App->audio->PlayFx(App->audio->LoadFx("audio/fx/kick.wav"));
-				
-			}
-			if (playerinfo.Looking_Forward == true)
-			{
-				playerinfo.current_animation = &playerinfo.kick;
-				/*playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y,25 ,10 }, COLLIDER_ATTACK, this);*/
-			}
-			if(playerinfo.Looking_Forward==false)
-			{
-				playerinfo.current_animation = &playerinfo.kick2;
-				playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x +30, playerinfo.position.y,25 ,10 }, COLLIDER_ATTACK, this);
-				App->collision->AttackCleanUp();
-			}
-			if (SDL_GetTicks() - playerinfo.attack_timer > playerinfo.attackTime)
-			{
-				playerinfo.Can_Input = true;
-				playerinfo.attackTimer = false;
-				playerinfo.attacking = false;
-				App->collision->AttackCleanUp();
+		//case KICK:
+		//	if (playerinfo.attackTimer == false)
+		//	{
+		//		playerinfo.attack_timer = SDL_GetTicks();
+		//		playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y + 20,25 ,10 }, COLLIDER_ATTACK, this);
+		//		playerinfo.attackTimer = true;
+		//		playerinfo.attacking = true;
+		//		App->audio->PlayFx(App->audio->LoadFx("audio/fx/kick.wav"));
+		//		
+		//	}
+		//	if (playerinfo.Looking_Forward == true)
+		//	{
+		//		playerinfo.current_animation = &playerinfo.kick;
+		//		/*playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x + 10, playerinfo.position.y,25 ,10 }, COLLIDER_ATTACK, this);*/
+		//	}
+		//	if(playerinfo.Looking_Forward==false)
+		//	{
+		//		playerinfo.current_animation = &playerinfo.kick2;
+		//		playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x +30, playerinfo.position.y,25 ,10 }, COLLIDER_ATTACK, this);
+		//		App->collision->AttackCleanUp();
+		//	}
+		//	if (SDL_GetTicks() - playerinfo.attack_timer > playerinfo.attackTime)
+		//	{
+		//		playerinfo.Can_Input = true;
+		//		playerinfo.attackTimer = false;
+		//		playerinfo.attacking = false;
+		//		App->collision->AttackCleanUp();
 
-			}
-			if (playerinfo.velocity.y == 0) {
-				playerinfo.velocity.x = 0;
-			}
-			break;
+		//	}
+		//	if (playerinfo.velocity.y == 0) {
+		//		playerinfo.velocity.x = 0;
+		//	}
+		//	break;
 
 		case DEAD:
 			playerinfo.velocity.x = 0;
@@ -631,10 +631,10 @@ void j1Player::Player_State_Machine()
 		
 		}
 
-		else if (Input.pressing_Q)
+		/*else if (Input.pressing_Q)
 		{
 			state = KICK;
-		}
+		}*/
 
 		else if (Input.pressing_D)
 		{

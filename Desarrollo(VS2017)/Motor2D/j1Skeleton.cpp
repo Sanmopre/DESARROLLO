@@ -91,6 +91,7 @@ bool j1Skeleton::Update(float dt)
 	skeletonCollider->SetPos(position.x , position.y);
 
 	App->render->Blit_Player(skeletonTex, position.x , position.y , &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+	
 
 	//SKELETON BLIT
 	/*
