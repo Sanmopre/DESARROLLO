@@ -15,7 +15,6 @@ class j1Entity : public j1Module
 {
 
 public:
-
 	enum class Types
 	{
 		PLAYER,
@@ -25,7 +24,6 @@ public:
 	};
 
 	Types entity_type;
-
 	j1Entity(Types type);
 
 	virtual ~j1Entity();
@@ -33,31 +31,18 @@ public:
 	bool Load(pugi::xml_node& data);
 	bool Save(pugi::xml_node& data) const;
 
-
 	virtual void Pushbacks();
 	virtual void OnCollision(Collider* c1, Collider* c2);
 	virtual void GetPosition();
-	//pathfinding
-
-	void Pathfind(int range, j1Entity* player);
-
 
 	iPoint			position;
 	int				SpawnPointX, SpawnPointY;
-
-	SDL_Texture* Character_tex = nullptr;
 	bool			Looking_Forward = true;
 	bool			Can_input = true;
 	bool			Alive = true;
 	bool			Grounded = true;
 
-
-	//PATHFINDING
-	bool			Following_Player = false;
-	const p2DynArray<iPoint>* path = nullptr;
-
-
-	p2SString		texture_path;
+	SDL_Texture* Character_tex = nullptr;
 	p2SString		entity_name;
 };
 

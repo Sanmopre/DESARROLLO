@@ -43,6 +43,13 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_ENEMY][COLLIDER_PLATFORM] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_WIN] = false;
 	matrix[COLLIDER_ENEMY][COLLIDER_ENEMY] = false;
+
+	matrix[COLLIDER_ATTACK][COLLIDER_FLOOR] = false;
+	matrix[COLLIDER_ATTACK][COLLIDER_PLAYER1] = false;
+	matrix[COLLIDER_ATTACK][COLLIDER_DEATH] = false;
+	matrix[COLLIDER_ATTACK][COLLIDER_PLATFORM] = false;
+	matrix[COLLIDER_ATTACK][COLLIDER_WIN] = false;
+	matrix[COLLIDER_ATTACK][COLLIDER_ENEMY] = true;
 }
 
 // Destructor
@@ -224,6 +231,25 @@ bool j1Collision::AttackCleanUp()
 		if (colliders[i] != nullptr)
 		{
 			if (colliders[i]->type == COLLIDER_ATTACK)
+			{
+				delete colliders[i];
+				colliders[i] = nullptr;
+			}
+		}
+	}
+
+	return true;
+}
+
+//Deleted attack colliders
+bool j1Collision::EnemyCleanUp()
+{
+
+	for (uint i = 0; i < MAX_COLLIDERS; ++i)
+	{
+		if (colliders[i] != nullptr)
+		{
+			if (colliders[i]->type == COLLIDER_ENEMY)
 			{
 				delete colliders[i];
 				colliders[i] = nullptr;

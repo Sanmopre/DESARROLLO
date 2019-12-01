@@ -128,20 +128,18 @@ public:
 	bool PreUpdate();
 	bool Update(float dt);
 	bool CleanUp();
-
+	//LOADING AND SAVING OPTIONS
+	bool Save(pugi::xml_node& data);
+	bool Load(pugi::xml_node& data);	
+	
+	//COLLISION MANAGER
+	void OnCollision(Collider* c1, Collider* c2);
 
 	//PLAYER STATE MANAGER
 	void Player_Position();
 	void Player_State_Machine();
 	void Set_Player_State(states state);
 	void Restart();
-
-	//COLLISION MANAGER
-	void OnCollision(Collider* c1, Collider* c2);
-
-	//LOADING AND SAVING OPTIONS
-	bool Save(pugi::xml_node& data);
-	bool Load(pugi::xml_node& data);
 
 public:
 	

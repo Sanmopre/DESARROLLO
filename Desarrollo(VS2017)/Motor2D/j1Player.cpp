@@ -852,6 +852,15 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 
 	}
 
+	if (c1 == playerinfo.playerattack && c2->type == COLLIDER_ENEMY)
+	{
+		if ((playerinfo.playerattack->rect.y + playerinfo.playerattack->rect.h) > (c2->rect.y))
+		{
+			App->collision->EnemyCleanUp();
+		}
+
+	}
+
 	}
 
 bool j1Player::Save(pugi::xml_node& data) 
