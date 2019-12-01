@@ -36,48 +36,37 @@ public:
 	bool PreUpdate();
 	bool Update(float dt);
 	bool PostUpdate();
-
-
 	// Called each loop iteration
-
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
-
-	void Flying_Enemy_State(Flying_Enemy_States state);
-	void Flying_Enemy_Position();
-
 	// Called before quitting
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
-	//PATHFINDING
+	
 	bool pathfinding();
-
+	void Flying_Enemy_State(Flying_Enemy_States state);
+	void Flying_Enemy_Position();
 
 	iPoint			position;
 	SDL_Texture*	Flying_Enemy_Tex = nullptr;
 	bool			Looking_Forward = true;
 	bool			Alive = true;
 	bool			Grounded = true;
-
 	//ANIMATIONS
 	Animation*		current_animation = nullptr;
 	Animation		walking;
 	Animation		walking2;
 	Animation		death;
 	Animation		death2;
-
 	//SPEED
 	float			SpeedX = 1;
 	float			SpeedY = 1;
 	float			gravity;
 	fPoint		    vel;
-
 	//COLLIDERS
 	Collider*	Flying_Enemy_Collider = nullptr;
-
 	void Pushbacks();
-
 	Flying_Enemy_States state = FLYING_ENEMY_FORWARD;
 
 private:

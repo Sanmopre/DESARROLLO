@@ -33,35 +33,6 @@ bool j1Entity::Save(pugi::xml_node& data) const
 	return true;
 }
 
-void j1Entity::Pathfind(int range, j1Entity* player) {
-
-	if (abs(player->position.x - position.x) < range)
-	{
-		iPoint origin = App->map->WorldToMap(position.x, position.y);
-		iPoint destination = App->map->WorldToMap(player->position.x, player->position.y);
-		App->pathfinding->CreatePath(origin, destination);
-		Following_Player = true;
-	}
-	else { Following_Player = false; }
-
-	//PATHFINDING DRAW
-	if (Following_Player)
-	{
-		int x, y;
-		SDL_Rect Debug_rect = { 0,0,32,32 };
-
-		path = App->pathfinding->GetLastPath();
-
-		for (uint i = 0; i < path->Count(); ++i)
-		{
-			iPoint pos = App->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-			Debug_rect.x = pos.x;
-			Debug_rect.y = pos.y;
-			if (App->collision->debug)App->render->DrawQuad(Debug_rect, 90, 850, 230, 40);
-		}
-	}
-
-}
 
 void j1Entity::Pushbacks() {}
 

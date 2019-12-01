@@ -24,41 +24,31 @@ public:
 
 	j1Skeleton();
 	j1Skeleton(iPoint pos);
-
 	// Destructor
 	virtual ~j1Skeleton();
-
 	// Called before render is available
 	bool Awake(pugi::xml_node& conf);
-
 	bool Start();
-
 	bool PreUpdate();
 	bool Update(float dt);
 	bool PostUpdate();
 
-	bool pathfinding_ground();
-
-
 	// Called each loop iteration
-
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
-
 	void Skeleton_State(Skeleton_States state);
 	void Skeleton_Position();
-
 	// Called before quitting
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
 
+	bool pathfinding_ground();
 	iPoint			position;
 	SDL_Texture*	skeletonTex = nullptr;
 	bool			Looking_Forward = true;
 	bool			Alive = true;
 	bool			Grounded = true;
-	
 	bool			Near_Player = false;
 
 	//ANIMATIONS
@@ -76,13 +66,8 @@ public:
 
 	//COLLIDERS
 	Collider*	skeletonCollider = nullptr;
-
-
 	void Pushbacks();
-
 	Skeleton_States state = SKELETON_FORWARD;
-
-
 private:
 
 	p2SString		folder;
