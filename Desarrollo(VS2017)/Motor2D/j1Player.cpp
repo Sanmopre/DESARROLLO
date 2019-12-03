@@ -490,6 +490,9 @@ bool j1Player::Update(float dt)
 
 	if (playerinfo.God_Mode)
 	{
+		playerinfo.Alive = true;
+		playerinfo.current_animation = &playerinfo.idle;
+
 		if (App->input->GetKey(SDL_SCANCODE_I) == KEY_REPEAT) { playerinfo.GodModeUp = true; }
 		else if (App->input->GetKey(SDL_SCANCODE_I) == KEY_UP) { playerinfo.GodModeUp = false; }
 
