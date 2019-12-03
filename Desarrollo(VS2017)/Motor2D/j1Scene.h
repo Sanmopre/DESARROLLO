@@ -40,9 +40,9 @@ public:
 public:
 	SDL_Texture* graphics = nullptr;
 
-	iPoint Player_Pos;
+//	iPoint Player_Pos;
 	iPoint Fly_Position =  { 690 , 100 };
-	//iPoint Skeleton_Position = {190 , 30};
+	iPoint Skeleton_Position = {190 , 30};
 };
 
 #endif // __j1SCENE_H__
