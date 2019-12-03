@@ -28,6 +28,7 @@ public:
 	void Destroy_Entity(j1Entity* entity);
 	void Destroy_Entities();
 
+
 	pugi::xml_node node;
 	p2List<j1Entity*> entities;
 };

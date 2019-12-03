@@ -821,7 +821,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 	{
 		if ((playerinfo.playerattack->rect.y + playerinfo.playerattack->rect.h) > (c2->rect.y))
 		{
-			App->collision->EnemyCleanUp();
+			App->EntityManager->Destroy_Entity(App->scene->skeleton);
 		}
 
 	}

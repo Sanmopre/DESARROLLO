@@ -3,6 +3,7 @@
 
 #include "j1Module.h"
 #include "p2Point.h"
+#include "j1Entity.h"
 
 struct SDL_Texture;
 
@@ -39,7 +40,7 @@ public:
 
 public:
 	SDL_Texture* graphics = nullptr;
-
+	j1Entity* skeleton;
 //	iPoint Player_Pos;
 	iPoint Fly_Position =  { 690 , 100 };
 	iPoint Skeleton_Position = {190 , 30};

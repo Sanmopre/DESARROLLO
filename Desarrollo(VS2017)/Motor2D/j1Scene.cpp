@@ -44,7 +44,7 @@ bool j1Scene::Start()
 
 	
 	//ENTITY
-	App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
+	skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
 	//App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
 	App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
 
