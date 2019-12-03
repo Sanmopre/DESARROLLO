@@ -43,6 +43,8 @@ public:
 //	iPoint Player_Pos;
 	iPoint Fly_Position =  { 690 , 100 };
 	iPoint Skeleton_Position = {190 , 30};
+	//iPoint Player_Pos = { 30, 300 };
+
 };
 
 #endif // __j1SCENE_H__

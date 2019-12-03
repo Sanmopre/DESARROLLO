@@ -141,7 +141,7 @@ bool j1Scene::Change_Map(int map)
 		App->collision->MapCleanUp();
 		
 			App->map2->Load("castle.tmx");
-		
+			App->audio->PlayMusic("audio/music/castle.ogg");
 		current_map = 1;
 		return true;
 		
