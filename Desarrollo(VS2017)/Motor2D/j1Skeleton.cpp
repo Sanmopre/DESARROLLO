@@ -82,7 +82,7 @@ bool j1Skeleton::Update(float dt)
 		current_animation = &death;
 		break;
 	}
-	current_animation = &walking;
+	current_animation = &walking2;
 	Skeleton_Position();
 
 
