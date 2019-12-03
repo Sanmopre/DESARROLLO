@@ -39,6 +39,11 @@ bool j1EntityManager::PreUpdate()
 
 bool j1EntityManager::Update(float dt)
 {
+	/*for (p2List_item<j1Entity*>* entity = entities.start; entity; entity = entity->next)
+	{
+			entity->data->Update(dt);
+
+	}*/
 	return true;
 }
 

@@ -18,6 +18,7 @@
 j1Flying_Enemy::j1Flying_Enemy() : j1Entity(Types::FLYING_ENEMY)
 {
 	name.create("Flying_Enemy");
+	Pushbacks();
 }
 
 j1Flying_Enemy::j1Flying_Enemy(iPoint pos) : j1Entity(Types::FLYING_ENEMY)
@@ -47,7 +48,8 @@ bool j1Flying_Enemy::Start()
 
 	current_animation = &walking;
 	Flying_Enemy_Collider = App->collision->AddCollider({ position.x , position.y , 20, 20 }, COLLIDER_ENEMY, this);
-	Flying_Enemy_Tex = App->tex->Load(PATH(folder.GetString(), texture_path.GetString()));
+	/*Flying_Enemy_Tex = App->tex->Load(PATH(folder.GetString(), texture_path.GetString()));*/
+	Flying_Enemy_Tex = App->tex->Load("sprites/ENEMIES.png");
 	return true;
 }
 
@@ -85,31 +87,35 @@ bool j1Flying_Enemy::Update(float dt)
 	//COLLIDER POSITION
 	Flying_Enemy_Collider->SetPos(position.x, position.y);
 
+	App->render->Blit(Flying_Enemy_Tex, position.x, position.y , &current_animation->GetCurrentFrame(), SDL_FLIP_NONE);
+
 	//SKELETON BLIT
-	if (App->render->camera.x < -550) {
+	/*if (App->render->camera.x < -550) {
 
 		if (Looking_Forward == false) {
-			App->render->Blit_Player(Flying_Enemy_Tex, position.x - 390, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+			App->render->Blit_Player(Flying_Enemy_Tex, position.x - 390, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE);
 		}
 		else {
-			App->render->Blit_Player(Flying_Enemy_Tex, position.x - 350, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+			App->render->Blit_Player(Flying_Enemy_Tex, position.x - 350, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE);
 		}
 	}
 	if (App->render->camera.x > -550) {
 
 		if (Looking_Forward == false) {
-			App->render->Blit_Player(Flying_Enemy_Tex, position.x + 15, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+			App->render->Blit_Player(Flying_Enemy_Tex, position.x + 15, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE);
 		}
 		else {
-			App->render->Blit_Player(Flying_Enemy_Tex, position.x + 55, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+			App->render->Blit_Player(Flying_Enemy_Tex, position.x + 55, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE);
 		}
-	}
+	}*/
 
 	return true;
 }
 
 bool j1Flying_Enemy::PostUpdate()
 {
+	
+
 	return true;
 }
 
