@@ -50,7 +50,7 @@ bool j1Render::Awake(pugi::xml_node& config)
 		camera.w = App->win->screen_surface->w;
 		camera.h = App->win->screen_surface->h;
 		camera.x = 0;
-		camera.y = -475;
+		camera.y = 0;
 	}
 
 	return ret;
@@ -295,58 +295,13 @@ bool j1Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, U
 	return ret;
 }
 
-void j1Render::Player_Camera(int x, int y) {
+void j1Render::Player_Camera(int x, int y) 
+{
+	App->render->camera.x = -x;
+	App->render->camera.y = -y;
 
-	camera.x = -x + (App->win->width / 20);
-	camera.y = -y + (App->win->height / 250);
-
-	if (camera.x > 0)
-	{
-		camera.x = 0;
-	}
-
-	if (camera.y > 0) {
-		camera.y = 0;
-	}
-
-
-
-
-	/*
-	if (moveTimer == false)
-	{
-		move_timer = SDL_GetTicks();
-		moveTimer = true;
-	}
-
-
-	if (SDL_GetTicks() - moveTime > move_timer)
-	{
-		App->player->playerinfo.Can_Input = false;
-		moveTimer = false;
-		camera.x = camera.x + App->win->GetScale();
-	}
-	else
-	{
-		App->player->playerinfo.Can_Input = false;
-	}
-	*/
-
-
-
-
-
-
-
-
-
-
-
-	if (camera.x < -550 )
-	{
 	
-		camera.x = camera.x - 400;
 
 
-	}
+
 }

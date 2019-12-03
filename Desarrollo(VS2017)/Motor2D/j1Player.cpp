@@ -579,11 +579,11 @@ bool j1Player::Update(float dt)
 			}
 		}
 	}
-	App->render->Player_Camera(playerinfo.position.x, playerinfo.position.y + 10);
+	App->render->Player_Camera(playerinfo.position.x, playerinfo.position.y);
 	
 	//DRAW THE PLAYER BLIT
 	
-	
+	/*
 		if (App->render->camera.x < -550) {
 			
 			if (playerinfo.attacking == true && playerinfo.Looking_Forward == false) {
@@ -602,8 +602,13 @@ bool j1Player::Update(float dt)
 				App->render->Blit_Player(graphics, playerinfo.position.x + 55, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 			}
 		}
-	
-
+	*/
+	if (playerinfo.attacking == true && playerinfo.Looking_Forward == false) {
+		App->render->Blit_Player(graphics, playerinfo.position.x , playerinfo.position.y , &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+	}
+	else {
+		App->render->Blit_Player(graphics, playerinfo.position.x , playerinfo.position.y , &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+	}
 
 	return true;
 }
