@@ -48,7 +48,6 @@ bool j1Flying_Enemy::Start()
 
 	current_animation = &walking;
 	Flying_Enemy_Collider = App->collision->AddCollider({ position.x , position.y , 20, 20 }, COLLIDER_ENEMY, this);
-	/*Flying_Enemy_Tex = App->tex->Load(PATH(folder.GetString(), texture_path.GetString()));*/
 	Flying_Enemy_Tex = App->tex->Load("sprites/ENEMIES.png");
 	return true;
 }

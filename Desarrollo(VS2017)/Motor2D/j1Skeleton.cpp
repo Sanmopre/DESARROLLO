@@ -90,7 +90,7 @@ bool j1Skeleton::Update(float dt)
 	//COLLIDER POSITION
 	skeletonCollider->SetPos(position.x , position.y);
 
-	App->render->Blit_Player(skeletonTex, position.x , position.y , &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+	App->render->Blit(skeletonTex, position.x, position.y, &current_animation->GetCurrentFrame(), SDL_FLIP_NONE);
 	
 
 	//SKELETON BLIT
