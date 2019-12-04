@@ -174,7 +174,7 @@ void j1Skeleton::Pushbacks()
 	walking.PushBack({ 246,273, 18, 32 });
 	walking.PushBack({ 268, 273, 17, 32 });
 	walking.lock = true;
-	walking.speed = 0.5f;
+	walking.speed = 0.2f;
 
 	walking2.PushBack({ 958, 594, 18, 32 });
 	walking2.PushBack({ 936, 594, 18, 32 });
@@ -190,7 +190,7 @@ void j1Skeleton::Pushbacks()
 	walking2.PushBack({ 715, 594, 18, 32 });
 	walking2.PushBack({ 694, 594, 17, 32 });
 	walking.lock = true;
-	walking.speed = 0.5f;
+	walking.speed = 0.2f;
 
 	death.PushBack({ 14, 76, 22, 32 });
 	death.PushBack({ 44, 76, 23, 32 });

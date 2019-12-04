@@ -173,7 +173,7 @@ j1Player::j1Player() : j1Entity(Types::PLAYER)
 	playerinfo.attack2.lock = true;
 	playerinfo.attack2.speed = 0.275f;
 
-	/*playerinfo.kick.PushBack({ 305, 254, 18, 31 });*/
+	//playerinfo.kick.PushBack({ 305, 254, 18, 31 });
 	playerinfo.kick.PushBack({3, 285, 23, 29});
 	playerinfo.kick.PushBack({36, 286, 27, 28});
 	playerinfo.kick.lock = true;

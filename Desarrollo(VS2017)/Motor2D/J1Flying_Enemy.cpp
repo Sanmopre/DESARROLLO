@@ -191,23 +191,23 @@ bool j1Flying_Enemy::pathfinding() {
 
 void j1Flying_Enemy::Pushbacks()
 {
-	walking.PushBack({ 3, 347, 19, 42 });
+	walking.PushBack({386, 348, 25, 42});
 	walking.PushBack({ 65, 349, 28, 41 });
 	walking.PushBack({ 130, 345, 26, 42});
 	walking.PushBack({195, 351, 24, 42});
 	walking.PushBack({259, 352, 24, 42});
 	walking.PushBack({322, 349, 25, 44});
-	walking.PushBack({386, 348, 25, 42});
+	
 	walking.lock = true;
 	walking.speed = 0.1;
 
-	walking2.PushBack({387, 656, 19, 42});
+	walking2.PushBack({3, 657, 25, 42});
 	walking2.PushBack({321, 658, 28, 41});
 	walking2.PushBack({258, 659, 26, 42});
 	walking2.PushBack({195, 660, 24, 42});
 	walking2.PushBack({131, 661, 24, 42});
 	walking2.PushBack({67, 658, 25, 44});
-	walking2.PushBack({3, 657, 25, 42});
+	
 	walking2.lock = true;
 	walking2.speed = 0.1f;
 
