@@ -20,6 +20,8 @@ j1Entity::j1Entity(Types type)
 j1Entity:: ~j1Entity()
 {}
 
+
+
 bool j1Entity::Load(pugi::xml_node& data)
 {
 	position.x = data.child("position").attribute("posX").as_int();

@@ -823,7 +823,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		{
 			App->EntityManager->Destroy_Entity(App->scene->skeleton);
 		}
-
+		App->collision->EnemyCleanUp();
 	}
 
 	}
