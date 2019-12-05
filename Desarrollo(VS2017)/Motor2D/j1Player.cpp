@@ -140,7 +140,7 @@ j1Player::j1Player() : j1Entity(Types::PLAYER)
 	playerinfo.voltereta2.lock = true;
 	playerinfo.voltereta2.speed = 0.555f;
 
-	/*
+	
 	playerinfo.attack.PushBack({1, 318, 43, 28});
 	playerinfo.attack.PushBack({46, 320, 43, 26});
 	playerinfo.attack.speed = 0.1f;
@@ -150,10 +150,10 @@ j1Player::j1Player() : j1Entity(Types::PLAYER)
 	playerinfo.attack2.PushBack({424, 0, 43, 26});
 	playerinfo.attack2.speed = 0.1f;
 	playerinfo.attack2.lock = true;
-	*/
+	
 
 
-	playerinfo.attack.PushBack({ 113, 241, 15, 39 },0, 10);
+	/*playerinfo.attack.PushBack({ 113, 241, 15, 39 },0, 10);
 
 	playerinfo.attack.PushBack({ 113, 241, 15, 39 });
 
@@ -171,7 +171,7 @@ j1Player::j1Player() : j1Entity(Types::PLAYER)
 	playerinfo.attack2.PushBack({324, 337, 41, 38});
 	playerinfo.attack2.PushBack({276, 337, 41, 38});
 	playerinfo.attack2.lock = true;
-	playerinfo.attack2.speed = 0.275f;
+	playerinfo.attack2.speed = 0.275f;*/
 
 	//playerinfo.kick.PushBack({ 305, 254, 18, 31 });
 	playerinfo.kick.PushBack({3, 285, 23, 29});

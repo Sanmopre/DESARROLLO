@@ -34,6 +34,11 @@ bool j1EntityManager::Start()
 
 bool j1EntityManager::PreUpdate()
 {
+	for (p2List_item<j1Entity*>* entity = entities.start; entity; entity = entity->next)
+	{
+		
+		entity->data->PreUpdate();
+	}
 	return true;
 }
 
@@ -42,7 +47,6 @@ bool j1EntityManager::Update(float dt)
 	for (p2List_item<j1Entity*>* entity = entities.start; entity; entity = entity->next)
 	{
 			entity->data->Update(dt);
-
 	}
 	return true;
 }
@@ -99,7 +103,20 @@ j1Entity* j1EntityManager::Summon_Entity(j1Entity::Types type, iPoint pos)
 
 void j1EntityManager::Destroy_Entity(j1Entity* entity)
 {
-	delete entity;
+	p2List_item<j1Entity*>* entity_finder = entities.start;
+	while (entity_finder != NULL)
+	{
+		if (entity_finder->data == entity)
+		{
+			if (entity_finder->data == Get_Player())
+				Get_Player()->CleanUp();
+			entities.del(entity_finder);
+			RELEASE(entity_finder->data);
+			break;
+		}
+		entity_finder = entity_finder->next;
+	}
+	
 }
 
 void j1EntityManager::Destroy_Entities()

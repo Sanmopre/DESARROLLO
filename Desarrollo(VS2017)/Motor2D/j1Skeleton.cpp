@@ -222,6 +222,11 @@ void j1Skeleton::Pushbacks()
 
 void j1Skeleton::OnCollision(Collider* c1, Collider* c2)
 {
+	if (c1->type == COLLIDER_ATTACK || c2->type == COLLIDER_ATTACK)
+	{
+		Alive = false;
+		CleanUp();
+	}
 }
 
 void j1Skeleton::Skeleton_Position()

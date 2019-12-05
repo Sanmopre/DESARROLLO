@@ -44,6 +44,7 @@ public:
 
 	SDL_Texture* Character_tex = nullptr;
 	p2SString		entity_name;
+	
 };
 
 #endif
