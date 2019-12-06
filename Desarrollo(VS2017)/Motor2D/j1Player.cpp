@@ -567,6 +567,9 @@ bool j1Player::Update(float dt)
 		App->render->Blit_Player(Character_tex, playerinfo.position.x , playerinfo.position.y , &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 	}
 
+	position.x = playerinfo.position.x;
+	position.y = playerinfo.position.y;
+
 	return true;
 }
 

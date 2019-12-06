@@ -34,6 +34,7 @@ public:
 	virtual void Pushbacks();
 	virtual void OnCollision(Collider* c1, Collider* c2);
 	virtual void GetPosition();
+	virtual void Restart();
 
 	iPoint			position;
 	int				SpawnPointX, SpawnPointY;

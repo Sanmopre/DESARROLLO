@@ -15,6 +15,7 @@ enum Skeleton_States
 {
 	SKELETON_FORWARD,
 	SKELETON_BACKWARD,
+	SKELETON_FOLLOWING,
 	SKELETON_DEATH,
 };
 
@@ -46,8 +47,11 @@ public:
 
 
 	bool pathfinding_ground();
+	bool Down = false;
+
 	iPoint			position;
 	SDL_Texture*	skeletonTex = nullptr;
+	SDL_Texture*	TEX = nullptr;
 	bool			Looking_Forward = true;
 	bool			Alive = true;
 	bool			Grounded = true;
@@ -61,8 +65,8 @@ public:
 	Animation		death2;
 
 	//SPEED
-	float			SpeedX = 1;
-	float			SpeedY = 1;
+	float			SpeedX = 1.5;
+	float			SpeedY = 1.5;
 	float			gravity;
 	fPoint		    vel;
 

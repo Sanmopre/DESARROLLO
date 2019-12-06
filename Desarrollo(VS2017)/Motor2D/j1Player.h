@@ -70,7 +70,7 @@ struct PlayerInfo
 	//PLAYER, AND WORLD MAX VELOCITIES
 	int				Spawn_X;
 	int				Spawn_Y;
-	float			World_Gravity = 0.425;
+	float			World_Gravity = 0.42;
 	float			Speed_X = 3.75;
 	float			Speed_Y = 7.0;
 	float			Dash_Speed = 7.25;

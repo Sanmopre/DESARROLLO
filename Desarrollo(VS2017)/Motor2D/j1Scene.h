@@ -42,6 +42,7 @@ public:
 	SDL_Texture* graphics = nullptr;
 	j1Entity* skeleton;
 	j1Entity* player;
+	j1Entity* flying_enemy;
 
 	iPoint Fly_Position =  { 690 , 100 };
 	iPoint Skeleton_Position = {190 , 30};

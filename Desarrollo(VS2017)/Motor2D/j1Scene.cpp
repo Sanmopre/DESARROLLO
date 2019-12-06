@@ -46,7 +46,7 @@ bool j1Scene::Start()
 	//ENTITY
 	skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
 	player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
-	App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
+	flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
 
 	
 	return true;
@@ -137,7 +137,6 @@ bool j1Scene::Change_Map(int map)
 		App->fade->Fade_To_Black(2);
 		App->map->CleanUp();
 		App->map2->CleanUp();
-		//App->player->playerinfo.Alive = false;
 		App->collision->MapCleanUp();
 		
 			App->map2->Load("castle.tmx");
@@ -152,7 +151,6 @@ bool j1Scene::Change_Map(int map)
 		App->map2->CleanUp();
 		App->map->CleanUp();
 		App->collision->MapCleanUp();
-	//	App->player->playerinfo.Alive = false;
 		App->collision->MapCleanUp();
 		
 			App->map->Load("dungeon.tmx");

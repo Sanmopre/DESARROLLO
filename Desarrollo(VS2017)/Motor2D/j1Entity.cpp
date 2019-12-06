@@ -41,6 +41,7 @@ void j1Entity::Pushbacks() {}
 void j1Entity::OnCollision(Collider* c1, Collider* c2) {}
 
 void j1Entity::GetPosition() {}
+void j1Entity::Restart() {}
 
 
 
