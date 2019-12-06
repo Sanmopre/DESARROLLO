@@ -189,7 +189,8 @@ j1Player::j1Player() : j1Entity(Types::PLAYER)
 j1Player::j1Player(iPoint pos) : j1Entity(Types::PLAYER)
 {
 	name.create("player");
-	position = pos;
+	playerinfo.Spawn_X = pos.x;
+	playerinfo.Spawn_Y = pos.y;
 }
 
 j1Player::~j1Player()
@@ -202,9 +203,9 @@ bool j1Player::Awake(pugi::xml_node& config)
 	bool ret = true;
 
 	folder.create(config.child("folder").child_value());
-	
-	playerinfo.Spawn_X = config.child("initialPosition").attribute("x").as_int();
-	playerinfo.Spawn_Y = config.child("initialPosition").attribute("y").as_int();
+	/*
+//	playerinfo.Spawn_X = config.child("initialPosition").attribute("x").as_int();
+//	playerinfo.Spawn_Y = config.child("initialPosition").attribute("y").as_int();
 	
 	playerinfo.MAX_X = config.child("speed").attribute("MAX_X").as_int();
 	playerinfo.MAX_Y = config.child("speed").attribute("MAX_Y").as_float();
@@ -213,14 +214,14 @@ bool j1Player::Awake(pugi::xml_node& config)
 	playerinfo.Speed_Y = config.child("speed").attribute("Speed_Y").as_float();
 	playerinfo.Dash_Speed = config.child("speed").attribute("Dash_Speed").as_float();
 
-	playerinfo.World_Gravity = config.child("World_Gravity").attribute("value").as_float();
+	//playerinfo.World_Gravity = config.child("World_Gravity").attribute("value").as_float();
 	playerinfo.MAX_JUMP = config.child("speed").attribute("MAX_JUMP").as_int();
 	playerinfo.Reducction_Speed = config.child("speed").attribute("Reducction_Speed").as_float();
 	playerinfo.dashTime = config.child("Dash").attribute("dashTime").as_int();
 
 	playerinfo.attackTime = config.child("Attack").attribute("Time").as_int();
 	playerinfo.deathTime = config.child("Death").attribute("Time").as_int();
-
+*/
 	node = config;
 	return ret;
 }
@@ -232,7 +233,7 @@ bool j1Player::Start()
 	bool ret = true;
 
 
-	graphics=App->tex->Load("sprites/pepe.png");
+	Character_tex = App->tex->Load("sprites/pepe.png");
     //SETS POSITION POLAYER FROM XML
 	playerinfo.position.x = playerinfo.Spawn_X;
 	playerinfo.position.y = playerinfo.Spawn_Y;
@@ -537,7 +538,7 @@ bool j1Player::Update(float dt)
 	App->render->Player_Camera(playerinfo.position.x, playerinfo.position.y);
 	
 	//DRAW THE PLAYER BLIT
-	
+
 	/*
 		if (App->render->camera.x < -550) {
 			
@@ -559,11 +560,11 @@ bool j1Player::Update(float dt)
 		}
 	*/
 	if (playerinfo.attacking == true && playerinfo.Looking_Forward == false) {
-		App->render->Blit_Player(graphics, playerinfo.position.x - 40, playerinfo.position.y - 20 , &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		App->render->Blit_Player(Character_tex, playerinfo.position.x - 40, playerinfo.position.y - 20 , &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 	}
 
 	else {
-		App->render->Blit_Player(graphics, playerinfo.position.x , playerinfo.position.y , &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		App->render->Blit_Player(Character_tex, playerinfo.position.x , playerinfo.position.y , &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 	}
 
 	return true;
@@ -823,7 +824,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		{
 			App->EntityManager->Destroy_Entity(App->scene->skeleton);
 		}
-		App->collision->EnemyCleanUp();
+		//App->collision->EnemyCleanUp();
 	}
 
 	}

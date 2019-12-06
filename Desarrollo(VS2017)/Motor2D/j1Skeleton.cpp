@@ -88,8 +88,9 @@ bool j1Skeleton::Update(float dt)
 
 
 	//COLLIDER POSITION
+	if (Alive == true) {
 	skeletonCollider->SetPos(position.x , position.y);
-
+}
 	App->render->Blit(skeletonTex, position.x, position.y, &current_animation->GetCurrentFrame(), SDL_FLIP_NONE);
 	
 
@@ -131,7 +132,8 @@ bool j1Skeleton::PostUpdate()
 bool j1Skeleton::CleanUp()
 {
 	App->tex->Unload(skeletonTex);
-
+	Alive = false;
+	skeletonCollider->SetPos(1000, 1000);
 	return true;
 }
 

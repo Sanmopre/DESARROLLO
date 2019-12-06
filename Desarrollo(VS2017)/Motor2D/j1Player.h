@@ -70,14 +70,14 @@ struct PlayerInfo
 	//PLAYER, AND WORLD MAX VELOCITIES
 	int				Spawn_X;
 	int				Spawn_Y;
-	float			World_Gravity;
-	float			Speed_X;
-	float			Speed_Y;
-	float			Dash_Speed;
-	float			Reducction_Speed;
-	float		    MAX_X;
-	float			MAX_Y;
-	float		    MAX_JUMP;
+	float			World_Gravity = 0.425;
+	float			Speed_X = 3.75;
+	float			Speed_Y = 7.0;
+	float			Dash_Speed = 7.25;
+	float			Reducction_Speed = 0.75;
+	float		    MAX_X = 4.0;
+	float			MAX_Y = 15.0;
+	float		    MAX_JUMP = 9;
 	fPoint		    velocity;
 
 	bool            Looking_Forward = true;
@@ -88,17 +88,17 @@ struct PlayerInfo
 	bool            God_Mode = false;
 
 	Uint32		dash_timer;
-	int		    dashTime;
+	int		    dashTime = 395;
 	bool		dashTimer = false;
 
 	//Attack timer
 	Uint32		attack_timer;
 	bool        attacking = false;
-	int		    attackTime;
+	int		    attackTime = 590;
 	bool		attackTimer = false;
 
 	Uint32		death_timer;
-	int		    deathTime;
+	int		    deathTime = 460;
 	bool		deathTimer = false;
 
 	//PLAYER GOD-MODE

@@ -45,7 +45,7 @@ bool j1Scene::Start()
 	
 	//ENTITY
 	skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
-	//App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
+	player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
 	App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
 
 	
@@ -129,7 +129,7 @@ bool j1Scene::PostUpdate()
 bool j1Scene::Change_Map(int map)
 {
 	CleanUp();
-	App->player->Restart();
+	//player->Restart();
 
 	int current_map = map;
 	if (map == 1)
@@ -137,7 +137,7 @@ bool j1Scene::Change_Map(int map)
 		App->fade->Fade_To_Black(2);
 		App->map->CleanUp();
 		App->map2->CleanUp();
-		App->player->playerinfo.Alive = false;
+		//App->player->playerinfo.Alive = false;
 		App->collision->MapCleanUp();
 		
 			App->map2->Load("castle.tmx");
@@ -152,7 +152,7 @@ bool j1Scene::Change_Map(int map)
 		App->map2->CleanUp();
 		App->map->CleanUp();
 		App->collision->MapCleanUp();
-		App->player->playerinfo.Alive = false;
+	//	App->player->playerinfo.Alive = false;
 		App->collision->MapCleanUp();
 		
 			App->map->Load("dungeon.tmx");
@@ -166,8 +166,6 @@ bool j1Scene::Change_Map(int map)
 
 bool j1Scene::Load(pugi::xml_node& data)
 {
-	App->player->playerinfo.position.x = data.child("playerPos").attribute("player_pos_x").as_float();
-	App->player->playerinfo.position.y = data.child("playerPos").attribute("player_pos_y").as_float();
 
 	return true;
 }
@@ -177,8 +175,7 @@ bool j1Scene::Save(pugi::xml_node& data) const
 {
 	pugi::xml_node player = data.append_child("playerPos");
 
-	player.append_attribute("player_pos_x") = App->player->playerinfo.position.x;
-	player.append_attribute("player_pos_y") = App->player->playerinfo.position.y;
+
 
 	pugi::xml_node player_collider = data.append_child("player_collider");
 

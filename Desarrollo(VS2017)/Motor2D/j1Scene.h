@@ -41,10 +41,11 @@ public:
 public:
 	SDL_Texture* graphics = nullptr;
 	j1Entity* skeleton;
-//	iPoint Player_Pos;
+	j1Entity* player;
+
 	iPoint Fly_Position =  { 690 , 100 };
 	iPoint Skeleton_Position = {190 , 30};
-	//iPoint Player_Pos = { 30, 300 };
+	iPoint Player_Pos = { 30, 320 };
 
 };
 

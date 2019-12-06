@@ -47,8 +47,7 @@ bool j1FadeToBlack::Update(float dt)
 	{
 	case Fade_State::FADE_TO_BLACK:
 	{
-		App->player->playerinfo.velocity.x = 0;
-		App->player->playerinfo.velocity.y = 0;
+
 		//App->player->playerinfo.Can_Input = false;
 		if (time >= total_time)
 		{
