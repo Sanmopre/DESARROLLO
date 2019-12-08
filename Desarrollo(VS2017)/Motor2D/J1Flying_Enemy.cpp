@@ -46,6 +46,8 @@ bool j1Flying_Enemy::Start()
 	vel.x = 0;
 	vel.y = 0;
 
+	bool pathFinding = true;
+
 	current_animation = &walking;
 	Flying_Enemy_Collider = App->collision->AddCollider({ position.x , position.y , 20, 20 }, COLLIDER_ENEMY, this);
 	Flying_Enemy_Tex = App->tex->Load("sprites/ENEMIES.png");
@@ -62,6 +64,10 @@ bool j1Flying_Enemy::PreUpdate()
 
 bool j1Flying_Enemy::Update(float dt)
 {
+	if (App->EntityManager->Get_Player()->position.x > position.x - rangeX && App->EntityManager->Get_Player()->position.x < position.x + rangeX && App->EntityManager->Get_Player()->position.y + rangeY && App->EntityManager->Get_Player()->position.y - rangeY){
+		if (pathFinding)pathfinding();
+}
+
 	switch (state)
 	{
 	case FLYING_ENEMY_FORWARD:
@@ -153,37 +159,45 @@ void j1Flying_Enemy::Flying_Enemy_State(Flying_Enemy_States stateS)
 
 bool j1Flying_Enemy::pathfinding() {
 
-	static iPoint Origin;
-	iPoint POINT = App->EntityManager->Get_Player()->position;
-	POINT = App->map->WorldToMap(POINT.x + 30, POINT.y + 30);
-	Origin = App->map->WorldToMap(position.x + 30, position.y + 30);
-	App->pathfinding->CreatePath(Origin, POINT);
+
+
+	static iPoint origin;
+	static bool origin_selected = false;
+	iPoint p = App->EntityManager->Get_Player()->position;
+	p = App->map->WorldToMap(p.x + 30, p.y + 30);
+	origin = App->map->WorldToMap(position.x + 30, position.y + 30);
+	App->pathfinding->CreatePath(origin, p);
 	const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
 
 	if (path->At(1) != NULL)
 	{
-		if (path->At(1)->x < Origin.x)
-		{
+		state = FLYING_ENEMY_PATHFINDING;
+
+		if (path->At(1)->x < origin.x) {
 			position.x -= SpeedX;
-			current_animation = &walking;
 		}
 
-		if (path->At(1)->x > Origin.x)
-		{
+		if (path->At(1)->x > origin.x) {
 			position.x += SpeedX;
-			current_animation = &walking2;
 		}
 
-		if (path->At(1)->y < Origin.y) 
-		{
+		if (path->At(1)->y < origin.y) {
 			position.y -= SpeedY;
 		}
 
-		if (path->At(1)->y > Origin.y) 
-		{
+		if (path->At(1)->y > origin.y) {
 			position.y += SpeedY;
 		}
 	}
+	for (uint i = 0; i < path->Count(); ++i)
+	{
+		iPoint nextPoint = App->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+		if (App->collision->debug)
+		{
+			App->render->Blit(TEX, nextPoint.x, nextPoint.y);
+		}
+	}
+
 	return true;
 }
 

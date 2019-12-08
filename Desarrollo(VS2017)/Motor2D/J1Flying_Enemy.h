@@ -15,6 +15,7 @@ enum Flying_Enemy_States
 {
 	FLYING_ENEMY_FORWARD,
 	FLYING_ENEMY_BACKWARD,
+	FLYING_ENEMY_PATHFINDING,
 	FLYING_ENEMY_DEATH,
 };
 
@@ -45,11 +46,17 @@ public:
 
 	
 	bool pathfinding();
+	bool pathFinding = false;
+	int rangeX = 400;
+	int rangeY = 400;
+
+
 	void Flying_Enemy_State(Flying_Enemy_States state);
 	void Flying_Enemy_Position();
 
 	iPoint			position;
 	SDL_Texture*	Flying_Enemy_Tex = nullptr;
+	SDL_Texture*	TEX = nullptr;
 	bool			Looking_Forward = true;
 	bool			Alive = true;
 	bool			Grounded = true;
