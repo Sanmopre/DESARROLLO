@@ -48,6 +48,7 @@ public:
 	iPoint Skeleton_Position = {190 , 30};
 	iPoint Player_Pos = { 30, 320 };
 
+
 };
 
 #endif // __j1SCENE_H__

@@ -129,33 +129,31 @@ bool j1Scene::PostUpdate()
 bool j1Scene::Change_Map(int map)
 {
 	CleanUp();
-	//player->Restart();
+	player->Alive = false;
 
 	int current_map = map;
 	if (map == 1)
 	{
+		player->Restart();
 		App->fade->Fade_To_Black(2);
 		App->map->CleanUp();
 		App->map2->CleanUp();
 		App->collision->MapCleanUp();
-		
-			App->map2->Load("castle.tmx");
-			App->audio->PlayMusic("audio/music/castle.ogg");
+		App->map2->Load("castle.tmx");
+		App->audio->PlayMusic("audio/music/castle.ogg");
 		current_map = 1;
 		return true;
-		
 	}
 	else
 	{
+		player->Restart();
 		App->fade->Fade_To_Black(2);
 		App->map2->CleanUp();
 		App->map->CleanUp();
 		App->collision->MapCleanUp();
 		App->collision->MapCleanUp();
-		
-			App->map->Load("dungeon.tmx");
-			App->audio->PlayMusic("audio/music/ghost.ogg");
-		
+		App->map->Load("dungeon.tmx");
+		App->audio->PlayMusic("audio/music/ghost.ogg");
 		current_map = 2;
 		return false;
 	}

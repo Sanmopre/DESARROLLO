@@ -133,7 +133,7 @@ bool j1Skeleton::CleanUp()
 {
 	App->tex->Unload(skeletonTex);
 	Alive = false;
-	skeletonCollider->SetPos(1000, 1000);
+	skeletonCollider->to_delete = true;
 	return true;
 }
 

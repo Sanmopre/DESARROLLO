@@ -103,7 +103,7 @@ bool j1Player::Update(float dt)
 
 	BROFILER_CATEGORY("Player_Update", Profiler::Color::Blue)
 		
-	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_REPEAT) { playerinfo.Alive = false; }
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_REPEAT) { Alive = false; }
 	
 	if (playerinfo.God_Mode == false && playerinfo.Alive == true)
 	{
@@ -354,7 +354,7 @@ bool j1Player::Update(float dt)
 	}
 	playerinfo.Grounded = false;
 
-	if (playerinfo.Alive == false)
+	if (Alive == false)
 	{
 		playerinfo.current_animation = &playerinfo.death;
 		Restart();
@@ -495,7 +495,7 @@ void j1Player::Player_Position()
 
 void j1Player::Restart()
 {
-	if (playerinfo.Alive == false) {
+	if (Alive == false) {
 		playerinfo.attack_timer = 0;
 		playerinfo.dash_timer = 0;
 		App->collision->AttackCleanUp();
@@ -519,7 +519,7 @@ void j1Player::Restart()
 		playerinfo.velocity.y = 0;
 		playerinfo.velocity.x = 0;
 		playerinfo.Looking_Forward = true;	
-		playerinfo.Alive = true;
+		Alive = true;
 		App->audio->PlayFx(App->audio->LoadFx("audio/fx/death.wav"));
 		playerinfo.current_animation = &playerinfo.death;
 		}
@@ -598,23 +598,23 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		if (state == DASH)
 		{
 			if (playerinfo.playerbody->rect.x + playerinfo.playerbody->rect.w > c2->rect.x && playerinfo.playerbody->rect.x < c2->rect.x) {
-				playerinfo.Alive = false;
+				Alive = false;
 
 			}
 			if (playerinfo.playerbody->rect.x < c2->rect.x + c2->rect.w && playerinfo.playerbody->rect.x > c2->rect.x)
 			{
-				playerinfo.Alive = false;
+				Alive = false;
 			}
 		}
 		else
 		{
 			if (playerinfo.playerbody->rect.x + playerinfo.playerbody->rect.w > c2->rect.x && playerinfo.playerbody->rect.x < c2->rect.x) {
-				playerinfo.Alive = false;
+				Alive = false;
 
 			}
 			if (playerinfo.playerbody->rect.x < c2->rect.x + c2->rect.w && playerinfo.playerbody->rect.x > c2->rect.x)
 			{
-				playerinfo.Alive = false;
+				Alive = false;
 			}
 		}
 	}
@@ -625,7 +625,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 	{
 		if ((playerinfo.playerfeet->rect.y + playerinfo.playerfeet->rect.h) > (c2->rect.y))
 		{
-			playerinfo.Alive = false; 
+			Alive = false; 
 			playerinfo.Can_Input = false;
 		}
 
@@ -635,7 +635,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 	{
 		if ((playerinfo.playerhead->rect.y + playerinfo.playerhead->rect.h) > (c2->rect.y))
 		{
-			playerinfo.Alive = false;
+			Alive = false;
 			
 		}
 
@@ -656,7 +656,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 	{
 		if ((playerinfo.playerbody->rect.y + playerinfo.playerbody->rect.h) > (c2->rect.y))
 		{
-			playerinfo.Alive = false;
+			Alive = false;
 		}
 
 	}
