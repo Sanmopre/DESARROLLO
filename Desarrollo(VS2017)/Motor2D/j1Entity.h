@@ -42,7 +42,7 @@ public:
 	bool			Can_input = true;
 	bool			Alive = true;
 	bool			Grounded = true;
-
+	
 	Collider* collider = nullptr;
 	SDL_Texture* Character_tex = nullptr;
 	p2SString		entity_name;

@@ -74,11 +74,11 @@ bool j1Player::Start()
 	Character_tex = App->tex->Load("sprites/pepe.png");
 	Pushbacks();
     //SETS POSITION POLAYER FROM XML
-	playerinfo.position.x = playerinfo.Spawn_X;
-	playerinfo.position.y = playerinfo.Spawn_Y;
-    playerinfo.playerbody = App->collision->AddCollider({ playerinfo.position.x, playerinfo.position.y ,13 ,13}, COLLIDER_PLAYER1, this);
-	playerinfo.playerhead = App->collision->AddCollider({ playerinfo.position.x , playerinfo.position.y - 15,5 ,3 }, COLLIDER_PLAYER1, this);
-	playerinfo.playerfeet = App->collision->AddCollider({ playerinfo.position.x  , playerinfo.position.y + 10 ,3 ,2 }, COLLIDER_PLAYER1, this);
+	position.x = playerinfo.Spawn_X;
+	position.y = playerinfo.Spawn_Y;
+    playerinfo.playerbody = App->collision->AddCollider({ position.x, position.y ,13 ,13}, COLLIDER_PLAYER1, this);
+	playerinfo.playerhead = App->collision->AddCollider({ position.x , position.y - 15,5 ,3 }, COLLIDER_PLAYER1, this);
+	playerinfo.playerfeet = App->collision->AddCollider({ position.x  , position.y + 10 ,3 ,2 }, COLLIDER_PLAYER1, this);
 
 	
 	return ret;
@@ -105,7 +105,7 @@ bool j1Player::Update(float dt)
 		
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_REPEAT) { Alive = false; }
 	
-	if (playerinfo.God_Mode == false && playerinfo.Alive == true)
+	if (playerinfo.God_Mode == false && Alive == true)
 	{
 		Player_State_Machine();
 		switch (state) {
@@ -221,7 +221,7 @@ bool j1Player::Update(float dt)
 				//COLLIDER ATTACK
 				if (playerinfo.Looking_Forward == false)
 				{
-					playerinfo.playerattack = App->collision->AddCollider({ playerinfo.position.x +30, playerinfo.position.y - 5,30 ,20 }, COLLIDER_ATTACK, this);
+					playerinfo.playerattack = App->collision->AddCollider({ position.x +30, position.y - 5,30 ,20 }, COLLIDER_ATTACK, this);
 					playerinfo.current_animation = &playerinfo.attack2;
 					playerinfo.attack.SetOffset(1, -20, 0);
 					playerinfo.attack.SetOffset(2, -20, 0);
@@ -302,52 +302,52 @@ bool j1Player::Update(float dt)
 
 		if (playerinfo.GodModeUp == true)
 		{
-			playerinfo.position.y = playerinfo.position.y - 8;
+			position.y = position.y - 8;
 			if (playerinfo.GodModeForward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x + 8;
+				position.x = position.x + 8;
 			}
 			if (playerinfo.GodModeBackward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x - 8;
+				position.x = position.x - 8;
 			}
 			if (playerinfo.GodModeDown == true)
 			{
-				playerinfo.position.y = playerinfo.position.y + 8;
+				position.y = position.y + 8;
 			}
 
 		}
 
 		else if (playerinfo.GodModeDown == true)
 		{
-			playerinfo.position.y = playerinfo.position.y + 8;
+			position.y = position.y + 8;
 			if (playerinfo.GodModeForward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x + 8;
+				position.x = position.x + 8;
 			}
 			if (playerinfo.GodModeBackward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x - 8;
+				position.x = position.x - 8;
 			}
 
 		}
 
 		else if (playerinfo.GodModeForward == true)
 		{
-			playerinfo.position.x = playerinfo.position.x + 8;
+			position.x = position.x + 8;
 			if (playerinfo.GodModeBackward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x - 8;
+				position.x = position.x - 8;
 			}
 
 		}
 
 		else if (playerinfo.GodModeBackward == true)
 		{
-			playerinfo.position.x = playerinfo.position.x - 8;
+			position.x = position.x - 8;
 			if (playerinfo.GodModeForward == true)
 			{
-				playerinfo.position.x = playerinfo.position.x + 8;
+				position.x = position.x + 8;
 			}
 
 		}
@@ -362,19 +362,19 @@ bool j1Player::Update(float dt)
 
 	//DRAW COLLIDER
 	if (playerinfo.God_Mode == false) {
-		playerinfo.playerbody->SetPos(playerinfo.position.x , playerinfo.position.y + 5);
-		playerinfo.playerfeet->SetPos(playerinfo.position.x + 5, playerinfo.position.y + 24);
-		playerinfo.playerhead->SetPos(playerinfo.position.x + 3, playerinfo.position.y);
+		playerinfo.playerbody->SetPos(position.x , position.y + 5);
+		playerinfo.playerfeet->SetPos(position.x + 5, position.y + 24);
+		playerinfo.playerhead->SetPos(position.x + 3, position.y);
 		if (playerinfo.attacking == true) {
 			if (playerinfo.Looking_Forward) {
-				playerinfo.playerattack->SetPos(playerinfo.position.x + 10, playerinfo.position.y - 5);
+				playerinfo.playerattack->SetPos(position.x + 10, position.y - 5);
 			}
 			else {
-				playerinfo.playerattack->SetPos(playerinfo.position.x - 20, playerinfo.position.y - 5);
+				playerinfo.playerattack->SetPos(position.x - 20, position.y - 5);
 			}
 		}
 	}
-	App->render->Player_Camera(playerinfo.position.x, playerinfo.position.y);
+	App->render->Player_Camera(position.x, position.y);
 	
 	//DRAW THE PLAYER BLIT
 
@@ -399,15 +399,12 @@ bool j1Player::Update(float dt)
 		}
 	*/
 	if (playerinfo.attacking == true && playerinfo.Looking_Forward == false) {
-		App->render->Blit_Player(Character_tex, playerinfo.position.x - 40, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		App->render->Blit_Player(Character_tex, position.x - 40, position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 	}
 
 	else {
-		App->render->Blit_Player(Character_tex, playerinfo.position.x , playerinfo.position.y , &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		App->render->Blit_Player(Character_tex, position.x , position.y , &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 	}
-
-	position.x = playerinfo.position.x;
-	position.y = playerinfo.position.y;
 
 	return true;
 }
@@ -486,10 +483,10 @@ void j1Player::Player_State_Machine()
 void j1Player::Player_Position()
 {
 	playerinfo.velocity.y += playerinfo.World_Gravity;
-	playerinfo.position.x = playerinfo.position.x + playerinfo.velocity.x;
-	playerinfo.position.y = playerinfo.position.y + playerinfo.velocity.y;
+	position.x = position.x + playerinfo.velocity.x;
+	position.y = position.y + playerinfo.velocity.y;
 
-	if (playerinfo.position.y > 1000 && playerinfo.God_Mode == false) { playerinfo.Alive = false; }
+	if (playerinfo.position.y > 1000 && playerinfo.God_Mode == false) {Alive = false; }
 	
 }
 
@@ -514,8 +511,8 @@ void j1Player::Restart()
 		{
 		playerinfo.Can_Input = true;
 		playerinfo.deathTimer = false;	
-		playerinfo.position.x = playerinfo.Spawn_X;
-		playerinfo.position.y = playerinfo.Spawn_Y;
+		position.x = playerinfo.Spawn_X;
+		position.y = playerinfo.Spawn_Y;
 		playerinfo.velocity.y = 0;
 		playerinfo.velocity.x = 0;
 		playerinfo.Looking_Forward = true;	
@@ -551,7 +548,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 			}
 			if ((playerinfo.playerfeet->rect.y + playerinfo.playerfeet->rect.h - 3) > (c2->rect.y))
 			{
-				playerinfo.position.y -= 3;
+				position.y -= 3;
 			}
 
 			playerinfo.Grounded = true;
@@ -563,7 +560,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 	{
 		if ((playerinfo.playerhead->rect.y) < (c2->rect.y + c2->rect.h))
 		{
-			playerinfo.position.y = playerinfo.position.y + 7;
+			position.y = position.y + 7;
 		}
 	}
 
@@ -572,23 +569,23 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		if (state == DASH)
 		{
 			if (playerinfo.playerbody->rect.x + playerinfo.playerbody->rect.w > c2->rect.x && playerinfo.playerbody->rect.x < c2->rect.x) {
-				playerinfo.position.x = playerinfo.position.x - 7;
+				position.x = position.x - 7;
 
 			}
 			if (playerinfo.playerbody->rect.x < c2->rect.x + c2->rect.w && playerinfo.playerbody->rect.x > c2->rect.x)
 			{
-				playerinfo.position.x = playerinfo.position.x + 7;
+				position.x = position.x + 7;
 			}
 		}
 		else
 		{
 			if (playerinfo.playerbody->rect.x + playerinfo.playerbody->rect.w > c2->rect.x && playerinfo.playerbody->rect.x < c2->rect.x) {
-				playerinfo.position.x = playerinfo.position.x - 4;
+				position.x = position.x - 4;
 
 			}
 			if (playerinfo.playerbody->rect.x < c2->rect.x + c2->rect.w && playerinfo.playerbody->rect.x > c2->rect.x)
 			{
-				playerinfo.position.x = playerinfo.position.x + 4;
+				position.x = position.x + 4;
 			}
 		}
 	}
@@ -676,8 +673,8 @@ bool j1Player::Save(pugi::xml_node& data)
 {
 	//PLAYER POSITION
 	LOG("Loading player state");
-	playerinfo.position.x = data.child("position").attribute("X").as_int();
-	playerinfo.position.y = data.child("position").attribute("Y").as_int();
+	position.x = data.child("position").attribute("X").as_int();
+	position.y = data.child("position").attribute("Y").as_int();
 	return true;
 }
 
@@ -685,8 +682,8 @@ bool j1Player::Load(pugi::xml_node& data)
 {
 	//PLAYER POSITION
 	LOG("Loading player state");
-	playerinfo.position.x = data.child("position").attribute("X").as_int();
-	playerinfo.position.y = data.child("position").attribute("Y").as_int();
+	position.x = data.child("position").attribute("X").as_int();
+	position.y = data.child("position").attribute("Y").as_int();
 	return true;
 }
 
