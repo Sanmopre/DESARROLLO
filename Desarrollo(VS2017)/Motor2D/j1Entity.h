@@ -34,6 +34,7 @@ public:
 	virtual void OnCollision(Collider* c1, Collider* c2);
 	virtual void GetPosition();
 	virtual void Restart();
+	virtual bool CleanUp();
 
 	iPoint			position;
 	int				SpawnPointX, SpawnPointY;

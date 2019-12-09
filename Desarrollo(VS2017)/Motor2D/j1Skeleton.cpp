@@ -46,9 +46,9 @@ bool j1Skeleton::Start()
 	vel.y = 0;
 	
 	current_animation = &walking;
-	skeletonCollider = App->collision->AddCollider({ position.x , position.y , 15, 25 }, COLLIDER_ENEMY, this);
+	collider = App->collision->AddCollider({ position.x , position.y , 15, 25 }, COLLIDER_ENEMY, this);
 
-	skeletonTex = App->tex->Load("sprites/ENEMIES.png");
+	Character_tex = App->tex->Load("sprites/ENEMIES.png");
 	Pushbacks();
 
 	return true;
@@ -57,7 +57,7 @@ bool j1Skeleton::Start()
 // Called each loop iteration
 bool j1Skeleton::PreUpdate()
 {
-	skeletonCollider->SetPos(position.x, position.y );
+	collider->SetPos(position.x, position.y );
 
 	return true;
 }
@@ -89,33 +89,12 @@ bool j1Skeleton::Update(float dt)
 
 	//COLLIDER POSITION
 	if (Alive == true) {
-	skeletonCollider->SetPos(position.x , position.y);
+	collider->SetPos(position.x , position.y);
 }
-	App->render->Blit(skeletonTex, position.x, position.y, &current_animation->GetCurrentFrame(), SDL_FLIP_NONE);
+	App->render->Blit(Character_tex, position.x, position.y, &current_animation->GetCurrentFrame(), SDL_FLIP_NONE);
 	
 
-	//SKELETON BLIT
-	/*
-	if (App->render->camera.x < -550) {
 
-		if (Looking_Forward == false) {
-			App->render->Blit_Player(skeletonTex, position.x - 390, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
-		}
-		else {
-			App->render->Blit_Player(skeletonTex, position.x - 350, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
-		}
-	}
-	if (App->render->camera.x > -550) {
-
-		if (Looking_Forward == false) {
-			App->render->Blit_Player(skeletonTex, position.x + 15, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
-		}
-		else {
-			App->render->Blit_Player(skeletonTex, position.x + 55, position.y - 20, &(current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
-		}
-	}
-	
-*/
 
 	return true;
 }
@@ -131,9 +110,7 @@ bool j1Skeleton::PostUpdate()
 // Called before quitting
 bool j1Skeleton::CleanUp()
 {
-	App->tex->Unload(skeletonTex);
 	Alive = false;
-	skeletonCollider->to_delete = true;
 	return true;
 }
 

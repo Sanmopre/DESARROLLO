@@ -50,7 +50,6 @@ public:
 	bool Down = false;
 
 	iPoint			position;
-	SDL_Texture*	skeletonTex = nullptr;
 	SDL_Texture*	TEX = nullptr;
 	bool			Looking_Forward = true;
 	bool			Alive = true;
@@ -70,8 +69,6 @@ public:
 	float			gravity;
 	fPoint		    vel;
 
-	//COLLIDERS
-	Collider*	skeletonCollider = nullptr;
 	void Pushbacks();
 	Skeleton_States state = SKELETON_FORWARD;
 private:
