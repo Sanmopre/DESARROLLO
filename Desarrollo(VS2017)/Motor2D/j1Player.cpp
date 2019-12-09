@@ -399,7 +399,7 @@ bool j1Player::Update(float dt)
 		}
 	*/
 	if (playerinfo.attacking == true && playerinfo.Looking_Forward == false) {
-		App->render->Blit_Player(Character_tex, playerinfo.position.x - 40, playerinfo.position.y - 20 , &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		App->render->Blit_Player(Character_tex, playerinfo.position.x - 40, playerinfo.position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 	}
 
 	else {
