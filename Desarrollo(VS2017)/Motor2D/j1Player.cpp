@@ -412,6 +412,7 @@ void j1Player::Player_State_Machine()
 
 		else if (Input.pressing_F && playerinfo.Dash == false)
 		{
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/dash.wav"));
 			state = DASH;
 			playerinfo.Dash = true;
 		}
