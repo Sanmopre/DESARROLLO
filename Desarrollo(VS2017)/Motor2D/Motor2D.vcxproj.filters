@@ -64,6 +64,9 @@
     <ClCompile Include="J1Flying_Enemy.cpp">
       <Filter>Desenvolupament  ========\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="j1Gui.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -152,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="J1Flying_Enemy.h">
       <Filter>Desenvolupament  ========\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Gui.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
