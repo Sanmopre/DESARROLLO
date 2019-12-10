@@ -589,7 +589,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 			}
 		}
 	}
-	
+
 	if (c1 == playerinfo.playerbody && c2->type == COLLIDER_DEATH)
 	{
 		if (state == DASH)
@@ -622,7 +622,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 	{
 		if ((playerinfo.playerfeet->rect.y + playerinfo.playerfeet->rect.h) > (c2->rect.y))
 		{
-			Alive = false; 
+			Alive = false;
 			playerinfo.Can_Input = false;
 		}
 
@@ -633,7 +633,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		if ((playerinfo.playerhead->rect.y + playerinfo.playerhead->rect.h) > (c2->rect.y))
 		{
 			Alive = false;
-			
+
 		}
 
 	}
@@ -658,17 +658,35 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 
 	}
 
-	if (c1 == playerinfo.playerattack && c2->type == COLLIDER_ENEMY)
-	{
-		if ((playerinfo.playerattack->rect.y + playerinfo.playerattack->rect.h) > (c2->rect.y))
+	if (c1 == playerinfo.playerbody && c2->type == COLLIDER_SKELETON)
 		{
-			App->audio->PlayFx(App->audio->LoadFx("audio/fx/Skeleton_death.wav"));
-			App->EntityManager->Destroy_Entity(App->scene->skeleton);
-		}
-		App->collision->EnemyCleanUp();
-	}
+			if ((playerinfo.playerbody->rect.y + playerinfo.playerbody->rect.h) > (c2->rect.y))
+			{
+				Alive = false;
+			}
 
-	}
+		}
+
+		if (c1 == playerinfo.playerattack && c2->type == COLLIDER_ENEMY)
+		{
+			if ((playerinfo.playerattack->rect.y + playerinfo.playerattack->rect.h) > (c2->rect.y))
+			{
+				
+				App->EntityManager->Destroy_Entity(App->scene->flying_enemy);
+			}
+			App->collision->EnemyCleanUp();
+		}
+
+		if (c1 == playerinfo.playerattack && c2->type == COLLIDER_SKELETON)
+		{
+			if ((playerinfo.playerattack->rect.y + playerinfo.playerattack->rect.h) > (c2->rect.y))
+			{
+				App->audio->PlayFx(App->audio->LoadFx("audio/fx/Skeleton_death.wav"));
+				App->EntityManager->Destroy_Entity(App->scene->skeleton);
+			}
+			App->collision->SkeletonCleanUp();
+		}
+}
 
 bool j1Player::Save(pugi::xml_node& data) 
 {

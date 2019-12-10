@@ -18,6 +18,7 @@ enum COLLIDER_TYPE
 	COLLIDER_WIN,
 	COLLIDER_ATTACK,
 	COLLIDER_ENEMY,
+	COLLIDER_SKELETON,
 
 	COLLIDER_MAX
 };
@@ -60,6 +61,7 @@ public:
 	bool MapCleanUp();
 	bool AttackCleanUp();
 	bool EnemyCleanUp();
+	bool SkeletonCleanUp();
 	SDL_Rect rect;
 	bool debug = false;
 private:

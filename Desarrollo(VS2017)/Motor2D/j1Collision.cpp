@@ -15,6 +15,7 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_FLOOR][COLLIDER_PLATFORM] = false;
 	matrix[COLLIDER_FLOOR][COLLIDER_WIN] = false;
 	matrix[COLLIDER_FLOOR][COLLIDER_ENEMY] = true;
+	matrix[COLLIDER_FLOOR][COLLIDER_SKELETON] = true;
 	
 	matrix[COLLIDER_DEATH][COLLIDER_DEATH] = false;
 	matrix[COLLIDER_DEATH][COLLIDER_FLOOR] = true;
@@ -22,6 +23,7 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_DEATH][COLLIDER_PLATFORM] = true;
 	matrix[COLLIDER_DEATH][COLLIDER_WIN] = false;
 	matrix[COLLIDER_DEATH][COLLIDER_ENEMY] = false;
+	matrix[COLLIDER_DEATH][COLLIDER_SKELETON] = false;
 
 	matrix[COLLIDER_PLAYER1][COLLIDER_PLAYER1] = false;
 	matrix[COLLIDER_PLAYER1][COLLIDER_FLOOR] = true;
@@ -29,6 +31,7 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_PLAYER1][COLLIDER_PLATFORM] = true;
 	matrix[COLLIDER_PLAYER1][COLLIDER_WIN] = true;
 	matrix[COLLIDER_PLAYER1][COLLIDER_ENEMY] = true;
+	matrix[COLLIDER_PLAYER1][COLLIDER_SKELETON] = true;
 
 	matrix[COLLIDER_WIN][COLLIDER_DEATH] = false;
 	matrix[COLLIDER_WIN][COLLIDER_FLOOR] = true;
@@ -36,6 +39,7 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_WIN][COLLIDER_PLATFORM] = true;
 	matrix[COLLIDER_WIN][COLLIDER_WIN] = false;
 	matrix[COLLIDER_WIN][COLLIDER_ENEMY] = false;
+	matrix[COLLIDER_WIN][COLLIDER_SKELETON] = false;
 
 	matrix[COLLIDER_ENEMY][COLLIDER_FLOOR] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER1] = true;
@@ -43,6 +47,7 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_ENEMY][COLLIDER_PLATFORM] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_WIN] = false;
 	matrix[COLLIDER_ENEMY][COLLIDER_ENEMY] = false;
+	matrix[COLLIDER_ENEMY][COLLIDER_SKELETON] = false;
 
 	matrix[COLLIDER_ATTACK][COLLIDER_FLOOR] = false;
 	matrix[COLLIDER_ATTACK][COLLIDER_PLAYER1] = false;
@@ -50,6 +55,7 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_ATTACK][COLLIDER_PLATFORM] = false;
 	matrix[COLLIDER_ATTACK][COLLIDER_WIN] = false;
 	matrix[COLLIDER_ATTACK][COLLIDER_ENEMY] = true;
+	matrix[COLLIDER_ATTACK][COLLIDER_SKELETON] = true;
 }
 
 // Destructor
@@ -154,6 +160,9 @@ void j1Collision::DebugDraw()
 		case COLLIDER_ENEMY: 
 			App->render->DrawQuad(colliders[i]->rect, 200, 200, 50, alpha);
 			break;
+		case COLLIDER_SKELETON:
+			App->render->DrawQuad(colliders[i]->rect, 200, 200, 50, alpha);
+			break;
 		}
 	}
 }
@@ -250,6 +259,23 @@ bool j1Collision::EnemyCleanUp()
 		if (colliders[i] != nullptr)
 		{
 			if (colliders[i]->type == COLLIDER_ENEMY)
+			{
+				delete colliders[i];
+				colliders[i] = nullptr;
+			}
+		}
+	}
+
+	return true;
+}
+
+bool j1Collision::SkeletonCleanUp()
+{
+	for (uint i = 0; i < MAX_COLLIDERS; ++i)
+	{
+		if (colliders[i] != nullptr)
+		{
+			if (colliders[i]->type == COLLIDER_SKELETON)
 			{
 				delete colliders[i];
 				colliders[i] = nullptr;

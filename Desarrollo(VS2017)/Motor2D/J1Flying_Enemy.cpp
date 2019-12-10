@@ -249,10 +249,10 @@ void j1Flying_Enemy::Pushbacks()
 
 void j1Flying_Enemy::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1->type == COLLIDER_ATTACK || c2->type == COLLIDER_ATTACK)
+	if (c1->type == COLLIDER_ATTACK|| c2->type == COLLIDER_ATTACK)
 	{
 		Alive = false;
-		current_animation = &death2;
+		
 		CleanUp();
 	}
 }

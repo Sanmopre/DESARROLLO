@@ -46,7 +46,7 @@ bool j1Skeleton::Start()
 	vel.y = 0;
 	
 	current_animation = &walking;
-	collider = App->collision->AddCollider({ position.x , position.y , 15, 25 }, COLLIDER_ENEMY, this);
+	collider = App->collision->AddCollider({ position.x , position.y , 15, 25 }, COLLIDER_SKELETON, this);
 
 	Character_tex = App->tex->Load("sprites/ENEMIES.png");
 	Pushbacks();
@@ -205,7 +205,7 @@ void j1Skeleton::OnCollision(Collider* c1, Collider* c2)
 	if (c1->type == COLLIDER_ATTACK || c2->type == COLLIDER_ATTACK)
 	{
 		Alive = false;
-		App->audio->PlayFx(App->audio->LoadFx("audio/fx/death.wav"));
+		
 		current_animation = &death2;
 		CleanUp();
 	}
