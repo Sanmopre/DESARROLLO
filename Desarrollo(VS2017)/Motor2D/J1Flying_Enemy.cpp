@@ -64,10 +64,9 @@ bool j1Flying_Enemy::PreUpdate()
 
 bool j1Flying_Enemy::Update(float dt)
 {
-	if (App->EntityManager->Get_Player()->position.x > position.x - rangeX && App->EntityManager->Get_Player()->position.x < position.x + rangeX && App->EntityManager->Get_Player()->position.y + rangeY && App->EntityManager->Get_Player()->position.y - rangeY){
-		if (pathFinding)pathfinding();
-}
-
+	
+	pathfinding();
+	/*
 	switch (state)
 	{
 	case FLYING_ENEMY_FORWARD:
@@ -86,7 +85,7 @@ bool j1Flying_Enemy::Update(float dt)
 		current_animation = &death;
 		break;
 	}
-
+*/
 	Flying_Enemy_Position();
 
 	//COLLIDER POSITION
@@ -158,8 +157,6 @@ void j1Flying_Enemy::Flying_Enemy_State(Flying_Enemy_States stateS)
 
 
 bool j1Flying_Enemy::pathfinding() {
-
-
 
 	static iPoint origin;
 	static bool origin_selected = false;

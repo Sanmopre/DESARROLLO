@@ -301,7 +301,10 @@ void j1Render::Player_Camera(int x, int y)
 	App->render->camera.y = -y;
 
 	
-
+	if (camera.x < -575) {
+		camera.x = camera.x - 400;
+	}
+	
 
 
 }
