@@ -80,6 +80,7 @@ bool j1Skeleton::Update(float dt)
 
 	case SKELETON_DEATH:
 		current_animation = &death;
+		App->audio->PlayFx(App->audio->LoadFx("audio/fx/Skeleton_death.wav"));
 		break;
 	}
 	current_animation = &walking2;
@@ -204,6 +205,8 @@ void j1Skeleton::OnCollision(Collider* c1, Collider* c2)
 	if (c1->type == COLLIDER_ATTACK || c2->type == COLLIDER_ATTACK)
 	{
 		Alive = false;
+		App->audio->PlayFx(App->audio->LoadFx("audio/fx/death.wav"));
+		current_animation = &death2;
 		CleanUp();
 	}
 }

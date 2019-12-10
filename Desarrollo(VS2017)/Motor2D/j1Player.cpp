@@ -650,9 +650,10 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 	{
 		if ((playerinfo.playerattack->rect.y + playerinfo.playerattack->rect.h) > (c2->rect.y))
 		{
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/Skeleton_death.wav"));
 			App->EntityManager->Destroy_Entity(App->scene->skeleton);
 		}
-		//App->collision->EnemyCleanUp();
+		App->collision->EnemyCleanUp();
 	}
 
 	}
