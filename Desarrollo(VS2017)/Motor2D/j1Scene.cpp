@@ -37,8 +37,7 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	//App->map->Load("dungeon.tmx");
-	//App->audio->PlayMusic("audio/music/ghost.ogg");
+
 	App->map2->Load("castle.tmx");
 	App->audio->PlayMusic("audio/music/castle.ogg");
 
@@ -47,6 +46,7 @@ bool j1Scene::Start()
 	skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
 	player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
 	flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
+
 
 	
 	return true;
@@ -74,7 +74,11 @@ bool j1Scene::Update(float dt)
 	{
 		actual_map = Change_Map(2);
 	}
-
+	
+	if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
+	{
+		App->EntityManager->Destroy_Entities();
+	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) 
 	{
@@ -134,6 +138,9 @@ bool j1Scene::Change_Map(int map)
 	int current_map = map;
 	if (map == 1)
 	{
+		//App->EntityManager->Destroy_Entities();
+		//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
+		//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
 		player->Restart();
 		App->fade->Fade_To_Black(2);
 		App->map->CleanUp();
@@ -146,6 +153,10 @@ bool j1Scene::Change_Map(int map)
 	}
 	else
 	{
+		//App->EntityManager->Destroy_Entities();
+		//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
+		//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
+		player->Restart();
 		player->Restart();
 		App->fade->Fade_To_Black(2);
 		App->map2->CleanUp();
