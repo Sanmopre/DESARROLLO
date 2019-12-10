@@ -263,6 +263,7 @@ bool j1Player::Update(float dt)
 			playerinfo.velocity.x = 0;
 			playerinfo.velocity.y = 0;
 			playerinfo.current_animation = &playerinfo.death;
+			playerinfo.death.Reset();
 			break;
 		}
 	
@@ -354,7 +355,12 @@ bool j1Player::Update(float dt)
 	}
 	playerinfo.Grounded = false;
 
-	if (Alive == false || position.y > 650)
+	//MAP LIMIT Y
+	if (position.y > 470 || position.y < 0) {
+		Alive = false;
+	}
+
+	if (Alive == false)
 	{
 		playerinfo.current_animation = &playerinfo.death;
 		Restart();
@@ -793,7 +799,7 @@ void j1Player::Pushbacks()
 	playerinfo.death.PushBack({ 101, 128, 27, 13 }, 0, 0);
 	playerinfo.death.PushBack({ 130, 135, 34, 6 }, 0, 0);
 	playerinfo.death.lock = true;
-	playerinfo.death.speed = 0.4f;
+	playerinfo.death.speed = 0.25f;
 
 	playerinfo.voltereta.PushBack({ 110, 148, 20, 26 });
 	playerinfo.voltereta.PushBack({ 134, 150, 25, 24 });
