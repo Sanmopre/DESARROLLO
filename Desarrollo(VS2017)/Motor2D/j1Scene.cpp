@@ -141,7 +141,6 @@ bool j1Scene::Change_Map(int map)
 		//App->EntityManager->Destroy_Entities();
 		//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
 		//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
-		player->Restart();
 		App->fade->Fade_To_Black(2);
 		App->map->CleanUp();
 		App->map2->CleanUp();
@@ -156,8 +155,6 @@ bool j1Scene::Change_Map(int map)
 		//App->EntityManager->Destroy_Entities();
 		//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
 		//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
-		player->Restart();
-		player->Restart();
 		App->fade->Fade_To_Black(2);
 		App->map2->CleanUp();
 		App->map->CleanUp();
