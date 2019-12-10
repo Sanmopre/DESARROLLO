@@ -354,7 +354,7 @@ bool j1Player::Update(float dt)
 	}
 	playerinfo.Grounded = false;
 
-	if (Alive == false)
+	if (Alive == false || position.y > 650)
 	{
 		playerinfo.current_animation = &playerinfo.death;
 		Restart();
@@ -376,36 +376,24 @@ bool j1Player::Update(float dt)
 	}
 	App->render->Player_Camera(position.x, position.y);
 	
-	//DRAW THE PLAYER BLIT
-
-	/*
-		if (App->render->camera.x < -550) {
-			
-			if (playerinfo.attacking == true && playerinfo.Looking_Forward == false) {
-				App->render->Blit_Player(graphics, playerinfo.position.x  - 390, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
-			}
-			else{
-				App->render->Blit_Player(graphics, playerinfo.position.x - 350, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
-			}
+	if (App->render->camera.x > -575) {
+		if (playerinfo.attacking == true && playerinfo.Looking_Forward == false) {
+			App->render->Blit_Player(Character_tex, position.x - 40, position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 		}
-		if (App->render->camera.x > -550) {
 
-			if (playerinfo.attacking == true && playerinfo.Looking_Forward == false) {
-				App->render->Blit_Player(graphics, playerinfo.position.x + 15, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
-			}
-			else {
-				App->render->Blit_Player(graphics, playerinfo.position.x + 55, playerinfo.position.y - 20, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
-			}
+		else {
+			App->render->Blit_Player(Character_tex, position.x, position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 		}
-	*/
-	if (playerinfo.attacking == true && playerinfo.Looking_Forward == false) {
-		App->render->Blit_Player(Character_tex, position.x - 40, position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 	}
-
 	else {
-		App->render->Blit_Player(Character_tex, position.x , position.y , &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
-	}
+		if (playerinfo.attacking == true && playerinfo.Looking_Forward == false) {
+			App->render->Blit_Player(Character_tex, position.x - 440, position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		}
 
+		else {
+			App->render->Blit_Player(Character_tex, position.x - 400, position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
+		}
+	}
 	return true;
 }
 

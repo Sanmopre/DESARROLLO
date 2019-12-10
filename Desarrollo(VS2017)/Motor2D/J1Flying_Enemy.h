@@ -47,8 +47,8 @@ public:
 	
 	bool pathfinding();
 	bool pathFinding = false;
-	int rangeX = 400;
-	int rangeY = 400;
+	int rangeX = 4000;
+	int rangeY = 4000;
 
 
 	void Flying_Enemy_State(Flying_Enemy_States state);

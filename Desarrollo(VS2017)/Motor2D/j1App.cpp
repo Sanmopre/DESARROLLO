@@ -44,7 +44,6 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	gui = new j1Gui();
 	
 
-
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	AddModule(input);
@@ -54,14 +53,12 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(map);
-	
 	AddModule(map2);
 	AddModule(pathfinding);
 	AddModule(fade);
 	AddModule(EntityManager);
 	AddModule(gui);
 
-	
 	// render last to swap buffer
 	AddModule(render);
 
