@@ -543,6 +543,9 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 			}
 			if ((playerinfo.playerfeet->rect.y + playerinfo.playerfeet->rect.h - 3) > (c2->rect.y))
 			{
+				if (playerinfo.attacking == true) {
+					playerinfo.velocity.x = 0;
+				}
 				position.y -= 3;
 			}
 
