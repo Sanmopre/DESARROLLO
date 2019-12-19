@@ -41,7 +41,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	pathfinding = new j1PathFinding();
 	fade = new j1FadeToBlack();
 	EntityManager = new j1EntityManager();
-	gui = new j1Gui();
+	gui = new j1GUI();
 	
 
 	// Ordered for awake / Start / Update

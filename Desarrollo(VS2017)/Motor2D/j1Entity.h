@@ -30,6 +30,7 @@ public:
 
 	bool Load(pugi::xml_node& data);
 	bool Save(pugi::xml_node& data) const;
+
 	virtual void Pushbacks();
 	virtual void OnCollision(Collider* c1, Collider* c2);
 	virtual void GetPosition();

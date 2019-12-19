@@ -1,46 +1,45 @@
 #ifndef __j1GUI_H__
 #define __j1GUI_H__
 
+
 #include "j1Module.h"
+#include "p2List.h"
+#include "p2Point.h"
 
-#define CURSOR_WIDTH 2
+#include "j1GUIelement.h"
 
-// TODO 1: Create your structure of classes
 
-// ---------------------------------------------------
-class j1Gui : public j1Module
+class j1Entity;
+
+class j1GUI : public j1Module
 {
+
 public:
 
-	j1Gui();
+	j1GUI();
+	~j1GUI();
 
-	// Destructor
-	virtual ~j1Gui();
-
-	// Called when before render is available
-	bool Awake(pugi::xml_node&);
-
-	// Call before first frame
+	bool Awake(pugi::xml_node& config);
 	bool Start();
-
-	// Called before all Updates
 	bool PreUpdate();
-
-	// Called after all Updates
+	bool Update(float dt);
 	bool PostUpdate();
-
-	// Called before quitting
 	bool CleanUp();
 
-	// TODO 2: Create the factory methods
-	// Gui creation functions
+	bool Save(pugi::xml_node&) const;
+	bool Load(pugi::xml_node&);
 
-	const SDL_Texture* GetAtlas() const;
 
+	j1GUIelement* AddGUIelement(GUItype type, j1GUIelement* parent, iPoint globalPosition, iPoint localPosition, bool interactable, bool enabled,  SDL_Rect section);
+	SDL_Texture* j1GUI::GetAtlasTexture() const;
+
+	p2List<j1GUIelement*>	GUIelementList;
 private:
 
-	SDL_Texture* atlas;
-	p2SString atlas_file_name;
+	SDL_Texture* atlasTexture;
+	p2SString atlasFile;
 };
 
-#endif // __j1GUI_H__
+
+
+#endif //  __j1GUI_H__

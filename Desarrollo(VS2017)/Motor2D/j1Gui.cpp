@@ -1,65 +1,152 @@
-#include "p2Defs.h"
-#include "p2Log.h"
+#include "j1GUI.h"
 #include "j1App.h"
 #include "j1Render.h"
 #include "j1Textures.h"
 #include "j1Fonts.h"
 #include "j1Input.h"
-#include "j1Gui.h"
 
-j1Gui::j1Gui() : j1Module()
+#include "j1GUIbutton.h"
+#include "j1GUIinputBox.h"
+#include "j1GUIlabel.h"
+#include "j1GUIimage.h"
+
+j1GUI::j1GUI() : j1Module()
 {
 	name.create("gui");
 }
 
 // Destructor
-j1Gui::~j1Gui()
+j1GUI::~j1GUI()
 {}
 
-// Called before render is available
-bool j1Gui::Awake(pugi::xml_node& conf)
+
+bool j1GUI::Awake(pugi::xml_node& config)
 {
 	LOG("Loading GUI atlas");
 	bool ret = true;
 
-	atlas_file_name = conf.child("atlas").attribute("file").as_string("");
+	//atlasFile = config.child("atlas").attribute("file").as_string("");
+	atlasFile = ("Assets/GUI/atlas.png");
 
 	return ret;
 }
 
-// Called before the first frame
-bool j1Gui::Start()
+
+bool j1GUI::Start()
 {
-	atlas = App->tex->Load(atlas_file_name.GetString());
+	atlasTexture = App->tex->Load(atlasFile.GetString());
 
 	return true;
 }
 
-// Update all guis
-bool j1Gui::PreUpdate()
+
+bool j1GUI::PreUpdate()
 {
-	return true;
+	
+	bool ret = true;
+	p2List_item<j1GUIelement*>* tmp = GUIelementList.start;
+	while (tmp != nullptr)
+	{
+		ret = tmp->data->PreUpdate();
+		tmp = tmp->next;
+	}
+
+	return ret;
+
 }
 
-// Called after all Updates
-bool j1Gui::PostUpdate()
+
+bool j1GUI::Update(float dt)
 {
-	return true;
+
+	bool ret = true;
+	p2List_item<j1GUIelement*>* tmp = GUIelementList.start;
+	while (tmp != nullptr)
+	{
+		ret = tmp->data->Update(dt);
+		tmp = tmp->next;
+	}
+
+	return ret;
+
 }
 
-// Called before quitting
-bool j1Gui::CleanUp()
+bool j1GUI::PostUpdate()
+{
+
+	bool ret = true;
+
+	p2List_item<j1GUIelement*>* tmp = GUIelementList.start;
+	while (tmp != nullptr)
+	{
+		ret = tmp->data->PostUpdate();
+		tmp = tmp->next;
+	}
+	return ret;
+
+}
+
+
+bool j1GUI::CleanUp()
 {
 	LOG("Freeing GUI");
 
 	return true;
 }
 
-// const getter for atlas
-const SDL_Texture* j1Gui::GetAtlas() const
+
+SDL_Texture* j1GUI::GetAtlasTexture() const
 {
-	return atlas;
+	return atlasTexture;
 }
 
-// class Gui ---------------------------------------------------
 
+j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint globalPosition, iPoint localPosition, bool interactable, bool enabled, SDL_Rect section)
+{
+	j1GUIelement* tmp = nullptr;
+
+	switch (type)
+	{
+
+	case GUItype::GUI_BUTTON:
+		tmp = new j1GUIButton();
+			break;
+	case GUItype::GUI_INPUTBOX:
+		tmp = new j1GUIinputBox();
+		break;
+	case GUItype::GUI_LABEL:
+		tmp = new j1GUIlabel();
+		break;
+	case GUItype::GUI_IMAGE:
+		tmp = new j1GUIimage();
+		break;
+	}
+
+	if (tmp) 
+	{
+
+		tmp->parent = parent;
+		tmp->globalPosition = globalPosition;
+		tmp->localPosition = localPosition;
+		tmp->interactable = interactable;
+		tmp->enabled = enabled;
+		tmp->rect = section;
+
+
+		GUIelementList.add(tmp)->data->Start();
+	}
+
+
+	return nullptr;
+}
+
+bool j1GUI::Save(pugi::xml_node& file) const {
+
+	return true;
+}
+
+
+bool j1GUI::Load(pugi::xml_node& file) {
+
+	return true;
+}
