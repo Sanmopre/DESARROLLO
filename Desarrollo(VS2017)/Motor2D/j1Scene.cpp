@@ -13,6 +13,7 @@
 #include "j1FadeToBlack.h"
 #include "j1Entity.h"
 #include "j1EntityManager.h"
+#include "j1Gui.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -47,7 +48,8 @@ bool j1Scene::Start()
 	player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
 	flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
 
-
+	//UI
+	App->gui->AddGUIelement(GUItype::GUI_INPUTBOX, nullptr, { 50,50 }, { 0,0 }, true, true, { 0,0,0,0 });
 	
 	return true;
 }
