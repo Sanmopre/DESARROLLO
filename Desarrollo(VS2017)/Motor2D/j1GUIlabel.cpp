@@ -45,7 +45,7 @@ bool j1GUIlabel::Update(float dt) {
 bool j1GUIlabel::PostUpdate()
 {
 	
-	App->render->Blit(fontTexture, globalPosition.x + localPosition.x, globalPosition.y + localPosition.y, nullptr, 0.0f);
+	App->render->Blit(fontTexture, globalPosition.x + localPosition.x, globalPosition.y + localPosition.y, nullptr);
 
 
 	return true;
@@ -53,7 +53,7 @@ bool j1GUIlabel::PostUpdate()
 
 bool j1GUIlabel::CleanUp()
 {
-	App->tex->UnLoad(fontTexture);
+	App->tex->Unload(fontTexture);
 	return true;
 }
 

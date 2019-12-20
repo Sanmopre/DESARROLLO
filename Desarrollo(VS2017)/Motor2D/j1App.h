@@ -21,7 +21,8 @@ class j1PathFinding;
 class j1FadeToBlack;
 class j1EntityManager;
 class j1Entity;
-class j1Gui;
+class j1GUI;
+class j1Fonts;
 
 class j1App
 {
@@ -100,8 +101,8 @@ public:
 	j1PathFinding*      pathfinding;
 	j1FadeToBlack*      fade;
 	j1EntityManager*	EntityManager;
-	j1Gui*				gui;
-
+	j1GUI*				gui;
+	j1Fonts*			fonts;
 
 
 	j1PerfTimer			Perf_Timer;

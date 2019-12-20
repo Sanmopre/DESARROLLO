@@ -55,9 +55,7 @@ bool j1GUIButton::CleanUp()
 void j1GUIButton::OnClick()
 {
 
-		App->pause = !App->pause;
-
-
+	
 }
 
 void j1GUIButton::OnRelease()
