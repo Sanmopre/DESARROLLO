@@ -30,9 +30,9 @@ public:
 	void OnClick();
 	void OnRelease();
 private:
-	
+
 	j1GUIelement* text;
-	j1GUIelement* background;	
+	j1GUIelement* background;
 };
 
 
@@ -41,4 +41,5 @@ private:
 
 
 #endif // !__J1GUIINPUTBOX__
+
 

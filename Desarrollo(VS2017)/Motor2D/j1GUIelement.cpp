@@ -15,8 +15,7 @@ j1GUIelement::~j1GUIelement()
 
 bool j1GUIelement::Start()
 {
-	texture = App->gui->GetAtlasTexture();
-
+	//texture = App->gui->GetAtlasTexture();
 
 	return true;
 }
@@ -26,7 +25,7 @@ void j1GUIelement::Draw()
 {
 	if (above)
 	{
-		SDL_SetTextureColorMod(texture, 200, 200, 200);
+		SDL_SetTextureColorMod(texture, 200, 50, 50);
 		SDL_SetTextureAlphaMod(texture, 200);
 	}
 	else
@@ -48,7 +47,7 @@ bool j1GUIelement::OnAbove()
 	SDL_Point mouse;
 	App->input->GetMousePosition(mouse.x, mouse.y);
 
-	SDL_Rect intersect = {globalPosition.x + localPosition.x, globalPosition.y + localPosition.y, rect.w, rect.h };
+	SDL_Rect intersect = { globalPosition.x + localPosition.x, globalPosition.y + localPosition.y, rect.w, rect.h };
 
 	if (SDL_PointInRect(&mouse, &intersect) && this->enabled && this->interactable)
 		ret = true;

@@ -156,3 +156,20 @@ void j1Input::GetMouseMotion(int& x, int& y)
 	x = mouse_motion_x;
 	y = mouse_motion_y;
 }
+
+void j1Input::EnableTextInput()
+{
+	SDL_StartTextInput();
+	text_input = true;
+}
+
+void j1Input::DisableTextInput() {
+
+	SDL_StopTextInput();
+	text_input = false;
+}
+
+char* j1Input::GetText() {
+
+	return text;
+}
