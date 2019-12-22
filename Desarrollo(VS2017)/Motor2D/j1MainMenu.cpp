@@ -56,14 +56,14 @@ bool j1MainMenu::Update(float dt)
 {
 
 
-	if (play_button->focus) {		
+	//if (play_button->focus) {		
 		//App->scene->actual_map = App->scene->Change_Map(1);
-	}
+	//}
 
-	if (continue_button->focus) {
-		want_continue = true;
+	//if (continue_button->focus) {
+	//	want_continue = true;
 	//	App->scene->actual_map = App->scene->Change_Map(1);
-	}		
+	//}		
 
 	SDL_Rect rect = { 0,0, App->win->screen_surface->w, App->win->screen_surface->h };
 	App->render->Blit(texture, 0, 10, &rect);

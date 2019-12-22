@@ -74,7 +74,7 @@ bool j1Scene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 	{
-		actual_map = Change_Map(2);
+		actual_map = Change_Map(3);
 	}
 	
 	if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
@@ -152,7 +152,7 @@ bool j1Scene::Change_Map(int map)
 		current_map = 1;
 		return true;
 	}
-	else
+	if (map == 2)
 	{
 		//App->EntityManager->Destroy_Entities();
 		//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
@@ -165,6 +165,16 @@ bool j1Scene::Change_Map(int map)
 		App->map->Load("dungeon.tmx");
 		App->audio->PlayMusic("audio/music/ghost.ogg");
 		current_map = 2;
+		return false;
+	}
+	if (map == 3)
+	{
+		App->fade->Fade_To_Black(2);
+		App->map2->CleanUp();
+		App->map->CleanUp();
+		App->collision->MapCleanUp();
+		App->collision->MapCleanUp();
+		current_map = 3;
 		return false;
 	}
 }
