@@ -23,6 +23,7 @@ class j1EntityManager;
 class j1Entity;
 class j1GUI;
 class j1Fonts;
+class j1MainMenu;
 
 class j1App
 {
@@ -103,6 +104,7 @@ public:
 	j1EntityManager*	EntityManager;
 	j1GUI*				gui;
 	j1Fonts*			fonts;
+	j1MainMenu*			MainMenu;
 
 
 	j1PerfTimer			Perf_Timer;

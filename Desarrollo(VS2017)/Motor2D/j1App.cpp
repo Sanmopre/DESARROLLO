@@ -18,6 +18,7 @@
 #include "j1FadeToBlack.h"
 #include "j1Gui.h"
 #include "j1Fonts.h"
+#include "j1MainMenu.h"
 
 
 
@@ -44,11 +45,13 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	EntityManager = new j1EntityManager();
 	gui = new j1GUI();
 	fonts = new j1Fonts();
+	MainMenu = new j1MainMenu();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	AddModule(input);
 	AddModule(win);
+	AddModule(MainMenu);
 	AddModule(scene);
 	AddModule(collision);
 	AddModule(tex);
@@ -60,7 +63,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(EntityManager);
 	AddModule(fonts);
 	AddModule(gui);
-
+	
 	// render last to swap buffer
 	AddModule(render);
 
