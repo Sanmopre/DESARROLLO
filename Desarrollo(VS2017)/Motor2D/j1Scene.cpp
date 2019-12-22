@@ -74,6 +74,11 @@ bool j1Scene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 	{
+		actual_map = Change_Map(2);
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
+	{
 		actual_map = Change_Map(3);
 	}
 	
@@ -135,7 +140,7 @@ bool j1Scene::PostUpdate()
 bool j1Scene::Change_Map(int map)
 {
 	CleanUp();
-	player->Alive = false;
+	
 
 	int current_map = map;
 	if (map == 1)
@@ -143,6 +148,7 @@ bool j1Scene::Change_Map(int map)
 		//App->EntityManager->Destroy_Entities();
 		//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
 		//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
+		player->Alive = false;
 		App->fade->Fade_To_Black(2);
 		App->map->CleanUp();
 		App->map2->CleanUp();
@@ -157,10 +163,10 @@ bool j1Scene::Change_Map(int map)
 		//App->EntityManager->Destroy_Entities();
 		//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
 		//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
+		player->Alive = false;
 		App->fade->Fade_To_Black(2);
 		App->map2->CleanUp();
 		App->map->CleanUp();
-		App->collision->MapCleanUp();
 		App->collision->MapCleanUp();
 		App->map->Load("dungeon.tmx");
 		App->audio->PlayMusic("audio/music/ghost.ogg");
@@ -169,10 +175,10 @@ bool j1Scene::Change_Map(int map)
 	}
 	if (map == 3)
 	{
-		App->fade->Fade_To_Black(2);
-		App->map2->CleanUp();
+		player->Alive = false;
+		App->fade->Fade_To_Black(2);	
 		App->map->CleanUp();
-		App->collision->MapCleanUp();
+		App->map2->CleanUp();
 		App->collision->MapCleanUp();
 		current_map = 3;
 		return false;

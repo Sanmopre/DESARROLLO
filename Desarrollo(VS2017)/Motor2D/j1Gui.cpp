@@ -4,7 +4,6 @@
 #include "j1Textures.h"
 #include "j1Fonts.h"
 #include "j1Input.h"
-
 #include "j1GUIbutton.h"
 #include "j1GUIinputBox.h"
 #include "j1GUIlabel.h"
@@ -25,8 +24,7 @@ bool j1GUI::Awake(pugi::xml_node& config)
 	LOG("Loading GUI atlas");
 	bool ret = true;
 
-	//atlasFile = config.child("atlas").attribute("file").as_string("");
-	atlasFile = ("Assets/GUI/atlas.png");
+	atlasFile = ("sprites/atlas.png");
 
 	return ret;
 }
@@ -42,7 +40,7 @@ bool j1GUI::Start()
 
 bool j1GUI::PreUpdate()
 {
-	
+
 	bool ret = true;
 	p2List_item<j1GUIelement*>* tmp = GUIelementList.start;
 	while (tmp != nullptr)
@@ -91,6 +89,11 @@ bool j1GUI::CleanUp()
 {
 	LOG("Freeing GUI");
 
+	for (p2List_item<j1GUIelement*>* item = GUIelementList.start; item; item = item->next)
+	{
+		item->data->CleanUp();
+	}
+	GUIelementList.clear();
 	return true;
 }
 
@@ -110,7 +113,7 @@ j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint gl
 
 	case GUItype::GUI_BUTTON:
 		tmp = new j1GUIButton();
-			break;
+		break;
 	case GUItype::GUI_INPUTBOX:
 		tmp = new j1GUIinputBox();
 		break;
@@ -122,7 +125,7 @@ j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint gl
 		break;
 	}
 
-	if (tmp) 
+	if (tmp)
 	{
 
 		tmp->parent = parent;
@@ -137,7 +140,7 @@ j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint gl
 	}
 
 
-	return nullptr;
+	return tmp;
 }
 
 bool j1GUI::Save(pugi::xml_node& file) const {
