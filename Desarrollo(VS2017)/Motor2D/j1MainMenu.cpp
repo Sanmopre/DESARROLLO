@@ -36,7 +36,7 @@ bool j1MainMenu::Awake()
 bool j1MainMenu::Start()
 {
 	
-	texture = App->tex->Load("sprites/background1.png");
+	texture = App->tex->Load("sprites/mainfinal.png");
 	play_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 50,50 }, { 0,0 }, true, true, { 4,69,130,37 });
 	continue_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 50,100 }, { 0,0 }, true, false, { 4,69,130,37 });
 
@@ -66,7 +66,7 @@ bool j1MainMenu::Update(float dt)
 	//}		
 
 	SDL_Rect rect = { 0,0, App->win->screen_surface->w, App->win->screen_surface->h };
-	App->render->Blit(texture, 0, 10, &rect);
+	App->render->Blit(texture, 0, 0, &rect);
 
 	return true;
 }
