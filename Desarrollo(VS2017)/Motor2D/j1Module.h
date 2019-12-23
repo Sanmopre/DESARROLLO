@@ -11,6 +11,7 @@
 
 class j1App;
 struct Collider;
+class j1GUIelement;
 
 enum class GUI_Event
 {
@@ -82,7 +83,7 @@ public:
 
 	}
 
-	virtual void GuiObserver(GUI_Event type, j1GUIelement* element) {}
+	
 
 private:
 	bool enabled = true;
@@ -103,6 +104,12 @@ public:
 			CleanUp();
 		}
 	}
+
+	virtual void GuiObserver(GUI_Event type, j1GUIelement* element)
+	{
+
+	}
+
 
 public:
 

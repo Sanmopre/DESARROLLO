@@ -35,9 +35,9 @@ void j1GUIelement::Draw()
 		SDL_SetTextureAlphaMod(texture, 255);
 	}
 
-	App->render->Blit(texture, globalPosition.x + localPosition.x, globalPosition.y + localPosition.y, &rect);
+	App->render->Blit(texture, globalPosition.x, globalPosition.y, &rect);
 
-	App->render->DrawQuad({ globalPosition.x + localPosition.x, globalPosition.y + localPosition.y, rect.w, rect.h }, 0, 255, 255, 255, false, false);
+	App->render->DrawQuad({ globalPosition.x, globalPosition.y, rect.w, rect.h }, 0, 255, 255, 255, false, false);
 }
 
 
@@ -48,7 +48,7 @@ bool j1GUIelement::OnAbove()
 	SDL_Point mouse;
 	App->input->GetMousePosition(mouse.x, mouse.y);
 
-	SDL_Rect intersect = { globalPosition.x + localPosition.x, globalPosition.y + localPosition.y, rect.w, rect.h };
+	SDL_Rect intersect = { globalPosition.x , globalPosition.y, rect.w, rect.h };
 
 	if (SDL_PointInRect(&mouse, &intersect) && this->enabled && this->interactable)
 		ret = true;
@@ -75,4 +75,8 @@ void j1GUIelement::OnRelease()
 
 
 void j1GUIelement::Dragging()
-{}
+{
+
+
+
+}
