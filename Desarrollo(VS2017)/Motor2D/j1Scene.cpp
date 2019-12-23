@@ -39,14 +39,14 @@ bool j1Scene::Awake()
 bool j1Scene::Start()
 {
 
-	App->map2->Load("castle.tmx");
-	App->audio->PlayMusic("audio/music/castle.ogg");
+	
+	//App->audio->PlayMusic("audio/music/castle.ogg");
 
 	
 	//ENTITY
-	skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
-	player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
-	flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
+	//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
+	//player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
+	//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
 
 	//UI
 	//App->gui->AddGUIelement(GUItype::GUI_INPUTBOX, nullptr, { 50,50 }, { 0,0 }, true, true, { 295,343,199,31 });
@@ -146,6 +146,9 @@ bool j1Scene::Change_Map(int map)
 	if (map == 1)
 	{
 		//App->EntityManager->Destroy_Entities();
+		if (player == nullptr) {
+			player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
+		}
 		//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
 		//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
 		player->Alive = false;
@@ -163,6 +166,9 @@ bool j1Scene::Change_Map(int map)
 		//App->EntityManager->Destroy_Entities();
 		//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
 		//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
+		if (player == nullptr) {
+			player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
+		}
 		player->Alive = false;
 		App->fade->Fade_To_Black(2);
 		App->map2->CleanUp();

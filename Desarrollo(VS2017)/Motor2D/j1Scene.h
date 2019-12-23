@@ -36,7 +36,7 @@ public:
 	bool Save(pugi::xml_node&) const;
 
 	bool Change_Map(int map);
-	bool actual_map = true;
+	int actual_map = 3;
 
 public:
 	SDL_Texture* graphics = nullptr;

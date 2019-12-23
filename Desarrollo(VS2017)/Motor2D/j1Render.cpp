@@ -6,6 +6,7 @@
 #include "j1Animation.h"
 #include "j1Player.h"
 #include "j1Map.h"
+#include "j1Scene.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -297,14 +298,13 @@ bool j1Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, U
 
 void j1Render::Player_Camera(int x, int y) 
 {
-	App->render->camera.x = -x;
-	App->render->camera.y = -y;
+	if (App->scene->actual_map != 3) {
+		App->render->camera.x = -x;
+		App->render->camera.y = -y;
 
-	
-	if (camera.x < -575) {
-		camera.x = camera.x - 400;
+
+		if (camera.x < -575) {
+			camera.x = camera.x - 400;
+		}
 	}
-	
-
-
 }
