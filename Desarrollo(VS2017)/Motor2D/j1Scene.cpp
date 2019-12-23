@@ -141,10 +141,9 @@ bool j1Scene::Change_Map(int map)
 {
 	CleanUp();
 	
-
-	int current_map = map;
 	if (map == 1)
 	{
+		App->gui->CleanUp();
 		//App->EntityManager->Destroy_Entities();
 		if (player == nullptr) {
 			player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
@@ -158,11 +157,12 @@ bool j1Scene::Change_Map(int map)
 		App->collision->MapCleanUp();
 		App->map2->Load("castle.tmx");
 		App->audio->PlayMusic("audio/music/castle.ogg");
-		current_map = 1;
+		actual_map = 1;
 		return true;
 	}
 	if (map == 2)
 	{
+		App->gui->CleanUp();
 		//App->EntityManager->Destroy_Entities();
 		//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
 		//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
@@ -176,19 +176,21 @@ bool j1Scene::Change_Map(int map)
 		App->collision->MapCleanUp();
 		App->map->Load("dungeon.tmx");
 		App->audio->PlayMusic("audio/music/ghost.ogg");
-		current_map = 2;
+		actual_map = 2;
 		return false;
 	}
 	if (map == 3)
 	{
 		player->Alive = false;
-		App->fade->Fade_To_Black(2);	
-		App->map->CleanUp();
-		App->map2->CleanUp();
+		App->fade->Fade_To_Black(2);
+		if (actual_map == 1) {	App->map->CleanUp();}
+		if (actual_map == 2) { App->map2->CleanUp();}
 		App->collision->MapCleanUp();
-		current_map = 3;
+		actual_map = 3;
 		return false;
 	}
+
+	int current_map = map;
 }
 
 

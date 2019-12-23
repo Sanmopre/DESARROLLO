@@ -11,6 +11,15 @@
 
 class j1App;
 struct Collider;
+
+enum class GUI_Event
+{
+	EVENT_UNKOWNN = -1,
+
+	EVENT_ONCLICK,
+	EVENT_DRAG
+};
+
 class j1Module
 {
 public:
@@ -72,6 +81,9 @@ public:
 	{	
 
 	}
+
+	virtual void GuiObserver(GUI_Event type, j1GUIelement* element) {}
+
 private:
 	bool enabled = true;
 public:

@@ -6,6 +6,7 @@
 #include "j1Input.h"
 #include "j1GUIbutton.h"
 #include "j1GUIinputBox.h"
+#include "j1GUIscrollBar.h"
 #include "j1GUIlabel.h"
 #include "j1GUIimage.h"
 
@@ -104,7 +105,7 @@ SDL_Texture* j1GUI::GetAtlasTexture() const
 }
 
 
-j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint globalPosition, iPoint localPosition, bool interactable, bool enabled, SDL_Rect section)
+j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint globalPosition, iPoint localPosition, bool interactable, bool enabled, SDL_Rect section, char* text, j1Module* listener)
 {
 	j1GUIelement* tmp = nullptr;
 
@@ -123,6 +124,9 @@ j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint gl
 	case GUItype::GUI_IMAGE:
 		tmp = new j1GUIimage();
 		break;
+	case GUItype::GUI_SCROLLBAR:
+		tmp = new j1GUIscrollBar();
+		break;
 	}
 
 	if (tmp)
@@ -131,10 +135,11 @@ j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint gl
 		tmp->parent = parent;
 		tmp->globalPosition = globalPosition;
 		tmp->localPosition = localPosition;
+		tmp->listener = listener;
 		tmp->interactable = interactable;
 		tmp->enabled = enabled;
 		tmp->rect = section;
-
+		tmp->text = text;
 
 		GUIelementList.add(tmp)->data->Start();
 	}

@@ -18,13 +18,20 @@ j1GUIButton::~j1GUIButton() {
 bool j1GUIButton::Awake(pugi::xml_node&)
 {
 
+	return true;
+}
+
+bool j1GUIButton::Start()
+{
+	if (text != nullptr)
+		label = App->gui->AddGUIelement(GUItype::GUI_LABEL, this, globalPosition, localPosition, true, true, { 0,0,0,0 }, text);
 
 	return true;
 }
 
-
 bool j1GUIButton::PreUpdate()
 {
+
 	above = OnAbove();
 
 	return true;
@@ -32,19 +39,23 @@ bool j1GUIButton::PreUpdate()
 
 bool j1GUIButton::Update(float dt)
 {
+	if (interactable)
+	{
+		if (above)
+		{
+			if (App->input->GetMouseButtonDown(1) == KEY_DOWN)
+				OnClick();
+		}
 
-	if (above)
-		if (App->input->GetMouseButtonDown(1) == KEY_DOWN)
-			OnClick();
-
+	}
 
 	return true;
 }
 
 bool j1GUIButton::PostUpdate()
 {
-
-	Draw();
+	if (enabled)
+		Draw();
 
 	return true;
 }
@@ -54,10 +65,6 @@ bool j1GUIButton::CleanUp()
 	return true;
 }
 
-void j1GUIButton::OnClick()
-{
-	focus = true;
-}
 
 void j1GUIButton::OnRelease()
 {

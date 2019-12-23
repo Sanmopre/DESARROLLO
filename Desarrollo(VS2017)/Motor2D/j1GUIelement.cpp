@@ -11,11 +11,12 @@
 
 j1GUIelement::~j1GUIelement()
 {
+
 }
 
 bool j1GUIelement::Start()
 {
-	//texture = App->gui->GetAtlasTexture();
+
 
 	return true;
 }
@@ -57,8 +58,21 @@ bool j1GUIelement::OnAbove()
 
 
 void j1GUIelement::OnClick()
-{}
+{
+
+	if (listener != nullptr)
+	{
+		this->listener->GuiObserver(GUI_Event::EVENT_ONCLICK, this);
+	}
+
+
+}
+
 
 
 void j1GUIelement::OnRelease()
+{}
+
+
+void j1GUIelement::Dragging()
 {}
