@@ -20,6 +20,7 @@ public:
 		PLAYER,
 		SKELETON,
 		FLYING_ENEMY,
+		COIN,
 		NULL_ENTITY
 	};
 
@@ -46,6 +47,7 @@ public:
 	
 	Collider* collider = nullptr;
 	SDL_Texture* Character_tex = nullptr;
+	SDL_Texture* Asset_tex = nullptr;
 	p2SString		entity_name;
 	
 };

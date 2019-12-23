@@ -91,6 +91,9 @@
     <ClCompile Include="j1MainMenu.cpp">
       <Filter>Desenvolupament  ========\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="j1Coins.cpp">
+      <Filter>Desenvolupament  ========\Entity\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -207,6 +210,9 @@
     <ClInclude Include="j1MainMenu.h">
       <Filter>Desenvolupament  ========\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="j1Coins.h">
+      <Filter>Desenvolupament  ========\Entity\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
@@ -232,6 +238,9 @@
     </Filter>
     <Filter Include="Desenvolupament  ========\UI">
       <UniqueIdentifier>{1224a770-df1d-4658-9445-7db4290677ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Entity\Items">
+      <UniqueIdentifier>{bc26fad6-e20f-4483-a92b-6bc1af295239}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

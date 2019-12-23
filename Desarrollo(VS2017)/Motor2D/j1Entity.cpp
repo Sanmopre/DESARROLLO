@@ -47,6 +47,7 @@ void j1Entity::Restart() {}
 
 bool j1Entity::CleanUp() {
 	App->tex->Unload(Character_tex);
+	App->tex->Unload(Asset_tex);
 	collider->to_delete;
 	return true;
 }

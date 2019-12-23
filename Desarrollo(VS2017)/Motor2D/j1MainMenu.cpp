@@ -37,6 +37,7 @@ bool j1MainMenu::Start()
 {
 	
 	texture = App->tex->Load("sprites/mainfinal.png");
+
 	play_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 50,50 }, { 0,0 }, true, true, { 4,69,130,37 });
 	continue_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 50,100 }, { 0,0 }, true, false, { 4,69,130,37 });
 
