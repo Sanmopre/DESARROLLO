@@ -40,25 +40,25 @@ public:
 	bool OnAbove();
 	virtual void OnClick();
 	virtual void OnRelease();
-
+	virtual void Dragging();
 	void Draw();
 
 
 public:
 
 	j1GUIelement* parent = nullptr;
+	j1Module* listener = nullptr;
 	GUItype type = GUItype::GUI_ERROR;
 	iPoint globalPosition = { 0,0 };
 	iPoint localPosition = { 0,0 };
 
+	char* text = nullptr;
 	bool enabled = false;
 	bool interactable = false;
 	bool above = false;
 
 	SDL_Rect rect = { 0,0,0,0 };
 	SDL_Texture* texture = nullptr;
-
-	bool focus = false;
 
 };
 

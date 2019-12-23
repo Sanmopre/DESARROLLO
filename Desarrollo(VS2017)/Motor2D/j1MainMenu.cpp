@@ -16,7 +16,7 @@
 
 j1MainMenu::j1MainMenu() : j1Module()
 {
-	name.create("intro");
+	name.create("menu");
 }
 
 // Destructor
@@ -26,7 +26,6 @@ j1MainMenu::~j1MainMenu()
 // Called before render is available
 bool j1MainMenu::Awake()
 {
-	LOG("Loading Intro Scene");
 	bool ret = true;
 
 	return ret;
@@ -35,12 +34,21 @@ bool j1MainMenu::Awake()
 // Called before the first frame
 bool j1MainMenu::Start()
 {
-	
-	texture = App->tex->Load("sprites/mainfinal.png");
-	play_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 50,50 }, { 0,0 }, true, true, { 4,69,130,37 });
-	continue_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 50,100 }, { 0,0 }, true, false, { 4,69,130,37 });
+	texture = App->tex->Load("sprites/menufinal.png");
+	play_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 50,50 }, { 0,0 }, true, true, { 4,69,130,37 }, "PLAY", this);
+	continue_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 50,100 }, { 0,0 }, true, true, { 4,69,130,37 }, "CONTINUE", this);
+	exit_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 50,150 }, { 0,0 }, true, true, { 4,69,130,37 }, "EXIT", this);
 
+	// Settings menu UI elements
+	settings_menu.image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 200, 50 }, { 0,0 }, true, false, { 20, 324, 251, 270 }, nullptr, this);
+	settings_menu.button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 50,200 }, { 0,0 }, true, true, { 4,69,130,37 }, "SETTINGS", this);
+	settings_menu.exit = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 410,60 }, { 0,0 }, true, false, { 513,53,14,14 }, nullptr, this);
+	settings_menu.scroll = App->gui->AddGUIelement(GUItype::GUI_SCROLLBAR, nullptr, { 210, 80 }, { 0,0 }, false, true, { 0, 6, 183, 7 }, nullptr, this);
 
+	// Credits menu UI elements
+	credits_menu.image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 50, 300 }, { 0,0 }, true, false, { 20, 324, 251, 270 }, nullptr, this);
+	credits_menu.button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 50,250 }, { 0,0 }, true, true, { 4,69,130,37 }, "CREDITS", this);
+	credits_menu.exit = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 260,310 }, { 0,0 }, true, false, { 513,53,14,14 }, nullptr, this);
 
 	return true;
 }
@@ -55,20 +63,15 @@ bool j1MainMenu::PreUpdate() {
 bool j1MainMenu::Update(float dt)
 {
 
+	bool ret = true;
 
-	//if (play_button->focus) {		
-		//App->scene->actual_map = App->scene->Change_Map(1);
-	//}
-
-	//if (continue_button->focus) {
-	//	want_continue = true;
-	//	App->scene->actual_map = App->scene->Change_Map(1);
-	//}		
+	if (want_exit)
+		ret = false;
 
 	SDL_Rect rect = { 0,0, App->win->screen_surface->w, App->win->screen_surface->h };
-	App->render->Blit(texture, 0, 0, &rect);
+	App->render->Blit(texture, 0, 10, &rect);
 
-	return true;
+	return ret;
 }
 
 // Called each loop iteration
@@ -85,9 +88,68 @@ bool j1MainMenu::PostUpdate()
 // Called before quitting
 bool j1MainMenu::CleanUp()
 {
-	LOG("Freeing intro scene");
 	play_button = nullptr;
+	continue_button = nullptr;
+	exit_button = nullptr;
+
+	//Cleaning Setting menu UI
+	settings_menu.image = nullptr;
+	settings_menu.exit = nullptr;
+	settings_menu.button = nullptr;
+	settings_menu.scroll = nullptr;
+
+	//Cleaning Credits menu UI
+	credits_menu.image = nullptr;
+	credits_menu.exit = nullptr;
+	credits_menu.button = nullptr;
+
 	App->gui->CleanUp();
 	App->tex->Unload(texture);
 	return true;
+}
+
+void j1MainMenu::GuiObserver(GUI_Event type, j1GUIelement* element)
+{
+
+	switch (type)
+	{
+
+	case GUI_Event::EVENT_ONCLICK:
+	{
+
+		if (element == play_button) {
+		
+		}
+			
+		if (element == continue_button) {
+			want_continue = true;
+			
+		}
+
+		if (element == settings_menu.button) {
+			settings_menu.image->enabled = true;
+			settings_menu.exit->enabled = true;
+		}
+
+		if (element == settings_menu.exit) {
+			settings_menu.image->enabled = false;
+			settings_menu.exit->enabled = false;
+		}
+
+		if (element == credits_menu.button) {
+			credits_menu.image->enabled = true;
+			credits_menu.exit->enabled = true;
+		}
+
+		if (element == credits_menu.exit) {
+			credits_menu.image->enabled = false;
+			credits_menu.exit->enabled = false;
+		}
+
+		if (element == exit_button)
+			want_exit = true;
+
+	}
+	}
+
 }
