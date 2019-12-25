@@ -4,11 +4,14 @@
 #include "j1Textures.h"
 #include "j1Fonts.h"
 #include "j1Input.h"
+
 #include "j1GUIbutton.h"
 #include "j1GUIinputBox.h"
-#include "j1GUIscrollBar.h"
 #include "j1GUIlabel.h"
 #include "j1GUIimage.h"
+
+#include "j1GUIscrollBar.h"
+
 
 j1GUI::j1GUI() : j1Module()
 {
@@ -25,6 +28,7 @@ bool j1GUI::Awake(pugi::xml_node& config)
 	LOG("Loading GUI atlas");
 	bool ret = true;
 
+	//atlasFile = config.child("atlas").attribute("file").as_string("");
 	atlasFile = ("sprites/atlas.png");
 
 	return ret;
@@ -41,7 +45,7 @@ bool j1GUI::Start()
 
 bool j1GUI::PreUpdate()
 {
-
+	
 	bool ret = true;
 	p2List_item<j1GUIelement*>* tmp = GUIelementList.start;
 	while (tmp != nullptr)
@@ -89,7 +93,7 @@ bool j1GUI::PostUpdate()
 bool j1GUI::CleanUp()
 {
 	LOG("Freeing GUI");
-
+	
 	for (p2List_item<j1GUIelement*>* item = GUIelementList.start; item; item = item->next)
 	{
 		item->data->CleanUp();
@@ -105,7 +109,7 @@ SDL_Texture* j1GUI::GetAtlasTexture() const
 }
 
 
-j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint globalPosition, iPoint localPosition, bool interactable, bool enabled, SDL_Rect section, char* text, j1Module* listener)
+j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint globalPosition, iPoint localPosition, bool interactable, bool enabled, SDL_Rect section, char* text, j1Module* listener, bool X_drag, bool Y_drag)
 {
 	j1GUIelement* tmp = nullptr;
 
@@ -114,9 +118,9 @@ j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint gl
 
 	case GUItype::GUI_BUTTON:
 		tmp = new j1GUIButton();
-		break;
+			break;
 	case GUItype::GUI_INPUTBOX:
-		tmp = new j1GUIinputBox();
+		tmp = new j1GUIinputBox(text);
 		break;
 	case GUItype::GUI_LABEL:
 		tmp = new j1GUIlabel();
@@ -129,7 +133,7 @@ j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint gl
 		break;
 	}
 
-	if (tmp)
+	if (tmp) 
 	{
 
 		tmp->parent = parent;
@@ -137,6 +141,10 @@ j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint gl
 		tmp->localPosition = localPosition;
 		tmp->listener = listener;
 		tmp->interactable = interactable;
+
+		tmp->X_drag = X_drag;
+		tmp->Y_drag = Y_drag;
+
 		tmp->enabled = enabled;
 		tmp->rect = section;
 		tmp->text = text;

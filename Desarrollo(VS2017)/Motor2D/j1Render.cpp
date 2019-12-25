@@ -214,7 +214,49 @@ bool j1Render::Blit_Player(SDL_Texture* texture, int x, int y, const SDL_Rect* s
 	return ret;
 }
 
-bool j1Render::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, bool filled, bool use_camera) const
+bool j1Render::Blit_UI(SDL_Texture* texture, int x, int y, const SDL_Rect* section, float speed_x, float speed_y, SDL_RendererFlip flip, double angle, int pivot_x, int pivot_y) const
+{
+	bool ret = true;
+	uint scale = App->win->GetScale();
+
+	SDL_Rect rect;
+	rect.x = (int)(camera.x * speed_x) + x * scale;
+	rect.y = (int)(camera.y * speed_y) + y * scale;
+
+	if (section != NULL)
+	{
+		rect.w = section->w;
+		rect.h = section->h;
+	}
+	else
+	{
+		SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
+	}
+
+	rect.w *= scale;
+	rect.h *= scale;
+
+	SDL_Point* p = NULL;
+	SDL_Point pivot;
+
+	if (pivot_x != INT_MAX && pivot_y != INT_MAX)
+	{
+		pivot.x = pivot_x;
+		pivot.y = pivot_y;
+		p = &pivot;
+	}
+
+	if (SDL_RenderCopyEx(renderer, texture, section, &rect, angle, p, flip) != 0)
+	{
+		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
+		ret = false;
+	}
+
+	return ret;
+}
+
+
+bool j1Render::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, bool filled, bool use_camera, bool guiHitBox) const
 {
 	bool ret = true;
 	uint scale = App->win->GetScale();
@@ -223,17 +265,27 @@ bool j1Render::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a
 	SDL_SetRenderDrawColor(renderer, r, g, b, a);
 
 	SDL_Rect rec(rect);
-	if(use_camera)
+
+	if (use_camera)
 	{
 		rec.x = (int)(camera.x + rect.x * scale);
 		rec.y = (int)(camera.y + rect.y * scale);
 		rec.w *= scale;
 		rec.h *= scale;
 	}
+	else if (guiHitBox)
+	{
+
+		rec.x = (int)(rect.x * scale);
+		rec.y = (int)(camera.y + rect.y * scale);
+		rec.w *= scale;
+		rec.h *= scale;
+
+	}
 
 	int result = (filled) ? SDL_RenderFillRect(renderer, &rec) : SDL_RenderDrawRect(renderer, &rec);
 
-	if(result != 0)
+	if (result != 0)
 	{
 		LOG("Cannot draw quad to screen. SDL_RenderFillRect error: %s", SDL_GetError());
 		ret = false;

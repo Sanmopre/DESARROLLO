@@ -12,10 +12,11 @@ class j1GUIinputBox : public j1GUIelement
 public:
 
 
-	j1GUIinputBox();
+	j1GUIinputBox(char* text);
 	~j1GUIinputBox();
 
 	bool Awake(pugi::xml_node&);
+	bool Start();
 
 	bool PreUpdate();
 	bool Update(float dt);
@@ -25,14 +26,13 @@ public:
 
 	bool Load(pugi::xml_node&) { return true; };
 	bool Save(pugi::xml_node&) const  const { return true; };
-
-
+	
 	void OnClick();
 	void OnRelease();
 private:
-
-	j1GUIelement* text;
-	j1GUIelement* background;
+		
+	j1GUIelement* string = nullptr;
+	j1GUIelement* background = nullptr;	
 };
 
 
@@ -41,5 +41,4 @@ private:
 
 
 #endif // !__J1GUIINPUTBOX__
-
 

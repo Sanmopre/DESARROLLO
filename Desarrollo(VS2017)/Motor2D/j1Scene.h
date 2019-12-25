@@ -6,6 +6,15 @@
 #include "j1Entity.h"
 
 struct SDL_Texture;
+class j1GUIelement;
+
+struct InGameMenu {
+
+	j1GUIelement* image = nullptr;
+	j1GUIelement* return_button = nullptr;
+	j1GUIelement* resume_button = nullptr;
+	j1GUIelement* volume_scroll = nullptr;
+};
 
 class j1Scene : public j1Module
 {
@@ -48,6 +57,9 @@ public:
 	iPoint Skeleton_Position = {190 , 30};
 	iPoint Player_Pos = { 30, 320 };
 
+	j1GUIelement*		lifes_label = nullptr;
+	j1GUIelement*		input_box = nullptr;
+	InGameMenu			menu;
 
 };
 

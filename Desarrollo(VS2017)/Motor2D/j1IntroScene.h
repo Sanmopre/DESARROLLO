@@ -1,9 +1,8 @@
-#ifndef __j1MAINMENU_H__
-#define __j1MAINMENU_H__
+#ifndef __j1INTROSCENE_H__
+#define __j1INTROSCENE_H__
 
 #include "j1Module.h"
 #include "p2DynArray.h"
-
 
 struct SDL_Texture;
 class j1GUIelement;
@@ -22,14 +21,15 @@ struct CreditsMenu {
 	j1GUIelement* exit = nullptr;
 	j1GUIelement* button = nullptr;
 };
-class j1MainMenu : public j1Module
+
+class j1IntroScene : public j1Module
 {
 public:
 
-	j1MainMenu();
+	j1IntroScene();
 
 	// Destructor
-	virtual ~j1MainMenu();
+	virtual ~j1IntroScene();
 
 	// Called before render is available
 	bool Awake();
@@ -54,7 +54,7 @@ public:
 public:
 
 	SDL_Texture* texture;
-	j1GUIelement* play_button = nullptr;
+	j1GUIelement* play_button= nullptr;
 	j1GUIelement* continue_button = nullptr;
 	j1GUIelement* exit_button = nullptr;
 
@@ -65,4 +65,4 @@ public:
 	CreditsMenu credits_menu;
 };
 
-#endif // __j1MAINMENU_H__
+#endif // __j1INTROSCENE_H__

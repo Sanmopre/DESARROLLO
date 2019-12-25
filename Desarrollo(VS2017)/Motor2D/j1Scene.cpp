@@ -139,8 +139,11 @@ bool j1Scene::PostUpdate()
 
 bool j1Scene::Change_Map(int map)
 {
+
+
 	CleanUp();
-	
+
+
 	if (map == 1)
 	{
 		App->gui->CleanUp();

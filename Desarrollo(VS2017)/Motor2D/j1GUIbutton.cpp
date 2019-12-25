@@ -23,7 +23,7 @@ bool j1GUIButton::Awake(pugi::xml_node&)
 
 bool j1GUIButton::Start()
 {
-	if (text != nullptr)
+	if(text != nullptr)
 		label = App->gui->AddGUIelement(GUItype::GUI_LABEL, this, globalPosition, localPosition, true, true, { 0,0,0,0 }, text);
 
 	return true;
@@ -31,6 +31,8 @@ bool j1GUIButton::Start()
 
 bool j1GUIButton::PreUpdate()
 {
+	if (label != nullptr)
+		label->enabled = enabled;
 
 	above = OnAbove();
 
@@ -39,16 +41,16 @@ bool j1GUIButton::PreUpdate()
 
 bool j1GUIButton::Update(float dt)
 {
-	if (interactable)
+	if (interactable) 
 	{
-		if (above)
+		if (above) 
 		{
 			if (App->input->GetMouseButtonDown(1) == KEY_DOWN)
 				OnClick();
 
-			if (App->input->GetMouseButtonDown(1) == KEY_REPEAT)
-			{
-				if (X_drag || Y_drag)
+			if (App->input->GetMouseButtonDown(1) == KEY_REPEAT) 
+			{		
+				if(X_drag || Y_drag)
 					dragging = true;
 
 				iPoint mouseClick = { 0,0 };
@@ -61,21 +63,21 @@ bool j1GUIButton::Update(float dt)
 
 		if (dragging) {
 
-			if (App->input->GetMouseButtonDown(1) == KEY_IDLE || App->input->GetMouseButtonDown(1) == KEY_UP)
-				dragging = false;
-			else
+			if (App->input->GetMouseButtonDown(1) == KEY_IDLE || App->input->GetMouseButtonDown(1) == KEY_UP) 
+				dragging = false;	
+			else 
 			{
 				Dragging();
 				MovingIt(dt);
 			}
-		}
+		}			
 	}
 	return true;
 }
 
 bool j1GUIButton::PostUpdate()
 {
-	if (enabled)
+	if(enabled)
 		Draw();
 
 	return true;
@@ -97,13 +99,13 @@ void j1GUIButton::MovingIt(float dt)
 	iPoint MousePos = { 0,0 };
 	App->input->GetMousePosition(MousePos.x, MousePos.y);
 
-	iPoint currentPos = this->globalPosition;
+	iPoint currentPos =  this->globalPosition;
 
 
-	if (X_drag)
+	if(X_drag)
 		this->globalPosition.x += ((MousePos.x - this->globalPosition.x) - accuratedDrag.x);
 
-	if (Y_drag)
+	if(Y_drag)
 		this->globalPosition.y += ((MousePos.y - this->globalPosition.y) - accuratedDrag.y);
 
 

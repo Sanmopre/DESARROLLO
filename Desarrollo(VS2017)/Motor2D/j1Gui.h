@@ -5,6 +5,7 @@
 #include "j1Module.h"
 #include "p2List.h"
 #include "p2Point.h"
+
 #include "j1GUIelement.h"
 
 
@@ -29,10 +30,12 @@ public:
 	bool Load(pugi::xml_node&);
 
 
-	j1GUIelement* AddGUIelement(GUItype type, j1GUIelement* parent, iPoint globalPosition, iPoint localPosition, bool interactable, bool enabled, SDL_Rect section, char* text = nullptr, j1Module* listener = nullptr);
+	j1GUIelement* AddGUIelement(GUItype type, j1GUIelement* parent, iPoint globalPosition, iPoint localPosition, bool interactable, bool enabled,  SDL_Rect section, char* text = nullptr, j1Module* listener = nullptr, bool X_drag = false, bool Y_drag = false);
 	SDL_Texture* j1GUI::GetAtlasTexture() const;
 
 	p2List<j1GUIelement*>	GUIelementList;
+
+
 private:
 
 	SDL_Texture* atlasTexture;
@@ -42,4 +45,3 @@ private:
 
 
 #endif //  __j1GUI_H__
-
