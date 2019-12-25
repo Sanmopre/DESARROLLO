@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="47">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="58">
  <tileset firstgid="1" name="env_ground" tilewidth="16" tileheight="16" tilecount="900" columns="30">
   <image source="darkforest/env_ground.png" width="480" height="480"/>
  </tileset>
@@ -21073,14 +21073,14 @@
   <object id="5" x="174.333" y="336" width="195" height="15.6667"/>
   <object id="6" x="449.5" y="380" width="126.5" height="11.5"/>
   <object id="7" x="480" y="300" width="95.5" height="11.5"/>
-  <object id="8" x="594" y="348.5" width="44.5" height="11"/>
+  <object id="8" x="586.667" y="348.5" width="57.1667" height="11"/>
   <object id="9" x="609" y="252" width="174.5" height="12.5"/>
   <object id="10" x="898" y="250.5" width="142.5" height="13.5"/>
   <object id="11" x="1055.5" y="205.5" width="130.5" height="10.5"/>
   <object id="25" x="832.5" y="127" width="31" height="14.5"/>
-  <object id="26" x="768.5" y="190.5" width="61.5" height="10"/>
+  <object id="26" x="768.5" y="190.5" width="64.8333" height="10"/>
   <object id="27" x="800.5" y="287" width="63" height="8"/>
-  <object id="28" x="851.5" y="240" width="28" height="7.5"/>
+  <object id="28" x="846.833" y="237.333" width="32.6667" height="10.1667"/>
   <object id="29" x="978" y="207" width="29" height="9"/>
   <object id="31" x="1168.5" y="111" width="16.5" height="105.5"/>
   <object id="40" x="944" y="48" width="15.25" height="63.6667"/>
@@ -21111,5 +21111,18 @@
  </objectgroup>
  <objectgroup id="10" name="win">
   <object id="33" x="1104" y="163" width="49" height="40"/>
+ </objectgroup>
+ <objectgroup id="11" name="coins">
+  <object id="47" x="144" y="326" width="17.3333" height="20.6667"/>
+  <object id="48" x="240" y="286" width="20" height="17.3333"/>
+  <object id="49" x="273.333" y="288.667" width="21.3333" height="15.3333"/>
+  <object id="50" x="494.667" y="347.333" width="18.6667" height="19.3333"/>
+  <object id="51" x="572" y="244.667" width="20.6667" height="18"/>
+  <object id="52" x="600.667" y="212" width="20" height="21.3333"/>
+  <object id="53" x="632" y="322" width="21.3333" height="18.6667"/>
+  <object id="54" x="916.667" y="133.333" width="26" height="18.6667"/>
+  <object id="55" x="954" y="133.333" width="26" height="19.3333"/>
+  <object id="56" x="878" y="84.6667" width="21.3333" height="21.3333"/>
+  <object id="57" x="856" y="207.333" width="18.6667" height="18.6667"/>
  </objectgroup>
 </map>

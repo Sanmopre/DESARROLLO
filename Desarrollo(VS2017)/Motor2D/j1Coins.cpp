@@ -95,6 +95,14 @@ bool j1Coins::Save(pugi::xml_node& data) const
 
 void j1Coins::Pushbacks()
 {
+	idle.PushBack({ 55, 0, 18, 20 });
+	idle.PushBack({75, 0, 14, 20});
+	idle.PushBack({93, 0, 12, 20});
+	idle.PushBack({116, 0, 4, 20});
+	idle.PushBack({131, 0, 12, 20});
+	idle.PushBack({147, 0, 14, 20});
+	idle.lock = true;
+	idle.speed = 0.5f;
 	//ADD PUSHBACKS
 }
 
