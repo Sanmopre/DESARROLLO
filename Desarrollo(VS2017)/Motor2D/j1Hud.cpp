@@ -30,7 +30,7 @@ bool j1Hud::Update(float dt)
 	
 
 	// Score
-	current_coins = App->player->current_points.c_str();
+	/*current_coins = App->EntityManager->player->current_points.c_str();*/
 
 	SDL_Rect temp;
 	temp.x = temp.y = 0;

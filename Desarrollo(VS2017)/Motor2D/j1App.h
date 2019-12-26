@@ -8,7 +8,6 @@
 #include "PugiXml\src\pugixml.hpp"
 
 // Modules
-class j1Player;
 class j1Window;
 class j1Input;
 class j1Render;
@@ -90,7 +89,6 @@ private:
 public:
 
 	// Modules
-	j1Player*			player;
 	j1Window*			win;
 	j1Input*			input;
 	j1Render*			render;
