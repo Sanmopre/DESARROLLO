@@ -111,6 +111,7 @@ void j1Coins::OnCollision(Collider* c1, Collider* c2)
 	if (c1->type == COLLIDER_PLAYER1 || c2->type == COLLIDER_COIN)
 	{
 		Collected = true;
+		c2->to_delete = true;
 		CoinCount++;
 		CleanUp();
 	}

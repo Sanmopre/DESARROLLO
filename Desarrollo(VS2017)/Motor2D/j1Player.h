@@ -80,6 +80,8 @@ struct PlayerInfo
 	float		    MAX_JUMP = 9;
 	fPoint		    velocity;
 
+
+	
 	bool            Looking_Forward = true;
 	bool			Can_Input = true;
 	bool			Alive = true;
@@ -144,6 +146,8 @@ public:
 
 public:
 	
+	std::string		current_points;
+	uint			score;
 	p2SString	folder;
 	pugi::xml_node	node;
 	PlayerInfo playerinfo;

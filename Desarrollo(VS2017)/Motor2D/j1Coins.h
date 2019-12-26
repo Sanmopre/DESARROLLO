@@ -41,7 +41,7 @@ public:
 	iPoint			position;
 	SDL_Texture*	TEX = nullptr;
 	bool			Collected = false;
-	int				CoinCount = 0;
+	int				CoinCount=0;
 	bool			Grounded = true;
 	bool			Near_Player = false;
 
