@@ -380,8 +380,18 @@ bool j1Player::Update(float dt)
 			}
 		}
 	}
-	App->render->Player_Camera(position.x, position.y);
+
 	
+	if (App->scene->Main_Menu == false) {
+		App->render->Player_Camera(position.x, position.y);
+	}
+	else {
+		App->render->camera.x = 0;
+		App->render->camera.y = 0;
+    }
+
+
+
 	if (App->render->camera.x > -575) {
 		if (playerinfo.attacking == true && playerinfo.Looking_Forward == false) {
 			App->render->Blit_Player(Character_tex, position.x - 40, position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);

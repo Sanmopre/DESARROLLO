@@ -70,16 +70,19 @@ bool j1Scene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 	{
+		Main_Menu = false;
 		actual_map = Change_Map(1);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 	{
+		Main_Menu = false;
 		actual_map = Change_Map(2);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 	{
+		Main_Menu = true;
 		actual_map = Change_Map(3);
 	}
 	
@@ -148,6 +151,7 @@ bool j1Scene::Change_Map(int map)
 
 	if (map == 1)
 	{
+		Main_Menu = false;
 		App->MainMenu->Disable_UI();
 		//App->EntityManager->Destroy_Entities();
 		if (player == nullptr) {
@@ -167,6 +171,7 @@ bool j1Scene::Change_Map(int map)
 	}
 	if (map == 2)
 	{
+		Main_Menu = false;
 		App->MainMenu->Disable_UI();
 		//App->EntityManager->Destroy_Entities();
 		//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
@@ -186,6 +191,7 @@ bool j1Scene::Change_Map(int map)
 	}
 	if (map == 3)
 	{
+		Main_Menu = true;
 		App->MainMenu->Enable_UI();
 		App->fade->Fade_To_Black(2);
 		App->map2->CleanUp();

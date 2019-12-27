@@ -48,6 +48,8 @@ public:
 	int actual_map = 3;
 
 public:
+
+	bool Main_Menu = true;
 	SDL_Texture* graphics = nullptr;
 	j1Entity* skeleton;
 	j1Entity* player;
