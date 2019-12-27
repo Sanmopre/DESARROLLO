@@ -49,6 +49,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	void Disable_UI();
 	void GuiObserver(GUI_Event type, j1GUIelement* element);
 
 public:

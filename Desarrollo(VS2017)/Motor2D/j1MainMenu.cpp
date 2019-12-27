@@ -152,3 +152,18 @@ void j1MainMenu::GuiObserver(GUI_Event type, j1GUIelement* element)
 
 
 }
+
+void j1MainMenu::Disable_UI() {
+
+	play_button->enabled = false;
+	continue_button->enabled = false;
+	exit_button->enabled = false;
+	settings_menu.image->enabled = false;
+	settings_menu.button->enabled = false;
+	settings_menu.exit->enabled = false;
+	settings_menu.scroll->enabled = false;
+	credits_menu.image->enabled = false;
+	credits_menu.button->enabled = false;
+	credits_menu.exit->enabled = false;
+
+}

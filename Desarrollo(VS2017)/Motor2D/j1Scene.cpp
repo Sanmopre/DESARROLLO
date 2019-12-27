@@ -14,6 +14,7 @@
 #include "j1Entity.h"
 #include "j1EntityManager.h"
 #include "j1Gui.h"
+#include "j1MainMenu.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -82,11 +83,6 @@ bool j1Scene::Update(float dt)
 		actual_map = Change_Map(3);
 	}
 	
-	if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
-	{
-		App->EntityManager->Destroy_Entities();
-	}
-
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) 
 	{
 		App->LoadGame();
@@ -146,7 +142,7 @@ bool j1Scene::Change_Map(int map)
 
 	if (map == 1)
 	{
-		App->gui->CleanUp();
+		App->MainMenu->Disable_UI();
 		//App->EntityManager->Destroy_Entities();
 		if (player == nullptr) {
 			player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
@@ -165,7 +161,7 @@ bool j1Scene::Change_Map(int map)
 	}
 	if (map == 2)
 	{
-		App->gui->CleanUp();
+		App->MainMenu->Disable_UI();
 		//App->EntityManager->Destroy_Entities();
 		//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
 		//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
@@ -186,8 +182,8 @@ bool j1Scene::Change_Map(int map)
 	{
 		player->Alive = false;
 		App->fade->Fade_To_Black(2);
-		if (actual_map == 1) {	App->map->CleanUp();}
-		if (actual_map == 2) { App->map2->CleanUp();}
+		App->map2->CleanUp();
+		App->map->CleanUp();
 		App->collision->MapCleanUp();
 		actual_map = 3;
 		return false;
