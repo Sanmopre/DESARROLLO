@@ -186,11 +186,10 @@ bool j1Scene::Change_Map(int map)
 	}
 	if (map == 3)
 	{
-		player->Alive = false;
+		App->MainMenu->Enable_UI();
 		App->fade->Fade_To_Black(2);
 		App->map2->CleanUp();
 		App->map->CleanUp();
-		App->collision->MapCleanUp();
 		actual_map = 3;
 		return false;
 	}

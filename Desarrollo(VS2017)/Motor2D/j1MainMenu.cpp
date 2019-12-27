@@ -172,11 +172,6 @@ void j1MainMenu::Enable_UI()
 	play_button->enabled = true;
 	continue_button->enabled = true;
 	exit_button->enabled = true;
-	settings_menu.image->enabled = true;
 	settings_menu.button->enabled = true;
-	settings_menu.exit->enabled = true;
-	settings_menu.scroll->enabled = true;
-	credits_menu.image->enabled = true;
 	credits_menu.button->enabled = true;
-	credits_menu.exit->enabled = true;
 }
