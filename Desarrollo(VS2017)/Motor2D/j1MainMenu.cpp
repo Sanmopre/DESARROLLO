@@ -153,8 +153,8 @@ void j1MainMenu::GuiObserver(GUI_Event type, j1GUIelement* element)
 
 }
 
-void j1MainMenu::Disable_UI() {
-
+void j1MainMenu::Disable_UI() 
+{
 	play_button->enabled = false;
 	continue_button->enabled = false;
 	exit_button->enabled = false;
@@ -165,5 +165,18 @@ void j1MainMenu::Disable_UI() {
 	credits_menu.image->enabled = false;
 	credits_menu.button->enabled = false;
 	credits_menu.exit->enabled = false;
+}
 
+void j1MainMenu::Enable_UI() 
+{
+	play_button->enabled = true;
+	continue_button->enabled = true;
+	exit_button->enabled = true;
+	settings_menu.image->enabled = true;
+	settings_menu.button->enabled = true;
+	settings_menu.exit->enabled = true;
+	settings_menu.scroll->enabled = true;
+	credits_menu.image->enabled = true;
+	credits_menu.button->enabled = true;
+	credits_menu.exit->enabled = true;
 }

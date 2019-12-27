@@ -92,6 +92,12 @@ bool j1Scene::Update(float dt)
 		App->SaveGame();
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
+	{
+			App->MainMenu->Enable_UI();
+	}
+
+
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 		App->render->camera.y -= 1;
