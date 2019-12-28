@@ -6,17 +6,17 @@
 #include "j1Input.h"
 #include "j1Render.h"
 #include "j1Window.h"
-
+#include "j1Scene.h"
 
 
 j1GUIelement::~j1GUIelement()
 {
-	
+
 }
 
 bool j1GUIelement::Start()
 {
-	
+
 
 	return true;
 }
@@ -24,20 +24,33 @@ bool j1GUIelement::Start()
 
 void j1GUIelement::Draw()
 {
-	if (above)
-	{
-		SDL_SetTextureColorMod(texture, 200, 50, 50);
-		SDL_SetTextureAlphaMod(texture, 200);
-	}
-	else
+
+	if (above && interactable)
 	{
 		SDL_SetTextureColorMod(texture, 255, 255, 255);
 		SDL_SetTextureAlphaMod(texture, 255);
 	}
+	else if (!above && interactable)
+	{
+		SDL_SetTextureColorMod(texture, 160, 160, 160);
+		SDL_SetTextureAlphaMod(texture, 255);
+	}
 
-	App->render->Blit_UI(texture, globalPosition.x, globalPosition.y, &rect, 0.0f);
+	if (!interactable && this->type != GUItype::GUI_BUTTON)
+	{
+		SDL_SetTextureColorMod(texture, 255, 255, 255);
+		SDL_SetTextureAlphaMod(texture, 255);
+	}
+	else if (!interactable && this->type == GUItype::GUI_BUTTON && !decorative)
+	{
+		SDL_SetTextureColorMod(texture, 255, 255, 255);
+		SDL_SetTextureAlphaMod(texture, 50);
 
-	App->render->DrawQuad({ globalPosition.x, globalPosition.y, rect.w, rect.h }, 0, 255, 255, 255, false, false, true);
+	}
+
+	App->render->Blit_UI(texture, globalPosition.x, globalPosition.y, &rect, 0.0f, 0.0f);
+
+	
 }
 
 
@@ -48,10 +61,15 @@ bool j1GUIelement::OnAbove()
 	SDL_Point mouse;
 	App->input->GetMousePosition(mouse.x, mouse.y);
 
-	SDL_Rect intersect = {globalPosition.x , globalPosition.y, rect.w, rect.h };
+	SDL_Rect intersect = { globalPosition.x , globalPosition.y, rect.w, rect.h };
 
-	if (SDL_PointInRect(&mouse, &intersect) && this->enabled && this->interactable)
+	if (SDL_PointInRect(&mouse, &intersect) && this->enabled && this->interactable) {
+		if (listener != nullptr)
+		{
+			this->listener->GuiObserver(GUI_Event::EVENT_HOVER, this);
+		}
 		ret = true;
+	}
 
 	return ret;
 }
@@ -60,10 +78,10 @@ bool j1GUIelement::OnAbove()
 void j1GUIelement::OnClick()
 {
 
-	if (listener != nullptr) 
+	if (listener != nullptr)
 	{
 		this->listener->GuiObserver(GUI_Event::EVENT_ONCLICK, this);
-	}		
+	}
 
 }
 
@@ -71,7 +89,7 @@ void j1GUIelement::OnClick()
 
 void j1GUIelement::OnRelease()
 {
-	
+
 }
 
 

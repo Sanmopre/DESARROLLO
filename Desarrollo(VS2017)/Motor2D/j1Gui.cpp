@@ -28,8 +28,7 @@ bool j1GUI::Awake(pugi::xml_node& config)
 	LOG("Loading GUI atlas");
 	bool ret = true;
 
-	//atlasFile = config.child("atlas").attribute("file").as_string("");
-	atlasFile = ("sprites/atlas.png");
+	atlasFile = config.child("atlas").attribute("file").as_string();
 
 	return ret;
 }
@@ -45,7 +44,6 @@ bool j1GUI::Start()
 
 bool j1GUI::PreUpdate()
 {
-	
 	bool ret = true;
 	p2List_item<j1GUIelement*>* tmp = GUIelementList.start;
 	while (tmp != nullptr)
@@ -76,7 +74,7 @@ bool j1GUI::Update(float dt)
 
 bool j1GUI::PostUpdate()
 {
-
+	
 	bool ret = true;
 
 	p2List_item<j1GUIelement*>* tmp = GUIelementList.start;
@@ -93,7 +91,7 @@ bool j1GUI::PostUpdate()
 bool j1GUI::CleanUp()
 {
 	LOG("Freeing GUI");
-	
+
 	for (p2List_item<j1GUIelement*>* item = GUIelementList.start; item; item = item->next)
 	{
 		item->data->CleanUp();
@@ -109,8 +107,9 @@ SDL_Texture* j1GUI::GetAtlasTexture() const
 }
 
 
-j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint globalPosition, iPoint localPosition, bool interactable, bool enabled, SDL_Rect section, char* text, j1Module* listener, bool X_drag, bool Y_drag)
+j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint globalPosition, iPoint localPosition, bool interactable, bool enabled, SDL_Rect section, char* text, j1Module* listener, bool X_drag, bool Y_drag, SCROLL_TYPE scrollType, bool decor)
 {
+
 	j1GUIelement* tmp = nullptr;
 
 	switch (type)
@@ -118,7 +117,7 @@ j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint gl
 
 	case GUItype::GUI_BUTTON:
 		tmp = new j1GUIButton();
-			break;
+		break;
 	case GUItype::GUI_INPUTBOX:
 		tmp = new j1GUIinputBox(text);
 		break;
@@ -129,11 +128,11 @@ j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint gl
 		tmp = new j1GUIimage();
 		break;
 	case GUItype::GUI_SCROLLBAR:
-		tmp = new j1GUIscrollBar();
+		tmp = new j1GUIscrollBar(scrollType);
 		break;
 	}
 
-	if (tmp) 
+	if (tmp)
 	{
 
 		tmp->parent = parent;
@@ -145,6 +144,7 @@ j1GUIelement* j1GUI::AddGUIelement(GUItype type, j1GUIelement* parent, iPoint gl
 		tmp->X_drag = X_drag;
 		tmp->Y_drag = Y_drag;
 
+		tmp->decorative = decor;
 		tmp->enabled = enabled;
 		tmp->rect = section;
 		tmp->text = text;

@@ -3,7 +3,7 @@
 
 #include "j1Module.h"
 #include "p2Point.h"
-#include "j1Animation.h"
+#include "J1Animation.h"
 #include "p2Log.h"
 #include "SDL/include/SDL_render.h"
 
@@ -16,6 +16,15 @@ enum class GUItype
 	GUI_LABEL,
 	GUI_IMAGE,
 	GUI_MAX
+};
+
+enum class SCROLL_TYPE
+{
+	SCROLL_NONE,
+	SCROLL_MUSIC,
+	SCROLL_FX,
+	SCROLL_BASIC,
+	SCROLL_MAX
 };
 
 
@@ -52,6 +61,7 @@ public:
 	iPoint globalPosition = { 0,0 };
 	iPoint localPosition = { 0,0 };
 
+	SDL_Color color = { 255,255,255 };
 	char* text = nullptr;
 	bool enabled = false;
 	bool interactable = false;
@@ -61,6 +71,8 @@ public:
 
 	bool above = false;
 	bool focus = false;
+
+	bool decorative = false;
 
 	SDL_Rect rect = { 0,0,0,0 };
 	SDL_Texture* texture = nullptr;

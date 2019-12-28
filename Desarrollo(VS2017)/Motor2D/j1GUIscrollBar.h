@@ -6,13 +6,13 @@
 #include "j1GUI.h"
 
 
+
 class j1GUIscrollBar : public j1GUIelement
 {
 public:
 
-	j1GUIscrollBar();
+	j1GUIscrollBar(SCROLL_TYPE type);
 	~j1GUIscrollBar();
-
 
 	bool Awake(pugi::xml_node&);
 	bool Start();
@@ -23,17 +23,17 @@ public:
 
 	bool CleanUp();
 
-
-
 	bool Load(pugi::xml_node&) { return true; };
 	bool Save(pugi::xml_node&) const  const { return true; };
-
 	void ScrollLimits();
 
+
 	j1GUIelement* scrollButton = nullptr;
+	SCROLL_TYPE scrollType = SCROLL_TYPE::SCROLL_NONE;
+
+	float value;
+	float initialValue;
 };
-
-
 
 
 
