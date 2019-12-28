@@ -47,7 +47,7 @@ bool j1Scene::Start()
 	Coins = 0;
 	
 	//App->audio->PlayMusic("audio/music/castle.ogg");
-	Add_UI();
+
 	
 	//ENTITY
 	//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
@@ -71,7 +71,7 @@ bool j1Scene::Update(float dt)
 	BROFILER_CATEGORY("Scene_Update", Profiler::Color::Violet)
 
 		bool ret = true;
-	
+	/*
 		Timer += dt;
 	sprintf_s(Timer_T, "%.2f", Timer);
 	App->tex->Unload(stats.Timer_label->texture);
@@ -84,7 +84,7 @@ bool j1Scene::Update(float dt)
 	sprintf_s(Coins_T, "%d", Coins);
 	App->tex->Unload(stats.Coins_label->texture);
 	stats.Coins_label->text = Coins_T;
-	
+	*/
 	
 	
 
@@ -132,7 +132,7 @@ bool j1Scene::Update(float dt)
 	//if (console.Input->focus)
 		//ret = Console_Manager();
 
-
+/*
 	//UPDATES ALL UI POSITIONS
 	App->gui->Update_Position(stats.Timer_label, { 220,(-App->render->camera.y / 2)+ 22 }, { 0,(-App->render->camera.y / 2)  });
 	App->gui->Update_Position(stats.Timer_icon, { 180,(-App->render->camera.y / 2) +13 } ,{ 0, (-App->render->camera.y / 2)  });
@@ -141,7 +141,7 @@ bool j1Scene::Update(float dt)
 	App->gui->Update_Position(stats.Coins_label, { 55,(-App->render->camera.y / 2)+22 } ,{ 0, (-App->render->camera.y / 2)  });
 	App->gui->Update_Position(stats.Coins_icon, { 10,(-App->render->camera.y / 2)+15 }, { 0, (-App->render->camera.y / 2)  });
 	App->gui->Update_Position(menu.Image, { 160,(-App->render->camera.y / 2) + 5}, { 0, (-App->render->camera.y / 2)  });
-	App->gui->Update_Position(menu.Menu_button, { 450,(-App->render->camera.y / 2)+13 }, { 0, (-App->render->camera.y / 2)  });
+//	App->gui->Update_Position(menu.Menu_button, { 450,(-App->render->camera.y)+13 }, { 0, 0  });
 	App->gui->Update_Position(menu.Return_button, { 210,(-App->render->camera.y / 2)+130 }, { -3, (-App->render->camera.y / 2)-5});
 	App->gui->Update_Position(menu.Title, { 205,(-App->render->camera.y / 2)+50 }, { 30, (-App->render->camera.y / 2) });
 	App->gui->Update_Position(menu.Resume_button, { 210,(-App->render->camera.y / 2)+100 }, { 10, (-App->render->camera.y / 2) -5 });
@@ -150,7 +150,7 @@ bool j1Scene::Update(float dt)
 	App->gui->Update_Position(menu.Load, { 210,(-App->render->camera.y / 2)+190 }, { 20, (-App->render->camera.y / 2) -5 });
 	App->gui->Update_Position(console.Image, { 160,(-App->render->camera.y / 2) +60} ,{ 0, (-App->render->camera.y / 2)  });
 	App->gui->Update_Position(console.Input, { 170,(-App->render->camera.y / 2)+220 }, { 0, (-App->render->camera.y / 2)  });
-	
+	*/
 
 
 
