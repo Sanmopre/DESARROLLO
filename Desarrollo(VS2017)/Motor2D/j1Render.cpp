@@ -407,5 +407,8 @@ void j1Render::Player_Camera(int x, int y)
 		if (camera.x < -575) {
 			camera.x = camera.x - 400;
 		}
+		if (camera.y < -405) {
+			camera.y = -405;
+		}
 	}
 }
