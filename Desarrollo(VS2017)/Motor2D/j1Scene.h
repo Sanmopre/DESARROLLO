@@ -87,6 +87,7 @@ public:
 	j1Entity* skeleton;
 	j1Entity* player;
 	j1Entity* flying_enemy;
+	j1Entity* coin;
 
 	int					Lifes;
 	int					Coins = 0;

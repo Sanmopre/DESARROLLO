@@ -42,6 +42,8 @@ bool j1Coins::Start()
 	current_animation = &idle;
 	//We need to put the collider here
 
+
+	//collider = App->collision->AddCollider({ position.x , position.y , 10, 10 }, COLLIDER_COIN, this);
 	Asset_tex= App->tex->Load("sprites/assets.png");
 	Pushbacks();
 	return true;

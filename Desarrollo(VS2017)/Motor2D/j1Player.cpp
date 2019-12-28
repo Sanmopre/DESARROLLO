@@ -675,6 +675,16 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 
 		}
 
+	if (c1 == playerinfo.playerbody && c2->type == COLLIDER_COIN)
+	{
+		if ((playerinfo.playerbody->rect.y + playerinfo.playerbody->rect.h) > (c2->rect.y))	
+		{
+			App->EntityManager->Destroy_Entity(App->scene->coin);
+		}
+			App->collision->CoinCleanUp();
+		
+	}
+
 		if (c1 == playerinfo.playerattack && c2->type == COLLIDER_ENEMY)
 		{
 			if ((playerinfo.playerattack->rect.y + playerinfo.playerattack->rect.h) > (c2->rect.y))
@@ -694,6 +704,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 			}
 			App->collision->SkeletonCleanUp();
 		}
+
 }
 
 bool j1Player::Save(pugi::xml_node& data) 

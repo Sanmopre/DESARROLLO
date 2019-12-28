@@ -63,6 +63,7 @@ public:
 	bool AttackCleanUp();
 	bool EnemyCleanUp();
 	bool SkeletonCleanUp();
+	bool CoinCleanUp();
 	SDL_Rect rect;
 	bool debug = false;
 private:

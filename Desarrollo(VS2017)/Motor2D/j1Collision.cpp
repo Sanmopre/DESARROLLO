@@ -16,6 +16,7 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_FLOOR][COLLIDER_WIN] = false;
 	matrix[COLLIDER_FLOOR][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_FLOOR][COLLIDER_SKELETON] = true;
+	matrix[COLLIDER_FLOOR][COLLIDER_COIN] = true;
 	
 	matrix[COLLIDER_DEATH][COLLIDER_DEATH] = false;
 	matrix[COLLIDER_DEATH][COLLIDER_FLOOR] = true;
@@ -24,6 +25,8 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_DEATH][COLLIDER_WIN] = false;
 	matrix[COLLIDER_DEATH][COLLIDER_ENEMY] = false;
 	matrix[COLLIDER_DEATH][COLLIDER_SKELETON] = false;
+	matrix[COLLIDER_DEATH][COLLIDER_COIN] = false;
+
 
 	matrix[COLLIDER_PLAYER1][COLLIDER_PLAYER1] = false;
 	matrix[COLLIDER_PLAYER1][COLLIDER_FLOOR] = true;
@@ -32,6 +35,7 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_PLAYER1][COLLIDER_WIN] = true;
 	matrix[COLLIDER_PLAYER1][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_PLAYER1][COLLIDER_SKELETON] = true;
+	matrix[COLLIDER_PLAYER1][COLLIDER_COIN] = true;
 
 	matrix[COLLIDER_WIN][COLLIDER_DEATH] = false;
 	matrix[COLLIDER_WIN][COLLIDER_FLOOR] = true;
@@ -40,6 +44,7 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_WIN][COLLIDER_WIN] = false;
 	matrix[COLLIDER_WIN][COLLIDER_ENEMY] = false;
 	matrix[COLLIDER_WIN][COLLIDER_SKELETON] = false;
+	matrix[COLLIDER_WIN][COLLIDER_COIN] = false;
 
 	matrix[COLLIDER_ENEMY][COLLIDER_FLOOR] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER1] = true;
@@ -48,6 +53,7 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_ENEMY][COLLIDER_WIN] = false;
 	matrix[COLLIDER_ENEMY][COLLIDER_ENEMY] = false;
 	matrix[COLLIDER_ENEMY][COLLIDER_SKELETON] = false;
+	matrix[COLLIDER_ENEMY][COLLIDER_COIN] = false;
 
 	matrix[COLLIDER_ATTACK][COLLIDER_FLOOR] = false;
 	matrix[COLLIDER_ATTACK][COLLIDER_PLAYER1] = false;
@@ -56,6 +62,7 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_ATTACK][COLLIDER_WIN] = false;
 	matrix[COLLIDER_ATTACK][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_ATTACK][COLLIDER_SKELETON] = true;
+	matrix[COLLIDER_ATTACK][COLLIDER_COIN] = false;
 }
 
 // Destructor
@@ -276,6 +283,23 @@ bool j1Collision::SkeletonCleanUp()
 		if (colliders[i] != nullptr)
 		{
 			if (colliders[i]->type == COLLIDER_SKELETON)
+			{
+				delete colliders[i];
+				colliders[i] = nullptr;
+			}
+		}
+	}
+
+	return true;
+}
+
+bool j1Collision::CoinCleanUp()
+{
+	for (uint i = 0; i < MAX_COLLIDERS; ++i)
+	{
+		if (colliders[i] != nullptr)
+		{
+			if (colliders[i]->type == COLLIDER_COIN)
 			{
 				delete colliders[i];
 				colliders[i] = nullptr;

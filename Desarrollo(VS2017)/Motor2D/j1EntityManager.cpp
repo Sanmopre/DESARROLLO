@@ -2,6 +2,7 @@
 #include "j1Entity.h"
 #include "j1Player.h"
 #include "j1Skeleton.h"
+#include "j1Coins.h"
 #include "J1Flying_Enemy.h"
 #include "j1Scene.h"
 #include "j1Animation.h"
@@ -89,6 +90,10 @@ j1Entity* j1EntityManager::Summon_Entity(j1Entity::Types type, iPoint pos)
 	case j1Entity::Types::FLYING_ENEMY:
 
 		ret = new j1Flying_Enemy(pos);
+		break;
+
+	case j1Entity::Types::COIN:
+		ret = new j1Coins(pos);
 		break;
 	}
 
