@@ -47,13 +47,14 @@ bool j1Scene::Start()
 	Coins = 0;
 	
 	//App->audio->PlayMusic("audio/music/castle.ogg");
-
+	Add_UI();
 	
 	//ENTITY
 	//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
 	//player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
 	//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
-	//coin = App->EntityManager->Summon_Entity(j1Entity::Types::COIN, Coin_pos);
+	coin = App->EntityManager->Summon_Entity(j1Entity::Types::COIN, Coin_pos);
+	coin2 = App->EntityManager->Summon_Entity(j1Entity::Types::COIN, Coin2_pos);
 
 	return true;
 }

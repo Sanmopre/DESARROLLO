@@ -87,6 +87,7 @@ public:
 	j1Entity* player;
 	j1Entity* flying_enemy;
 	j1Entity* coin;
+	j1Entity* coin2;
 
 	int					Lifes;
 	int					Coins = 0;
@@ -100,7 +101,8 @@ public:
 	iPoint Fly_Position =  { 690 , 100 };
 	iPoint Skeleton_Position = {190 , 30};
 	iPoint Player_Pos = { 30, 320 };
-	iPoint Coin_pos = { 60, 310 };
+	iPoint Coin_pos = { 290, 350 };
+	iPoint Coin2_pos = { 250, 350 };
 
 	Game_Menu			menu;
 	Console				console;

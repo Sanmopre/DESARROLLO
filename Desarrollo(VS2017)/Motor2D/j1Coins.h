@@ -8,10 +8,7 @@
 struct SDL_Texture;
 struct Collider;
 
-enum ENTITY_TYPE;
 
-struct SDL_Texture;
-struct Collider;
 
 class j1Coins : public j1Entity
 {
