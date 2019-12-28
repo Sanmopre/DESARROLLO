@@ -36,7 +36,6 @@ struct Game_Menu {
 	j1GUIelement* Save = nullptr;
 	j1GUIelement* Load = nullptr;
 	j1GUIelement* label1 = nullptr;
-	j1GUIelement* label2 = nullptr;
 };
 
 

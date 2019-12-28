@@ -54,8 +54,6 @@ bool j1Scene::Start()
 	//player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
 	//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
 
-	//UI
-	//App->gui->AddGUIelement(GUItype::GUI_INPUTBOX, nullptr, { 50,50 }, { 0,0 }, true, true, { 295,343,199,31 });
 
 	return true;
 }
@@ -134,10 +132,24 @@ bool j1Scene::Update(float dt)
 		//ret = Console_Manager();
 
 
-//	int x, y;
-//	App->input->GetMousePosition(x, y);
-//	iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
-
+	//UPDATES ALL UI POSITIONS
+	App->gui->Update_Position(stats.Timer_label, { 220,(-App->render->camera.y / 2)+ 22 }, { 0,(-App->render->camera.y / 2)  });
+	App->gui->Update_Position(stats.Timer_icon, { 180,(-App->render->camera.y / 2) +13 } ,{ 0, (-App->render->camera.y / 2)  });
+	App->gui->Update_Position(stats.Lifes_label, { 150,(-App->render->camera.y / 2)+22 } ,{ 0, (-App->render->camera.y / 2)  });
+	App->gui->Update_Position(stats.Lifes_icon, { 100,(-App->render->camera.y / 2)+13 }, { 0, (-App->render->camera.y / 2)  });
+	App->gui->Update_Position(stats.Coins_label, { 55,(-App->render->camera.y / 2)+22 } ,{ 0, (-App->render->camera.y / 2)  });
+	App->gui->Update_Position(stats.Coins_icon, { 10,(-App->render->camera.y / 2)+15 }, { 0, (-App->render->camera.y / 2)  });
+	App->gui->Update_Position(menu.Image, { 160,(-App->render->camera.y / 2) + 5}, { 0, (-App->render->camera.y / 2)  });
+	App->gui->Update_Position(menu.Menu_button, { 450,(-App->render->camera.y / 2)+13 }, { 0, (-App->render->camera.y / 2)  });
+	App->gui->Update_Position(menu.Return_button, { 210,(-App->render->camera.y / 2)+130 }, { -3, (-App->render->camera.y / 2)-5});
+	App->gui->Update_Position(menu.Title, { 205,(-App->render->camera.y / 2)+50 }, { 30, (-App->render->camera.y / 2) });
+	App->gui->Update_Position(menu.Resume_button, { 210,(-App->render->camera.y / 2)+100 }, { 10, (-App->render->camera.y / 2) -5 });
+	App->gui->Update_Position(menu.Exit_button, { 210,(-App->render->camera.y / 2)+220 }, { 20, (-App->render->camera.y / 2) -5 });
+	App->gui->Update_Position(menu.Save, { 210,(-App->render->camera.y / 2) +160} ,{ 20, (-App->render->camera.y / 2) -5 });
+	App->gui->Update_Position(menu.Load, { 210,(-App->render->camera.y / 2)+190 }, { 20, (-App->render->camera.y / 2) -5 });
+	App->gui->Update_Position(console.Image, { 160,(-App->render->camera.y / 2) +60} ,{ 0, (-App->render->camera.y / 2)  });
+	App->gui->Update_Position(console.Input, { 170,(-App->render->camera.y / 2)+220 }, { 0, (-App->render->camera.y / 2)  });
+	
 
 	App->map2->Draw();
 	App->map->Draw();
@@ -265,18 +277,15 @@ void j1Scene::Add_UI()
 	stats.Lifes_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 100, 13 }, { 0,0 }, false, true, { 458, 78, 41, 31 }, nullptr, this);
 	stats.Coins_label = App->gui->AddGUIelement(GUItype::GUI_LABEL, nullptr, { 55,22 }, { 0,0 }, false, true, { 0,0,0,0 }, "0");
 	stats.Coins_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 10, 15 }, { 0,0 }, false, true, { 458, 43, 40, 27 }, nullptr, this);
-	menu.Image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 160, 60 }, { 0,0 }, false, false, { 288, 144, 198, 282 }, nullptr, this);
+	menu.Image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 10, 60 }, { 0,0 }, false, false, { 288, 144, 198, 282 }, nullptr, this);
 	menu.Menu_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 450,13 }, { 0,0 }, true, true, { 84,164,37,31 }, nullptr, this);
 	menu.Return_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,130 }, { -3,-5 }, true, false, { 283,109,100,22 }, "MAIN MENU", this);
-	menu.Title = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 205,50 }, { 20,-3 }, false, false, { 166,167,109,27 }, "MENU", this, false, false, SCROLL_TYPE::SCROLL_NONE, true);
+	menu.Title = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 205,50 }, { 30,0 }, false, false, { 166,167,109,27 }, "MENU", this, false, false, SCROLL_TYPE::SCROLL_NONE, true);
 	menu.Resume_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,100 }, { 10,-5 }, true, false, { 283,109,100,22 }, "RESUME", this);
 	menu.Exit_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,220 }, { 20,-5 }, true, false, { 283,109,100,22 }, "EXIT", this);
 	menu.Save = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,160 }, { 20,-5 }, true, false, { 283,109,100,22 }, "SAVE", this);
 	menu.Load = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,190 }, { 20,-5 }, true, false, { 283,109,100,22 }, "LOAD", this);
-	menu.Music_scroll = App->gui->AddGUIelement(GUItype::GUI_SCROLLBAR, nullptr, { 220, 310 }, { 0,0 }, false, false, { 284, 62, 120, 4 }, nullptr, this, true, false, SCROLL_TYPE::SCROLL_FX);
 	console.Image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 160, 60 }, { 0,0 }, false, false, { 288, 144, 198, 200 }, nullptr, this);
-	menu.label1 = App->gui->AddGUIelement(GUItype::GUI_LABEL, nullptr, { 170, 270 }, { 0,-3 }, false, false, { 166,167,109,27 }, "MUSIC", this);
-	menu.label2 = App->gui->AddGUIelement(GUItype::GUI_LABEL, nullptr, { 170, 310 }, { 0,-3 }, false, false, { 166,167,109,27 }, "FX'S", this);
 	console.Input = App->gui->AddGUIelement(GUItype::GUI_INPUTBOX, nullptr, { 168,220 }, { 0,0 }, true, false, { 11,359,182,26 }, nullptr, this);
 	
 	already_added = true;
@@ -288,12 +297,11 @@ void j1Scene::Activate_Menu() {
 	menu.Resume_button->enabled = !menu.Resume_button->enabled;
 	menu.Return_button->enabled = !menu.Return_button->enabled;
 	menu.Title->enabled = !menu.Title->enabled;
-	menu.Music_scroll->enabled = !menu.Music_scroll->enabled;
 	menu.Exit_button->enabled = !menu.Exit_button->enabled;
 	menu.Load->enabled = !menu.Load->enabled;
 	menu.Save->enabled = !menu.Save->enabled;
-	menu.label1->enabled = !menu.label1->enabled;
-	menu.label2->enabled = !menu.label2->enabled;
+
+
 }
 
 void j1Scene::Activate_Console()

@@ -166,3 +166,8 @@ bool j1GUI::Load(pugi::xml_node& file) {
 
 	return true;
 }
+
+void j1GUI::Update_Position(j1GUIelement* element, iPoint position, iPoint localPosition) {
+	element->globalPosition = position;
+	element->localPosition = localPosition;
+}
