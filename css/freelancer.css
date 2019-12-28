@@ -69,6 +69,11 @@ body {
   background-color: #fff;
 }
 
+#fotodani{
+left: 50%;
+}
+
+
 [tabindex="-1"]:focus {
   outline: 0 !important;
 }
