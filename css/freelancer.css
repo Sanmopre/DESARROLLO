@@ -74,6 +74,12 @@ width:5%;
 margin-left: 50%;
 }
 
+iframe{
+margin-top: 50%;
+margin-left:20%; 
+width:420px;
+height:315px;
+}
 
 [tabindex="-1"]:focus {
   outline: 0 !important;
