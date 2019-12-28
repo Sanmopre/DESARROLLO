@@ -69,9 +69,14 @@ body {
   background-color: #fff;
 }
 
+#fotosanti{
+width:5%;
+margin-left: 5%;
+}
+
 #fotodani{
 width:5%;
-margin-left: -50%;
+margin-left: 5%;
 }
 
 iframe{
