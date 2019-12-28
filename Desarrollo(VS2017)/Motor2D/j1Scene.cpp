@@ -41,7 +41,7 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	Add_UI();
+	
 	Timer = 0;
 	Lifes = 3;
 	Coins = 0;
@@ -70,7 +70,7 @@ bool j1Scene::Update(float dt)
 	BROFILER_CATEGORY("Scene_Update", Profiler::Color::Violet)
 
 		bool ret = true;
-
+	
 		Timer += dt;
 	sprintf_s(Timer_T, "%.2f", Timer);
 	App->tex->Unload(stats.Timer_label->texture);
@@ -83,8 +83,8 @@ bool j1Scene::Update(float dt)
 	sprintf_s(Coins_T, "%d", Coins);
 	App->tex->Unload(stats.Coins_label->texture);
 	stats.Coins_label->text = Coins_T;
-
-
+	
+	
 	
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
@@ -150,6 +150,8 @@ bool j1Scene::Update(float dt)
 	App->gui->Update_Position(console.Image, { 160,(-App->render->camera.y / 2) +60} ,{ 0, (-App->render->camera.y / 2)  });
 	App->gui->Update_Position(console.Input, { 170,(-App->render->camera.y / 2)+220 }, { 0, (-App->render->camera.y / 2)  });
 	
+
+
 
 	App->map2->Draw();
 	App->map->Draw();
