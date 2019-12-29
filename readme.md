@@ -2,22 +2,21 @@ https://github.com/Sanmopre/DESARROLLO
 
 SHEN:
 
-We are Dani Ruiz and Santiago Moliner, and here is our first version for the first delivery.
-The main objective of this game is to save your grandma from Satan.
+We are Dani Ruiz and Santiago Moliner, and here is last version for development.
+The main objective of this game is to save your grandma from Lord Zed.
 
 *New_:
-- Added FPS cap to 30fps.
-- Brofiler tool
-- Entity system for Enemies and player
-- Pathfinding(Not finished)
-- Paralax in map 2
-- Player attack
-- Player can kill enemies with attack
+-Added UI
+-Music and FX UI
+-Website
+-Some assets in game
+-HUD
+-More FX effects
 
 Controls:
 	-A = left player movement
 	-D = right player movement
-	-W = player jumping	
+	-SPACE = player jumping	
 	-F = player dash
 	-E = player attack
 
@@ -35,6 +34,7 @@ COMMITS:
 	-Audio
 	-Player
 	-Sprites
+	-Web
 
 	SANTI:
 	-Entities
@@ -51,6 +51,7 @@ COMMITS:
 	-Player input	
 	-Collisions
 	-Scene
+	-UI
 
 credits of sprites:
 https://mamanezakon.itch.io/forest-tileset
