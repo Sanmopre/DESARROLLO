@@ -35,7 +35,7 @@ bool j1MainMenu::Awake()
 bool j1MainMenu::Start()
 {
 	
-	App->audio->PlayMusic("", 1.0f);
+	App->audio->PlayMusic("audio/music/main_menu.ogg");
 	texture = App->tex->Load("sprites/mainfinal.png");
 
 	play_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 20,20 }, { 0,0 }, true, true, { 4,69,130,37 }, "PLAY", this);
@@ -46,7 +46,7 @@ bool j1MainMenu::Start()
 	settings_menu.exit = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 410,50 }, { 0,0 }, true, false, { 513,53,14,14 }, nullptr, this);
 	settings_menu.scroll = App->gui->AddGUIelement(GUItype::GUI_SCROLLBAR, nullptr, { 210, 80 }, { 0,0 }, false, false, { 0, 6, 183, 7 }, nullptr, this);
 
-	credits_menu.title = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 250,160 }, { 0,-3 }, false, false, { 533,78,129,32 }, "CREDITS", this, false, false, SCROLL_TYPE::SCROLL_NONE, true);
+	credits_menu.license = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 250,160 }, { 0,-3 }, false, false, { 533,78,129,32 }, "LICENSE", this, false, false, SCROLL_TYPE::SCROLL_NONE, true);
 	credits_menu.link = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 250, 90 }, { 25,8 }, true, false, { 283, 75, 159, 31 }, "GAME WEBPAGE", this);
 	
 	credits_menu.button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 20,220 }, { 0,0 }, true, true, { 4,69,130,37 }, "CREDITS", this);
@@ -136,7 +136,7 @@ void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 			settings_menu.image->enabled = true;
 			settings_menu.exit->enabled = true;
 			settings_menu.scroll->enabled = true;
-			credits_menu.title->enabled = false;
+			credits_menu.license->enabled = false;
 			credits_menu.link->enabled = false;
 		}
 
@@ -145,7 +145,7 @@ void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 
 			settings_menu.image->enabled = true;
 			settings_menu.exit->enabled = true;
-			credits_menu.title->enabled = true;
+			credits_menu.license->enabled = true;
 			credits_menu.link->enabled = true;
 			settings_menu.scroll->enabled = false;
 		}
@@ -156,7 +156,7 @@ void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 			settings_menu.image->enabled = false;
 			settings_menu.exit->enabled = false;
 			settings_menu.scroll->enabled = false;
-			credits_menu.title->enabled = false;
+			credits_menu.license->enabled = false;
 			credits_menu.link->enabled = false;
 		}
 		if (element == credits_menu.link) {

@@ -19,7 +19,7 @@ struct Settings_Menu {
 struct Credits_Menu 
 {
 	j1GUIelement* button = nullptr;
-	j1GUIelement* title = nullptr;
+	j1GUIelement* license = nullptr;
 	j1GUIelement* credits = nullptr;
 	j1GUIelement* link = nullptr;
 };
