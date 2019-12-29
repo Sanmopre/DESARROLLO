@@ -59,3 +59,9 @@ https://pixelprogrammer.itch.io/pixel-platformer-art-pack
 
 WEBSITE:
 https://sanmopre.github.io/DESARROLLO/
+*Our game information in the web*
+First icon: Introduction of the game
+Second icon: How to play, there all all the controlls
+Third icon: Innovation
+Fourth icon: GitHub, there are two links, our repository and release
+Fifth icon: The gameplay video from youtube
