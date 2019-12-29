@@ -117,7 +117,7 @@ void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 	
 		if (element == play_button) 
 		{
-			App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_sound.wav"));
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_fx.wav"));
 		App->scene->Main_Menu = false;
 		App->scene->actual_map = App->scene->Change_Map(1);
 		}
@@ -125,13 +125,13 @@ void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 		if (element == continue_button) 
 		{
 			want_continue = true;
-			App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_sound.wav"));
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_fx.wav"));
 		App->scene->Main_Menu = false;
 		App->scene->actual_map = App->scene->Change_Map(2);
 		}
 
 		if (element == settings_menu.button) {
-			App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_sound.wav"));
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_fx.wav"));
 
 			settings_menu.image->enabled = true;
 			settings_menu.exit->enabled = true;
@@ -141,7 +141,7 @@ void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 		}
 
 		if (element == credits_menu.button) {
-			App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_sound.wav"));
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_fx.wav"));
 
 			settings_menu.image->enabled = true;
 			settings_menu.exit->enabled = true;
@@ -152,7 +152,7 @@ void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 
 	
 		if (element == settings_menu.exit) {
-			App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_sound.wav"));
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_fx.wav"));
 			settings_menu.image->enabled = false;
 			settings_menu.exit->enabled = false;
 			settings_menu.scroll->enabled = false;
@@ -160,7 +160,7 @@ void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 			credits_menu.link->enabled = false;
 		}
 		if (element == credits_menu.link) {
-			App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_sound.wav"));
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_fx.wav"));
 			ShellExecuteA(NULL, "open", "https://sanmopre.github.io/DESARROLLO/", NULL, NULL, SW_SHOWNORMAL);
 		}
 
