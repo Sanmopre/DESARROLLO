@@ -9,7 +9,7 @@
 j1GUIinputBox::j1GUIinputBox(char* text) 
 {
 	this->type = GUItype::GUI_INPUTBOX;	
-	texture = App->gui->GetAtlasTexture();	
+
 }
 
 j1GUIinputBox::~j1GUIinputBox() {

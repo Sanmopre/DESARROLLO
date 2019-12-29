@@ -42,8 +42,6 @@ bool j1GUIscrollBar::Start()
 
 	}
 
-
-	texture = App->gui->GetAtlasTexture();
 	return true;
 }
 
