@@ -47,9 +47,8 @@ bool j1MainMenu::Start()
 	settings_menu.scroll = App->gui->AddGUIelement(GUItype::GUI_SCROLLBAR, nullptr, { 210, 80 }, { 0,0 }, false, false, { 0, 6, 183, 7 }, nullptr, this);
 
 	credits_menu.title = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 250,160 }, { 0,-3 }, false, false, { 533,78,129,32 }, "CREDITS", this, false, false, SCROLL_TYPE::SCROLL_NONE, true);
-	credits_menu.link = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 325, 120 }, { -5,0 }, true, false, { 283, 75, 159, 31 }, "LINK TO OUR WEB!", this);
-	credits_menu.credits = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 215, 200 }, { 0,0 }, true, false, { 9,215, 257, 130 }, nullptr, this);
-
+	credits_menu.link = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 250, 90 }, { 25,8 }, true, false, { 283, 75, 159, 31 }, "GAME WEBPAGE", this);
+	
 	credits_menu.button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 20,220 }, { 0,0 }, true, true, { 4,69,130,37 }, "CREDITS", this);
 	
 
@@ -139,7 +138,6 @@ void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 			settings_menu.scroll->enabled = true;
 			credits_menu.title->enabled = false;
 			credits_menu.link->enabled = false;
-			credits_menu.credits->enabled = false;
 		}
 
 		if (element == credits_menu.button) {
@@ -149,7 +147,6 @@ void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 			settings_menu.exit->enabled = true;
 			credits_menu.title->enabled = true;
 			credits_menu.link->enabled = true;
-			credits_menu.credits->enabled = true;
 			settings_menu.scroll->enabled = false;
 		}
 
@@ -161,7 +158,6 @@ void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 			settings_menu.scroll->enabled = false;
 			credits_menu.title->enabled = false;
 			credits_menu.link->enabled = false;
-			credits_menu.credits->enabled = false;
 		}
 		if (element == credits_menu.link) {
 			//AUDIO

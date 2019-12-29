@@ -122,9 +122,9 @@ bool j1Scene::Update(float dt)
 	}
 
 	//Game menu
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && !console.Image->enabled) {
-		Activate_Menu();
-	}
+	//if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && !console.Image->enabled) {
+		//Activate_Menu();
+	//}
 
 	if (App->input->GetKey(SDL_SCANCODE_GRAVE) == KEY_DOWN && !menu.Image->enabled){
 	
@@ -185,11 +185,7 @@ bool j1Scene::PostUpdate()
 
 bool j1Scene::Change_Map(int map)
 {
-
-
 	CleanUp();
-
-
 	if (map == 1)
 	{
 
@@ -250,7 +246,6 @@ bool j1Scene::Change_Map(int map)
 		return false;
 	}
 
-	int current_map = map;
 }
 
 
