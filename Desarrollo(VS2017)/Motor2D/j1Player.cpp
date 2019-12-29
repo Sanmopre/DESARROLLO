@@ -680,6 +680,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 		if ((playerinfo.playerbody->rect.y + playerinfo.playerbody->rect.h) > (c2->rect.y))	
 		{
 			App->EntityManager->Destroy_Entity(App->scene->coin);
+			App->audio->PlayFx(App->audio->LoadFx("audio/fx/coin.wav"));
 		}
 			App->collision->CoinCleanUp();
 		

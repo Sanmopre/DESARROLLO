@@ -61,6 +61,7 @@ bool j1Coins::Update(float dt)
 	{
 		collider->SetPos(position.x, position.y);
 	}
+	
 	App->render->Blit(Asset_tex, position.x, position.y, &current_animation->GetCurrentFrame(), SDL_FLIP_NONE);
 
 	return true;
