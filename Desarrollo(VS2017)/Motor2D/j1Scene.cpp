@@ -268,20 +268,20 @@ bool j1Scene::Save(pugi::xml_node& data) const
 
 void j1Scene::Add_UI()
 {
-	stats.Timer_label = App->gui->AddGUIelement(GUItype::GUI_LABEL, nullptr, { 220,22 }, { 0,0 }, false, true, { 0,0,0,0 }, "0:00");
-	stats.Timer_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 180, 13 }, { 0,0 }, false, true, { 0, 0, 30,30 }, nullptr, this);
-	stats.Lifes_label = App->gui->AddGUIelement(GUItype::GUI_LABEL, nullptr, { 146,22 }, { 0,0 }, false, true, { 0,0,0,0 }, "3");
-	stats.Lifes_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 100, 13 }, { 0,0 }, false, true, { 0, 0, 30,30 }, nullptr, this);
-	stats.Coins_label = App->gui->AddGUIelement(GUItype::GUI_LABEL, nullptr, { 55,22 }, { 0,0 }, false, true, { 0,0,0,0 }, "0");
-	stats.Coins_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 10, 15 }, { 0,0 }, false, true, { 0, 0, 30,30 }, nullptr, this);
-	menu.Image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 10, 60 }, { 0,0 }, false, false, { 0, 0, 200, 280 }, nullptr, this);
-	menu.Menu_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 450,250 }, { 0,-235 }, true, true, { 0,0,70,30 }, "OPTIONS",  this);
-	menu.Return_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,130 }, { 20,5 }, true, false, { 0, 0,100,22 }, "RETURN", this);
-	menu.Title = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 205,50 }, { 30,0 }, false, false, { 0, 0,109,27 }, "MENU", this, false, false, SCROLL_TYPE::SCROLL_NONE, true);
-	menu.Resume_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,100 }, { 20,5 }, true, false, { 0, 0,100,22 }, "RESUME", this);
-	menu.Exit_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,220 }, { 20,5 }, true, false, { 0, 0,100,22 }, "EXIT", this);
-	menu.Save = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,160 }, { 20,5 }, true, false, { 0, 0,100,22 }, "SAVE", this);
-	menu.Load = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,190 }, { 20,5 }, true, false, { 0, 0,100,22 }, "LOAD", this);
+	stats.Timer_label = App->gui->ADD_ELEMENT(GUItype::GUI_LABEL, nullptr, { 220,22 }, { 0,0 }, false, true, { 0,0,0,0 }, "0:00");
+	stats.Timer_icon = App->gui->ADD_ELEMENT(GUItype::GUI_IMAGE, nullptr, { 180, 13 }, { 0,0 }, false, true, { 0, 0, 30,30 }, nullptr, this);
+	stats.Lifes_label = App->gui->ADD_ELEMENT(GUItype::GUI_LABEL, nullptr, { 146,22 }, { 0,0 }, false, true, { 0,0,0,0 }, "3");
+	stats.Lifes_icon = App->gui->ADD_ELEMENT(GUItype::GUI_IMAGE, nullptr, { 100, 13 }, { 0,0 }, false, true, { 0, 0, 30,30 }, nullptr, this);
+	stats.Coins_label = App->gui->ADD_ELEMENT(GUItype::GUI_LABEL, nullptr, { 55,22 }, { 0,0 }, false, true, { 0,0,0,0 }, "0");
+	stats.Coins_icon = App->gui->ADD_ELEMENT(GUItype::GUI_IMAGE, nullptr, { 10, 15 }, { 0,0 }, false, true, { 0, 0, 30,30 }, nullptr, this);
+	menu.Image = App->gui->ADD_ELEMENT(GUItype::GUI_IMAGE, nullptr, { 10, 60 }, { 0,0 }, false, false, { 0, 0, 200, 280 }, nullptr, this);
+	menu.Menu_button = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 450,250 }, { 0,-235 }, true, true, { 0,0,70,30 }, "OPTIONS",  this);
+	menu.Return_button = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 210,130 }, { 20,5 }, true, false, { 0, 0,100,22 }, "RETURN", this);
+	menu.Title = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 205,50 }, { 30,0 }, false, false, { 0, 0,109,27 }, "MENU", this, false, false, SCROLL_TYPE::SCROLL_NONE, true);
+	menu.Resume_button = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 210,100 }, { 20,5 }, true, false, { 0, 0,100,22 }, "RESUME", this);
+	menu.Exit_button = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 210,220 }, { 20,5 }, true, false, { 0, 0,100,22 }, "EXIT", this);
+	menu.Save = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 210,160 }, { 20,5 }, true, false, { 0, 0,100,22 }, "SAVE", this);
+	menu.Load = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 210,190 }, { 20,5 }, true, false, { 0, 0,100,22 }, "LOAD", this);
 
 	
 	already_added = true;
@@ -290,8 +290,8 @@ void j1Scene::Add_UI()
 
 void j1Scene::Add_Console()
 {
-console.Image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 160, 60 }, { 0,0 }, false, false, { 0, 0, 198, 200 }, nullptr, this);
-console.Input = App->gui->AddGUIelement(GUItype::GUI_INPUTBOX, nullptr, { 168,220 }, { 0,0 }, true, false, { 0, 0,182,26 }, nullptr, this);
+console.Image = App->gui->ADD_ELEMENT(GUItype::GUI_IMAGE, nullptr, { 160, 60 }, { 0,0 }, false, false, { 0, 0, 198, 200 }, nullptr, this);
+console.Input = App->gui->ADD_ELEMENT(GUItype::GUI_INPUTBOX, nullptr, { 168,220 }, { 0,0 }, true, false, { 0, 0,182,26 }, nullptr, this);
 }
 
 void j1Scene::Activate_Menu() 

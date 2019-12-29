@@ -28,8 +28,8 @@ public:
 	void ScrollLimits();
 
 
-	j1GUIelement* scrollButton = nullptr;
-	SCROLL_TYPE scrollType = SCROLL_TYPE::SCROLL_NONE;
+	j1GUIelement* Button = nullptr;
+	SCROLL_TYPE Type = SCROLL_TYPE::SCROLL_NONE;
 
 	float value;
 	float initialValue;

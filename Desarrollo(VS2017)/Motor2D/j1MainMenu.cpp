@@ -38,20 +38,17 @@ bool j1MainMenu::Start()
 	App->audio->PlayMusic("audio/music/main_menu.ogg");
 	texture = App->tex->Load("sprites/mainfinal.png");
 
-	play_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 20,20 }, { 0,0 }, true, true, { 4,69,130,37 }, "PLAY", this);
-	continue_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 20,70 }, { 0,0 }, true, true, { 4,69,130,37 }, "CONTINUE", this);
-	exit_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 20,120 }, { 0,0 }, true, true, { 4,69,130,37 }, "EXIT", this);
-	settings_menu.image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 200, 20 }, { 0,0 }, true, false, { 20, 324, 251, 270 }, nullptr, this);
-	settings_menu.button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 20,170 }, { 0,0 }, true, true, { 4,69,130,37 }, "SETTINGS", this);
-	settings_menu.exit = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 410,50 }, { 0,0 }, true, false, { 513,53,14,14 }, nullptr, this);
-	settings_menu.scroll = App->gui->AddGUIelement(GUItype::GUI_SCROLLBAR, nullptr, { 210, 80 }, { 0,0 }, false, false, { 0, 6, 183, 7 }, nullptr, this);
-
-	credits_menu.license = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 250,160 }, { 0,-3 }, false, false, { 533,78,129,32 }, "LICENSE", this, false, false, SCROLL_TYPE::SCROLL_NONE, true);
-	credits_menu.link = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 250, 90 }, { 25,8 }, true, false, { 283, 75, 159, 31 }, "GAME WEBPAGE", this);
+	play_button = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 20,20 }, { 0,0 }, true, true, { 4,69,130,37 }, "PLAY", this);
+	continue_button = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 20,70 }, { 0,0 }, true, true, { 4,69,130,37 }, "CONTINUE", this);
+	exit_button = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 20,120 }, { 0,0 }, true, true, { 4,69,130,37 }, "EXIT", this);
+	settings_menu.image = App->gui->ADD_ELEMENT(GUItype::GUI_IMAGE, nullptr, { 200, 20 }, { 0,0 }, true, false, { 20, 324, 251, 270 }, nullptr, this);
+	settings_menu.button = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 20,170 }, { 0,0 }, true, true, { 4,69,130,37 }, "SETTINGS", this);
+	settings_menu.exit = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 410,50 }, { 0,0 }, true, false, { 513,53,14,14 }, nullptr, this);
+	settings_menu.scroll = App->gui->ADD_ELEMENT(GUItype::GUI_SCROLLBAR, nullptr, { 210, 80 }, { 0,0 }, false, false, { 0, 6, 183, 7 }, nullptr, this);
+	credits_menu.license = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 250,160 }, { 0,-3 }, false, false, { 533,78,129,32 }, "LICENSE", this, false, false, SCROLL_TYPE::SCROLL_NONE, true);
+	credits_menu.link = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 250, 90 }, { 25,8 }, true, false, { 283, 75, 159, 31 }, "GAME WEBPAGE", this);
+	credits_menu.button = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 20,220 }, { 0,0 }, true, true, { 4,69,130,37 }, "CREDITS", this);
 	
-	credits_menu.button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 20,220 }, { 0,0 }, true, true, { 4,69,130,37 }, "CREDITS", this);
-	
-
 	return true;
 }
 

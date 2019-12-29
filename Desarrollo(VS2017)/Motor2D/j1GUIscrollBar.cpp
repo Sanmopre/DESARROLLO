@@ -6,10 +6,10 @@
 #include "j1Audio.h"
 
 
-j1GUIscrollBar::j1GUIscrollBar(SCROLL_TYPE scrollTypeInput) {
+j1GUIscrollBar::j1GUIscrollBar(SCROLL_TYPE TypeInput) {
 
 	this->type = GUItype::GUI_SCROLLBAR;
-	scrollType = scrollTypeInput;
+	Type = TypeInput;
 }
 
 j1GUIscrollBar::~j1GUIscrollBar() {
@@ -29,11 +29,11 @@ bool j1GUIscrollBar::Start()
 
 
 
-	scrollButton = App->gui->AddGUIelement(GUItype::GUI_BUTTON, this, Map_Position, Inside_Position, true, true, { 432, 36, 14 , 16 }, nullptr, this->listener, true, false);
-	scrollButton->Map_Position.y = Map_Position.y - scrollButton->rect.h / 2 + this->rect.h / 2;
+	Button = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, this, Map_Position, Inside_Position, true, true, { 432, 36, 14 , 16 }, nullptr, this->listener, true, false);
+	Button->Map_Position.y = Map_Position.y - Button->rect.h / 2 + this->rect.h / 2;
 	value = 0;
 
-	 if (this->scrollType == SCROLL_TYPE::SCROLL_MUSIC)
+	 if (this->Type == SCROLL_TYPE::SCROLL_MUSIC)
 	{
 
 	}
@@ -44,7 +44,7 @@ bool j1GUIscrollBar::Start()
 bool j1GUIscrollBar::PreUpdate()
 {
 
-	scrollButton->enabled = enabled;
+	Button->enabled = enabled;
 	above = OnAbove();
 
 	return true;
@@ -66,9 +66,9 @@ bool j1GUIscrollBar::Update(float dt)
 bool j1GUIscrollBar::PostUpdate()
 {
 	ScrollLimits();
-	value = -((float(-scrollButton->Inside_Position.x) / (float(-this->rect.w) + float(scrollButton->rect.w))) * 128);
+	value = -((float(-Button->Inside_Position.x) / (float(-this->rect.w) + float(Button->rect.w))) * 128);
 
-	if (this->scrollType == SCROLL_TYPE::SCROLL_MUSIC)
+	if (this->Type == SCROLL_TYPE::SCROLL_MUSIC)
 	{
 		
 	}
@@ -89,18 +89,18 @@ bool j1GUIscrollBar::CleanUp()
 
 void j1GUIscrollBar::ScrollLimits() {
 
-	if (scrollButton->Inside_Position.x > 0)
+	if (Button->Inside_Position.x > 0)
 	{
-		scrollButton->Inside_Position.x = 0;
+		Button->Inside_Position.x = 0;
 
-		scrollButton->Map_Position.x = scrollButton->parent->Map_Position.x - scrollButton->Inside_Position.x;
+		Button->Map_Position.x = Button->parent->Map_Position.x - Button->Inside_Position.x;
 
 	}
-	else if (scrollButton->Inside_Position.x < (-this->rect.w + scrollButton->rect.w))
+	else if (Button->Inside_Position.x < (-this->rect.w + Button->rect.w))
 	{
-		scrollButton->Inside_Position.x = -this->rect.w + scrollButton->rect.w;
+		Button->Inside_Position.x = -this->rect.w + Button->rect.w;
 
-		scrollButton->Map_Position.x = scrollButton->parent->Map_Position.x - scrollButton->Inside_Position.x;
+		Button->Map_Position.x = Button->parent->Map_Position.x - Button->Inside_Position.x;
 		
 	}
 

@@ -72,7 +72,7 @@ public:
 
 	//UI managment
 	void GUI_Event_Manager(GUI_Event type, j1GUIelement* element);
-	bool Console_Manager();
+	//bool Console_Manager();
 
 	void Add_UI();
 	void Activate_Menu();
