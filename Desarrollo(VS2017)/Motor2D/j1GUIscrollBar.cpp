@@ -31,7 +31,7 @@ bool j1GUIscrollBar::Start()
 
 	Button = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, this, Map_Position, Inside_Position, true, true, { 432, 36, 14 , 16 }, nullptr, this->listener, true, false);
 	Button->Map_Position.y = Map_Position.y - Button->rect.h / 2 + this->rect.h / 2;
-	value = 0;
+	Value = 0;
 
 	 if (this->Type == SCROLL_TYPE::SCROLL_MUSIC)
 	{
@@ -66,7 +66,7 @@ bool j1GUIscrollBar::Update(float dt)
 bool j1GUIscrollBar::PostUpdate()
 {
 	ScrollLimits();
-	value = -((float(-Button->Inside_Position.x) / (float(-this->rect.w) + float(Button->rect.w))) * 128);
+	Value = -((float(-Button->Inside_Position.x) / (float(-this->rect.w) + float(Button->rect.w))) * 128);
 
 	if (this->Type == SCROLL_TYPE::SCROLL_MUSIC)
 	{

@@ -31,8 +31,7 @@ public:
 	j1GUIelement* Button = nullptr;
 	SCROLL_TYPE Type = SCROLL_TYPE::SCROLL_NONE;
 
-	float value;
-	float initialValue;
+	float Value;
 };
 
 #endif // !__J1GUISCROLLBAR__
