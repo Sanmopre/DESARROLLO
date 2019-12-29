@@ -5,8 +5,6 @@
 j1GUIimage::j1GUIimage() {
 
 	this->type = GUItype::GUI_IMAGE;
-
-	texture = App->gui->GetAtlasTexture();
 }
 
 j1GUIimage::~j1GUIimage() {

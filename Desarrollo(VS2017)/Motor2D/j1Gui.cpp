@@ -28,16 +28,13 @@ bool j1GUI::Awake(pugi::xml_node& config)
 	LOG("Loading GUI atlas");
 	bool ret = true;
 
-	atlasFile = config.child("atlas").attribute("file").as_string();
-
 	return ret;
 }
 
 
 bool j1GUI::Start()
 {
-	atlasTexture = App->tex->Load(atlasFile.GetString());
-
+	
 	return true;
 }
 
@@ -98,12 +95,6 @@ bool j1GUI::CleanUp()
 	}
 	GUIelementList.clear();
 	return true;
-}
-
-
-SDL_Texture* j1GUI::GetAtlasTexture() const
-{
-	return atlasTexture;
 }
 
 
