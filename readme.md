@@ -1,5 +1,6 @@
 https://github.com/Sanmopre/DESARROLLO
 
+
 SHEN:
 
 We are Dani Ruiz and Santiago Moliner, and here is last version for development.
@@ -12,6 +13,7 @@ The main objective of this game is to save your grandma from Lord Zed.
 -Some assets in game
 -HUD
 -More FX effects
+-Console (not finished)
 
 Controls:
 	-A = left player movement
@@ -26,6 +28,8 @@ Controls:
 	F1 = change to first stage
 	F2 = change to second stage
 	F3 = restart current stage
+	F8 = change to main menu
+	º = open console
 COMMITS: 
 	DANI:
 	-Map creation
@@ -59,3 +63,6 @@ https://pixelprogrammer.itch.io/pixel-platformer-art-pack
 
 WEBSITE:
 https://sanmopre.github.io/DESARROLLO/
+
+LINK TO OUR GITHUB:
+https://github.com/Sanmopre/DESARROLLO
