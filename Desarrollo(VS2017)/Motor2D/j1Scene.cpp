@@ -54,6 +54,7 @@ bool j1Scene::Start()
 	//player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
 	//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
 	coin = App->EntityManager->Summon_Entity(j1Entity::Types::COIN, Coin_pos);
+	Add_Console();
 	
 
 	return true;
@@ -126,8 +127,7 @@ bool j1Scene::Update(float dt)
 		//Activate_Menu();
 	//}
 
-	if (App->input->GetKey(SDL_SCANCODE_GRAVE) == KEY_DOWN && !menu.Image->enabled){
-	
+	if (App->input->GetKey(SDL_SCANCODE_GRAVE) == KEY_DOWN ){
 		Activate_Console();
 }
 	//if (console.Input->focus)
@@ -192,7 +192,7 @@ bool j1Scene::Change_Map(int map)
 		if (already_added == false) {
 			Add_UI();
 		}
-
+		Open_InGame_UI();
 		Main_Menu = false;
 		App->MainMenu->Disable_UI();
 		//App->EntityManager->Destroy_Entities();
@@ -216,7 +216,7 @@ bool j1Scene::Change_Map(int map)
 		if (already_added == false) {
 			Add_UI();
 		}
-
+		Open_InGame_UI();
 		Main_Menu = false;
 		App->MainMenu->Disable_UI();
 		//App->EntityManager->Destroy_Entities();
@@ -284,14 +284,20 @@ void j1Scene::Add_UI()
 	menu.Exit_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,220 }, { 20,-5 }, true, false, { 0, 0,100,22 }, "EXIT", this);
 	menu.Save = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,160 }, { 20,-5 }, true, false, { 0, 0,100,22 }, "SAVE", this);
 	menu.Load = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,190 }, { 20,-5 }, true, false, { 0, 0,100,22 }, "LOAD", this);
-	console.Image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 160, 60 }, { 0,0 }, false, false, { 0, 0, 198, 200 }, nullptr, this);
-	console.Input = App->gui->AddGUIelement(GUItype::GUI_INPUTBOX, nullptr, { 168,220 }, { 0,0 }, true, false, { 0, 0,182,26 }, nullptr, this);
+
 	
 	already_added = true;
 }
 
-void j1Scene::Activate_Menu() {
 
+void j1Scene::Add_Console()
+{
+console.Image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 160, 60 }, { 0,0 }, false, false, { 0, 0, 198, 200 }, nullptr, this);
+console.Input = App->gui->AddGUIelement(GUItype::GUI_INPUTBOX, nullptr, { 168,220 }, { 0,0 }, true, false, { 0, 0,182,26 }, nullptr, this);
+}
+
+void j1Scene::Activate_Menu() 
+{
 	menu.Image->enabled = !menu.Image->enabled;
 	menu.Resume_button->enabled = !menu.Resume_button->enabled;
 	menu.Return_button->enabled = !menu.Return_button->enabled;
@@ -299,8 +305,6 @@ void j1Scene::Activate_Menu() {
 	menu.Exit_button->enabled = !menu.Exit_button->enabled;
 	menu.Load->enabled = !menu.Load->enabled;
 	menu.Save->enabled = !menu.Save->enabled;
-
-
 }
 
 void j1Scene::Activate_Console()
@@ -372,4 +376,16 @@ void j1Scene::Close_InGame_UI()
 	menu.Load->enabled = false;
 	console.Image->enabled = false;
 	console.Input->enabled = false;
+}
+
+void j1Scene::Open_InGame_UI() 
+{
+	stats.Timer_label->enabled = true;
+	stats.Timer_icon->enabled = true;
+	stats.Lifes_label->enabled = true;
+	stats.Lifes_icon->enabled = true;
+	stats.Coins_label->enabled = true;
+	stats.Coins_icon->enabled = true;
+	menu.Menu_button->enabled = true;
+
 }
