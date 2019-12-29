@@ -131,20 +131,20 @@ bool j1Scene::Update(float dt)
 		Activate_Console();
 }
 	//if (console.Input->focus)
-		//ret = Console_Manager();
+	//	ret = Console_Manager();
 
 
 	//UPDATES ALL UI POSITIONS
 	if (already_added == true) {
-		/*
+		
 		App->gui->Update_Position(stats.Timer_label, { 220,(-App->render->camera.y / 2) + 22 }, { 0,(-App->render->camera.y / 2) });
 		App->gui->Update_Position(stats.Timer_icon, { 180,(-App->render->camera.y / 2) + 13 }, { 0, (-App->render->camera.y / 2) });
 		App->gui->Update_Position(stats.Lifes_label, { 150,(-App->render->camera.y / 2) + 22 }, { 0, (-App->render->camera.y / 2) });
 		App->gui->Update_Position(stats.Lifes_icon, { 100,(-App->render->camera.y / 2) + 13 }, { 0, (-App->render->camera.y / 2) });
-		App->gui->Update_Position(stats.Coins_label, { 55,(-App->render->camera.y) + 22 }, { 0, (-App->render->camera.y / 2) });
+		App->gui->Update_Position(stats.Coins_label, { 55,(-App->render->camera.y / 2) + 22 }, { 0, (-App->render->camera.y / 2) });
 		App->gui->Update_Position(stats.Coins_icon, { 10,(-App->render->camera.y / 2) + 15 }, { 0, (-App->render->camera.y / 2) });
 		App->gui->Update_Position(menu.Image, { 160,(-App->render->camera.y / 2) + 5 }, { 0, (-App->render->camera.y / 2) });
-		App->gui->Update_Position(menu.Menu_button, { 450,App->win->screen_surface->h}, { 0, 0 });
+		App->gui->Update_Position(menu.Menu_button, { 450,(-App->render->camera.y / 2 )+13}, { 0, 0 });
 		App->gui->Update_Position(menu.Return_button, { 210,(-App->render->camera.y / 2) + 130 }, { -3, (-App->render->camera.y / 2) - 5 });
 		App->gui->Update_Position(menu.Title, { 205,(-App->render->camera.y / 2) + 50 }, { 30, (-App->render->camera.y / 2) });
 		App->gui->Update_Position(menu.Resume_button, { 210,(-App->render->camera.y / 2) + 100 }, { 10, (-App->render->camera.y / 2) - 5 });
@@ -152,13 +152,13 @@ bool j1Scene::Update(float dt)
 		App->gui->Update_Position(menu.Save, { 210,(-App->render->camera.y / 2) + 160 }, { 20, (-App->render->camera.y / 2) - 5 });
 		App->gui->Update_Position(menu.Load, { 210,(-App->render->camera.y / 2) + 190 }, { 20, (-App->render->camera.y / 2) - 5 });
 		App->gui->Update_Position(console.Image, { 160,(-App->render->camera.y / 2) + 60 }, { 0, (-App->render->camera.y / 2) });
-		App->gui->Update_Position(console.Input, { 170,(-App->render->camera.y / 2) + 220 }, { 0, (-App->render->camera.y / 2) });*/
+		App->gui->Update_Position(console.Input, { 170,(-App->render->camera.y / 2) + 220 }, { 0, (-App->render->camera.y / 2) });
 	}
 
 
 
-	App->map2->Draw();
-	App->map->Draw();
+	if (actual_map == 1) {App->map2->Draw();}
+	if (actual_map == 2) {App->map->Draw();}
 		
 	
 
@@ -194,7 +194,7 @@ bool j1Scene::Change_Map(int map)
 	{
 
 		if (already_added == false) {
-		//	Add_UI();
+			Add_UI();
 		}
 
 		Main_Menu = false;
@@ -208,7 +208,6 @@ bool j1Scene::Change_Map(int map)
 		player->Alive = false;
 		App->fade->Fade_To_Black(2);
 		App->map->CleanUp();
-		App->map2->CleanUp();
 		App->collision->MapCleanUp();
 		App->map2->Load("castle.tmx");
 		App->audio->PlayMusic("audio/music/castle.ogg");
@@ -219,7 +218,7 @@ bool j1Scene::Change_Map(int map)
 	{
 
 		if (already_added == false) {
-			//Add_UI();
+			Add_UI();
 		}
 
 		Main_Menu = false;
@@ -233,7 +232,6 @@ bool j1Scene::Change_Map(int map)
 		player->Alive = false;
 		App->fade->Fade_To_Black(2);
 		App->map2->CleanUp();
-		App->map->CleanUp();
 		App->collision->MapCleanUp();
 		App->map->Load("dungeon.tmx");
 		App->audio->PlayMusic("audio/music/ghost.ogg");
@@ -242,7 +240,7 @@ bool j1Scene::Change_Map(int map)
 	}
 	if (map == 3)
 	{
-		Activate_Menu();
+		//Activate_Menu();
 		Main_Menu = true;
 		App->MainMenu->Enable_UI();
 		App->fade->Fade_To_Black(2);
