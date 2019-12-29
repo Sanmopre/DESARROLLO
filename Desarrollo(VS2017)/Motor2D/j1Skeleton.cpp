@@ -224,47 +224,7 @@ void j1Skeleton::Skeleton_Position()
 
 bool j1Skeleton::pathfinding_ground()
 {
-	static iPoint origin;
-	static bool origin_selected = false;
-
-
-	iPoint p = App->EntityManager->Get_Player()->position;
-	p = App->map->WorldToMap(p.x, p.y + 30);
-
 	
-	origin = App->map->WorldToMap(position.x, position.y);
-	App->pathfinding->CreatePath(origin, p);
-
-	const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
-	if (path->At(1) != NULL)
-	{
-		//if the slime is not in dying animations 
-		if (state != SKELETON_DEATH)
-		{
-			state = SKELETON_FOLLOWING;
-			
-			if (Down == false)
-			{
-				if (path->At(1)->x < origin.x) {
-					position.x -= SpeedX ;
-				}
-				if (path->At(1)->x > origin.x) {
-					position.x += SpeedX ;
-				}
-			}
-
-		}
-
-
-	}
-	for (uint i = 0; i < path->Count(); ++i)
-	{
-		iPoint nextPoint = App->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-		if (App->collision->debug)
-		{
-			App->render->Blit(TEX, nextPoint.x, nextPoint.y);
-		}
-	}
 
 	return true;
 }
