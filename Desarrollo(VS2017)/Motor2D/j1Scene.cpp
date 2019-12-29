@@ -135,11 +135,11 @@ bool j1Scene::Update(float dt)
 	//UPDATES ALL UI POSITIONS
 	if (already_added == true) {
 		
-		App->gui->Update_Position(stats.Timer_label, { 220,(-App->render->camera.y / 2) + 22 }, { 0,(-App->render->camera.y / 2) });
+		//App->gui->Update_Position(stats.Timer_label, { 220,(-App->render->camera.y / 2) + 22 }, { 0,(-App->render->camera.y / 2) });
 		App->gui->Update_Position(stats.Timer_icon, { 180,(-App->render->camera.y / 2) + 13 }, { 0, (-App->render->camera.y / 2) });
-		App->gui->Update_Position(stats.Lifes_label, { 150,(-App->render->camera.y / 2) + 22 }, { 0, (-App->render->camera.y / 2) });
+		//App->gui->Update_Position(stats.Lifes_label, { 150,(-App->render->camera.y / 2) + 22 }, { 0, (-App->render->camera.y / 2) });
 		App->gui->Update_Position(stats.Lifes_icon, { 100,(-App->render->camera.y / 2) + 13 }, { 0, (-App->render->camera.y / 2) });
-		App->gui->Update_Position(stats.Coins_label, { 55,(-App->render->camera.y / 2) + 22 }, { 0, (-App->render->camera.y / 2) });
+		//App->gui->Update_Position(stats.Coins_label, { 55,(-App->render->camera.y / 2) + 22 }, { 0, (-App->render->camera.y / 2) });
 		App->gui->Update_Position(stats.Coins_icon, { 10,(-App->render->camera.y / 2) + 15 }, { 0, (-App->render->camera.y / 2) });
 		App->gui->Update_Position(menu.Image, { 160,(-App->render->camera.y / 2) + 5 }, { 0, (-App->render->camera.y / 2) });
 		App->gui->Update_Position(menu.Menu_button, { 450,(-App->render->camera.y / 2 )+13}, { 0, 0 });
@@ -268,7 +268,7 @@ bool j1Scene::Save(pugi::xml_node& data) const
 
 void j1Scene::Add_UI()
 {
-	stats.Timer_label = App->gui->AddGUIelement(GUItype::GUI_LABEL, nullptr, { 220,22 }, { 0,0 }, false, true, { 0,0,0,0 }, Timer_T, this, false, false);
+	stats.Timer_label = App->gui->AddGUIelement(GUItype::GUI_LABEL, nullptr, { 220,22 }, { 0,0 }, false, true, { 0,0,0,0 }, "0:00");
 	stats.Timer_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 180, 13 }, { 0,0 }, false, true, { 0, 0, 30,30 }, nullptr, this);
 	stats.Lifes_label = App->gui->AddGUIelement(GUItype::GUI_LABEL, nullptr, { 146,22 }, { 0,0 }, false, true, { 0,0,0,0 }, "3");
 	stats.Lifes_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 100, 13 }, { 0,0 }, false, true, { 0, 0, 30,30 }, nullptr, this);

@@ -35,8 +35,5 @@ public:
 	float initialValue;
 };
 
-
-
-
 #endif // !__J1GUISCROLLBAR__
 

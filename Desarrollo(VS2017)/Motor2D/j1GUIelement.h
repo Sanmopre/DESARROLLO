@@ -14,17 +14,13 @@ enum class GUItype
 	GUI_INPUTBOX,
 	GUI_SCROLLBAR,
 	GUI_LABEL,
-	GUI_IMAGE,
-	GUI_MAX
+	GUI_IMAGE
 };
 
 enum class SCROLL_TYPE
 {
 	SCROLL_NONE,
-	SCROLL_MUSIC,
-	SCROLL_FX,
-	SCROLL_BASIC,
-	SCROLL_MAX
+	SCROLL_MUSIC
 };
 
 
@@ -52,14 +48,13 @@ public:
 	virtual void Dragging();
 	void Draw();
 
-
 public:
 
 	j1GUIelement* parent = nullptr;
 	j1Module* listener = nullptr;
 	GUItype type = GUItype::GUI_ERROR;
-	iPoint globalPosition = { 0,0 };
-	iPoint localPosition = { 0,0 };
+	iPoint Map_Position = { 0,0 };
+	iPoint Inside_Position = { 0,0 };
 
 	SDL_Color color = { 255,255,255 };
 	char* text = nullptr;

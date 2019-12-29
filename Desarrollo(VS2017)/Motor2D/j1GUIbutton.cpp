@@ -22,7 +22,7 @@ bool j1GUIButton::Awake(pugi::xml_node&)
 bool j1GUIButton::Start()
 {
 	if(text != nullptr)
-		label = App->gui->AddGUIelement(GUItype::GUI_LABEL, this, globalPosition, localPosition, true, true, { 0,0,0,0 }, text);
+		label = App->gui->AddGUIelement(GUItype::GUI_LABEL, this, Map_Position, Inside_Position, true, true, { 0,0,0,0 }, text);
 
 	return true;
 }
@@ -53,7 +53,7 @@ bool j1GUIButton::Update(float dt)
 
 				iPoint mouseClick = { 0,0 };
 				App->input->GetMousePosition(mouseClick.x, mouseClick.y);
-				accuratedDrag = { mouseClick.x - (this->globalPosition.x), mouseClick.y - (this->globalPosition.y) };
+				Drag = { mouseClick.x - (this->Map_Position.x), mouseClick.y - (this->Map_Position.y) };
 
 			}
 
@@ -97,29 +97,29 @@ void j1GUIButton::MovingIt(float dt)
 	iPoint MousePos = { 0,0 };
 	App->input->GetMousePosition(MousePos.x, MousePos.y);
 
-	iPoint currentPos =  this->globalPosition;
+	iPoint currentPos =  this->Map_Position;
 
 
 	if(X_drag)
-		this->globalPosition.x += ((MousePos.x - this->globalPosition.x) - accuratedDrag.x);
+		this->Map_Position.x += ((MousePos.x - this->Map_Position.x) - Drag.x);
 
 	if(Y_drag)
-		this->globalPosition.y += ((MousePos.y - this->globalPosition.y) - accuratedDrag.y);
+		this->Map_Position.y += ((MousePos.y - this->Map_Position.y) - Drag.y);
 
 
 	if (parent != nullptr)
 	{
 		if (X_drag)
-			this->localPosition.x += currentPos.x - this->globalPosition.x;
+			this->Inside_Position.x += currentPos.x - this->Map_Position.x;
 
 		if (Y_drag)
-			this->localPosition.y += currentPos.y - this->globalPosition.y;
+			this->Inside_Position.y += currentPos.y - this->Map_Position.y;
 
 		if (X_drag)
-			this->globalPosition.x = parent->globalPosition.x - localPosition.x;
+			this->Map_Position.x = parent->Map_Position.x - Inside_Position.x;
 
 		if (Y_drag)
-			this->globalPosition.y = parent->globalPosition.y - localPosition.y;
+			this->Map_Position.y = parent->Map_Position.y - Inside_Position.y;
 	}
 
 }

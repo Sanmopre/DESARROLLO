@@ -29,15 +29,11 @@ bool j1GUIscrollBar::Start()
 
 
 
-	scrollButton = App->gui->AddGUIelement(GUItype::GUI_BUTTON, this, globalPosition, localPosition, true, true, { 432, 36, 14 , 16 }, nullptr, this->listener, true, false);
-	scrollButton->globalPosition.y = globalPosition.y - scrollButton->rect.h / 2 + this->rect.h / 2;
+	scrollButton = App->gui->AddGUIelement(GUItype::GUI_BUTTON, this, Map_Position, Inside_Position, true, true, { 432, 36, 14 , 16 }, nullptr, this->listener, true, false);
+	scrollButton->Map_Position.y = Map_Position.y - scrollButton->rect.h / 2 + this->rect.h / 2;
 	value = 0;
 
-	if (this->scrollType == SCROLL_TYPE::SCROLL_FX)
-	{
-		
-	}
-	else if (this->scrollType == SCROLL_TYPE::SCROLL_MUSIC)
+	 if (this->scrollType == SCROLL_TYPE::SCROLL_MUSIC)
 	{
 
 	}
@@ -70,13 +66,9 @@ bool j1GUIscrollBar::Update(float dt)
 bool j1GUIscrollBar::PostUpdate()
 {
 	ScrollLimits();
-	value = -((float(-scrollButton->localPosition.x) / (float(-this->rect.w) + float(scrollButton->rect.w))) * 128);
+	value = -((float(-scrollButton->Inside_Position.x) / (float(-this->rect.w) + float(scrollButton->rect.w))) * 128);
 
-	if (this->scrollType == SCROLL_TYPE::SCROLL_FX)
-	{
-		
-	}
-	else if (this->scrollType == SCROLL_TYPE::SCROLL_MUSIC)
+	if (this->scrollType == SCROLL_TYPE::SCROLL_MUSIC)
 	{
 		
 	}
@@ -97,19 +89,19 @@ bool j1GUIscrollBar::CleanUp()
 
 void j1GUIscrollBar::ScrollLimits() {
 
-	if (scrollButton->localPosition.x > 0)
+	if (scrollButton->Inside_Position.x > 0)
 	{
-		scrollButton->localPosition.x = 0;
+		scrollButton->Inside_Position.x = 0;
 
-		scrollButton->globalPosition.x = scrollButton->parent->globalPosition.x - scrollButton->localPosition.x;
-		//scrollButton->globalPosition.y = scrollButton->parent->globalPosition.y - scrollButton->localPosition.y;
+		scrollButton->Map_Position.x = scrollButton->parent->Map_Position.x - scrollButton->Inside_Position.x;
+
 	}
-	else if (scrollButton->localPosition.x < (-this->rect.w + scrollButton->rect.w))
+	else if (scrollButton->Inside_Position.x < (-this->rect.w + scrollButton->rect.w))
 	{
-		scrollButton->localPosition.x = -this->rect.w + scrollButton->rect.w;
+		scrollButton->Inside_Position.x = -this->rect.w + scrollButton->rect.w;
 
-		scrollButton->globalPosition.x = scrollButton->parent->globalPosition.x - scrollButton->localPosition.x;
-		//scrollButton->globalPosition.y = scrollButton->parent->globalPosition.y - scrollButton->localPosition.y;
+		scrollButton->Map_Position.x = scrollButton->parent->Map_Position.x - scrollButton->Inside_Position.x;
+		
 	}
 
 }

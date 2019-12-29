@@ -35,10 +35,5 @@ private:
 	j1GUIelement* background = nullptr;	
 };
 
-
-
-
-
-
 #endif // !__J1GUIINPUTBOX__
 

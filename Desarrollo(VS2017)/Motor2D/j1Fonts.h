@@ -40,5 +40,4 @@ public:
 	_TTF_Font* default;
 };
 
-
 #endif // __j1FONTS_H__

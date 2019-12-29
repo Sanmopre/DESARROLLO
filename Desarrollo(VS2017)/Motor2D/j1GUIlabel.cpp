@@ -37,7 +37,7 @@ bool j1GUIlabel::PreUpdate()
 bool j1GUIlabel::Update(float dt) 
 {	
 	if (enabled)
-		App->render->Blit_UI(texture, globalPosition.x + localPosition.x, globalPosition.y + localPosition.y - App->render->camera.y/2, nullptr, 0.0f);
+		App->render->Blit_UI(texture, Map_Position.x + Inside_Position.x, Map_Position.y + Inside_Position.y - App->render->camera.y/2, nullptr, 0.0f);
 	
 	return true;
 }

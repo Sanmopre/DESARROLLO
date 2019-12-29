@@ -104,7 +104,7 @@ public:
 	iPoint Fly_Position =  { 690 , 100 };
 	iPoint Skeleton_Position = {190 , 30};
 	iPoint Player_Pos = { 30, 320 };
-	iPoint Coin_pos = { 290, 350 };
+	iPoint Coin_pos = { 290, 325 };
 	
 
 	Game_Menu			menu;

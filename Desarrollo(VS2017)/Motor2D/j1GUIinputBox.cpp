@@ -25,7 +25,7 @@ bool j1GUIinputBox::Awake(pugi::xml_node&)
 
 bool j1GUIinputBox::Start()
 {
-	string = App->gui->AddGUIelement(GUItype::GUI_LABEL, this, globalPosition, { 0,3 }, true, enabled, { localPosition.x,localPosition.y,50,50 }, text);
+	string = App->gui->AddGUIelement(GUItype::GUI_LABEL, this, Map_Position, { 0,3 }, true, enabled, { Inside_Position.x,Inside_Position.y,50,50 }, text);
 	return true;
 }
 
@@ -37,8 +37,6 @@ bool j1GUIinputBox::PreUpdate()
 	if (focus) 
 	{
 		App->input->EnableTextInput();		
-		App->tex->Unload(string->texture);
-		string->texture = App->fonts->Print(App->input->GetText().GetString());
 	}
 
 	else if (!focus)
@@ -73,7 +71,7 @@ bool j1GUIinputBox::PostUpdate()
 
 		if (focus)
 		{
-			SDL_Rect rect = { (string->globalPosition.x + string->rect.w) * App->win->GetScale() , (string->globalPosition.y + localPosition.y) * App->win->GetScale(), 2,  string->rect.h + 10 };
+			SDL_Rect rect = { (string->Map_Position.x + string->rect.w) * App->win->GetScale() , (string->Map_Position.y + Inside_Position.y) * App->win->GetScale(), 2,  string->rect.h + 10 };
 			App->render->DrawQuad(rect, 255, 255, 255, 255, true, false);
 		}
 	}

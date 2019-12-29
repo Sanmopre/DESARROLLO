@@ -27,11 +27,11 @@ void j1GUIelement::Draw()
 
 	if (above && interactable)
 	{
-		App->render->DrawQuad({ globalPosition.x, globalPosition.y, rect.w, rect.h }, 0, 255, 255, 255, false, false, true);
-		App->render->DrawQuad({ globalPosition.x, globalPosition.y, rect.w, rect.h }, 10, 10, 200, 140, true, false, true);
+		App->render->DrawQuad({ Map_Position.x, Map_Position.y, rect.w, rect.h }, 0, 255, 255, 255, false, false, true);
+		App->render->DrawQuad({ Map_Position.x, Map_Position.y, rect.w, rect.h }, 10, 10, 200, 140, true, false, true);
 	}
 	
-	App->render->DrawQuad({ globalPosition.x, globalPosition.y, rect.w, rect.h }, 140,70 , 20,140, true, false, true);
+	App->render->DrawQuad({ Map_Position.x, Map_Position.y, rect.w, rect.h }, 140,70 , 20,140, true, false, true);
 }
 
 
@@ -42,7 +42,7 @@ bool j1GUIelement::OnAbove()
 	SDL_Point mouse;
 	App->input->GetMousePosition(mouse.x, mouse.y);
 
-	SDL_Rect intersect = { globalPosition.x , globalPosition.y, rect.w, rect.h };
+	SDL_Rect intersect = { Map_Position.x , Map_Position.y, rect.w, rect.h };
 
 	if (SDL_PointInRect(&mouse, &intersect) && this->enabled && this->interactable) {
 		if (listener != nullptr)
