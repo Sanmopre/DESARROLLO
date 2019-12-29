@@ -317,10 +317,9 @@ void j1Scene::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 
 	case GUI_Event::EVENT_ONCLICK:
 	{
-		//AUDIO
-		if (element == menu.Menu_button && !console.Image->enabled) {
-			Activate_Menu();
-		}
+		App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_fx.wav"));
+
+		
 		if (element == menu.Return_button) {
 			Activate_Menu();
 		}

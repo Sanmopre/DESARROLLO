@@ -27,30 +27,12 @@ void j1GUIelement::Draw()
 
 	if (above && interactable)
 	{
-		SDL_SetTextureColorMod(texture, 255, 255, 255);
-		SDL_SetTextureAlphaMod(texture, 255);
+		App->render->DrawQuad({ globalPosition.x, globalPosition.y, rect.w, rect.h }, 0, 255, 255, 255, false, false, true);
+		App->render->DrawQuad({ globalPosition.x, globalPosition.y, rect.w, rect.h }, 10, 10, 200, 140, true, false, true);
 	}
-	else if (!above && interactable)
-	{
-		SDL_SetTextureColorMod(texture, 160, 160, 160);
-		SDL_SetTextureAlphaMod(texture, 255);
-	}
-
-	if (!interactable && this->type != GUItype::GUI_BUTTON)
-	{
-		SDL_SetTextureColorMod(texture, 255, 255, 255);
-		SDL_SetTextureAlphaMod(texture, 255);
-	}
-	else if (!interactable && this->type == GUItype::GUI_BUTTON && !decorative)
-	{
-		SDL_SetTextureColorMod(texture, 255, 255, 255);
-		SDL_SetTextureAlphaMod(texture, 50);
-
-	}
-
-	App->render->Blit_UI(texture, globalPosition.x, globalPosition.y, &rect, 0.0f, 0.0f);
-	App->render->DrawQuad({ globalPosition.x, globalPosition.y, rect.w, rect.h }, 0, 255, 255, 255, false, false, true);
 	
+	App->render->Blit_UI(texture, globalPosition.x, globalPosition.y, &rect, 0.0f, 0.0f);
+	App->render->DrawQuad({ globalPosition.x, globalPosition.y, rect.w, rect.h }, 140,70 , 20,140, true, false, true);
 }
 
 
