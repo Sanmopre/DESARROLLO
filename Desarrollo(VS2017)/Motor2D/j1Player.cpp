@@ -391,6 +391,7 @@ bool j1Player::Update(float dt)
     }
 
 
+	if (App->scene->Main_Menu == false) {
 
 	if (App->render->camera.x > -575) {
 		if (playerinfo.attacking == true && playerinfo.Looking_Forward == false) {
@@ -409,6 +410,8 @@ bool j1Player::Update(float dt)
 		else {
 			App->render->Blit_Player(Character_tex, position.x - 400, position.y, &(playerinfo.current_animation->GetCurrentFrame()), SDL_FLIP_NONE, -1.0);
 		}
+	}
+
 	}
 	return true;
 }
@@ -650,7 +653,7 @@ void j1Player::OnCollision(Collider* c1, Collider* c2)
 	{
 		if ((playerinfo.playerhead->rect.y + playerinfo.playerhead->rect.h) > (c2->rect.y))
 		{
-			App->scene->actual_map = App->scene->Change_Map(2);
+			 App->scene->Change_Map(2);
 
 		}
 

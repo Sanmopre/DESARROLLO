@@ -119,7 +119,7 @@ void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 		{
 			App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_fx.wav"));
 		App->scene->Main_Menu = false;
-		App->scene->actual_map = App->scene->Change_Map(1);
+		 App->scene->Change_Map(1);
 		}
 
 		if (element == continue_button) 
@@ -127,7 +127,7 @@ void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 			want_continue = true;
 			App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_fx.wav"));
 		App->scene->Main_Menu = false;
-		App->scene->actual_map = App->scene->Change_Map(2);
+		App->scene->Change_Map(2);
 		}
 
 		if (element == settings_menu.button) {

@@ -77,6 +77,7 @@ public:
 	void Add_UI();
 	void Activate_Menu();
 	void Activate_Console();
+	void Close_InGame_UI();
 
 public:
 

@@ -31,7 +31,6 @@ void j1GUIelement::Draw()
 		App->render->DrawQuad({ globalPosition.x, globalPosition.y, rect.w, rect.h }, 10, 10, 200, 140, true, false, true);
 	}
 	
-	App->render->Blit_UI(texture, globalPosition.x, globalPosition.y, &rect, 0.0f, 0.0f);
 	App->render->DrawQuad({ globalPosition.x, globalPosition.y, rect.w, rect.h }, 140,70 , 20,140, true, false, true);
 }
 
@@ -59,21 +58,17 @@ bool j1GUIelement::OnAbove()
 
 void j1GUIelement::OnClick()
 {
-
 	if (listener != nullptr)
 	{
 		this->listener->GUI_Event_Manager(GUI_Event::EVENT_ONCLICK, this);
 	}
-
 }
-
 
 
 void j1GUIelement::OnRelease()
 {
 
 }
-
 
 void j1GUIelement::Dragging()
 {
