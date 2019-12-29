@@ -102,11 +102,6 @@ bool j1Scene::Update(float dt)
 		 Change_Map(2);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
-	{
-		Main_Menu = true;
-		Change_Map(3);
-	}
 	
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) 
 	{
@@ -119,13 +114,16 @@ bool j1Scene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
 	{
-			App->MainMenu->Enable_UI();
+		Main_Menu = true;
+		Change_Map(3);
+		Close_InGame_UI();
+			
 	}
 
 	//Game menu
-	//if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && !console.Image->enabled) {
-		//Activate_Menu();
-	//}
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && Main_Menu == false) {
+		Activate_Menu();
+	}
 
 	if (App->input->GetKey(SDL_SCANCODE_GRAVE) == KEY_DOWN ){
 		Activate_Console();
@@ -277,13 +275,13 @@ void j1Scene::Add_UI()
 	stats.Coins_label = App->gui->AddGUIelement(GUItype::GUI_LABEL, nullptr, { 55,22 }, { 0,0 }, false, true, { 0,0,0,0 }, "0");
 	stats.Coins_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 10, 15 }, { 0,0 }, false, true, { 0, 0, 30,30 }, nullptr, this);
 	menu.Image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 10, 60 }, { 0,0 }, false, false, { 0, 0, 200, 280 }, nullptr, this);
-	menu.Menu_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 450,250 }, { 0,0 }, true, true, { 0,0,30,30 }, nullptr, this);
-	menu.Return_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,130 }, { -3,-5 }, true, false, { 0, 0,100,22 }, "MAIN MENU", this);
+	menu.Menu_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 450,250 }, { 0,-235 }, true, true, { 0,0,70,30 }, "OPTIONS",  this);
+	menu.Return_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,130 }, { 20,5 }, true, false, { 0, 0,100,22 }, "RETURN", this);
 	menu.Title = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 205,50 }, { 30,0 }, false, false, { 0, 0,109,27 }, "MENU", this, false, false, SCROLL_TYPE::SCROLL_NONE, true);
-	menu.Resume_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,100 }, { 10,-5 }, true, false, { 0, 0,100,22 }, "RESUME", this);
-	menu.Exit_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,220 }, { 20,-5 }, true, false, { 0, 0,100,22 }, "EXIT", this);
-	menu.Save = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,160 }, { 20,-5 }, true, false, { 0, 0,100,22 }, "SAVE", this);
-	menu.Load = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,190 }, { 20,-5 }, true, false, { 0, 0,100,22 }, "LOAD", this);
+	menu.Resume_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,100 }, { 20,5 }, true, false, { 0, 0,100,22 }, "RESUME", this);
+	menu.Exit_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,220 }, { 20,5 }, true, false, { 0, 0,100,22 }, "EXIT", this);
+	menu.Save = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,160 }, { 20,5 }, true, false, { 0, 0,100,22 }, "SAVE", this);
+	menu.Load = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,190 }, { 20,5 }, true, false, { 0, 0,100,22 }, "LOAD", this);
 
 	
 	already_added = true;
