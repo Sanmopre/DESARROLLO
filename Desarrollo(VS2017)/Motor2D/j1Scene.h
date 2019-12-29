@@ -71,7 +71,7 @@ public:
 	int actual_map = 3;
 
 	//UI managment
-	void GuiObserver(GUI_Event type, j1GUIelement* element);
+	void GUI_Event_Manager(GUI_Event type, j1GUIelement* element);
 	bool Console_Manager();
 
 	void Add_UI();

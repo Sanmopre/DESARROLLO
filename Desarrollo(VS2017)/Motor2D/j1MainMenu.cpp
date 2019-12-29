@@ -105,7 +105,7 @@ bool j1MainMenu::CleanUp()
 	return true;
 }
 
-void j1MainMenu::GuiObserver(GUI_Event type, j1GUIelement* element)
+void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 {
 
 	switch (type)

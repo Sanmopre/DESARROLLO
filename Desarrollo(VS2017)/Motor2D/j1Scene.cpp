@@ -72,20 +72,21 @@ bool j1Scene::Update(float dt)
 
 		bool ret = true;
 	/*
+	if (already_added == true) {
 		Timer += dt;
-	sprintf_s(Timer_T, "%.2f", Timer);
-	App->tex->Unload(stats.Timer_label->texture);
-	stats.Timer_label->text = Timer_T;
+		sprintf_s(Timer_T, "%.2f", Timer);
+		App->tex->Unload(stats.Timer_label->texture);
+		stats.Timer_label->text = Timer_T;
 
-	sprintf_s(Lifes_T, "%d", Lifes);
-	App->tex->Unload(stats.Lifes_label->texture);
-	stats.Lifes_label->text = Lifes_T;
+		sprintf_s(Lifes_T, "%d", Lifes);
+		App->tex->Unload(stats.Lifes_label->texture);
+		stats.Lifes_label->text = Lifes_T;
 
-	sprintf_s(Coins_T, "%d", Coins);
-	App->tex->Unload(stats.Coins_label->texture);
-	stats.Coins_label->text = Coins_T;
+		sprintf_s(Coins_T, "%d", Coins);
+		App->tex->Unload(stats.Coins_label->texture);
+		stats.Coins_label->text = Coins_T;
+	}
 	*/
-	
 	
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
@@ -132,25 +133,27 @@ bool j1Scene::Update(float dt)
 	//if (console.Input->focus)
 		//ret = Console_Manager();
 
-/*
+
 	//UPDATES ALL UI POSITIONS
-	App->gui->Update_Position(stats.Timer_label, { 220,(-App->render->camera.y / 2)+ 22 }, { 0,(-App->render->camera.y / 2)  });
-	App->gui->Update_Position(stats.Timer_icon, { 180,(-App->render->camera.y / 2) +13 } ,{ 0, (-App->render->camera.y / 2)  });
-	App->gui->Update_Position(stats.Lifes_label, { 150,(-App->render->camera.y / 2)+22 } ,{ 0, (-App->render->camera.y / 2)  });
-	App->gui->Update_Position(stats.Lifes_icon, { 100,(-App->render->camera.y / 2)+13 }, { 0, (-App->render->camera.y / 2)  });
-	App->gui->Update_Position(stats.Coins_label, { 55,(-App->render->camera.y / 2)+22 } ,{ 0, (-App->render->camera.y / 2)  });
-	App->gui->Update_Position(stats.Coins_icon, { 10,(-App->render->camera.y / 2)+15 }, { 0, (-App->render->camera.y / 2)  });
-	App->gui->Update_Position(menu.Image, { 160,(-App->render->camera.y / 2) + 5}, { 0, (-App->render->camera.y / 2)  });
-//	App->gui->Update_Position(menu.Menu_button, { 450,(-App->render->camera.y)+13 }, { 0, 0  });
-	App->gui->Update_Position(menu.Return_button, { 210,(-App->render->camera.y / 2)+130 }, { -3, (-App->render->camera.y / 2)-5});
-	App->gui->Update_Position(menu.Title, { 205,(-App->render->camera.y / 2)+50 }, { 30, (-App->render->camera.y / 2) });
-	App->gui->Update_Position(menu.Resume_button, { 210,(-App->render->camera.y / 2)+100 }, { 10, (-App->render->camera.y / 2) -5 });
-	App->gui->Update_Position(menu.Exit_button, { 210,(-App->render->camera.y / 2)+220 }, { 20, (-App->render->camera.y / 2) -5 });
-	App->gui->Update_Position(menu.Save, { 210,(-App->render->camera.y / 2) +160} ,{ 20, (-App->render->camera.y / 2) -5 });
-	App->gui->Update_Position(menu.Load, { 210,(-App->render->camera.y / 2)+190 }, { 20, (-App->render->camera.y / 2) -5 });
-	App->gui->Update_Position(console.Image, { 160,(-App->render->camera.y / 2) +60} ,{ 0, (-App->render->camera.y / 2)  });
-	App->gui->Update_Position(console.Input, { 170,(-App->render->camera.y / 2)+220 }, { 0, (-App->render->camera.y / 2)  });
-	*/
+	if (already_added == true) {
+		/*
+		App->gui->Update_Position(stats.Timer_label, { 220,(-App->render->camera.y / 2) + 22 }, { 0,(-App->render->camera.y / 2) });
+		App->gui->Update_Position(stats.Timer_icon, { 180,(-App->render->camera.y / 2) + 13 }, { 0, (-App->render->camera.y / 2) });
+		App->gui->Update_Position(stats.Lifes_label, { 150,(-App->render->camera.y / 2) + 22 }, { 0, (-App->render->camera.y / 2) });
+		App->gui->Update_Position(stats.Lifes_icon, { 100,(-App->render->camera.y / 2) + 13 }, { 0, (-App->render->camera.y / 2) });
+		App->gui->Update_Position(stats.Coins_label, { 55,(-App->render->camera.y) + 22 }, { 0, (-App->render->camera.y / 2) });
+		App->gui->Update_Position(stats.Coins_icon, { 10,(-App->render->camera.y / 2) + 15 }, { 0, (-App->render->camera.y / 2) });
+		App->gui->Update_Position(menu.Image, { 160,(-App->render->camera.y / 2) + 5 }, { 0, (-App->render->camera.y / 2) });
+		App->gui->Update_Position(menu.Menu_button, { 450,App->win->screen_surface->h}, { 0, 0 });
+		App->gui->Update_Position(menu.Return_button, { 210,(-App->render->camera.y / 2) + 130 }, { -3, (-App->render->camera.y / 2) - 5 });
+		App->gui->Update_Position(menu.Title, { 205,(-App->render->camera.y / 2) + 50 }, { 30, (-App->render->camera.y / 2) });
+		App->gui->Update_Position(menu.Resume_button, { 210,(-App->render->camera.y / 2) + 100 }, { 10, (-App->render->camera.y / 2) - 5 });
+		App->gui->Update_Position(menu.Exit_button, { 210,(-App->render->camera.y / 2) + 220 }, { 20, (-App->render->camera.y / 2) - 5 });
+		App->gui->Update_Position(menu.Save, { 210,(-App->render->camera.y / 2) + 160 }, { 20, (-App->render->camera.y / 2) - 5 });
+		App->gui->Update_Position(menu.Load, { 210,(-App->render->camera.y / 2) + 190 }, { 20, (-App->render->camera.y / 2) - 5 });
+		App->gui->Update_Position(console.Image, { 160,(-App->render->camera.y / 2) + 60 }, { 0, (-App->render->camera.y / 2) });
+		App->gui->Update_Position(console.Input, { 170,(-App->render->camera.y / 2) + 220 }, { 0, (-App->render->camera.y / 2) });*/
+	}
 
 
 
@@ -191,7 +194,7 @@ bool j1Scene::Change_Map(int map)
 	{
 
 		if (already_added == false) {
-			Add_UI();
+		//	Add_UI();
 		}
 
 		Main_Menu = false;
@@ -200,8 +203,8 @@ bool j1Scene::Change_Map(int map)
 		if (player == nullptr) {
 			player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
 		}
-		//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
-		//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
+		skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
+		flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
 		player->Alive = false;
 		App->fade->Fade_To_Black(2);
 		App->map->CleanUp();
@@ -216,14 +219,14 @@ bool j1Scene::Change_Map(int map)
 	{
 
 		if (already_added == false) {
-			Add_UI();
+			//Add_UI();
 		}
 
 		Main_Menu = false;
 		App->MainMenu->Disable_UI();
 		//App->EntityManager->Destroy_Entities();
-		//skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
-		//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
+		skeleton = App->EntityManager->Summon_Entity(j1Entity::Types::SKELETON, Skeleton_Position);
+		flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
 		if (player == nullptr) {
 			player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
 		}
@@ -281,7 +284,7 @@ void j1Scene::Add_UI()
 	stats.Coins_label = App->gui->AddGUIelement(GUItype::GUI_LABEL, nullptr, { 55,22 }, { 0,0 }, false, true, { 0,0,0,0 }, "0");
 	stats.Coins_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 10, 15 }, { 0,0 }, false, true, { 458, 43, 40, 27 }, nullptr, this);
 	menu.Image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 10, 60 }, { 0,0 }, false, false, { 288, 144, 198, 282 }, nullptr, this);
-	menu.Menu_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 450,13 }, { 0,0 }, true, true, { 84,164,37,31 }, nullptr, this);
+	menu.Menu_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 450,250 }, { 0,0 }, true, true, { 84,164,37,31 }, nullptr, this);
 	menu.Return_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,130 }, { -3,-5 }, true, false, { 283,109,100,22 }, "MAIN MENU", this);
 	menu.Title = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 205,50 }, { 30,0 }, false, false, { 166,167,109,27 }, "MENU", this, false, false, SCROLL_TYPE::SCROLL_NONE, true);
 	menu.Resume_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,100 }, { 10,-5 }, true, false, { 283,109,100,22 }, "RESUME", this);
@@ -314,7 +317,7 @@ void j1Scene::Activate_Console()
 	console.Image->enabled = !console.Image->enabled;
 }
 
-void j1Scene::GuiObserver(GUI_Event type, j1GUIelement* element)
+void j1Scene::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 {
 	switch (type)
 	{

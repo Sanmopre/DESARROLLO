@@ -106,7 +106,7 @@ public:
 		}
 	}
 
-	virtual void GuiObserver(GUI_Event type, j1GUIelement* element)
+	virtual void GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 	{
 
 	}

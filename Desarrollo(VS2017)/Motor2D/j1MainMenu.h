@@ -52,7 +52,7 @@ public:
 	void Disable_UI();
 	void Enable_UI();
 
-	void GuiObserver(GUI_Event type, j1GUIelement* element);
+	void GUI_Event_Manager(GUI_Event type, j1GUIelement* element);
 
 public:
 
