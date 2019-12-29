@@ -170,6 +170,9 @@ void j1Collision::DebugDraw()
 		case COLLIDER_SKELETON:
 			App->render->DrawQuad(colliders[i]->rect, 200, 200, 50, alpha);
 			break;
+		case COLLIDER_COIN:
+			App->render->DrawQuad(colliders[i]->rect, 200, 200, 50, alpha);
+			break;
 		}
 	}
 }
