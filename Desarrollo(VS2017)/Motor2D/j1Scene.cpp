@@ -54,6 +54,7 @@ bool j1Scene::Start()
 	//player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
 	//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
 	coin = App->EntityManager->Summon_Entity(j1Entity::Types::COIN, Coin_pos);
+	Add_Console();
 	
 
 	return true;
@@ -92,19 +93,19 @@ bool j1Scene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 	{
 		Main_Menu = false;
-		actual_map = Change_Map(1);
+		Change_Map(1);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 	{
 		Main_Menu = false;
-		actual_map = Change_Map(2);
+		 Change_Map(2);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 	{
 		Main_Menu = true;
-		actual_map = Change_Map(3);
+		Change_Map(3);
 	}
 	
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) 
@@ -126,8 +127,7 @@ bool j1Scene::Update(float dt)
 		//Activate_Menu();
 	//}
 
-	if (App->input->GetKey(SDL_SCANCODE_GRAVE) == KEY_DOWN && !menu.Image->enabled){
-	
+	if (App->input->GetKey(SDL_SCANCODE_GRAVE) == KEY_DOWN ){
 		Activate_Console();
 }
 	//if (console.Input->focus)
@@ -192,7 +192,7 @@ bool j1Scene::Change_Map(int map)
 		if (already_added == false) {
 			Add_UI();
 		}
-
+		Open_InGame_UI();
 		Main_Menu = false;
 		App->MainMenu->Disable_UI();
 		//App->EntityManager->Destroy_Entities();
@@ -216,7 +216,7 @@ bool j1Scene::Change_Map(int map)
 		if (already_added == false) {
 			Add_UI();
 		}
-
+		Open_InGame_UI();
 		Main_Menu = false;
 		App->MainMenu->Disable_UI();
 		//App->EntityManager->Destroy_Entities();
@@ -271,27 +271,33 @@ bool j1Scene::Save(pugi::xml_node& data) const
 void j1Scene::Add_UI()
 {
 	stats.Timer_label = App->gui->AddGUIelement(GUItype::GUI_LABEL, nullptr, { 220,22 }, { 0,0 }, false, true, { 0,0,0,0 }, Timer_T, this, false, false);
-	stats.Timer_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 180, 13 }, { 0,0 }, false, true, { 460, 111, 27, 31 }, nullptr, this);
+	stats.Timer_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 180, 13 }, { 0,0 }, false, true, { 0, 0, 30,30 }, nullptr, this);
 	stats.Lifes_label = App->gui->AddGUIelement(GUItype::GUI_LABEL, nullptr, { 146,22 }, { 0,0 }, false, true, { 0,0,0,0 }, "3");
-	stats.Lifes_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 100, 13 }, { 0,0 }, false, true, { 458, 78, 41, 31 }, nullptr, this);
+	stats.Lifes_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 100, 13 }, { 0,0 }, false, true, { 0, 0, 30,30 }, nullptr, this);
 	stats.Coins_label = App->gui->AddGUIelement(GUItype::GUI_LABEL, nullptr, { 55,22 }, { 0,0 }, false, true, { 0,0,0,0 }, "0");
-	stats.Coins_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 10, 15 }, { 0,0 }, false, true, { 458, 43, 40, 27 }, nullptr, this);
-	menu.Image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 10, 60 }, { 0,0 }, false, false, { 288, 144, 198, 282 }, nullptr, this);
-	menu.Menu_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 450,250 }, { 0,0 }, true, true, { 84,164,37,31 }, nullptr, this);
-	menu.Return_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,130 }, { -3,-5 }, true, false, { 283,109,100,22 }, "MAIN MENU", this);
-	menu.Title = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 205,50 }, { 30,0 }, false, false, { 166,167,109,27 }, "MENU", this, false, false, SCROLL_TYPE::SCROLL_NONE, true);
-	menu.Resume_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,100 }, { 10,-5 }, true, false, { 283,109,100,22 }, "RESUME", this);
-	menu.Exit_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,220 }, { 20,-5 }, true, false, { 283,109,100,22 }, "EXIT", this);
-	menu.Save = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,160 }, { 20,-5 }, true, false, { 283,109,100,22 }, "SAVE", this);
-	menu.Load = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,190 }, { 20,-5 }, true, false, { 283,109,100,22 }, "LOAD", this);
-	console.Image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 160, 60 }, { 0,0 }, false, false, { 288, 144, 198, 200 }, nullptr, this);
-	console.Input = App->gui->AddGUIelement(GUItype::GUI_INPUTBOX, nullptr, { 168,220 }, { 0,0 }, true, false, { 11,359,182,26 }, nullptr, this);
+	stats.Coins_icon = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 10, 15 }, { 0,0 }, false, true, { 0, 0, 30,30 }, nullptr, this);
+	menu.Image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 10, 60 }, { 0,0 }, false, false, { 0, 0, 200, 280 }, nullptr, this);
+	menu.Menu_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 450,250 }, { 0,0 }, true, true, { 0,0,30,30 }, nullptr, this);
+	menu.Return_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,130 }, { -3,-5 }, true, false, { 0, 0,100,22 }, "MAIN MENU", this);
+	menu.Title = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 205,50 }, { 30,0 }, false, false, { 0, 0,109,27 }, "MENU", this, false, false, SCROLL_TYPE::SCROLL_NONE, true);
+	menu.Resume_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,100 }, { 10,-5 }, true, false, { 0, 0,100,22 }, "RESUME", this);
+	menu.Exit_button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,220 }, { 20,-5 }, true, false, { 0, 0,100,22 }, "EXIT", this);
+	menu.Save = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,160 }, { 20,-5 }, true, false, { 0, 0,100,22 }, "SAVE", this);
+	menu.Load = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 210,190 }, { 20,-5 }, true, false, { 0, 0,100,22 }, "LOAD", this);
+
 	
 	already_added = true;
 }
 
-void j1Scene::Activate_Menu() {
 
+void j1Scene::Add_Console()
+{
+console.Image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 160, 60 }, { 0,0 }, false, false, { 0, 0, 198, 200 }, nullptr, this);
+console.Input = App->gui->AddGUIelement(GUItype::GUI_INPUTBOX, nullptr, { 168,220 }, { 0,0 }, true, false, { 0, 0,182,26 }, nullptr, this);
+}
+
+void j1Scene::Activate_Menu() 
+{
 	menu.Image->enabled = !menu.Image->enabled;
 	menu.Resume_button->enabled = !menu.Resume_button->enabled;
 	menu.Return_button->enabled = !menu.Return_button->enabled;
@@ -299,8 +305,6 @@ void j1Scene::Activate_Menu() {
 	menu.Exit_button->enabled = !menu.Exit_button->enabled;
 	menu.Load->enabled = !menu.Load->enabled;
 	menu.Save->enabled = !menu.Save->enabled;
-
-
 }
 
 void j1Scene::Activate_Console()
@@ -317,17 +321,16 @@ void j1Scene::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 
 	case GUI_Event::EVENT_ONCLICK:
 	{
-		//AUDIO
-		if (element == menu.Menu_button && !console.Image->enabled) {
-			Activate_Menu();
-		}
+		App->audio->PlayFx(App->audio->LoadFx("audio/fx/UI_fx.wav"));
+
+		
 		if (element == menu.Return_button) {
 			Activate_Menu();
 		}
 
 		if (element == menu.Exit_button) {
 			Main_Menu = true;
-			actual_map = Change_Map(3);
+			 Change_Map(3);
 		}
 
 		if (element == menu.Save) {
@@ -349,8 +352,40 @@ void j1Scene::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 		if (element == menu.Exit_button) {
 			Main_Menu = true;
 			actual_map = Change_Map(3);
+			Close_InGame_UI();
 		}
 	}
 	}
 }
 
+void j1Scene::Close_InGame_UI() 
+{
+	stats.Timer_label->enabled = false;
+	stats.Timer_icon->enabled = false;
+	stats.Lifes_label->enabled = false;
+	stats.Lifes_icon->enabled = false;
+	stats.Coins_label->enabled = false;
+	stats.Coins_icon->enabled = false;
+	menu.Image->enabled = false;
+	menu.Menu_button->enabled = false;
+	menu.Return_button->enabled = false;
+	menu.Title->enabled = false;
+	menu.Resume_button->enabled = false;
+	menu.Exit_button->enabled = false;
+	menu.Save->enabled = false;
+	menu.Load->enabled = false;
+	console.Image->enabled = false;
+	console.Input->enabled = false;
+}
+
+void j1Scene::Open_InGame_UI() 
+{
+	stats.Timer_label->enabled = true;
+	stats.Timer_icon->enabled = true;
+	stats.Lifes_label->enabled = true;
+	stats.Lifes_icon->enabled = true;
+	stats.Coins_label->enabled = true;
+	stats.Coins_icon->enabled = true;
+	menu.Menu_button->enabled = true;
+
+}

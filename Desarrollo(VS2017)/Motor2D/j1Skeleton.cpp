@@ -92,8 +92,11 @@ bool j1Skeleton::Update(float dt)
 	if (Alive == true) {
 		collider->SetPos(position.x, position.y);
 	}
-	App->render->Blit(Character_tex, position.x, position.y, &current_animation->GetCurrentFrame(), SDL_FLIP_NONE);
-	
+
+
+	if (App->scene->Main_Menu == false) {
+		App->render->Blit(Character_tex, position.x, position.y, &current_animation->GetCurrentFrame(), SDL_FLIP_NONE);
+	}
 
 
 
