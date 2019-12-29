@@ -45,9 +45,13 @@ bool j1MainMenu::Start()
 	settings_menu.button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 20,170 }, { 0,0 }, true, true, { 4,69,130,37 }, "SETTINGS", this);
 	settings_menu.exit = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 410,50 }, { 0,0 }, true, false, { 513,53,14,14 }, nullptr, this);
 	settings_menu.scroll = App->gui->AddGUIelement(GUItype::GUI_SCROLLBAR, nullptr, { 210, 80 }, { 0,0 }, false, false, { 0, 6, 183, 7 }, nullptr, this);
-	credits_menu.image = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 200, 10 }, { 0,0 }, true, false, { 20, 324, 251, 270 }, nullptr, this);
+
+	credits_menu.title = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 250,160 }, { 0,-3 }, false, false, { 533,78,129,32 }, "CREDITS", this, false, false, SCROLL_TYPE::SCROLL_NONE, true);
+	credits_menu.link = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 325, 120 }, { -5,0 }, true, false, { 283, 75, 159, 31 }, "LINK TO OUR WEB!", this);
+	credits_menu.credits = App->gui->AddGUIelement(GUItype::GUI_IMAGE, nullptr, { 215, 200 }, { 0,0 }, true, false, { 9,215, 257, 130 }, nullptr, this);
+
 	credits_menu.button = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 20,220 }, { 0,0 }, true, true, { 4,69,130,37 }, "CREDITS", this);
-	credits_menu.exit = App->gui->AddGUIelement(GUItype::GUI_BUTTON, nullptr, { 400,20 }, { 0,0 }, true, false, { 513,53,14,14 }, nullptr, this);
+	
 
 	return true;
 }
@@ -96,8 +100,7 @@ bool j1MainMenu::CleanUp()
 	settings_menu.button = nullptr;
 	settings_menu.scroll = nullptr;
 
-	credits_menu.image = nullptr;
-	credits_menu.exit = nullptr;
+
 	credits_menu.button = nullptr;
 
 	App->gui->CleanUp();
@@ -110,46 +113,71 @@ void j1MainMenu::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 
 	switch (type)
 	{
-
 	case GUI_Event::EVENT_ONCLICK:
 	{
-
-		if (element == play_button)
 	
-			App->scene->actual_map = App->scene->Change_Map(1);
+		if (element == play_button) 
+		{
+			//AUDIO
+		App->scene->Main_Menu = false;
+		App->scene->actual_map = App->scene->Change_Map(1);
+		}
 
-		if (element == continue_button) {
-			App->scene->actual_map = App->scene->Change_Map(1);
+		if (element == continue_button) 
+		{
+			want_continue = true;
+			//AUDIO
+		App->scene->Main_Menu = false;
+		App->scene->actual_map = App->scene->Change_Map(2);
 		}
 
 		if (element == settings_menu.button) {
+			//AUDIO
+
 			settings_menu.image->enabled = true;
 			settings_menu.exit->enabled = true;
 			settings_menu.scroll->enabled = true;
-		}
-
-		if (element == settings_menu.exit) {
-			settings_menu.image->enabled = false;
-			settings_menu.exit->enabled = false;
-			settings_menu.scroll->enabled = false;
+			credits_menu.title->enabled = false;
+			credits_menu.link->enabled = false;
+			credits_menu.credits->enabled = false;
 		}
 
 		if (element == credits_menu.button) {
-			credits_menu.image->enabled = true;
-			credits_menu.exit->enabled = true;
+			//AUDIO
+
+			settings_menu.image->enabled = true;
+			settings_menu.exit->enabled = true;
+			credits_menu.title->enabled = true;
+			credits_menu.link->enabled = true;
+			credits_menu.credits->enabled = true;
+			settings_menu.scroll->enabled = false;
 		}
 
-		if (element == credits_menu.exit) {
-			credits_menu.image->enabled = false;
-			credits_menu.exit->enabled = false;
+	
+		if (element == settings_menu.exit) {
+			//AUDIO
+			settings_menu.image->enabled = false;
+			settings_menu.exit->enabled = false;
+			settings_menu.scroll->enabled = false;
+			credits_menu.title->enabled = false;
+			credits_menu.link->enabled = false;
+			credits_menu.credits->enabled = false;
+		}
+		if (element == credits_menu.link) {
+			//AUDIO
+			ShellExecuteA(NULL, "open", "https://sanmopre.github.io/DESARROLLO/", NULL, NULL, SW_SHOWNORMAL);
 		}
 
 		if (element == exit_button)
 			want_exit = true;
 
 	}
-	}
 
+	case GUI_Event::EVENT_DRAG:
+	{
+
+	}
+	}
 
 }
 
@@ -162,9 +190,8 @@ void j1MainMenu::Disable_UI()
 	settings_menu.button->enabled = false;
 	settings_menu.exit->enabled = false;
 	settings_menu.scroll->enabled = false;
-	credits_menu.image->enabled = false;
 	credits_menu.button->enabled = false;
-	credits_menu.exit->enabled = false;
+
 }
 
 void j1MainMenu::Enable_UI() 

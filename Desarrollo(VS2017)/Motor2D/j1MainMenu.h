@@ -8,7 +8,7 @@
 struct SDL_Texture;
 class j1GUIelement;
 
-struct SettingsMenu {
+struct Settings_Menu {
 
 	j1GUIelement* image = nullptr;
 	j1GUIelement* exit = nullptr;
@@ -16,11 +16,12 @@ struct SettingsMenu {
 	j1GUIelement* scroll = nullptr;
 };
 
-struct CreditsMenu {
-
-	j1GUIelement* image = nullptr;
-	j1GUIelement* exit = nullptr;
+struct Credits_Menu 
+{
 	j1GUIelement* button = nullptr;
+	j1GUIelement* title = nullptr;
+	j1GUIelement* credits = nullptr;
+	j1GUIelement* link = nullptr;
 };
 class j1MainMenu : public j1Module
 {
@@ -64,8 +65,8 @@ public:
 	bool want_continue = false;
 	bool want_exit = false;
 
-	SettingsMenu settings_menu;
-	CreditsMenu credits_menu;
+	Settings_Menu settings_menu;
+	Credits_Menu credits_menu;
 };
 
 #endif // __j1MAINMENU_H__
