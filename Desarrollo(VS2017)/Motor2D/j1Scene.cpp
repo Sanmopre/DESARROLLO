@@ -317,30 +317,38 @@ void j1Scene::GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
 
 	case GUI_Event::EVENT_ONCLICK:
 	{
-		//here we put audio
-
+		//AUDIO
+		if (element == menu.Menu_button && !console.Image->enabled) {
+			Activate_Menu();
+		}
 		if (element == menu.Return_button) {
+			Activate_Menu();
+		}
+
+		if (element == menu.Exit_button) {
 			Main_Menu = true;
 			actual_map = Change_Map(3);
 		}
 
-		if (element == menu.Exit_button) {
-	
-		}
-
-		if (element == menu.Save)
+		if (element == menu.Save) {
 			App->SaveGame();
-
+			Activate_Menu();
+		}
 		if (element == menu.Load) {
 			Activate_Menu();
-			App->LoadGame();
+
 		}
 
 		if (element == menu.Resume_button) {
 			Activate_Menu();
 		}
-		if (element == menu.Menu_button && !console.Image->enabled) {
+		if (element == menu.Menu_button) {
 			Activate_Menu();
+		}
+
+		if (element == menu.Exit_button) {
+			Main_Menu = true;
+			actual_map = Change_Map(3);
 		}
 	}
 	}
