@@ -54,7 +54,7 @@ bool j1Scene::Start()
 	//player = App->EntityManager->Summon_Entity(j1Entity::Types::PLAYER, Player_Pos);
 	//flying_enemy = App->EntityManager->Summon_Entity(j1Entity::Types::FLYING_ENEMY, Fly_Position);
 	coin = App->EntityManager->Summon_Entity(j1Entity::Types::COIN, Coin_pos);
-	coin2 = App->EntityManager->Summon_Entity(j1Entity::Types::COIN, Coin2_pos);
+	
 
 	return true;
 }
