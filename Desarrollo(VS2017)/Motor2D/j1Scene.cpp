@@ -47,6 +47,8 @@ bool j1Scene::Start()
 	Coins = 0;
 	
 	player = nullptr;
+	skeleton = nullptr;
+	flying_enemy = nullptr;
 	coin = App->EntityManager->Summon_Entity(j1Entity::Types::COIN, Coin_pos);
 	Add_Console();
 	
